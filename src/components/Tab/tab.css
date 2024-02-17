@@ -1,0 +1,26 @@
+.tabbtn {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+.tabbtn .btn {
+  color: #4400A5;
+  background-color: #FFF;
+  border: 2px solid #FF8329;
+  border-radius: 5px;
+  
+}
+.tabbtn .btn:hover {
+  color: #FFF;
+  background-color: #4400A5;
+  border-color: #4400A5
+}
+
+@media (max-width: 768px) {
+    .tabbtn{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .tabbtn .grid-cols-6 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
