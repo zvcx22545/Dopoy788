@@ -118,11 +118,11 @@ function Register() {
                 value={Bank}
                 label="กรุณาเลือกธนาคาร"
                 onChange={handleChange} >
-                <MenuItem value={20}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="" alt="" />ธนาคารไทยพาณิชย์</div> </MenuItem>
-                <MenuItem value={30}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="" alt="" />ธนาคารทหารไทยธนชาต</div> </MenuItem>
-                <MenuItem value={40}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="" alt="" />ธนาคารกสิกรไทย</div> </MenuItem>
-                <MenuItem value={50}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="" alt="" />ธนาคารกรุงศรีอยุธยา</div> </MenuItem>
-                <MenuItem value={60}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="" alt="" />ธนาคารออมสิน</div> </MenuItem>
+                <MenuItem value={20}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20230930_220541.png" alt="" />ธนาคารไทยพาณิชย์</div> </MenuItem>
+                <MenuItem value={30}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />ธนาคารทหารไทยธนชาต</div> </MenuItem>
+                <MenuItem value={40}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />ธนาคารกสิกรไทย</div> </MenuItem>
+                <MenuItem value={50}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />ธนาคารกรุงศรีอยุธยา</div> </MenuItem>
+                <MenuItem value={60}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />ธนาคารออมสิน</div> </MenuItem>
               </Select>
             </FormControl>
           </Box>
