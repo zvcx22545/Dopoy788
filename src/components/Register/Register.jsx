@@ -118,17 +118,11 @@ function Register() {
                 value={Bank}
                 label="กรุณาเลือกธนาคาร"
                 onChange={handleChange} >
-                <MenuItem value={10}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20230930_220541.png" alt="" />Ten</div></MenuItem>
-                <MenuItem value={20}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />Twenty</div></MenuItem>
-                <MenuItem value={30}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />Thirty</div></MenuItem>
-                <MenuItem value={40}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />Thirty</div></MenuItem>
-                <MenuItem value={50}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />Thirty</div></MenuItem>
-                <MenuItem value={60}><div className="flex items-center gap-2"><img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />Thirty</div></MenuItem>
-                <MenuItem value={20}><img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />ธนาคารไทยพาณิชย์</MenuItem>
-                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />ธนาคารทหารไทยธนชาต</MenuItem>
-                <MenuItem value={40}><img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />ธนาคารกสิกรไทย</MenuItem>
-                <MenuItem value={50}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />ธนาคารกรุงศรีอยุธยา</MenuItem>
-                <MenuItem value={60}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />ธนาคารออมสิน</MenuItem>
+                <MenuItem value={20}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />ธนาคารไทยพาณิชย์</div> </MenuItem>
+                <MenuItem value={30}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />ธนาคารทหารไทยธนชาต</div> </MenuItem>
+                <MenuItem value={40}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />ธนาคารกสิกรไทย</div> </MenuItem>
+                <MenuItem value={50}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />ธนาคารกรุงศรีอยุธยา</div> </MenuItem>
+                <MenuItem value={60}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />ธนาคารออมสิน</div> </MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -147,7 +141,6 @@ function Register() {
                   <input type="text" placeholder="Recommender ID" className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "/>
                   <div className="bg-green-500 rounded-full h-5 w-5"></div>
                   </div>
-                  
                   
                 </form>
                 <AfterSuccess/>
