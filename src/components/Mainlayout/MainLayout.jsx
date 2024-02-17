@@ -6,10 +6,10 @@ import Footer from '../Footer/Footer.jsx'
 function MainLayout() {
   return (
     <section id="main-layout">
-    <Navbar></Navbar>
-    <Navlogin/>
-    <Tab/>
-    <Footer/>
+      <Navbar></Navbar>
+      <Navlogin/>
+      <Tab/>
+      <Footer/>
     </section>
   );
 }
