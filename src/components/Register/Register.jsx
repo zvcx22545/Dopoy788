@@ -51,7 +51,7 @@ function Register() {
                     <img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" alt="" />
                 </div>
                 <div className="text-[#4400A5] mb-3 ">ลงทะเบียนข้อมูลสมาชิก</div>
-                <form onSubmit={handleSubmit} className="flex flex-col w-[35%] mx-auto">
+                <form onSubmit={handleSubmit} className="flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]">
 
                   <div className="recomend">
                   <label htmlFor="username">ชื่อผู้ใช้งาน</label>
