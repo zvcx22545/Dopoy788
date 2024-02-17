@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 function Navbar() {
   return (
-<div className="navbar bg-base-100">
+<div className="navbar bg-base-100 shadow-md">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -12,17 +13,17 @@ function Navbar() {
         <li><a>รีวิว</a></li>
       </ul>
     </div>
-    <img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" class="logo" /> 
+    <Link to="/"><img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" className="logo" /> </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-        <li><a class="text-lg">เช็คฉลากกินแบ่ง</a></li>
-        <li><a class="text-lg">บทความ</a></li>
-        <li><a class="text-lg">รีวิว</a></li>
-    </ul>
+        <li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li>
+        <li><a className="text-lg">บทความ</a></li>
+        <li><a className="text-lg">รีวิว</a></li>
+    </ul>Name
   </div>
   <div className="navbar-end gap-2">
-  <button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button>
+  <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link>
   </div>
   <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

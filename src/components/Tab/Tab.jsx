@@ -3,13 +3,13 @@ import './tab.css';
 function Tab() {
   return (
     <div className='tabbtn'>
-    <div class="grid gap-2 grid-cols-6">
-      <button class="btn">หวยไทย</button>
-      <button class="btn">หวยลาว</button>
-      <button class="btn">หวยฮานอย</button>
-      <button class="btn">หวยหุ้นไทย</button>
-      <button class="btn">หวยหุ้นไทย</button>
-      <button class="btn">หวยยี่กีวิเดียว</button>
+    <div className="grid gap-2 grid-cols-6">
+      <button className="btn">หวยไทย</button>
+      <button className="btn">หวยลาว</button>
+      <button className="btn">หวยฮานอย</button>
+      <button className="btn">หวยหุ้นไทย</button>
+      <button className="btn">หวยหุ้นไทย</button>
+      <button className="btn">หวยยี่กีวิเดียว</button>
     </div>
   </div>
   )
