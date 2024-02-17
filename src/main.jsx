@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Register from './components/Register/Register.jsx'
 
+
 const router = createBrowserRouter([
   {
     path: "/",

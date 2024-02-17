@@ -1,5 +1,6 @@
 
 import Navbar from "../Navbar/Navbar"
+import Footer from '../Footer/Footer.jsx'
 import Swal from "sweetalert2";
 import './register.css'
 import { useState } from 'react';
@@ -85,8 +86,13 @@ function Register() {
                   <div className="bg-green-500 rounded-full h-5 w-5"></div>
                   </div>
                   
+                  <div className="mt-3 mx-auto">
+                      <button type="submit" className="btn text-white bg-[#4400A5]">สมัครสมาชิก</button>
+                  </div>
+
                 </form>
             </div>
+            <Footer/>
     </section>
   )
 }
