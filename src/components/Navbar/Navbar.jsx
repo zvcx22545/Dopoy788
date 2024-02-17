@@ -17,13 +17,13 @@ function Navbar() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-        <li><a class="text-lg">เช็คฉลากกินแบ่ง</a></li>
-        <li><a class="text-lg">บทความ</a></li>
-        <li><a class="text-lg">รีวิว</a></li>
-    </ul>
+        <li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li>
+        <li><a className="text-lg">บทความ</a></li>
+        <li><a className="text-lg">รีวิว</a></li>
+    </ul>Name
   </div>
   <div className="navbar-end gap-2">
-  <button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button>
+  <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link>
   </div>
   <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
