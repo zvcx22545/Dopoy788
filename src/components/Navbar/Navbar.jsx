@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 function Navbar() {
   return (
 <div className="navbar bg-base-100">
@@ -12,7 +13,7 @@ function Navbar() {
         <li><a>รีวิว</a></li>
       </ul>
     </div>
-    <img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" class="logo" /> 
+    <Link to="/"><img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" className="logo" /> </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -23,7 +24,7 @@ function Navbar() {
   </div>
   <div className="navbar-end gap-2">
   <button className="btn bg-[#FF8329]">เข้าสู่ระบบ</button>
-  <button className="btn bg-[#4400A5]">สมัครสมาชิก</button>
+  <Link to="/register"><button className="btn bg-[#4400A5]">สมัครสมาชิก</button></Link>
 
   </div>
 </div>
