@@ -6,14 +6,17 @@
 html{
   font-size: 15px;
 }
+
 body{
   font-family: "Prompt" , sans-serif;
 }
+
 #main-layout{
   position: relative;
   min-height: 100vh;
   /* padding: 10px; */
 }
+
 #footer{
   position: absolute;
   bottom: -5rem;
