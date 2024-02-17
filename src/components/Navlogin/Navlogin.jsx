@@ -14,7 +14,7 @@ function Navlogin() {
         </div>
         <div className="grid gap-2 items-start max-md:my-5">
             <label>รหัสผ่าน</label>
-            <input type="text" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" />
+            <input type="password" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" />
             <button className="text-right mt-2">ลืมรหัสผ่าน</button>
         </div>
     </div>
