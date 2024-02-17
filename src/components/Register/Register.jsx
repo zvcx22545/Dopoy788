@@ -118,12 +118,11 @@ function Register() {
                 value={Bank}
                 label="กรุณาเลือกธนาคาร"
                 onChange={handleChange} >
-                <MenuItem value={10}> <img className="h-[15px] w-[15px]" src="/public/image/20230930_220541.png" alt="" />Ten</MenuItem>
-                <MenuItem value={20}><img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />Twenty</MenuItem>
-                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />Thirty</MenuItem>
-                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />Thirty</MenuItem>
-                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />Thirty</MenuItem>
-                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />Thirty</MenuItem>
+                <MenuItem value={20}><img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />ธนาคารไทยพาณิชย์</MenuItem>
+                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />ธนาคารทหารไทยธนชาต</MenuItem>
+                <MenuItem value={40}><img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />ธนาคารกสิกรไทย</MenuItem>
+                <MenuItem value={50}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />ธนาคารกรุงศรีอยุธยา</MenuItem>
+                <MenuItem value={60}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />ธนาคารออมสิน</MenuItem>
               </Select>
             </FormControl>
           </Box>
