@@ -1,4 +1,6 @@
-import Navbar from "../Navbar/Navbar";
+
+import Navbar from "../Navbar/Navbar"
+import Footer from '../Footer/Footer.jsx'
 import Swal from "sweetalert2";
 import "./register.css";
 import { useState } from "react";
@@ -132,17 +134,14 @@ function Register() {
             />
           </div>
 
-          <div className="flex justify-between items-center mt-4">
-            <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
-            <input
-              type="text"
-              placeholder="Recommender ID"
-              className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "
-            />
-            <div className="bg-green-500 rounded-full h-5 w-5"></div>
-          </div>
-        </form>
-      </div>
+                  <div className="flex justify-between items-center mt-4">
+                  <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
+                  <input type="text" placeholder="Recommender ID" className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "/>
+                  <div className="bg-green-500 rounded-full h-5 w-5"></div>
+                  </div>
+                  
+                </form>
+            </div>
     </section>
   );
 }
