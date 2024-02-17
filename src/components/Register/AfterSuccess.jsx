@@ -1,7 +1,8 @@
 
 function AfterSuccess() {
   return (
-    <div>AfterSuccess</div>
+    <div className="container-success">AfterSuccess
+    </div>
   )
 }
 
