@@ -1,6 +1,6 @@
 function Navlogin() {
     return(
-        <div className="h-auto">
+        <div className="mb-5">
             <div className="navLogin flex items-center gap-[8%] justify-center bg-[#4400A5] py-10 max-md:flex-col">
     <div className="max-md:text-center">
         <p>เข้าสู่ระบบกับ</p>
