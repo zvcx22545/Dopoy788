@@ -9,11 +9,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { color } from "@mui/system";
-import Success from "./success.jsx";
-
+import AfterSuccess from "./AfterSuccess.jsx";
 function Register() {
-  const [age, setAge] = useState('');
+  const [Bank, setAge] = useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -108,26 +106,25 @@ function Register() {
               <div className="error-message">{phoneNumberError}</div>
             )}
           </div>
-          <div className="recomend">
-          <label htmlFor="Bank account">บัญชีธนาคาร</label>
-          <FormControl fullWidth>
-            <Select
-              style={{ backgroundColor: 'rgba(229, 220, 241, 0.66)' }}
-              className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
-              value={age}
-              onChange={handleChange}
-              label="บัญชีธนาคาร"
-              
-            >
-              <MenuItem selected disabled value="">
-                <em>บัญชีธนาคาร</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-          </div>
+
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">บัญชีธนาคาร</InputLabel>
+              <Select
+                className="border-solid border border-[#4400A5] p-1 rounded"
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={Bank}
+                label="กรุณาเลือกธนาคาร"
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
           <div className="recomend">
             <label htmlFor="username">เลขบัญชีธนาคาร</label>
             <input
@@ -145,8 +142,9 @@ function Register() {
                   
                   
                 </form>
-                <Success/>
+                <AfterSuccess/>
             </div>
+
             <Footer/>
     </section>
   );
