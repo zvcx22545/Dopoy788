@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Success from "./success.jsx";
 
 function Register() {
   const [Bank, setAge] = useState("");
@@ -140,7 +141,9 @@ function Register() {
                   <div className="bg-green-500 rounded-full h-5 w-5"></div>
                   </div>
                   
+                  
                 </form>
+                <Success/>
             </div>
             <Footer/>
     </section>
