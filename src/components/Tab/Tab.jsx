@@ -1,16 +1,17 @@
+import './tab.css';
+
 function Tab() {
   return (
-    <div role="tablist" className="tabs tabs-bordered">
-    <input type="radio" name="my_tabs_1" role="tab" className="tab" aria-label="Tab 1" />
-    <div role="tabpanel" className="tab-content p-10">Tab content 1</div>
-  
-    <input type="radio" name="my_tabs_1" role="tab" className="tab" aria-label="Tab 2" checked />
-    <div role="tabpanel" className="tab-content p-10">Tab content 2</div>
-  
-    <input type="radio" name="my_tabs_1" role="tab" className="tab" aria-label="Tab 3" />
-    <div role="tabpanel" className="tab-content p-10">Tab content 3</div>
+    <div className='tabbtn'>
+    <div class="grid gap-2 grid-cols-6">
+      <button class="btn">หวยไทย</button>
+      <button class="btn">หวยลาว</button>
+      <button class="btn">หวยฮานอย</button>
+      <button class="btn">หวยหุ้นไทย</button>
+      <button class="btn">หวยหุ้นไทย</button>
+      <button class="btn">หวยยี่กีวิเดียว</button>
+    </div>
   </div>
   )
 }
-
 export default Tab
