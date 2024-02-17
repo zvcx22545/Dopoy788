@@ -11,3 +11,8 @@ input
     justify-content: center;
     gap: 0.75rem;
 }
+.recomend{
+    display: grid;
+    gap: 5px;
+    margin-top: .5rem;
+}

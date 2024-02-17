@@ -51,33 +51,38 @@ function Register() {
                     <img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" alt="" />
                 </div>
                 <div className="text-[#4400A5] mb-3 ">ลงทะเบียนข้อมูลสมาชิก</div>
-                <form onSubmit={handleSubmit} className="w-[60%]">
-                  <div>
+                <form onSubmit={handleSubmit} className="flex flex-col w-[35%] mx-auto">
+
+                  <div className="recomend">
                   <label htmlFor="username">ชื่อผู้ใช้งาน</label>
+                  <input type="username" id="username" placeholder="Username" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="username" id="username" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
+
+                  <div className="recomend">
                   <label htmlFor="password">รหัสผ่าน</label>
+                  <input type="password" id="password" placeholder="Password" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="password" id="password" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
+                  
+                  <div className="recomend">
                   <label htmlFor="phone">เบอร์โทร</label>
                   </div>
-                  <input type="tel" id="phone" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="กรุณากรอกเบอร์โทร" className="border-solid border border-[#4400A5] rounded" required/>
+                  <input type="tel" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="กรุณากรอกเบอร์โทร" className="border-solid border border-[#4400A5] rounded" required/>
                   {phoneNumberError && <div className="error-message">{phoneNumberError}</div>}
+                  </div>
 
                   <div>
-                  <label htmlFor="bank">บัญชีธนาคาร</label>
+                  <label htmlFor="username">บัญชีธนาคาร</label>
                   </div>
-                  <input type="text" id="bank" className="border-solid border border-[#4400A5] rounded"/>
+                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
                   <div>
-                  <label htmlFor="bank-account">เลขบัญชีธนาคาร</label>
+                  <label htmlFor="username">เลขบัญชีธนาคาร</label>
                   </div>
-                  <input type="text" id="bank-account" className="border-solid border border-[#4400A5] rounded"/>
-                  <div className="recomend">
+                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
+                  <div className="recomend grid grid-cols-3">
                   <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
-                  <input type="text" id="recomend-person" className="border-solid border border-[#4400A5] rounded w-[30%] "/>
+                  <input type="text" className="border-solid border border-[#4400A5] rounded "/>
                   </div>
+                  
                 </form>
             </div>
     </section>
