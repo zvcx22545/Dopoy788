@@ -144,7 +144,7 @@ function Register() {
                   </div>
                   
                   <div className="mt-8 mx-auto">
-                      <button className="btn text-white bg-[#4400A5]">สมัครสมาชิก</button>
+                      <button type="submit" className="btn text-white bg-[#4400A5]">สมัครสมาชิก</button>
                   </div>
                   
                 </form>
