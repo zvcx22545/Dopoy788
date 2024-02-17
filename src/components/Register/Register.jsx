@@ -106,12 +106,14 @@ function Register() {
               <div className="error-message">{phoneNumberError}</div>
             )}
           </div>
-
+            
+          <div className="w-full mt-[.5rem]">
+          <label htmlFor="Bank account">บัญชีธนาคาร</label>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">บัญชีธนาคาร</InputLabel>
               <Select
-                className="border-solid border border-[#4400A5] p-1 rounded"
+                style={{ backgroundColor: 'rgba(229, 220, 241, 0.66)' }}
+                className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={Bank}
@@ -124,7 +126,7 @@ function Register() {
               </Select>
             </FormControl>
           </Box>
-
+        </div>
           <div className="recomend">
             <label htmlFor="username">เลขบัญชีธนาคาร</label>
             <input
