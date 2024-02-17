@@ -5,9 +5,6 @@ input {
     color: #4400a5;
 }
 
-input{
-    background-color: rgba(229, 220, 241, 0.66);
-}
 
 form input:focus {
     outline: none;
@@ -15,6 +12,10 @@ form input:focus {
     background-color: rgba(229, 220, 241, 0.66); /* Background color when focused */
 }
   
+form input:not(:placeholder-shown) {
+    color: #4400a5;
+    background-color: rgba(229, 220, 241, 0.66);
+  }
 .recomend {
     display: grid;
     gap: 5px;

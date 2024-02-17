@@ -1,20 +1,19 @@
-
 import Navbar from "../Navbar/Navbar"
 import Footer from '../Footer/Footer.jsx'
 import Swal from "sweetalert2";
 import "./register.css";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import AfterSuccess from "./AfterSuccess.jsx";
 function Register() {
-  const [Bank, setAge] = useState("");
+
+  const [Bank, setBank] = useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setBank(event.target.value);
   };
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -113,14 +112,13 @@ function Register() {
             <FormControl fullWidth>
               <Select
                 style={{ backgroundColor: 'rgba(229, 220, 241, 0.66)' }}
-                className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
+                className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded "
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={Bank}
                 label="กรุณาเลือกธนาคาร"
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
+                onChange={handleChange} >
+                <MenuItem value={10}> <img src="" alt="" />Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
@@ -151,5 +149,7 @@ function Register() {
     </section>
   );
 }
+
+
 
 export default Register;
