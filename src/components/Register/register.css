@@ -5,6 +5,10 @@ input {
   color: #4400a5;
 }
 
+input{
+    background-color: rgba(229, 220, 241, 0.66);
+}
+
 form input:focus {
     outline: none;
     color: #4400a5; /* Text color when focused */
@@ -16,4 +20,8 @@ form input:focus {
   display: grid;
   gap: 5px;
   margin-top: 0.5rem;
+}
+
+Select{
+    color: white;
 }
