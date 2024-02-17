@@ -142,6 +142,7 @@ function Register() {
                   
                 </form>
             </div>
+            <Footer/>
     </section>
   );
 }
