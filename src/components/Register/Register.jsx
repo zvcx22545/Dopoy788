@@ -65,22 +65,24 @@ function Register() {
                   
                   <div className="recomend">
                   <label htmlFor="phone">เบอร์โทร</label>
-                  </div>
-                  <input type="tel" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="กรุณากรอกเบอร์โทร" className="border-solid border border-[#4400A5] rounded" required/>
+                  <input type="tel" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="Phone" className="border-solid border border-[#4400A5] p-1 rounded" required/>
                   {phoneNumberError && <div className="error-message">{phoneNumberError}</div>}
                   </div>
 
-                  <div>
+                  <div className="recomend">
                   <label htmlFor="username">บัญชีธนาคาร</label>
+                  <input type="text" placeholder="Bank account" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
+                  
+                  <div className="recomend">
                   <label htmlFor="username">เลขบัญชีธนาคาร</label>
+                  <input type="text" placeholder="Bank number" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
-                  <div className="recomend grid grid-cols-3">
+
+                  <div className="flex justify-between items-center mt-4">
                   <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded "/>
+                  <input type="text" placeholder="Recommender ID" className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "/>
+                  <div className="bg-green-500 rounded-full h-5 w-5"></div>
                   </div>
                   
                 </form>
