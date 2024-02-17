@@ -2,3 +2,8 @@ input
 {
     width: 100%;
 }
+.recomend{
+    display: grid;
+    gap: 5px;
+    margin-top: .5rem;
+}

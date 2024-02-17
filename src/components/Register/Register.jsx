@@ -51,33 +51,40 @@ function Register() {
                     <img src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&" alt="" />
                 </div>
                 <div className="text-[#4400A5] mb-3 ">ลงทะเบียนข้อมูลสมาชิก</div>
-                <form onSubmit={handleSubmit} className="mx-auto flex flex-col">
-                  <div>
-                  <label htmlFor="username">ชื่อผู้ใช้งาน</label>
-                  </div>
-                  <input type="username" id="username" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
-                  <label htmlFor="password">รหัสผ่าน</label>
-                  </div>
-                  <input type="password" id="password" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
-                  <label htmlFor="phone">เบอร์โทร</label>
-                  </div>
-                  <input type="tel" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="กรุณากรอกเบอร์โทร" className="border-solid border border-[#4400A5] rounded" required/>
-                  {phoneNumberError && <div className="error-message">{phoneNumberError}</div>}
+                <form onSubmit={handleSubmit} className="flex flex-col w-[35%] mx-auto">
 
-                  <div>
+                  <div className="recomend">
+                  <label htmlFor="username">ชื่อผู้ใช้งาน</label>
+                  <input type="username" id="username" placeholder="Username" className="border-solid border border-[#4400A5] p-1 rounded"/>
+                  </div>
+
+                  <div className="recomend">
+                  <label htmlFor="password">รหัสผ่าน</label>
+                  <input type="password" id="password" placeholder="Password" className="border-solid border border-[#4400A5] p-1 rounded"/>
+                  </div>
+                  
+                  <div className="recomend">
+                  <label htmlFor="phone">เบอร์โทร</label>
+                  <input type="tel" onChange={handlePhoneNumberChange} value={phoneNumber} maxLength="10" placeholder="Phone" className="border-solid border border-[#4400A5] p-1 rounded" required/>
+                  {phoneNumberError && <div className="error-message">{phoneNumberError}</div>}
+                  </div>
+
+                  <div className="recomend">
                   <label htmlFor="username">บัญชีธนาคาร</label>
+                  <input type="text" placeholder="Bank account" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
-                  <div>
+                  
+                  <div className="recomend">
                   <label htmlFor="username">เลขบัญชีธนาคาร</label>
+                  <input type="text" placeholder="Bank number" className="border-solid border border-[#4400A5] p-1 rounded"/>
                   </div>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded"/>
-                  <div className="recomend grid grid-cols-3">
+
+                  <div className="flex justify-between items-center mt-4">
                   <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
-                  <input type="text" className="border-solid border border-[#4400A5] rounded "/>
+                  <input type="text" placeholder="Recommender ID" className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "/>
+                  <div className="bg-green-500 rounded-full h-5 w-5"></div>
                   </div>
+                  
                 </form>
             </div>
     </section>
