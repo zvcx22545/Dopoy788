@@ -111,16 +111,19 @@ function Register() {
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <Select
-                style={{ backgroundColor: 'rgba(229, 220, 241, 0.66)' }}
+                style={{backgroundColor: 'rgba(229, 220, 241, 0.66)'}}
                 className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded "
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={Bank}
                 label="กรุณาเลือกธนาคาร"
                 onChange={handleChange} >
-                <MenuItem value={10}> <img src="" alt="" />Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value={10}> <img className="h-[15px] w-[15px]" src="/public/image/20230930_220541.png" alt="" />Ten</MenuItem>
+                <MenuItem value={20}><img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />Twenty</MenuItem>
+                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />Thirty</MenuItem>
+                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />Thirty</MenuItem>
+                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />Thirty</MenuItem>
+                <MenuItem value={30}><img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />Thirty</MenuItem>
               </Select>
             </FormControl>
           </Box>
