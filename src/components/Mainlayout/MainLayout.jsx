@@ -1,7 +1,7 @@
 import Navbar from '../Navbar/Navbar';
-import Tab from '../Tab/Tab';
 import Navlogin from '../Navlogin/Navlogin'
-import Footer from "../Footer/Footer"
+import Tab from '../Tab/Tab';
+import Footer from '../Footer/Footer';
 
 function MainLayout() {
   return (
