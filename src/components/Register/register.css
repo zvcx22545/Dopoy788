@@ -15,7 +15,6 @@ form input:focus {
     background-color: rgba(229, 220, 241, 0.66); /* Background color when focused */
   }
   
-
 .recomend {
   display: grid;
   gap: 5px;
