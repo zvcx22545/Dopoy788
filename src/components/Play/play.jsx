@@ -43,9 +43,9 @@ function Play() {
             </div>
         </div>
         
-        <div class="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
-            <div class="row-span-3 ...">01</div>
-            <div class="col-span-2">
+        <div className="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
+            <div className="row-span-3 ...">01</div>
+            <div className="col-span-2">
             <div className='playbtn'>
                 <div className="grid gap-4 p-5 grid-cols-3">
                 <button className="btn"><BiGridAlt/> เลือกกดเอง</button>
@@ -71,7 +71,7 @@ function Play() {
                 </div>
             </div>
             </div>
-            <div class="row-span-2 col-span-2 ...">03</div>
+            <div className="row-span-2 col-span-2 ...">03</div>
         </div>
         {/* <Poy/> */}
         <Footer/>
