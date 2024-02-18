@@ -1,9 +1,15 @@
 import React from "react";
 import "./numpad.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
-function NumpadLotto() {
+function NumpadLotto({ addCompletedNumbers }) {
     const [numbers, setNumbers] = useState(["", "", "", ""]);
+    useEffect(() => {
+        if (numbers.every(num => num !== "")) {
+            addCompletedNumbers(numbers.join(""));
+            setNumbers(["", "", "", ""]); // Reset the numbers array
+        }
+    }, [numbers, addCompletedNumbers]);
 
     const handleAddNumber = (number) => {
         const index = numbers.findIndex(num => num === ""); 
