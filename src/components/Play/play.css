@@ -93,6 +93,46 @@
   background-color: white;
   border: 1px #4400A5 solid;
 }
+
+/* Modal Container */
+.modal {
+  display: none; /* ซ่อน Modal เริ่มต้น */
+  position: fixed; /* ตำแหน่งต่อมาที่เป็นแนวนอนและแนวตั้ง */
+  z-index: 1; /* ให้ Modal อยู่ในชั้นด้านบนสุด */
+  left: 0;
+  top: 0;
+  width: 100%; /* ความกว้างทั้งหมดของหน้าจอ */
+  height: 100%; /* ความสูงทั้งหมดของหน้าจอ */
+  overflow: auto; /* เพื่อให้สามารถเลื่อนหน้าเว็บได้เมื่อขนาดของ Modal มีขนาดใหญ่กว่าหน้าจอ */
+  background-color: rgb(0,0,0); /* สีพื้นหลัง */
+  background-color: rgba(0,0,0,0.4); /* สีพื้นหลังด้วยความทึบแบบทึบ */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe; /* สีพื้นหลังของเนื้อหา Modal */
+  margin: 15% auto; /* ให้เนื้อหา Modal อยู่กึ่งกลางตามแนวนอน */
+  padding: 20px;
+  border: 1px solid #888; /* เส้นขอบของ Modal */
+  width: 80%; /* ความกว้างของ Modal */
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right; /* จัดให้อยู่ด้านขวาของ Modal */
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 @media (max-width: 1024px) {
   .list-responsive {
       display: flex;

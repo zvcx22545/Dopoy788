@@ -7,6 +7,7 @@ import { BiGridAlt } from "react-icons/bi";
 import NumpadLotto from './NumpadLotto';
 
 function Play() {
+    const [showModal, setShowModal] = useState(false);
     const [countdown, setCountdown] = useState(0);
 
     useEffect(() => {
@@ -57,7 +58,7 @@ function Play() {
                             <h1>list....</h1>
                         </div>
                         <div className="menu-btn grid gap-2">
-                            <button className='custom'>ใส่ราคา/ส่งโพย</button>
+                            <button className='custom'onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
                             <button className='delete'>ลบทั้งหมด</button>
                         </div>
                     </div>
@@ -96,7 +97,15 @@ function Play() {
                 <button className="list-btn">ใส่ราคา/ส่งโพย</button>
         </div>
         </div>
-        
+        {/* Modal */}
+        {showModal && ( // แสดง modal เมื่อ showModal เป็น true
+                <div className="modal"> {/* Modal Container */}
+                    <div className="modal-content"> {/* Modal Content */}
+                        <span className="close" onClick={() => setShowModal(false)}>&times;</span> {/* Close Button */}
+                        <p>เนื้อหาของ Modal ที่นี่...</p> {/* เนื้อหาของ Modal */}
+                    </div>
+                </div>
+            )}
         <Footer/>
         </section>    
     );
