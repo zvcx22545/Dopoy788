@@ -4,6 +4,7 @@ import './play.css';
 import Footer from '../Footer/Footer';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
+import { BiTrashAlt } from "react-icons/bi";
 import NumpadLotto from './NumpadLotto';
 
 function Play() {
@@ -47,7 +48,70 @@ function Play() {
             </nav>
             </div>
         </div>
-        
+        {/* Modal */}
+        {showModal && ( 
+                <div className="mo2">
+                    <div className="modal-content">
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-2">
+                            <p>ใส่ราคา</p>
+                            <p className='bg-[#4400A5] p-1 text-white rounded'>บันทึกโพย</p>
+                        </div>
+                        <span className="close" onClick={() => setShowModal(false)}>&times;</span> {/* Close Button */}
+                    </div>
+                    <div className="modalTable ">
+                        <div className="headTable flex justify-between items-center text-center h-[40px] bg-[#4400A5]">
+                                <h1 className='w-full'>สามตัวล่าง</h1>
+                                <h1 className='w-full'>เรทจ่าย</h1>
+                                <h1 className='w-full'>ราคา</h1>
+                                <h1 className='w-full'>ลบ</h1>
+                        </div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>04</td>
+                                    <td>50</td>
+                                    <td><p className='border border-[#4400A5] px-1'>10</p></td>
+                                    <td><button className='text-[#FF2929]'><BiTrashAlt /></button></td>
+                                </tr>
+                                <tr>
+                                    <td>04</td>
+                                    <td>50</td>
+                                    <td><p className='border border-[#4400A5] px-1'>10</p></td>
+                                    <td><button className='text-[#FF2929]'><BiTrashAlt /></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="flex justify-between gap-5 mt-5">
+                        <button className='pricePoy'>5</button>
+                        <button className='pricePoy'>10</button>
+                        <button className='pricePoy'>20</button>
+                        <button className='pricePoy'>50</button>
+                        <button className='pricePoy'>100</button>
+                        <button className='pricePoy'>500</button>
+                    </div>
+                    <div className="mt-5">
+                        <div className="flex justify-between items-center gap-5">
+                            <p>จำนวนเงิน</p>
+                            <div className="w-[50%] flex justify-end items-center gap-5">
+                            <button className="w-[35px] h-[35px] bg-[#FF2929] rounded"></button>
+                            <input type="number" className='w-[45%] border border-[#4400A5] rounded px-1' />
+                            <button className="w-[35px] h-[35px] bg-[#00871E] rounded"></button>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 justify-between gap-3">
+                            <p>เงินคงหลือ (บาท)</p>
+                            <p className='text-right'>0</p>
+                            <p>ยอดรวม (บาท)</p>
+                            <p className='text-right'>25</p>
+                            <button className='rounded text-black bg-[#EBA1A1] border border-[#EBA1A1] hover:text-[#EBA1A1] hover:bg-white p-1'>ยอดรวม (บาท)</button>
+                            <button className='rounded text-white bg-[#4400A5] border border-[#4400A5] hover:bg-white hover:text-[#4400A5]'>ยืนยัน</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            )}
         <div className="grid grid-rows-2 grid-flow-col gap-4 p-5 pr-20 pl-20">
             <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
                     <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
@@ -99,15 +163,7 @@ function Play() {
                 <button className="list-btn" onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
         </div>
         </div>
-        {/* Modal */}
-        {showModal && ( // แสดง modal เมื่อ showModal เป็น true
-                <div className="modal"> {/* Modal Container */}
-                    <div className="modal-content"> {/* Modal Content */}
-                        <span className="close" onClick={() => setShowModal(false)}>&times;</span> {/* Close Button */}
-                        <p>เนื้อหาของ Modal ที่นี่...</p> {/* เนื้อหาของ Modal */}
-                    </div>
-                </div>
-            )}
+        
         <Footer/>
         </section>    
     );

@@ -89,49 +89,91 @@
   margin: 0 auto;
   height: 60px;
   width: 98%;
-  z-index: 10;
+  z-index: 2;
   background-color: white;
   border: 1px #4400A5 solid;
 }
 
 /* Modal Container */
-.modal {
-  display: none; /* ซ่อน Modal เริ่มต้น */
-  position: fixed; /* ตำแหน่งต่อมาที่เป็นแนวนอนและแนวตั้ง */
-  z-index: 1; /* ให้ Modal อยู่ในชั้นด้านบนสุด */
-  left: 0;
-  top: 0;
-  width: 100%; /* ความกว้างทั้งหมดของหน้าจอ */
-  height: 100%; /* ความสูงทั้งหมดของหน้าจอ */
-  overflow: auto; /* เพื่อให้สามารถเลื่อนหน้าเว็บได้เมื่อขนาดของ Modal มีขนาดใหญ่กว่าหน้าจอ */
-  background-color: rgb(0,0,0); /* สีพื้นหลัง */
-  background-color: rgba(0,0,0,0.4); /* สีพื้นหลังด้วยความทึบแบบทึบ */
+.mo2 {
+    display: block; /* ซ่อน Modal เริ่มต้น */
+    position: fixed; /* ตำแหน่งต่อมาที่เป็นแนวนอนและแนวตั้ง */
+    z-index: 3; /* ให้ Modal อยู่ในชั้นด้านบนสุด */
+    left: 0;
+    top: 0;
+    width: 100%; /* ความกว้างทั้งหมดของหน้าจอ */
+    height: 100%; /* ความสูงทั้งหมดของหน้าจอ */
+    background-color: rgb(0,0,0); /* สีพื้นหลัง */
+    background-color: rgba(0,0,0,0.4); /* สีพื้นหลังด้วยความทึบแบบทึบ */
 }
 
 /* Modal Content */
 .modal-content {
   background-color: #fefefe; /* สีพื้นหลังของเนื้อหา Modal */
-  margin: 15% auto; /* ให้เนื้อหา Modal อยู่กึ่งกลางตามแนวนอน */
+  position: absolute; /* ตำแหน่งอยู่ตรงกลางของหน้าจอ */
+  top: 50%; /* ความสูงที่อยู่กลางแนวตั้ง */
+  left: 50%; /* ความกว้างที่อยู่กลางแนวนอน */
+  transform: translate(-50%, -50%); /* ย้ายตำแหน่งให้อยู่กลางของหน้าจอ */
+  margin: 0 auto;
   padding: 20px;
+  height: auto;
+  border-radius: 15px;
   border: 1px solid #888; /* เส้นขอบของ Modal */
   width: 80%; /* ความกว้างของ Modal */
 }
 
+
 /* Close Button */
 .close {
-  color: #aaa;
-  float: right; /* จัดให้อยู่ด้านขวาของ Modal */
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.modalTable {
+  height: 35vh;
+  overflow-y: auto;
+  border-bottom: 35px #4400A5 solid;
+}
+/* thead th {
+  position: sticky;
+  top: 0;
+  background-color: #4400A5;
+} */
+.headTable{
+  position: sticky;
+  top: 0;
+}
+table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+th, td {
+  border-bottom: 1px solid #dddddd;
+  height: 40px;
+  text-align: center;
+  padding: 8px;
+}
+
+.pricePoy{
+  border: 1px #4400A5 solid;
+  border-radius: 2px;
+  width: 100%;
+}
+.pricePoy:hover{
+  background-color: #4400A5;
+  border-radius: 2px;
+  color: white;
+}
 
 @media (max-width: 1024px) {
   .list-responsive {
