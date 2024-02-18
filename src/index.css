@@ -19,5 +19,6 @@ body{
 
 #footer{
   position: absolute;
-  bottom: -5rem;
+  margin-top: 5rem;
+  /* bottom: 0; */
 }
