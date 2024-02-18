@@ -45,9 +45,8 @@ function Play() {
             </div>
         </div>
         
-        <div className="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
-            {/* <div className="row-span-3 ..."> */}
-            <div className="row-span-3  w-full px-3 py-5 max-lg:hidden">
+        <div className="grid grid-rows-2 grid-flow-col gap-4 p-5 pr-20 pl-20">
+            <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
                     <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
                         <h1>ดึงโพย</h1>
                     </div>
@@ -63,7 +62,6 @@ function Play() {
                         </div>
                     </div>
                 </div>
-            {/* </div> */}
             <div className="col-span-2">
             <div className='playbtn'>
                 <div className="grid gap-4 p-5 grid-cols-3">
@@ -90,7 +88,7 @@ function Play() {
                 </div>
             </div>
             </div>
-            <div class="row-span-2 col-span-2 ...">
+            <div class="col-span-2 ...">
                 <NumpadLotto/>
             </div>
             <div className="list-responsive mt-auto">
