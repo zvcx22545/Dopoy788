@@ -71,6 +71,9 @@ function Play() {
                         <table>
                             <tbody>
                                 <tr>
+                                {completedNumbers.map((numberSet, index) => (
+                                <td key={index}>{numberSet}</td>
+                            ))}
                                     <td>04</td>
                                     <td>50</td>
                                     <td><p className='border border-[#4400A5] px-1'>10</p></td>
