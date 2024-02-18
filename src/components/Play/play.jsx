@@ -4,6 +4,7 @@ import './play.css';
 import Footer from '../Footer/Footer';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
+import NumpadLotto from './NumpadLotto';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
@@ -87,7 +88,9 @@ function Play() {
                 </div>
             </div>
             </div>
-            <div className="row-span-2 col-span-2 ...">03</div>
+            <div class="row-span-2 col-span-2 ...">
+                <NumpadLotto/>
+            </div>
             <div className="list-responsive mt-auto">
                 <h1>รายการแทง</h1>
                 <button className="list-btn">ใส่ราคา/ส่งโพย</button>
