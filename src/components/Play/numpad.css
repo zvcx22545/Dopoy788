@@ -1,0 +1,12 @@
+.numpad {
+    --tw-bg-opacity: 1;
+}
+
+@media (max-width:500px)
+{
+.shownumber
+{
+    width: 60px;
+    height: auto;
+}
+}
