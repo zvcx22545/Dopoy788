@@ -27,3 +27,74 @@
     background-color: #FF8329;
     border-color: #FF8329
 }
+.list{
+  border: 1px #DCDCDC solid;
+}
+.list-btn{
+  background-color: #4400A5;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 10px;
+}
+.list-responsive{
+  display: none;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  position: fixed;
+  bottom: 4rem;
+  left: 1%;
+  margin: 0 auto;
+  height: 60px;
+  width: 98%;
+  z-index: 10;
+  background-color: white;
+  border: 1px #4400A5 solid;
+}
+.list-menuorder{
+  height: 44vh;
+  overflow-y: auto;
+  margin-bottom: .5rem;
+}
+.custom{
+  color: #fff;
+  padding: 2px 5px;
+  height: 1.5rem;
+  min-height: 2.5rem;
+  border-radius: 7px;
+  background-color: #4400A5;
+}
+.delete{
+  color: #000;
+  padding: 2px 5px;
+  height: 1.5rem;
+  min-height: 2.5rem;
+  border-radius: 7px;
+  background-color: #FF83297D;
+}
+.list-btn{
+  background-color: #4400A5;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 10px;
+}
+.list-responsive{
+  display: none;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  position: fixed;
+  bottom: 4rem;
+  left: 1%;
+  margin: 0 auto;
+  height: 60px;
+  width: 98%;
+  z-index: 10;
+  background-color: white;
+  border: 1px #4400A5 solid;
+}
+@media (max-width: 1024px) {
+  .list-responsive {
+      display: flex;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './play.css';
+import Footer from '../Footer/Footer';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
 import Footer from '../Footer/Footer';
@@ -45,9 +46,26 @@ function Play() {
             </div>
         </div>
         
-        <div class="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
-            <div class="row-span-3 ...">01</div>
-            <div class="col-span-2">
+        <div className="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
+            {/* <div className="row-span-3 ..."> */}
+            <div className="row-span-3  w-full px-3 py-5 max-lg:hidden">
+                    <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
+                        <h1>ดึงโพย</h1>
+                    </div>
+                    <div className="list w-full rounded-lg text-center p-2">
+                            <h1>รายการแทง</h1>
+                        <hr className='my-2' />
+                        <div className="list-menuorder py-2">
+                            <h1>list....</h1>
+                        </div>
+                        <div className="menu-btn grid gap-2">
+                            <button className='custom'>ใส่ราคา/ส่งโพย</button>
+                            <button className='delete'>ลบทั้งหมด</button>
+                        </div>
+                    </div>
+                </div>
+            {/* </div> */}
+            <div className="col-span-2">
             <div className='playbtn'>
                 <div className="grid gap-4 p-5 grid-cols-3">
                 <button className="btn"><BiGridAlt/> เลือกกดเอง</button>
@@ -76,9 +94,14 @@ function Play() {
             <div class="row-span-2 col-span-2 ...">
                 <NumpadLotto/>
             </div>
+            <div className="list-responsive mt-auto">
+                <h1>รายการแทง</h1>
+                <button className="list-btn">ใส่ราคา/ส่งโพย</button>
         </div>
-        <Footer/> 
-        </section>
+        </div>
+        
+        <Footer/>
+        </section>    
     );
 }
 
