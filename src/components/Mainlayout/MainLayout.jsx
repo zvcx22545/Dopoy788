@@ -1,18 +1,14 @@
 import Navbar from '../Navbar/Navbar';
+import Navlogin from '../Navlogin/Navlogin'
 import Tab from '../Tab/Tab';
-import Navlogin from '../Navlogin/Navlogin';
-import ImgMediaCard from '../card/card';
-import Footer from '../Footer/Footer';
 
 function MainLayout() {
+  
   return (
     <section id="main-layout">
     <Navbar></Navbar>
     <Navlogin/>
     <Tab/>
-    <ImgMediaCard/>
-    <Footer/>
-
     </section>
   );
 }
