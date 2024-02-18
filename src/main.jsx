@@ -4,6 +4,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Register from './components/Register/Register.jsx'
+import Play from './components/Play/play.jsx'
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>
+  },
+  {
+    path: "/play",
+    element: <Play/>
   },
 
 ])
