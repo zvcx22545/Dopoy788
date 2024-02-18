@@ -1,4 +1,5 @@
 import './card.css';
+import { Link } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
 
 export default function ImgMediaCard() {
@@ -28,7 +29,7 @@ export default function ImgMediaCard() {
                         <span style={{"--value":54}}></span>
                     </span>
             </div>
-                <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            <Link to="./Play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
@@ -53,7 +54,7 @@ export default function ImgMediaCard() {
                         <span style={{"--value":54}}></span>
                     </span>
             </div>
-                <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">

@@ -12,7 +12,7 @@ function MainLayout() {
       <Navlogin/>
       <Tab/>
       <Card/>
-      <br />
+      <br/>
       <Footer/>
     </section>
   );
