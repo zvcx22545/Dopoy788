@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 import { Diversity1 } from '@mui/icons-material';
+import Poy from '../Poy/Poy';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
@@ -28,10 +30,12 @@ function Play() {
             <div className="divider divider-start">ย้อนกลับ</div>
         </div>
         <div class="grid grid-rows-3 grid-flow-col gap-4 p-10">
-            <div class="row-span-3 ...">01</div>
-            <div class="col-span-2 ...">02</div>
-            <div class="row-span-2 col-span-2 ...">03</div>
+            <div className="row-span-3 ...">01</div>
+            <div className="col-span-2 ...">02</div>
+            <div className="row-span-2 col-span-2 ...">03</div>
         </div>
+        <Poy/>
+        <Footer/>
         </section>    
     );
 }
