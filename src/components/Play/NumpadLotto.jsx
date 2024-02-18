@@ -3,19 +3,6 @@ import "./numpad.css";
 import React, { useState } from "react";
 
 function NumpadLotto() {
-  const [numbers, setNumbers] = useState(["", "", "", ""]);
-
-  const handleAddNumber = (index, number) => {
-    const updatedNumbers = [...numbers];
-    updatedNumbers[index] = number;
-    setNumbers(updatedNumbers);
-  };
-
-  const handleDeleteNumber = (index) => {
-    const updatedNumbers = [...numbers];
-    updatedNumbers[index] = "";
-    setNumbers(updatedNumbers);
-  };
   return (
     <div>
       <div className="numpad-con ">
