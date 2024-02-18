@@ -4,7 +4,6 @@ import './play.css';
 import Footer from '../Footer/Footer';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
-import Footer from '../Footer/Footer';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
@@ -46,8 +45,7 @@ function Play() {
         </div>
         
         <div className="grid grid-rows-3 grid-flow-col gap-4 p-5 pr-20 pl-20">
-            {/* <div className="row-span-3 ..."> */}
-            <div className="row-span-3  w-full px-3 py-5 max-lg:hidden">
+            <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
                     <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
                         <h1>ดึงโพย</h1>
                     </div>
@@ -63,7 +61,6 @@ function Play() {
                         </div>
                     </div>
                 </div>
-            {/* </div> */}
             <div className="col-span-2">
             <div className='playbtn'>
                 <div className="grid gap-4 p-5 grid-cols-3">
