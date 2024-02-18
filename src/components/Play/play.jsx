@@ -4,6 +4,7 @@ import './play.css';
 import Footer from '../Footer/Footer';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
+import Footer from '../Footer/Footer';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
