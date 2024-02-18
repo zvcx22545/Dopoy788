@@ -101,7 +101,7 @@ function NumpadLotto() {
                             className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970]"
                             type="button"
                         >
-                            <div className="delete-numberflex items-center justify-center text-[#4400A5]">
+                            <div className="delete-numberflex flex items-center justify-center text-[#4400A5]">
                                 <svg
                                     data-v-61516463=""
                                     xmlns="http://www.w3.org/2000/svg"
