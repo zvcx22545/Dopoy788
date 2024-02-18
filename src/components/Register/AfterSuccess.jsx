@@ -1,7 +1,7 @@
 
 function AfterSuccess() {
   return (
-    <div className="container-success bg-[#4400A5]">
+    <div className="container-success bg-[#4400A5] hidden">
     <div className="-warp">
       <div className="title text-white text-center mt-[1rem]">การสมัครสมาชิกของคุณได้รับการอนุมัติ</div>
     </div>
