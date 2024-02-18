@@ -34,13 +34,15 @@ function Play() {
             <div className="footer px-10 py-4">
             <aside className="items-center grid-flow-col gap-4">
             <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-15 h-15 rounded-full" />
-                <p className="text-[#4400A5] text-3xl">หวยไทย <br/><p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p></p>
+            <div>
+                <p className="text-[#4400A5] text-3xl">หวยไทย </p><p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
+            </div>
             </aside> 
             <nav className="md:place-self-center md:justify-self-end bg-primary rounded-full drop-shadow-lg">
                 <div className="grid grid-flow-col gap-4">
-                <div className="stat text-center">
-                <div className=" text-white text-xl min-w-48">20วัน {countdown}</div>
-                </div>
+                    <div className="stat text-center">
+                        <div className=" text-white text-xl min-w-48">20วัน {countdown}</div>
+                    </div>
                 </div>
             </nav>
             </div>
@@ -58,7 +60,7 @@ function Play() {
                             <h1>list....</h1>
                         </div>
                         <div className="menu-btn grid gap-2">
-                            <button className='custom'onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
+                            <button className='custom' onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
                             <button className='delete'>ลบทั้งหมด</button>
                         </div>
                     </div>
@@ -89,12 +91,12 @@ function Play() {
                 </div>
             </div>
             </div>
-            <div class="col-span-2 ...">
+            <div className="col-span-2 ...">
                 <NumpadLotto/>
             </div>
             <div className="list-responsive mt-auto">
                 <h1>รายการแทง</h1>
-                <button className="list-btn">ใส่ราคา/ส่งโพย</button>
+                <button className="list-btn" onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
         </div>
         </div>
         {/* Modal */}
