@@ -3,6 +3,26 @@ import "./numpad.css";
 import { useState } from "react";
 
 function NumpadLotto() {
+    const [numbers, setNumbers] = useState(["", "", "", ""]);
+
+    const handleAddNumber = (number) => {
+        const index = numbers.findIndex(num => num === ""); 
+        if (index !== -1) {
+            const updatedNumbers = [...numbers];
+            updatedNumbers[index] = number;
+            setNumbers(updatedNumbers);
+        }
+    };
+
+    const handleDeleteNumber = () => {
+        const index = numbers.slice().reverse().findIndex(num => num !== "");
+        if (index !== -1) {
+            const updatedNumbers = [...numbers];
+            updatedNumbers[numbers.length - 1 - index] = "";
+            setNumbers(updatedNumbers);
+        }
+    };
+    
     return (
         <div>
             <div className="numpad-con ">
@@ -11,95 +31,25 @@ function NumpadLotto() {
                 </div>
                 <div className="container-number flex flex-col justify-center items-center mx-auto">
                     <div className="flex items-center justify-center gap-2 py-4">
-                        <div className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                            5
-                        </div>
-                        <div className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                            5
-                        </div>
-                        <div className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                            5
-                        </div>
-                        <div className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                            5
-                        </div>
+                        {numbers.map((number, index) => (
+                            <div
+                                key={index}
+                                className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
+                                {number}
+                            </div>
+                        ))}
                     </div>
                     <div className="mx-auto grid max-w-[22rem] w-full grid-cols-3 gap-2 pb-4">
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5]"
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>1</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>2</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>3</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>4</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>5</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>6</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>7</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>8</span>
-                            </div>
-                        </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
-                            <div className="addnumber flex items-center justify-center">
-                                <span>9</span>
-                            </div>
-                        </button>
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                            <button key={num} className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5]" type="button" onClick={() => handleAddNumber(num)}>
+                                <div className="addnumber flex items-center justify-center"><span>{num}</span></div>
+                            </button>
+
+                        ))}
+
                         <button
                             className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970]"
-                            type="button"
+                            type="button" onClick={() => handleDeleteNumber(0)}
                         >
                             <div className="delete-numberflex flex items-center justify-center text-[#4400A5]">
                                 <svg
@@ -111,6 +61,7 @@ function NumpadLotto() {
                                     stroke="currentColor"
                                     aria-hidden="true"
                                     className="h-6 w-6"
+
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -120,19 +71,12 @@ function NumpadLotto() {
                                 </svg>
                             </div>
                         </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5] "
-                            type="button"
-                        >
+                        <button className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5]" type="button" onClick={() => handleAddNumber(0, 0)}>
                             <div className="addnumber flex items-center justify-center">
                                 <span>0</span>
                             </div>
                         </button>
-                        <button
-                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970] "
-                            type="button"
-                            disabled=""
-                        >
+                        <button className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970] " type="button" disabled="">
                             <div className="flex items-center justify-center">
                                 <span></span>
                             </div>
