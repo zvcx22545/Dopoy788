@@ -20,7 +20,7 @@ function Navbar() {
         <li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li>
         <li><a className="text-lg">บทความ</a></li>
         <li><a className="text-lg">รีวิว</a></li>
-    </ul>Name
+    </ul>
   </div>
   <div className="navbar-end gap-2">
   <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link>

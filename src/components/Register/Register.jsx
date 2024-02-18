@@ -149,6 +149,7 @@ function Register() {
                 </form>
 
                 <AfterSuccess/>
+                
 
             </div>
 
