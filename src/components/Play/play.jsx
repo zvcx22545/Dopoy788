@@ -24,10 +24,10 @@ function Play() {
     return (
         <section>
         <Navbar/>
-        <div className="flex flex-col w-full">
-            <div className="divider divider-start h-10">ย้อนกลับ</div>
+        <div className="flex flex-col p-10">
+            <div className="divider divider-start">ย้อนกลับ</div>
         </div>
-        <div class="grid grid-rows-3 grid-flow-col gap-4">
+        <div class="grid grid-rows-3 grid-flow-col gap-4 p-10">
             <div class="row-span-3 ...">01</div>
             <div class="col-span-2 ...">02</div>
             <div class="row-span-2 col-span-2 ...">03</div>
