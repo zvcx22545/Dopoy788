@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import { Diversity1 } from '@mui/icons-material';
+import NumpadLotto from './NumpadLotto';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
@@ -30,7 +31,9 @@ function Play() {
         <div class="grid grid-rows-3 grid-flow-col gap-4 p-10">
             <div class="row-span-3 ...">01</div>
             <div class="col-span-2 ...">02</div>
-            <div class="row-span-2 col-span-2 ...">03</div>
+            <div class="row-span-2 col-span-2 ...">
+                <NumpadLotto/>
+            </div>
         </div>
         </section>    
     );
