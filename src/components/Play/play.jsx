@@ -62,7 +62,7 @@ function Play() {
                         <span className="close" onClick={() => setShowModal(false)}>&times;</span> {/* Close Button */}
                     </div>
                     <div className="modalTable ">
-                        <div className="headTable flex justify-between items-center text-center h-[40px] bg-[#4400A5]">
+                        <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
                                 <h1 className='w-full'>สามตัวล่าง</h1>
                                 <h1 className='w-full'>เรทจ่าย</h1>
                                 <h1 className='w-full'>ราคา</h1>
@@ -164,7 +164,7 @@ function Play() {
                 </div>
                 <div className="list-responsive mt-auto">
                     <h1>รายการแทง</h1>
-                    <button className="list-btn">ใส่ราคา/ส่งโพย</button>
+                    <button className="list-btn" onClick={() => setShowModal(true)}>ใส่ราคา/ส่งโพย</button>
                 </div>
             </div>
             {/* Modal */}
