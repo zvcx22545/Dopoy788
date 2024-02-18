@@ -3,6 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import './play.css';
 import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
+import Footer from '../Footer/Footer';
 
 function Play() {
     const [countdown, setCountdown] = useState(0);
@@ -73,7 +74,8 @@ function Play() {
             </div>
             <div class="row-span-2 col-span-2 ...">03</div>
         </div>
-        </section>    
+        <Footer/> 
+        </section>
     );
 }
 
