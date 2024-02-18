@@ -50,6 +50,8 @@ function Play() {
             <div class="col-span-2 ...">02</div>
             <div class="row-span-2 col-span-2 ...">03</div>
         </div>
+        {/* <Poy/> */}
+        <Footer/>
         </section>    
     );
 }
