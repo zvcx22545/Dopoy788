@@ -69,22 +69,16 @@ function Play() {
                                 <h1 className='w-full'>ลบ</h1>
                         </div>
                         <table>
-                            <tbody>
-                                <tr>
+                            <tbody> 
                                 {completedNumbers.map((numberSet, index) => (
-                                <td key={index}>{numberSet}</td>
-                            ))}
-                                    <td>04</td>
-                                    <td>50</td>
-                                    <td><p className='border border-[#4400A5] px-1'>10</p></td>
-                                    <td><button className='text-[#FF2929]'><BiTrashAlt /></button></td>
-                                </tr>
-                                <tr>
-                                    <td>04</td>
-                                    <td>50</td>
-                                    <td><p className='border border-[#4400A5] px-1'>10</p></td>
-                                    <td><button className='text-[#FF2929]'><BiTrashAlt /></button></td>
-                                </tr>
+                                    <tr>
+                                        <td key={index}>{numberSet}</td>
+                                        <td>04</td>
+                                        <td>50</td>
+                                        <td><p className='border border-[#4400A5] px-1'>10</p></td>
+                                        <td><button className='text-[#FF2929]'><BiTrashAlt /></button></td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
