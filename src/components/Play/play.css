@@ -1,0 +1,29 @@
+.divider{
+    color: #4400A5;
+}
+.divider:before, .divider:after{
+    height: 0.3rem;
+    background-color: #4400A5;
+}
+.playbtn .btn {
+    color: #4400A5;
+    background-color: #FFF;
+    border: 2px solid #4400A5;
+    border-radius: 5px;   
+  }
+.playbtn .btn:hover {
+    color: #FFF;
+    background-color: #4400A5;
+    border-color: #4400A5
+  }
+
+  @media (max-width: 768px) {
+    .playbtn .grid-cols-3 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+.badge-primary{
+    color: #FFF;
+    background-color: #FF8329;
+    border-color: #FF8329
+}
