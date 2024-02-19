@@ -4,7 +4,7 @@ function Redeem(){
     return(
         <section className="mt-5 px-5">
             <div className="flex justify-start max-md:justify-center">
-                <p className="bg-[#4400A5] px-5 h-[40px] grid items-center rounded text-white">รางวัลที่ 1 รางวัลละ 6,000,000 บาท</p>
+                <p className="bg-[#4400A5] px-5 h-[40px] grid items-center rounded text-white max-md:w-full max-md:text-center">รางวัลที่ 1 รางวัลละ 6,000,000 บาท</p>
             </div>
             <div className="bg-[#F0F0F07A] grid">
 
@@ -58,7 +58,9 @@ function Redeem(){
                         <div className="grid justify-center items-center text-center rounded h-[60px] bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>รางวัลที่ 2<br />5 รางวัลๆละ 200,000 บาท</p>
                         </div>
-                        <p className='bg-white rounded-none border-none p-5'>663106 081787 543436 087303 630453</p>
+                        <div className="flex justify-center items-center bg-white  rounded-none border-none p-5 mt-[-6rem] max-md:mt-0">
+                        <p>663106 081787 543436 087303 630453</p>
+                        </div>
                     </div>
             </div>
 
