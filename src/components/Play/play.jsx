@@ -245,7 +245,7 @@ function Play() {
             </div> */}
           </div>
         </div>
-        <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกกดเอง" ? 'hidden' : ''} ${activeButton === "เลือกกดเอง" ? 'animate-fade-down animate-once animate-duration-700 animate-delay-100 animate-ease-linear' : ''}`}>
+        <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกกดเอง" ? 'hidden' : ''} ${activeButton === "เลือกกดเอง" ? 'animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear' : ''}`}>
               {activeButton === "เลือกกดเอง" && (
                 <section>
                   <div className="gap-4 w-40">
@@ -257,7 +257,7 @@ function Play() {
                 </section>
               )}
             </div>
-            <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกแผงเลข" ? 'hidden' : ''} ${activeButton === "เลือกแผงเลข" ? 'animate-fade-down animate-once animate-duration-700 animate-delay-100 animate-ease-linear' : ''}`}>
+            <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกแผงเลข" ? 'hidden' : ''} ${activeButton === "เลือกแผงเลข" ? 'animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear' : ''}`}>
               {activeButton === "เลือกแผงเลข" && (
                 <section>
                   <div className="gap-4 w-40 mt-[67px]">
@@ -267,7 +267,7 @@ function Play() {
                 </section>
               )}
             </div>
-            <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกแบบเลขวิน" ? 'hidden' : ''} ${activeButton === "เลือกแบบเลขวิน" ? 'animate-fade-down animate-once animate-duration-700 animate-delay-100 animate-ease-linear' : ''}`}>
+            <div className={`grid gap-4 p-5 col-span-2 ${activeButton !== "เลือกแบบเลขวิน" ? 'hidden' : ''} ${activeButton === "เลือกแบบเลขวิน" ? 'animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear' : ''}`}>
               {activeButton === "เลือกแบบเลขวิน" && (
                 <section>
                   <div className="gap-4 w-40 mt-[67px]">
