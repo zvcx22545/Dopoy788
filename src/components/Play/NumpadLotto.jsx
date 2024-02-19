@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import "./numpad.css";
 import { useState,useEffect } from "react";
 
@@ -93,5 +93,9 @@ function NumpadLotto({ addCompletedNumbers }) {
         </div>
     );
 }
+NumpadLotto.propTypes = {
+    addCompletedNumbers: PropTypes.func.isRequired, // Require addCompletedNumbers to be a function
+    numberOfDigits: PropTypes.number.isRequired, // Require numberOfDigits to be a number
+  };
 
 export default NumpadLotto;
