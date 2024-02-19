@@ -1,3 +1,8 @@
+:root
+{
+  --Primary-color : #4400A5;
+}
+
 .divider{
     color: #4400A5;
 }
@@ -188,4 +193,11 @@ th, td {
   .list-responsive {
       display: flex;
   }
+}
+
+.btn.active
+{
+  color: #FFF;
+    background-color: var(--Primary-color);
+    border-color: var(--Primary-color)
 }
