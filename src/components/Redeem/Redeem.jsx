@@ -59,7 +59,7 @@ function Redeem(){
                             <p className='text-white px-5 py-2'>รางวัลที่ 2<br />5 รางวัลๆละ 200,000 บาท</p>
                         </div>
                         <div className="flex justify-center items-center bg-white  rounded-none border-none p-5 mt-[-6rem] max-md:mt-0">
-                        <p>663106 081787 543436 087303 630453</p>
+                            <p>663106 081787 543436 087303 630453</p>
                         </div>
                     </div>
             </div>
