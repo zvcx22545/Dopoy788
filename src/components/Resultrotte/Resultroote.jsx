@@ -29,9 +29,8 @@ function Resultrotte(){
         <section>
             <div className="grid justify-center text-center mt-10 px-5">
                 <h1 className="text-[#4400A5] font-bold text-[2rem]">ผลสลากกินแบ่งรัฐบาล</h1>
-                    <div className="grid grid-cols-2 gap-0 justify-center">
-                        <p>ตรวจหวย งวดประจำวันที่ &ensp;:&ensp;</p>
-                        <p>dd / mm / yyyy</p>
+                    <div className="flex gap-0 justify-center">
+                        <p>ตรวจหวย งวดประจำวันที่ : dd / mm / yyyy</p>
                     </div>
                     <div className="grid grid-cols-3 gap-5 mt-2 justify-center items-center">
                         <FormControl fullWidth>

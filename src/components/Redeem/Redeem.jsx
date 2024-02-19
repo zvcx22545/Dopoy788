@@ -6,7 +6,7 @@ function Redeem(){
             <div className="flex justify-start max-md:justify-center">
                 <p className="bg-[#4400A5] px-5 h-[40px] grid items-center rounded text-white max-md:w-full max-md:text-center">รางวัลที่ 1 รางวัลละ 6,000,000 บาท</p>
             </div>
-            <div className="bg-[#F0F0F07A] grid">
+            <div className="bg-[#F0F0F07A] w-full">
 
                 <div className="flex gap-2 justify-center text-center items-center p-5 ">
                     <p className="custom-box">3</p>
