@@ -53,7 +53,7 @@ function Title2(){
                 ))}
             
             </div>
-            <div className="gap-4 w-40 ">
+            <div className="gap-4 w-40 p-[1.25rem]">
                 <div className="divider divider-end text-xl">กดเลข</div>
               </div>
         </section>
