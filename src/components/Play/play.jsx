@@ -238,7 +238,7 @@ function Play() {
                   </div>
                 </div>
                 <div className="custom-container">
-                  <div className="grid gap-4 p-5 grid-cols-3">
+                  <div className="grid gap-4 grid-cols-3">
 
                   <button className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""}`} onClick={() => active("สี่ตัวบน", 4)}> 
                   <BiGridAlt /> สี่ตัวบน <div className="badge badge-primary">1,000</div>
