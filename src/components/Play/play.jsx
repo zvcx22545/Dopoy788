@@ -22,11 +22,28 @@ function Play() {
 
   const [activeButton, setActiveButton] = useState("เลือกกดเอง");
 
-  const [activeHuy, setActiveHuy] = useState("สี่ตัวบน");
-  const active = (buttonName, numberOfDigits) => {
-    setActiveHuy(buttonName);
-    setNumberOfDigits(numberOfDigits); // ส่งค่าตัวเลขไปกับฟังก์ชัน
+  const [activeButtons, setActiveButtons] = useState(["สี่ตัวบน"]);
+
+  const active = (buttonName, newNumberOfDigits) => {
+    if (activeButtons.length === 1 && activeButtons[0] === buttonName) {
+      // Check if the clicked button is already active
+      return; 
+    }
+  
+    if (activeButtons.includes(buttonName)) {
+      // If the button is already active
+      setActiveButtons(activeButtons.filter(btn => btn !== buttonName)); // Remove active state
+    } else {
+      if (newNumberOfDigits !== numberOfDigits) {
+        setActiveButtons([buttonName]); // Set active state
+        setNumberOfDigits(newNumberOfDigits);
+      } else {
+        setActiveButtons([...activeButtons, buttonName]); // Add active state
+      }
+    }
   };
+
+
 
   const handleButtonClick = (buttonName) => {
       setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
@@ -223,44 +240,40 @@ function Play() {
                 <div className="custom-container">
                   <div className="grid gap-4 p-5 grid-cols-3">
 
-                  <button className={`btn ${activeHuy === "สี่ตัวบน" ? "active" : ""}`} onClick={() => active("สี่ตัวบน", 4)} > <BiGridAlt /> สี่ตัวบน
-                  <div className="badge badge-primary">1,000</div>
+                  <button className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""}`} onClick={() => active("สี่ตัวบน", 4)}> 
+                  <BiGridAlt /> สี่ตัวบน <div className="badge badge-primary">1,000</div>
                   </button>
 
-                  <button className={`btn ${activeHuy === "สี่ตัวโต๊ด" ?"active" : ""}`} onClick={() => active("สี่ตัวโต๊ด", 4)} > <BiGridAlt /> สี่ตัวโต๊ด
-                  <div className="badge badge-primary">1,000</div>
+                  <button className={`btn ${activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""}`} onClick={() => active("สี่ตัวโต๊ด", 4)}> 
+                  <BiGridAlt /> สี่ตัวโต๊ด <div className="badge badge-primary">1,000</div>
                   </button>
 
-                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวบน", 3)} > 
+                  <button className={`btn ${activeButtons.includes("สามตัวบน") ? "active" : ""}`} onClick={() => active("สามตัวบน", 3)}>
                   <BiGridAlt /> สามตัวบน <div className="badge badge-primary">1,000</div>
                   </button>
 
-                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวโต๊ด", 3)} > 
+                  <button className={`btn ${activeButtons.includes("สามตัวโต๊ด") ? "active" : ""}`} onClick={() => active("สามตัวโต๊ด", 3)}> 
                   <BiGridAlt /> สามตัวโต๊ด <div className="badge badge-primary">1,000</div>
                   </button>
 
-                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวล่าง", 3)} > 
+                  <button className={`btn ${activeButtons.includes("สามตัวล่าง") ? "active" : ""}`} onClick={() => active("สามตัวล่าง", 3)}>
                   <BiGridAlt /> สามตัวล่าง <div className="badge badge-primary">1,000</div>
                   </button>
 
-                    <button className={`btn ${activeHuy === "สองตัวบน" || activeHuy === "สองตัวล่าง" ? "active" : ""}`} onClick={() => active("สองตัวบน", 2)} > 
+                  <button className={`btn ${activeButtons.includes("สองตัวบน") ? "active" : ""}`} onClick={() => active("สองตัวบน", 2)}>
                     <BiGridAlt /> สองตัวบน <div className="badge badge-primary">1,000</div>
                   </button>
-                  <button className={`btn ${activeHuy === "สองตัวบน" || activeHuy === "สองตัวล่าง" ? "active" : ""}`} onClick={() => active("สองตัวล่าง", 2)} > 
+                  <button className={`btn ${activeButtons.includes("สองตัวล่าง") ? "active" : ""}`} onClick={() => active("สองตัวล่าง", 2)}>
                     <BiGridAlt /> สองตัวล่าง <div className="badge badge-primary">1,000</div>
                   </button>
-                  <button className={`btn ${ activeHuy === "วิ่งบน" ? "active" : ""}`} onClick={() => active("วิ่งบน", 1)} > 
+                  <button className={`btn ${activeButtons.includes("วิ่งบน") ? "active" : ""}`} onClick={() => active("วิ่งบน", 1)}>
                     <BiGridAlt /> วิ่งบน <div className="badge badge-primary">1,000</div>
                   </button>
-                  <button className={`btn ${ activeHuy === "วิ่งล่าง" ? "active" : ""}`} onClick={() => active("วิ่งล่าง", 1)} > 
+                  <button className={`btn ${activeButtons.includes("วิ่งล่าง") ? "active" : ""}`} onClick={() => active("วิ่งล่าง", 1)}>
                     <BiGridAlt /> วิ่งล่าง <div className="badge badge-primary">1,000</div>
                   </button>
                   </div>
                 </div>
-
-                {/* <div className="gap-4 w-40">
-              <div className="divider divider-end text-xl">กดเอง</div>
-            </div> */}
 
                 <div className="grid gap-4 p-5 col-span-2">
                   <div className="gap-4 w-40">
