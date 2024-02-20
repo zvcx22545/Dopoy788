@@ -6,6 +6,8 @@ import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
 import { BiTrashAlt } from "react-icons/bi";
 import NumpadLotto from "./NumpadLotto";
+import Title2 from "../TitleMenu/Title2";
+import Title3 from "../TitleMenu/Title3";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -158,7 +160,7 @@ function Play() {
           </div>
         </div>
       )}
-      <div className="grid  grid-flow-col gap-4 p-5 pr-20 pl-20">
+      <div className="grid grid-flow-col gap-4 p-5">
         <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
@@ -220,7 +222,7 @@ function Play() {
               </div>
             </div>
             <div className="custom-container">
-            <div className="grid gap-4 p-5 grid-cols-3">
+            <div className="grid grid-cols-3 gap-4 p-5 ">
             <button className={`btn ${activeButton === "สี่ตัวบน" || activeButton === "สี่ตัวโต๊ด" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวบน", 4)}>
                 <BiGridAlt /> สี่ตัวบน
                 <div className="badge badge-primary">1,000</div>
@@ -286,7 +288,14 @@ function Play() {
           )}
         </div>
         </div>
-        <div
+        <div className={`container-putnumber ${ activeButton !== "เลือกแผงเลข" ? "hidden" : "" } ${  activeButton === "เลือกแผงเลข" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
+          <Title2/>
+        </div>
+
+        <div className={`container-putnumber ${ activeButton !== "เลือกแบบเลขวิน" ? "hidden" : "" } ${  activeButton === "เลือกแบบเลขวิน" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
+          <Title3/>
+        </div>
+        {/* <div
           className= "grid gap-4 p-5 col-span-2" >
           {activeButton === "เลือกแผงเลข" && (
             <section>
@@ -295,9 +304,9 @@ function Play() {
               </div>
             </section>
           )}
+        </div> */}
         </div>
-        </div>
-        <div
+        {/* <div
           className={`grid gap-4 p-5 col-span-2 ${
             activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
           } ${
@@ -313,7 +322,7 @@ function Play() {
               </div>
             </section>
           )}
-        </div>
+        </div> */}
         {/* <div className="col-span-2 ...">
           <NumpadLotto addCompletedNumbers={addCompletedNumbers} />
         </div> */}
