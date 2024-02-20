@@ -22,8 +22,25 @@
     border-color: #4400A5
   }
 
+.custom-container .btn{
+  color: #4400A5;
+  background-color: #FFF;
+  border: 2px solid #4400A5;
+  border-radius: 5px;  
+}
+
+.custom-container .btn:hover {
+  color: #FFF;
+    background-color: #4400A5;
+    border-color: #4400A5
+}
+
   @media (max-width: 768px) {
     .playbtn .grid-cols-3 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .custom-container .grid-cols-3
+    {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }
@@ -201,3 +218,4 @@ th, td {
     background-color: var(--Primary-color);
     border-color: var(--Primary-color)
 }
+
