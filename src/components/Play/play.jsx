@@ -158,7 +158,7 @@ function Play() {
           </div>
         </div>
       )}
-      <div className="grid grid-rows-2 grid-flow-col gap-4 p-5 pr-20 pl-20">
+      <div className="grid  grid-flow-col gap-4 p-5 pr-20 pl-20">
         <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
@@ -179,9 +179,12 @@ function Play() {
             </div>
           </div>
         </div>
+     
         <div className="col-span-2">
-          <div className="playbtn">
+        <div className="playbtn">
+          
             <div className="grid gap-4 p-5 grid-cols-3">
+              
               <button
                 className={`btn ${
                   activeButton === "เลือกกดเอง" ? "active" : ""
@@ -207,18 +210,22 @@ function Play() {
                 <BiGridAlt /> เลือกแบบเลขวิน
               </button>
             </div>
+            </div>
+
+            <div className={`container-putnumber ${ activeButton !== "เลือกกดเอง" ? "hidden" : "" } ${  activeButton === "เลือกกดเอง" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`} >
 
             <div className="gap-4 w-40">
               <div className="divider divider-end text-xl">
                 เลือกประเภทการแทง
               </div>
             </div>
+            <div className="custom-container">
             <div className="grid gap-4 p-5 grid-cols-3">
-            <button className={`btn ${activeButton === "สี่ตัวบน" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวบน", 4)}>
+            <button className={`btn ${activeButton === "สี่ตัวบน" || activeButton === "สี่ตัวโต๊ด" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวบน", 4)}>
                 <BiGridAlt /> สี่ตัวบน
                 <div className="badge badge-primary">1,000</div>
               </button>
-              <button className={`btn ${activeButton === "สี่ตัวโต๊ด" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวโต๊ด", 4)}>
+              <button className={`btn ${activeButton === "สี่ตัวโต๊ด" || activeButton === "สี่ตัวบน" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวโต๊ด", 4)}>
                 <BiGridAlt /> สี่ตัวโต๊ด
                 <div className="badge badge-primary">1,000</div>
               </button>
@@ -257,20 +264,15 @@ function Play() {
                 <div className="badge badge-primary">1,000</div>
               </button>
             </div>
+            </div>
+
             {/* <div className="gap-4 w-40">
               <div className="divider divider-end text-xl">กดเอง</div>
             </div> */}
-          </div>
-        </div>
+          
+
         <div
-          className={`grid gap-4 p-5 col-span-2 ${
-            activeButton !== "เลือกกดเอง" ? "hidden" : ""
-          } ${
-            activeButton === "เลือกกดเอง"
-              ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
-              : ""
-          }`}
-        >
+          className= "grid gap-4 p-5 col-span-2" >
           {activeButton === "เลือกกดเอง" && (
             <section>
               <div className="gap-4 w-40">
@@ -283,15 +285,9 @@ function Play() {
             </section>
           )}
         </div>
+        </div>
         <div
-          className={`grid gap-4 p-5 col-span-2 ${
-            activeButton !== "เลือกแผงเลข" ? "hidden" : ""
-          } ${
-            activeButton === "เลือกแผงเลข"
-              ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
-              : ""
-          }`}
-        >
+          className= "grid gap-4 p-5 col-span-2" >
           {activeButton === "เลือกแผงเลข" && (
             <section>
               <div className="gap-4 w-40 mt-[67px]">
@@ -299,6 +295,7 @@ function Play() {
               </div>
             </section>
           )}
+        </div>
         </div>
         <div
           className={`grid gap-4 p-5 col-span-2 ${
