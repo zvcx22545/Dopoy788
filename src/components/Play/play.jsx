@@ -273,20 +273,20 @@ function Play() {
             </div> */}
           
 
-        <div
-          className= "grid gap-4 p-5 col-span-2" >
-          {activeButton === "เลือกกดเอง" && (
-            <section>
-              <div className="gap-4 w-40">
-                <div className="divider divider-end text-xl">กดเลข</div>
-              </div>
-              <div className="">
-              <NumpadLotto addCompletedNumbers={addCompletedNumbers} numberOfDigits={numberOfDigits} />
+          <div
+            className= "grid gap-4 p-5 col-span-2" >
+            {activeButton === "เลือกกดเอง" && (
+              <section>
+                <div className="gap-4 w-40">
+                  <div className="divider divider-end text-xl">กดเลข</div>
+                </div>
+                <div className="">
+                <NumpadLotto addCompletedNumbers={addCompletedNumbers} numberOfDigits={numberOfDigits} />
 
-              </div>
-            </section>
-          )}
-        </div>
+                </div>
+              </section>
+            )}
+          </div>
         </div>
         <div className={`container-putnumber ${ activeButton !== "เลือกแผงเลข" ? "hidden" : "" } ${  activeButton === "เลือกแผงเลข" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
           <Title2/>
