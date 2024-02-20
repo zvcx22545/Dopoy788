@@ -84,7 +84,7 @@ function Title2() {
                     เลือกประเภทการแทง
                 </div>
             </div>
-            <div className="grid grid-cols-3 gap-4 p-5 max-md:grid-cols-1">
+            <div className="grid grid-cols-3 gap-4  max-md:grid-cols-1">
                 {[0, 1, 2, 3, 4, 5, 6].map((buttonIndex) => (
                     <button
                         key={buttonIndex}
@@ -124,8 +124,8 @@ function Title2() {
             </div>
 
             {activeButton === 0 && (
-                <div className="grid grid-cols-1 gap-4 p-5">
-                    <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
+                <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-10 gap-y-4 gap-x-5 max-md:grid-cols-5 ">
                         {pageNumbers.map(number => (
                             <button key={number} className={`btn w-[60px] mx-auto ${currentPage === number ? 'active' : ''}`} onClick={() => handleClick(number)}>
                                 {number === 1 ? '0000' : ((number - 1) * 1000).toString().padStart(4, '0')}
@@ -139,7 +139,7 @@ function Title2() {
             )}
 
             {activeButton === 1 && (
-                <div className="grid grid-cols-1 gap-4 p-5">
+                <div className="grid grid-cols-1 gap-4 ">
                     <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
                         {pageNumbers.map(number => (
                             <button key={number} className={`btn w-[60px] mx-auto ${currentPage === number ? 'active' : ''}`} onClick={() => handleClick(number)}>
@@ -154,7 +154,7 @@ function Title2() {
             )}
 
             {activeButton === 2 && (
-                <div className="grid grid-cols-1 gap-4 p-5">
+                <div className="grid grid-cols-1 gap-4  ">
                     <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
                         {pageNumbers.map(number => (
                             <button key={number} className={`btn w-[60px] mx-auto ${currentPage === number ? 'active' : ''}`} onClick={() => handleClick(number)}>
@@ -169,8 +169,8 @@ function Title2() {
             )}
 
             {[0, 1, 2, 3, 4].includes(activeButton) && (
-                <div className="grid grid-cols-1 gap-4 p-5">
-                    <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
+                <div className="grid grid-cols-1 gap-4 mt-10">
+                    <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
                         {currentNumbers.map((number) => (
                             <button key={number} className="btn w-[60px] mx-auto">
                                 {number.toString().padStart(activeButton === 0 ? 4 : 3, '0')}
@@ -179,25 +179,17 @@ function Title2() {
                     </div>
                 </div>
             )}
+
+            {[5,6].includes(activeButton) && (
+                <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
+                    {currentNumbers.map((number) => (
+                        <button key={number} className="btn w-[60px] mx-auto">
+                            {number}
+                        </button>
+                    ))}
+                </div>
+            )}
             
-            {activeButton === 5 && (
-                <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
-                    {currentNumbers.map((number) => (
-                        <button key={number} className="btn w-[60px] mx-auto">
-                            {number}
-                        </button>
-                    ))}
-                </div>
-            )}
-            {activeButton === 6 && (
-                <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
-                    {currentNumbers.map((number) => (
-                        <button key={number} className="btn w-[60px] mx-auto">
-                            {number}
-                        </button>
-                    ))}
-                </div>
-            )}
         </section>
     );
 }

@@ -53,7 +53,7 @@ function Play() {
   return (
     <section>
       <Navbar />
-      <div className="flex flex-col p-5 pr-20 pl-20">
+      <div className="flex flex-col p-5">
         <div className="divider divider-start text-4xl pb-8">
           <IoIosBackspace />
           ย้อนกลับ
@@ -157,7 +157,7 @@ function Play() {
           </div>
         </div>
       )}
-      <div className="grid  grid-flow-col gap-4 p-5 pr-20 pl-20">
+      <div className="grid  grid-flow-col gap-4 p-5">
         <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
@@ -181,7 +181,7 @@ function Play() {
 
         <div className="col-span-2">
           <div className="playbtn">
-            <div className="grid gap-4 p-5 grid-cols-3">
+            <div className="grid gap-4  grid-cols-3">
               <button
                 className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
                   }`}
