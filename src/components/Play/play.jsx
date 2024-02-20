@@ -19,20 +19,17 @@ function Play() {
   };
 
   //   add active class for tab
+
   const [activeButton, setActiveButton] = useState("เลือกกดเอง");
 
-  const handleButtonClick = (buttonName, digits) => {
-    if (buttonName === "เลือกแผงเลข" || buttonName === "เลือกแบบเลขวิน") {
-      // If one of these buttons is clicked, change the active button and reset digits
-      setActiveButton(buttonName);
-    } else {
-      // For other buttons, only update the number of digits and keep "เลือกกดเอง" active
-      setNumberOfDigits(digits);
-      if (activeButton !== "เลือกกดเอง") {
-        setActiveButton("เลือกกดเอง");
-        setNumberOfDigits(4);
-      }
-    }
+  const [activeHuy, setActiveHuy] = useState("สี่ตัวบน");
+  const active = (buttonName, numberOfDigits) => {
+    setActiveHuy(buttonName);
+    setNumberOfDigits(numberOfDigits); // ส่งค่าตัวเลขไปกับฟังก์ชัน
+  };
+
+  const handleButtonClick = (buttonName) => {
+      setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
   };
 
   useEffect(() => {
@@ -160,7 +157,7 @@ function Play() {
           </div>
         </div>
       )}
-      <div className="grid grid-flow-col gap-4 p-5">
+      <div className="grid  grid-flow-col gap-4 p-5 pr-20 pl-20">
         <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
@@ -181,148 +178,113 @@ function Play() {
             </div>
           </div>
         </div>
-     
+
         <div className="col-span-2">
-        <div className="playbtn">
-          
+          <div className="playbtn">
             <div className="grid gap-4 p-5 grid-cols-3">
-              
               <button
-                className={`btn ${
-                  activeButton === "เลือกกดเอง" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกกดเอง")}
               >
                 <BiGridAlt /> เลือกกดเอง
               </button>
+
               <button
-                className={`btn ${
-                  activeButton === "เลือกแผงเลข" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแผงเลข" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแผงเลข")}
               >
                 <BiGridAlt /> เลือกแผงเลข
               </button>
               <button
-                className={`btn ${
-                  activeButton === "เลือกแบบเลขวิน" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแบบเลขวิน" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแบบเลขวิน")}
               >
                 <BiGridAlt /> เลือกแบบเลขวิน
               </button>
             </div>
-            </div>
+          </div>
 
-            <div className={`container-putnumber ${ activeButton !== "เลือกกดเอง" ? "hidden" : "" } ${  activeButton === "เลือกกดเอง" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`} >
-
-            <div className="gap-4 w-40">
-              <div className="divider divider-end text-xl">
-                เลือกประเภทการแทง
-              </div>
-            </div>
-            <div className="custom-container">
-            <div className="grid grid-cols-3 gap-4 p-5 ">
-            <button className={`btn ${activeButton === "สี่ตัวบน" || activeButton === "สี่ตัวโต๊ด" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวบน", 4)}>
-                <BiGridAlt /> สี่ตัวบน
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สี่ตัวโต๊ด" || activeButton === "สี่ตัวบน" ? "active" : ""}`} onClick={() => handleButtonClick("สี่ตัวโต๊ด", 4)}>
-                <BiGridAlt /> สี่ตัวโต๊ด
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สามตัวบน" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สามตัวบน", 3)}>
-                <BiGridAlt /> สามตัวบน
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สามตัวโต๊ด" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สามตัวโต๊ด", 3)}>
-
-                <BiGridAlt /> สามตัวโต๊ด
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สามตัวล่าง" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สามตัวล่าง", 3)}>
-
-                <BiGridAlt /> สามตัวล่าง
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สองตัวบน" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สองตัวบน", 2)}>
-
-                <BiGridAlt /> สองตัวบน
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "สองตัวล่าง" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("สองตัวล่าง", 2)}>
-
-                <BiGridAlt /> สองตัวล่าง
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "วิ่งบน" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("วิ่งบน", 1)}>
-
-                <BiGridAlt /> วิ่งบน
-                <div className="badge badge-primary">1,000</div>
-              </button>
-              <button className={`btn ${activeButton === "วิ่งล่าง" && activeButton === "เลือกกดเอง" ? "active" : ""}`} onClick={() => handleButtonClick("วิ่งล่าง", 1)}>
-
-                <BiGridAlt /> วิ่งล่าง
-                <div className="badge badge-primary">1,000</div>
-              </button>
-            </div>
-            </div>
-
-            {/* <div className="gap-4 w-40">
-              <div className="divider divider-end text-xl">กดเอง</div>
-            </div> */}
-          
-
-          <div
-            className= "grid gap-4 p-5 col-span-2" >
+          <div className={`container-putnumber ${activeButton === "เลือกกดเอง" ? "" : "hidden"
+              } ${activeButton === "เลือกกดเอง"
+                ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
+                : ""
+              }`}
+          >
             {activeButton === "เลือกกดเอง" && (
               <section>
                 <div className="gap-4 w-40">
-                  <div className="divider divider-end text-xl">กดเลข</div>
+                  <div className="divider divider-end text-xl">
+                    เลือกประเภทการแทง
+                  </div>
                 </div>
-                <div className="">
-                <NumpadLotto addCompletedNumbers={addCompletedNumbers} numberOfDigits={numberOfDigits} />
+                <div className="custom-container">
+                  <div className="grid gap-4 p-5 grid-cols-3">
 
+                  <button className={`btn ${activeHuy === "สี่ตัวบน" ? "active" : ""}`} onClick={() => active("สี่ตัวบน", 4)} > <BiGridAlt /> สี่ตัวบน
+                  <div className="badge badge-primary">1,000</div>
+                  </button>
+
+                  <button className={`btn ${activeHuy === "สี่ตัวโต๊ด" ?"active" : ""}`} onClick={() => active("สี่ตัวโต๊ด", 4)} > <BiGridAlt /> สี่ตัวโต๊ด
+                  <div className="badge badge-primary">1,000</div>
+                  </button>
+
+                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวบน", 3)} > 
+                  <BiGridAlt /> สามตัวบน <div className="badge badge-primary">1,000</div>
+                  </button>
+
+                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวโต๊ด", 3)} > 
+                  <BiGridAlt /> สามตัวโต๊ด <div className="badge badge-primary">1,000</div>
+                  </button>
+
+                  <button className={`btn ${activeHuy === "สามตัวบน" || activeHuy === "สามตัวโต๊ด" || activeHuy === "สามตัวล่าง" ? "active" : ""}`} onClick={() => active("สามตัวล่าง", 3)} > 
+                  <BiGridAlt /> สามตัวล่าง <div className="badge badge-primary">1,000</div>
+                  </button>
+
+                    <button className={`btn ${activeHuy === "สองตัวบน" || activeHuy === "สองตัวล่าง" ? "active" : ""}`} onClick={() => active("สองตัวบน", 2)} > 
+                    <BiGridAlt /> สองตัวบน <div className="badge badge-primary">1,000</div>
+                  </button>
+                  <button className={`btn ${activeHuy === "สองตัวบน" || activeHuy === "สองตัวล่าง" ? "active" : ""}`} onClick={() => active("สองตัวล่าง", 2)} > 
+                    <BiGridAlt /> สองตัวล่าง <div className="badge badge-primary">1,000</div>
+                  </button>
+                  <button className={`btn ${ activeHuy === "วิ่งบน" ? "active" : ""}`} onClick={() => active("วิ่งบน", 1)} > 
+                    <BiGridAlt /> วิ่งบน <div className="badge badge-primary">1,000</div>
+                  </button>
+                  <button className={`btn ${ activeHuy === "วิ่งล่าง" ? "active" : ""}`} onClick={() => active("วิ่งล่าง", 1)} > 
+                    <BiGridAlt /> วิ่งล่าง <div className="badge badge-primary">1,000</div>
+                  </button>
+                  </div>
+                </div>
+
+                {/* <div className="gap-4 w-40">
+              <div className="divider divider-end text-xl">กดเอง</div>
+            </div> */}
+
+                <div className="grid gap-4 p-5 col-span-2">
+                  <div className="gap-4 w-40">
+                    <div className="divider divider-end text-xl">กดเลข</div>
+                  </div>
+                  <div className="">
+                    <NumpadLotto
+                      addCompletedNumbers={addCompletedNumbers}
+                      numberOfDigits={numberOfDigits}
+                    />
+                  </div>
                 </div>
               </section>
             )}
           </div>
-        </div>
-        <div className={`container-putnumber ${ activeButton !== "เลือกแผงเลข" ? "hidden" : "" } ${  activeButton === "เลือกแผงเลข" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
-          <Title2/>
-        </div>
+          <div className={`container-putnumber ${ activeButton !== "เลือกแผงเลข" ? "hidden" : "" } ${  activeButton === "เลือกแผงเลข" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
+        <Title2/>
+      </div>
 
-        <div className={`container-putnumber ${ activeButton !== "เลือกแบบเลขวิน" ? "hidden" : "" } ${  activeButton === "เลือกแบบเลขวิน" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
-          <Title3/>
+      <div className={`container-putnumber ${ activeButton !== "เลือกแบบเลขวิน" ? "hidden" : "" } ${  activeButton === "เลือกแบบเลขวิน" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
+        <Title3/>
+      </div>
         </div>
-        {/* <div
-          className= "grid gap-4 p-5 col-span-2" >
-          {activeButton === "เลือกแผงเลข" && (
-            <section>
-              <div className="gap-4 w-40 mt-[67px]">
-                <div className="divider divider-end text-xl">กดเลข</div>
-              </div>
-            </section>
-          )}
-        </div> */}
-        </div>
-        {/* <div
-          className={`grid gap-4 p-5 col-span-2 ${
-            activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
-          } ${
-            activeButton === "เลือกแบบเลขวิน"
-              ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
-              : ""
-          }`}
-        >
-          {activeButton === "เลือกแบบเลขวิน" && (
-            <section>
-              <div className="gap-4 w-40 mt-[67px]">
-                <div className="divider divider-end text-xl">กดเลขวิน</div>
-              </div>
-            </section>
-          )}
-        </div> */}
+       
         {/* <div className="col-span-2 ...">
           <NumpadLotto addCompletedNumbers={addCompletedNumbers} />
         </div> */}
