@@ -168,7 +168,7 @@ function Title2() {
                 </div>
             )}
 
-            {[0, 1, 2, 3, 4].includes(activeButton) && (
+            {[0, 1, 2].includes(activeButton) && (
                 <div className="grid grid-cols-1 gap-4 mt-10">
                     <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
                         {currentNumbers.map((number) => (
@@ -179,6 +179,16 @@ function Title2() {
                     </div>
                 </div>
             )}
+
+            {[3,4].includes(activeButton) && (
+                <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
+                {currentNumbers.map((number) => (
+                    <button key={number} className="btn w-[60px] mx-auto">
+                        {number.toString().padStart(2, '0')}
+                    </button>
+                ))}
+            </div>
+            )}      
 
             {[5,6].includes(activeButton) && (
                 <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
