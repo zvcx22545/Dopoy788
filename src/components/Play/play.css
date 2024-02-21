@@ -220,3 +220,28 @@ th, td {
     border-color: var(--Primary-color)
 }
 
+/* custom sweetalert */
+.swal-icon-red {
+  color: red !important; /* Red color for the icon */
+  border: solid red !important;
+}
+
+.swal-confirm-button-red {
+  background-color: red !important; /* Red background color for confirm button */
+  color: white !important; /* White text color for confirm button */
+  width: 76.03px;
+  order: 2 !important;
+  margin-right: 10px;
+}
+
+.swal-cancel
+{
+  color: #000 !important;
+  background-color: white !important;
+  order: 1 !important;
+}
+
+.Title-delete
+{
+  font-size: clamp(1.25rem, 1.1364rem + 0.303vw, 1.5rem);
+}

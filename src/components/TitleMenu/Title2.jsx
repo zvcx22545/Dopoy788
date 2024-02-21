@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { BiGridAlt } from "react-icons/bi";
 import "./Title.css";
+import PropTypes from 'prop-types';
 
 function getPageRangeC1(currentPage, numbersPerPage) {
     const start = (currentPage - 1) * numbersPerPage;
@@ -13,7 +14,8 @@ function getPageRangeC2(currentPage, numbersPerPage) {
     return `${start.toString().padStart(3, '0')} - ${end.toString().padStart(3, '0')}`;
 }
 
-function Title2() {
+function Title2({ addCompletedNumber }) {
+    
     const [activeButton, setActiveButton] = useState(0);
     const [selectedNumbers, setSelectedNumbers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -76,6 +78,7 @@ function Title2() {
     const handleClick = (number) => {
         setCurrentPage(number);
     };
+
 
     return (
         <section>
@@ -172,28 +175,37 @@ function Title2() {
                 <div className="grid grid-cols-1 gap-4 mt-10">
                     <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
                         {currentNumbers.map((number) => (
-                            <button key={number} className="btn w-[60px] mx-auto">
-                                {number.toString().padStart(activeButton === 0 ? 4 : 3, '0')}
+                            <button 
+                                key={number} 
+                                className="btn w-[60px] mx-auto" 
+                                onClick={() => addCompletedNumber(activeButton === 0 ? number.toString().padStart(4, '0') : number.toString().padStart(3, '0'))} >
+                                {activeButton === 0 ? number.toString().padStart(4, '0') : number.toString().padStart(3, '0')}
                             </button>
                         ))}
                     </div>
                 </div>
-            )}
+                        )}
 
-            {[3,4].includes(activeButton) && (
-                <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
-                {currentNumbers.map((number) => (
-                    <button key={number} className="btn w-[60px] mx-auto">
-                        {number.toString().padStart(2, '0')}
-                    </button>
-                ))}
-            </div>
-            )}      
+
+            {[3, 4].includes(activeButton) && (
+    <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
+        {currentNumbers.map((number) => (
+            <button 
+                key={number} 
+                className="btn w-[60px] mx-auto" 
+                onClick={() => addCompletedNumber(number === 0 ? '00' : number.toString().padStart(2, '0'))}
+            >
+                {number === 0 ? '00' : number.toString().padStart(2, '0')}
+            </button>
+        ))}
+    </div>
+            )}
+ 
 
             {[5,6].includes(activeButton) && (
                 <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
                     {currentNumbers.map((number) => (
-                        <button key={number} className="btn w-[60px] mx-auto">
+                        <button key={number} className="btn w-[60px] mx-auto" onClick={() => addCompletedNumber(number)}>
                             {number}
                         </button>
                     ))}
@@ -204,4 +216,8 @@ function Title2() {
     );
 }
 
+Title2.propTypes = {
+    addCompletedNumber: PropTypes.func.isRequired, // Require addCompletedNumbers to be a function
+  };
 export default Title2;
+
