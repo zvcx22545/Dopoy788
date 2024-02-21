@@ -14,8 +14,14 @@ function Play() {
   const [countdown, setCountdown] = useState(0);
   const [numberOfDigits, setNumberOfDigits] = useState(4);
   const [completedNumbers, setCompletedNumbers] = useState([]);
+  const [isReverseChecked, setIsReverseChecked] = useState(false); // State for checkbox
   const addCompletedNumbers = (newNumbers) => {
-    setCompletedNumbers([...completedNumbers, newNumbers]);
+    if (isReverseChecked) {
+      const reversedNumbers = reverseNumbers(newNumbers);
+      setCompletedNumbers([...completedNumbers, ...reversedNumbers]);
+    } else {
+      setCompletedNumbers([...completedNumbers, newNumbers]);
+    }
   };
 
   //   add active class for tab
@@ -41,6 +47,21 @@ function Play() {
         setActiveButtons([...activeButtons, buttonName]); // Add active state
       }
     }
+  };
+  
+
+  const handleCheckboxChange = () => {
+    setIsReverseChecked(!isReverseChecked); // Toggle the value
+  };
+
+  const reverseNumbers = (number) => {
+    const reversedNumbers = [];
+    const strNumber = number.toString();
+    for (let i = 0; i < strNumber.length; i++) {
+      const reversedNumber = strNumber.substring(i) + strNumber.substring(0, i);
+      reversedNumbers.push(reversedNumber);
+    }
+    return reversedNumbers;
   };
 
 
@@ -276,8 +297,18 @@ function Play() {
                 </div>
 
                 <div className="grid gap-4 p-5 col-span-2">
-                  <div className="gap-4 w-40">
-                    <div className="divider divider-end text-xl">กดเลข</div>
+                  <div className="gap-4 w-full flex justify-between">
+                    <div className="right-container w-[10.45%]">
+                      <div className="divider divider-end text-xl flex-shrink-0">กดเลข</div>
+                    </div>
+                    
+                    <div className="left-content flex flex-col justify-center items-center">
+                    <label className ="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" className ="sr-only peer"  checked={isReverseChecked} onChange={handleCheckboxChange}/>
+                    <div className ="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div>
+                    <div className ="text-[#4400A5] ms-3 text-[18.75px] font-medium dark:text-gray-300">กลับเลข</div>
+                  </label>
+                    </div>
                   </div>
                   <div className="">
                     <NumpadLotto
