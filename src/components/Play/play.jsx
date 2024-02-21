@@ -8,6 +8,7 @@ import { BiTrashAlt } from "react-icons/bi";
 import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
+import Swal from "sweetalert2";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -23,6 +24,43 @@ function Play() {
       setCompletedNumbers([...completedNumbers, newNumbers]);
     }
   };
+  const addCompletedNumber = (number) => {
+    setCompletedNumbers((prevNumbers) => [...prevNumbers, number]);
+  };
+
+  //Delete All the value in betting
+
+  const DeleteAll = () => {
+    Swal.fire({
+      title: "ยืนยันลบรายการแทงทั้งหมดหรือไม่?",
+      showCancelButton: true,
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ยกเลิก",
+      icon: "warning",
+      customClass: {
+        icon: "swal-icon-red",
+        confirmButton: "swal-confirm-button-red",
+        cancelButton: "swal-cancel",
+        title: "Title-delete",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setCompletedNumbers([]); // Clear the completedNumbers array
+        Swal.fire("ลบรายการแทงสำเร็จ", "", "success");
+      }
+    });
+  };
+
+  // Delete list in รายการแทง
+
+  const handleDelete = (index) => {
+    // Create a copy of the completedNumbers array
+    const updatedNumbers = [...completedNumbers];
+    // Remove the item at the specified index
+    updatedNumbers.splice(index, 1);
+    // Update the state with the new array
+    setCompletedNumbers(updatedNumbers);
+  };
 
   //   add active class for tab
 
@@ -33,12 +71,12 @@ function Play() {
   const active = (buttonName, newNumberOfDigits) => {
     if (activeButtons.length === 1 && activeButtons[0] === buttonName) {
       // Check if the clicked button is already active
-      return; 
+      return;
     }
-  
+
     if (activeButtons.includes(buttonName)) {
       // If the button is already active
-      setActiveButtons(activeButtons.filter(btn => btn !== buttonName)); // Remove active state
+      setActiveButtons(activeButtons.filter((btn) => btn !== buttonName)); // Remove active state
     } else {
       if (newNumberOfDigits !== numberOfDigits) {
         setActiveButtons([buttonName]); // Set active state
@@ -47,27 +85,44 @@ function Play() {
         setActiveButtons([...activeButtons, buttonName]); // Add active state
       }
     }
+    if (buttonName === "วิ่งบน" || buttonName === "วิ่งล่าง") {
+      setIsReverseChecked(false); // Set reverse checkbox to unchecked
+    }
   };
-  
 
   const handleCheckboxChange = () => {
     setIsReverseChecked(!isReverseChecked); // Toggle the value
   };
 
   const reverseNumbers = (number) => {
-    const reversedNumbers = [];
     const strNumber = number.toString();
-    for (let i = 0; i < strNumber.length; i++) {
-      const reversedNumber = strNumber.substring(i) + strNumber.substring(0, i);
-      reversedNumbers.push(reversedNumber);
-    }
-    return reversedNumbers;
+    const permutations = [];
+    generatePermutations(strNumber, "", permutations);
+    return permutations;
   };
 
-
+  const generatePermutations = (strNumber, currentPerm, permutations) => {
+    if (strNumber.length === 0) {
+      permutations.push(currentPerm);
+    } else {
+      const used = new Set();
+      for (let i = 0; i < strNumber.length; i++) {
+        if (!used.has(strNumber[i])) {
+          used.add(strNumber[i]);
+          const remainingDigits =
+            strNumber.slice(0, i) + strNumber.slice(i + 1);
+          generatePermutations(
+            remainingDigits,
+            currentPerm + strNumber[i],
+            permutations
+          );
+        }
+      }
+    }
+  };
 
   const handleButtonClick = (buttonName) => {
-      setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
+    setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
   };
 
   useEffect(() => {
@@ -150,7 +205,10 @@ function Play() {
                         <p className="border border-[#4400A5] px-1">10</p>
                       </td>
                       <td>
-                        <button className="text-[#FF2929]">
+                        <button
+                          className="text-[#FF2929]"
+                          onClick={() => handleDelete(index)}
+                        >
                           <BiTrashAlt />
                         </button>
                       </td>
@@ -184,8 +242,11 @@ function Play() {
                 <p className="text-right">0</p>
                 <p>ยอดรวม (บาท)</p>
                 <p className="text-right">25</p>
-                <button className="rounded text-black bg-[#EBA1A1] border border-[#EBA1A1] hover:text-[#EBA1A1] hover:bg-white p-1">
-                  ยอดรวม (บาท)
+                <button
+                  className="rounded text-black bg-[#EBA1A1] border border-[#EBA1A1] hover:text-[#EBA1A1] hover:bg-white p-1"
+                  onClick={DeleteAll}
+                >
+                  ลบทั้งหมด
                 </button>
                 <button className="rounded text-white bg-[#4400A5] border border-[#4400A5] hover:bg-white hover:text-[#4400A5]">
                   ยืนยัน
@@ -196,23 +257,48 @@ function Play() {
         </div>
       )}
       <div className="grid  grid-flow-col gap-4 p-5">
-        <div className="row-span-3 w-full px-3 py-5 max-lg:hidden">
+        <div className="row-span-3 w-full px-3 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
           </div>
           <div className="list w-full rounded-lg text-center p-2">
-            <h1>รายการแทง</h1>
-            <hr className="my-2" />
+            <div className="container-bet flex justify-between item-center relative">
+              <h1 className="betting absolute left-3"> รายการแทง</h1>
+              <div className="rounded-full bg-[#4400A5] text-white px-[12px] py-[3px] right-3 absolute">
+                {completedNumbers.length} รายการ
+              </div>
+            </div>
+            <hr className="my-10" />
             <div className="list-menuorder py-2">
               {completedNumbers.map((numberSet, index) => (
-                <h1 key={index}>{numberSet}</h1>
+                <div
+                  key={index}
+                  className="flex gap-3 items-center justify-between px-5"
+                >
+                  <h1>{numberSet}</h1>
+                  <button
+                    className="text-[#FF2929] text-[18px]"
+                    onClick={() => handleDelete(index)}
+                  >
+                    <BiTrashAlt />
+                  </button>
+                </div>
               ))}
             </div>
+
             <div className="menu-btn grid gap-2">
-              <button className="custom" onClick={() => setShowModal(true)}>
+              <button
+                className={`custom ${ completedNumbers.length === 0 ? "disabled" : "" }`} onClick={() => {if (completedNumbers.length > 0) { setShowModal(true); }}}
+                disabled={completedNumbers.length === 0}
+                style={{ opacity: completedNumbers.length === 0 ? 0.3 : 1 }} >
                 ใส่ราคา/ส่งโพย
               </button>
-              <button className="delete">ลบทั้งหมด</button>
+              <button
+                className="delete"
+                onClick={() => DeleteAll(completedNumbers)}
+              >
+                ลบทั้งหมด
+              </button>
             </div>
           </div>
         </div>
@@ -221,23 +307,26 @@ function Play() {
           <div className="playbtn">
             <div className="grid gap-4  grid-cols-3">
               <button
-                className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกกดเอง" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกกดเอง")}
               >
                 <BiGridAlt /> เลือกกดเอง
               </button>
 
               <button
-                className={`btn ${activeButton === "เลือกแผงเลข" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกแผงเลข" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกแผงเลข")}
               >
                 <BiGridAlt /> เลือกแผงเลข
               </button>
               <button
-                className={`btn ${activeButton === "เลือกแบบเลขวิน" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกแบบเลขวิน" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกแบบเลขวิน")}
               >
                 <BiGridAlt /> เลือกแบบเลขวิน
@@ -245,11 +334,14 @@ function Play() {
             </div>
           </div>
 
-          <div className={`container-putnumber ${activeButton === "เลือกกดเอง" ? "" : "hidden"
-              } ${activeButton === "เลือกกดเอง"
+          <div
+            className={`container-putnumber ${
+              activeButton === "เลือกกดเอง" ? "" : "hidden"
+            } ${
+              activeButton === "เลือกกดเอง"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-              }`}
+            }`}
           >
             {activeButton === "เลือกกดเอง" && (
               <section>
@@ -260,54 +352,124 @@ function Play() {
                 </div>
                 <div className="custom-container">
                   <div className="grid gap-4 grid-cols-3">
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                      }`}
+                      onClick={() => active("สี่ตัวบน", 4)}
+                    >
+                      <BiGridAlt /> สี่ตัวบน{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
 
-                  <button className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""}`} onClick={() => active("สี่ตัวบน", 4)}> 
-                  <BiGridAlt /> สี่ตัวบน <div className="badge badge-primary">1,000</div>
-                  </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
+                      }`}
+                      onClick={() => active("สี่ตัวโต๊ด", 4)}
+                    >
+                      <BiGridAlt /> สี่ตัวโต๊ด{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
 
-                  <button className={`btn ${activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""}`} onClick={() => active("สี่ตัวโต๊ด", 4)}> 
-                  <BiGridAlt /> สี่ตัวโต๊ด <div className="badge badge-primary">1,000</div>
-                  </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สามตัวบน") ? "active" : ""
+                      }`}
+                      onClick={() => active("สามตัวบน", 3)}
+                    >
+                      <BiGridAlt /> สามตัวบน{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
 
-                  <button className={`btn ${activeButtons.includes("สามตัวบน") ? "active" : ""}`} onClick={() => active("สามตัวบน", 3)}>
-                  <BiGridAlt /> สามตัวบน <div className="badge badge-primary">1,000</div>
-                  </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
+                      }`}
+                      onClick={() => active("สามตัวโต๊ด", 3)}
+                    >
+                      <BiGridAlt /> สามตัวโต๊ด{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
 
-                  <button className={`btn ${activeButtons.includes("สามตัวโต๊ด") ? "active" : ""}`} onClick={() => active("สามตัวโต๊ด", 3)}> 
-                  <BiGridAlt /> สามตัวโต๊ด <div className="badge badge-primary">1,000</div>
-                  </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สามตัวล่าง") ? "active" : ""
+                      }`}
+                      onClick={() => active("สามตัวล่าง", 3)}
+                    >
+                      <BiGridAlt /> สามตัวล่าง{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
 
-                  <button className={`btn ${activeButtons.includes("สามตัวล่าง") ? "active" : ""}`} onClick={() => active("สามตัวล่าง", 3)}>
-                  <BiGridAlt /> สามตัวล่าง <div className="badge badge-primary">1,000</div>
-                  </button>
-
-                  <button className={`btn ${activeButtons.includes("สองตัวบน") ? "active" : ""}`} onClick={() => active("สองตัวบน", 2)}>
-                    <BiGridAlt /> สองตัวบน <div className="badge badge-primary">1,000</div>
-                  </button>
-                  <button className={`btn ${activeButtons.includes("สองตัวล่าง") ? "active" : ""}`} onClick={() => active("สองตัวล่าง", 2)}>
-                    <BiGridAlt /> สองตัวล่าง <div className="badge badge-primary">1,000</div>
-                  </button>
-                  <button className={`btn ${activeButtons.includes("วิ่งบน") ? "active" : ""}`} onClick={() => active("วิ่งบน", 1)}>
-                    <BiGridAlt /> วิ่งบน <div className="badge badge-primary">1,000</div>
-                  </button>
-                  <button className={`btn ${activeButtons.includes("วิ่งล่าง") ? "active" : ""}`} onClick={() => active("วิ่งล่าง", 1)}>
-                    <BiGridAlt /> วิ่งล่าง <div className="badge badge-primary">1,000</div>
-                  </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สองตัวบน") ? "active" : ""
+                      }`}
+                      onClick={() => active("สองตัวบน", 2)}
+                    >
+                      <BiGridAlt /> สองตัวบน{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("สองตัวล่าง") ? "active" : ""
+                      }`}
+                      onClick={() => active("สองตัวล่าง", 2)}
+                    >
+                      <BiGridAlt /> สองตัวล่าง{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("วิ่งบน") ? "active" : ""
+                      }`}
+                      onClick={() => active("วิ่งบน", 1)}
+                    >
+                      <BiGridAlt /> วิ่งบน{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
+                    <button
+                      className={`btn ${
+                        activeButtons.includes("วิ่งล่าง") ? "active" : ""
+                      }`}
+                      onClick={() => active("วิ่งล่าง", 1)}
+                    >
+                      <BiGridAlt /> วิ่งล่าง{" "}
+                      <div className="badge badge-primary">1,000</div>
+                    </button>
                   </div>
                 </div>
 
                 <div className="grid gap-4 p-5 col-span-2">
                   <div className="gap-4 w-full flex justify-between">
                     <div className="right-container w-[10.45%]">
-                      <div className="divider divider-end text-xl flex-shrink-0">กดเลข</div>
+                      <div className="divider divider-end text-xl flex-shrink-0">
+                        กดเลข
+                      </div>
                     </div>
-                    
-                    <div className="left-content flex flex-col justify-center items-center">
-                    <label className ="inline-flex items-center cursor-pointer">
-                    <input type="checkbox" value="" className ="sr-only peer"  checked={isReverseChecked} onChange={handleCheckboxChange}/>
-                    <div className ="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div>
-                    <div className ="text-[#4400A5] ms-3 text-[18.75px] font-medium dark:text-gray-300">กลับเลข</div>
-                  </label>
+
+                    <div
+                      className={`left-content flex flex-col justify-center items-center ${
+                        activeButtons.includes("วิ่งบน") ||
+                        activeButtons.includes("วิ่งล่าง")
+                          ? "hidden"
+                          : ""
+                      }`}
+                    >
+                      <label className="inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          value=""
+                          className="sr-only peer"
+                          checked={isReverseChecked}
+                          onChange={handleCheckboxChange}
+                        />
+                        <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div>
+                        <div className="text-[#4400A5] ms-3 text-[18.75px] font-medium dark:text-gray-300">
+                          กลับเลข
+                        </div>
+                      </label>
                     </div>
                   </div>
                   <div className="">
@@ -320,21 +482,53 @@ function Play() {
               </section>
             )}
           </div>
-          <div className={`container-putnumber ${ activeButton !== "เลือกแผงเลข" ? "hidden" : "" } ${  activeButton === "เลือกแผงเลข" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
-        <Title2/>
-      </div>
+          <div
+            className={`container-putnumber ${
+              activeButton !== "เลือกแผงเลข" ? "hidden" : ""
+            } ${
+              activeButton === "เลือกแผงเลข"
+                ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
+                : ""
+            }`}
+          >
+            <Title2 addCompletedNumber={addCompletedNumber} />
+          </div>
 
-      <div className={`container-putnumber ${ activeButton !== "เลือกแบบเลขวิน" ? "hidden" : "" } ${  activeButton === "เลือกแบบเลขวิน" ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear" : ""  }`}>
-        <Title3/>
-      </div>
+          <div
+            className={`container-putnumber ${
+              activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
+            } ${
+              activeButton === "เลือกแบบเลขวิน"
+                ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
+                : ""
+            }`}
+          >
+            <Title3 />
+          </div>
         </div>
-       
+
         {/* <div className="col-span-2 ...">
           <NumpadLotto addCompletedNumbers={addCompletedNumbers} />
         </div> */}
         <div className="list-responsive mt-auto">
-          <h1>รายการแทง</h1>
-          <button className="list-btn" onClick={() => setShowModal(true)}>
+          <div className="container-bet flex flex-1 gap-2 item-center justify-center">
+            <h1 className="betting">รายการแทง</h1>
+            <div className="rounded-full bg-[#4400A5] text-white px-[12px] py-[3px] mr-auto">
+              {completedNumbers.length}
+            </div>
+          </div>
+          <button
+            className={`list-btn ${
+              completedNumbers.length === 0 ? "disabled" : ""
+            }`}
+            onClick={() => {
+              if (completedNumbers.length > 0) {
+                setShowModal(true);
+              }
+            }}
+            disabled={completedNumbers.length === 0}
+            style={{ opacity: completedNumbers.length === 0 ? 0.3 : 1 }}
+          >
             ใส่ราคา/ส่งโพย
           </button>
         </div>
