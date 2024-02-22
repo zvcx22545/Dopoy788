@@ -23,45 +23,37 @@ function Title2({ addCompletedNumber }) {
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   let [numbersPerPage, setNumbersPerPage] = useState(1000); // จำนวนเลขต่อหน้า
-//   const [isReverseChecked, setIsReverseChecked] = useState(false); // State for checkbox
-
-//   const reverseNumbers = (number) => {
-//     const strNumber = number.toString();
-//     const permutations = [];
-//     generatePermutations(strNumber, "", permutations);
-//     return permutations;
-//   };
-
-//   const generatePermutations = (strNumber, currentPerm, permutations) => {
-//     if (strNumber.length === 0) {
-//       permutations.push(currentPerm);
-//     } else {
-//       const used = new Set();
-//       for (let i = 0; i < strNumber.length; i++) {
-//         if (!used.has(strNumber[i])) {
-//           used.add(strNumber[i]);
-//           const remainingDigits =
-//             strNumber.slice(0, i) + strNumber.slice(i + 1);
-//           generatePermutations(
-//             remainingDigits,
-//             currentPerm + strNumber[i],
-//             permutations
-//           );
-//         }
-//       }
-//     }
-//   };
-
-//   const handleCheckboxChange = () => {
-//     setIsReverseChecked(!isReverseChecked); // Toggle the value
-//     if (!isReverseChecked) {
-//       // If the checkbox was unchecked (i.e., it is now checked), perform reverseNumbers
-//       const reversedNumbers = currentNumbers.flatMap(reverseNumbers);
-//       // Pass reversedNumbers to addCompletedNumber
-//       reversedNumbers.forEach((number) => addCompletedNumber(number));
-//     }
-//   };
-
+  const [isReverseChecked, setIsReverseChecked] = useState(false); // State for checkbox
+  const reverseNumbers = (number) => {
+    const strNumber = number.toString();
+    const permutations = [];
+    generatePermutations(strNumber, "", permutations);
+    return permutations;
+  };
+  
+  const generatePermutations = (strNumber, currentPerm, permutations) => {
+    if (strNumber.length === 0) {
+      permutations.push(currentPerm);
+    } else {
+      const used = new Set();
+      for (let i = 0; i < strNumber.length; i++) {
+        if (!used.has(strNumber[i])) {
+          used.add(strNumber[i]);
+          const remainingDigits =
+            strNumber.slice(0, i) + strNumber.slice(i + 1);
+          generatePermutations(
+            remainingDigits,
+            currentPerm + strNumber[i],
+            permutations
+          );
+        }
+      }
+    }
+  };
+  
+  const handleCheckboxChange = () => {
+    setIsReverseChecked(!isReverseChecked); // Toggle the value
+  };
   useEffect(() => {
     setActiveButton(0);
     paginateNumbers();
@@ -186,8 +178,8 @@ function Title2({ addCompletedNumber }) {
               type="checkbox"
               value=""
               className="sr-only peer"
-            //   checked={isReverseChecked}
-            //   onChange={handleCheckboxChange}
+              checked={isReverseChecked}
+              onChange={handleCheckboxChange}
             />
             <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div>
             <div className="text-[#4400A5] ms-3 text-[18.75px] font-medium dark:text-gray-300">
@@ -272,29 +264,41 @@ function Title2({ addCompletedNumber }) {
         </div>
       )}
 
-      {[0, 1, 2].includes(activeButton) && (
-        <div className="grid grid-cols-1 gap-4 mt-10">
-          <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
-            {currentNumbers.map((number) => (
-              <button
-                key={number}
-                className="btn w-[60px] mx-auto"
-                onClick={() =>
-                  addCompletedNumber(
-                    activeButton === 0
-                      ? number.toString().padStart(4, "0")
-                      : number.toString().padStart(3, "0")
-                  )
-                }
-              >
-                {activeButton === 0
+{[0, 1, 2].includes(activeButton) && (
+  <div className="grid grid-cols-1 gap-4 mt-10">
+    <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
+      {currentNumbers.map((number) => (
+        <button
+          key={number}
+          className="btn w-[60px] mx-auto"
+          onClick={() => {
+            // Check if the checkbox is checked
+            if (isReverseChecked) {
+              // If checked, generate reversed numbers for this number and send them
+              const reversedNumbers = reverseNumbers(
+                activeButton === 0
                   ? number.toString().padStart(4, "0")
-                  : number.toString().padStart(3, "0")}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+                  : number.toString().padStart(3, "0")
+              );
+              reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber));
+            } else {
+              // If not checked, just send the current number
+              addCompletedNumber(
+                activeButton === 0
+                  ? number.toString().padStart(4, "0")
+                  : number.toString().padStart(3, "0")
+              );
+            }
+          }}
+        >
+          {activeButton === 0
+            ? number.toString().padStart(4, "0")
+            : number.toString().padStart(3, "0")}
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
       {[3, 4].includes(activeButton) && (
         <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
@@ -302,11 +306,25 @@ function Title2({ addCompletedNumber }) {
             <button
               key={number}
               className="btn w-[60px] mx-auto"
-              onClick={() =>
-                addCompletedNumber(
-                  number === 0 ? "00" : number.toString().padStart(2, "0")
-                )
-              }
+              onClick={() => {
+                // Check if the checkbox is checked
+                if (isReverseChecked) {
+                  // If checked, generate reversed numbers for this number and send them
+                  const reversedNumbers = reverseNumbers(
+                    activeButton === 0
+                      ? number.toString().padStart(2, "0")
+                      : number.toString().padStart(2, "0")
+                  );
+                  reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber));
+                } else {
+                  // If not checked, just send the current number
+                  addCompletedNumber(
+                    activeButton === 0
+                      ? number.toString().padStart(2, "0")
+                      : number.toString().padStart(2, "0")
+                  );
+                }
+              }}
             >
               {number === 0 ? "00" : number.toString().padStart(2, "0")}
             </button>
@@ -314,19 +332,36 @@ function Title2({ addCompletedNumber }) {
         </div>
       )}
 
-      {[5, 6].includes(activeButton) && (
-        <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
-          {currentNumbers.map((number) => (
-            <button
-              key={number}
-              className="btn w-[60px] mx-auto"
-              onClick={() => addCompletedNumber(number)}
-            >
-              {number}
-            </button>
-          ))}
-        </div>
-      )}
+{[5, 6].includes(activeButton) && (
+  <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
+    {currentNumbers.map((number) => (
+      <button
+        key={number}
+        className="btn w-[60px] mx-auto"
+        onClick={() => {
+          // Check if the checkbox is checked
+          if (isReverseChecked) {
+            // If checked, generate reversed numbers for this number and send them
+            // For single digits, reversing would typically not change the number,
+            // but you could implement logic here if needed for consistency or future adjustments
+            // As an example, if reversing logic needed:
+            // const reversedNumber = reverseNumberLogic(number); // Implement reverseNumberLogic as needed
+            // addCompletedNumber(reversedNumber);
+
+            // Since single digits don't change on reverse, we directly add the number
+            // This is a placeholder for actual reverse logic if ever needed
+            addCompletedNumber(number);
+          } else {
+            // If not checked, just send the current number
+            addCompletedNumber(number);
+          }
+        }}
+      >
+        {number}
+      </button>
+    ))}
+  </div>
+)}
     </section>
   );
 }
