@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
@@ -15,7 +15,13 @@ function Play() {
   const [countdown, setCountdown] = useState(0);
   const [numberOfDigits, setNumberOfDigits] = useState(4);
   const [completedNumbers, setCompletedNumbers] = useState([]);
-  const [isReverseChecked, setIsReverseChecked] = useState(false); // State for checkbox
+  const [isReverseChecked, setIsReverseChecked] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
+  const totalPrices = completedNumbers.reduce((accumulator, currentNumberSet) => {
+    return accumulator + price;
+  }, 0);
+
   const addCompletedNumbers = (newNumbers) => {
     if (isReverseChecked) {
       const reversedNumbers = reverseNumbers(newNumbers);
@@ -28,6 +34,24 @@ function Play() {
     setCompletedNumbers((prevNumbers) => [...prevNumbers, number]);
   };
 
+  const handlePriceChange = (newPrice) => {
+    setPrice(newPrice);
+    setQuantity(newPrice);
+  };
+
+  // Inside the component function Play
+
+  const handleIncrement = () => {
+    // เพิ่มค่า price ที่ละ 1
+    setPrice(prevPrice => prevPrice + 1);
+  };
+  
+  const handleDecrement = () => {
+    // ลดค่า price ที่ละ 1 หากค่า price ไม่น้อยกว่า 1
+    if (price > 1) {
+      setPrice(prevPrice => prevPrice - 1);
+    }
+  };
   //Delete All the value in betting
 
   const DeleteAll = () => {
@@ -202,7 +226,7 @@ function Play() {
                       <td>{numberSet}</td>
                       <td>50</td>
                       <td>
-                        <p className="border border-[#4400A5] px-1">10</p>
+                        <p className="border border-[#4400A5] px-1">{price}</p>
                       </td>
                       <td>
                         <button
@@ -218,30 +242,34 @@ function Play() {
               </table>
             </div>
             <div className="flex justify-between gap-5 mt-5">
-              <button className="pricePoy">5</button>
-              <button className="pricePoy">10</button>
-              <button className="pricePoy">20</button>
-              <button className="pricePoy">50</button>
-              <button className="pricePoy">100</button>
-              <button className="pricePoy">500</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(5)}>5</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(10)}>10</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(20)}>20</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(50)}>50</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(100)}>100</button>
+              <button className="pricePoy" onClick={() => handlePriceChange(500)}>500</button>
             </div>
             <div className="mt-5">
               <div className="flex justify-between items-center gap-5">
                 <p>จำนวนเงิน</p>
                 <div className="w-[50%] flex justify-end items-center gap-5">
-                  <button className="w-[35px] h-[35px] bg-[#FF2929] rounded"></button>
-                  <input
-                    type="number"
-                    className="w-[45%] border border-[#4400A5] rounded px-1"
-                  />
-                  <button className="w-[35px] h-[35px] bg-[#00871E] rounded"></button>
+                <button className="w-[35px] h-[35px] bg-[#FF2929] rounded" onClick={() => handleDecrement()}></button>
+                <input
+                  readOnly
+                  type="number"
+                  value={completedNumbers.length === 0 ? 0 : price}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
+                />
+                <button className="w-[35px] h-[35px] bg-[#00871E] rounded" onClick={() => handleIncrement()}></button>
+
                 </div>
               </div>
               <div className="grid grid-cols-2 justify-between gap-3">
                 <p>เงินคงหลือ (บาท)</p>
                 <p className="text-right">0</p>
                 <p>ยอดรวม (บาท)</p>
-                <p className="text-right">25</p>
+                <p className="text-right">{totalPrices}</p>
                 <button
                   className="rounded text-black bg-[#EBA1A1] border border-[#EBA1A1] hover:text-[#EBA1A1] hover:bg-white p-1"
                   onClick={DeleteAll}
