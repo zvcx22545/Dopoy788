@@ -1,0 +1,22 @@
+.btn {
+    color: #4400A5;
+    background-color: #FFF;
+    border: 2px solid #4400A5;
+    border-radius: 5px;   
+}
+.btn:hover {
+    color: #FFF;
+    background-color: #4400A5;
+    border-color: #4400A5
+}
+.add{
+  color: #fff;
+  background-color: #FF8329;
+  border: 2px solid #FF8329;
+  border-radius: 5px;
+  padding: 5px;
+}
+.add:hover{
+  color: #FF8329;
+  background-color: #fff;
+}

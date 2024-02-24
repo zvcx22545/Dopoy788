@@ -5,7 +5,7 @@ import { FaRegClock } from "react-icons/fa";
 export default function ImgMediaCard() {
   return (
     <div className="card ">
-        <div class="grid grid-cols-4 ">
+        <div className="grid grid-cols-4 ">
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />

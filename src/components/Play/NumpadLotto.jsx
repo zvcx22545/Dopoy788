@@ -1,15 +1,20 @@
-import React from "react";
+import PropTypes from "prop-types";
 import "./numpad.css";
 import { useState,useEffect } from "react";
 
-function NumpadLotto({ addCompletedNumbers }) {
-    const [numbers, setNumbers] = useState(["", "", "", ""]);
+function NumpadLotto({ addCompletedNumbers, numberOfDigits }) {
+    const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
+
+    useEffect(() => {
+        setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
+    }, [numberOfDigits]);
+
     useEffect(() => {
         if (numbers.every(num => num !== "")) {
             addCompletedNumbers(numbers.join(""));
-            setNumbers(["", "", "", ""]); // Reset the numbers array
+            setNumbers(Array(numberOfDigits).fill("")); // Reset the numbers array
         }
-    }, [numbers, addCompletedNumbers]);
+    }, [numbers, addCompletedNumbers, numberOfDigits]);
 
     const handleAddNumber = (number) => {
         const index = numbers.findIndex(num => num === ""); 
@@ -36,15 +41,15 @@ function NumpadLotto({ addCompletedNumbers }) {
                     <div className="tab-left-con"></div>
                 </div>
                 <div className="container-number flex flex-col justify-center items-center mx-auto">
-                    <div className="flex items-center justify-center gap-2 py-4">
-                        {numbers.map((number, index) => (
-                            <div
-                                key={index}
-                                className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                                {number}
-                            </div>
-                        ))}
-                    </div>
+                <div className="flex items-center justify-center gap-2 py-4">
+                    {numbers.slice(0, numberOfDigits).map((number, index) => (
+                        <div
+                            key={index}
+                            className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
+                            {number}
+                        </div>
+                    ))}
+                </div>
                     <div className="mx-auto grid max-w-[22rem] w-full grid-cols-3 gap-2 pb-4">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                             <button key={num} className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5]" type="button" onClick={() => handleAddNumber(num)}>
@@ -93,5 +98,9 @@ function NumpadLotto({ addCompletedNumbers }) {
         </div>
     );
 }
+NumpadLotto.propTypes = {
+    addCompletedNumbers: PropTypes.func.isRequired, // Require addCompletedNumbers to be a function
+    numberOfDigits: PropTypes.number.isRequired, // Require numberOfDigits to be a number
+  };
 
 export default NumpadLotto;

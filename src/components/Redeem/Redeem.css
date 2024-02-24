@@ -1,0 +1,39 @@
+.custom-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    color: #000;
+    height: 4.688rem;
+    width: 4.688rem;
+    padding: 10px;
+    border-radius: 5px;
+    border:2px #FF8329 solid;
+}
+
+.table-contents{
+    max-width: 100%; /* ขนาดสูงสุดของคอนเทนเนอร์ตาราง */
+    overflow-x: auto; /* การเลื่อนแนวนอน */
+    overflow-y: auto; /* การเลื่อนแนวตั้ง */
+}
+
+.striped-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* สีพื้นหลังสำหรับแถวที่เป็นเลขคู่ */
+  }
+
+@media (min-width:768px){
+    .custom-box{
+        font-size: 2.5rem;
+        padding: 20px;
+        height: 4.688rem;
+        width: 4.688rem;
+    }
+}
+@media (max-width:767px){
+    .custom-box{
+        font-size: 2.5rem;
+        padding: 20px;
+        height: 3rem;
+        width: 3rem;
+    }
+}
