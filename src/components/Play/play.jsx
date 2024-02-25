@@ -15,6 +15,7 @@ function Play() {
   const [countdown, setCountdown] = useState(0);
   const [numberOfDigits, setNumberOfDigits] = useState(4);
   const [completedNumbers, setCompletedNumbers] = useState([]);
+  const [activeHuy19, setActiveHuy19] = useState(false);
   const [isReverseChecked, setIsReverseChecked] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
@@ -30,6 +31,7 @@ function Play() {
       setCompletedNumbers([...completedNumbers, newNumbers]);
     }
   };
+
   const addCompletedNumber = (number) => {
     setCompletedNumbers((prevNumbers) => [...prevNumbers, number]);
   };
@@ -39,6 +41,20 @@ function Play() {
     setQuantity(newPrice);
   };
 
+  const handleHuy19 = (buttonName, newNumberOfDigits) => {
+    // Check if the button is being toggled off
+    if (activeHuy19 === buttonName) {
+      setActiveHuy19(false);
+      setNumberOfDigits(2); // Set NumberOfDigits to 2 when toggling off the active state
+    } else {
+      // Toggle the button's active state
+      setActiveHuy19(buttonName);
+      if (buttonName === "19 ประตู" || buttonName === "รูดหน้า" || buttonName === "รูดหลัง") {
+        // If buttonName is "19 ประตู", call handleLotteryHuy19
+        setNumberOfDigits(newNumberOfDigits);
+      }
+    }
+  };
   // Inside the component function Play
 
   const handleIncrement = () => {
@@ -480,7 +496,8 @@ function Play() {
                     <div
                       className={`left-content flex flex-col justify-center items-center ${
                         activeButtons.includes("วิ่งบน") ||
-                        activeButtons.includes("วิ่งล่าง")
+                         activeButtons.includes("วิ่งล่าง") ||
+                           activeHuy19
                           ? "hidden"
                           : ""
                       }`}
@@ -499,7 +516,17 @@ function Play() {
                         </div>
                       </label>
                     </div>
+                   
                   </div>
+                  <div className={`btn-con flex justify-center items-center gap-[8px]
+                  ${
+                    activeButtons.includes("สองตัวล่าง") || activeButtons.includes("สองตัวบน") ? "":"hidden"
+                  }`}>
+
+                      <button className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""}`} onClick={() => handleHuy19("19 ประตู",1)}>19 ประตู</button>
+                      <button className={`btn ${activeHuy19 === "รูดหน้า" ? "active" : ""}`} onClick={() => handleHuy19("รูดหน้า",1)}>รูดหน้า</button>
+                      <button className={`btn ${activeHuy19 === "รูดหลัง" ? "active" : ""}`} onClick={() => handleHuy19("รูดหลัง",1)}>รูดหลัง</button>
+                    </div>
                   <div className="">
                     <NumpadLotto
                       addCompletedNumbers={addCompletedNumbers}
