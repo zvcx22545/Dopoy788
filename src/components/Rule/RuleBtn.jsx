@@ -14,7 +14,7 @@ function Rule(){
                     <button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[40%] truncate px-2 ">
                         กริติกาและกฎต่างๆ 
                     </button>
-                    <button class="text-[#FF8329] bg-white border border-[#FF8329] rounded w-[40%] h-[60px]  hover:bg-[#FF8329] hover:text-white truncate">
+                    <button class="text-white bg-[#4400A5] border border-[#4400A5] rounded w-[40%] h-[60px]  hover:bg-white hover:text-[#4400A5] truncate">
                         โปรโมชั่นประจำเดือน
                     </button>
                 </div>
