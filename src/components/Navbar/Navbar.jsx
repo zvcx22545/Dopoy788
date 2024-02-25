@@ -8,8 +8,8 @@ function Navbar() {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a>เช็คฉลากกินแบ่ง</a></li>
-        <li><a>บทความ</a></li>
+      <Link to="/"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
+      <Link to="/Blog"><li><a>บทความ</a></li></Link>
         <li><a>รีวิว</a></li>
       </ul>
     </div>
@@ -17,8 +17,8 @@ function Navbar() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-        <li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li>
-        <li><a className="text-lg">บทความ</a></li>
+    <Link to="/"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
+    <Link to="/Blog"><li><a className="text-lg">บทความ</a></li></Link>
         <li><a className="text-lg">รีวิว</a></li>
     </ul>
   </div>

@@ -218,14 +218,14 @@ function Play() {
       {showModal && (
         <div className="mo2">
           <div className="modal-content">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <p>ใส่ราคา</p>
                 <p className="bg-[#4400A5] p-1 text-white rounded">บันทึกโพย</p>
               </div>
-              <span className="close" onClick={() => setShowModal(false)}>
-                &times;
-              </span>{" "}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 duration-300 ease-in-out transition delay-150 hover:rotate-180" onClick={() => setShowModal(false)}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
               {/* Close Button */}
             </div>
             <div className="modalTable ">
