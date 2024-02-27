@@ -6,11 +6,11 @@ import './index.css'
 import Register from './components/Register/Register.jsx'
 import Play from './components/Play/play.jsx'
 import Blog from './components/Blog/Blog.jsx'
+import { Provider } from 'react-redux'
+import store from './components/store/store.jsx'
 import Listpoy from './components/ListPoy/ListPoy.jsx'
 import Topup from './components/Topup/Topup.jsx'
 import Invite from './components/Invite/Invite.jsx'
-import { Provider } from 'react-redux'
-import store from './components/store/store.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,18 @@ const router = createBrowserRouter([
   {
     path: "/Blog",
     element: <Blog/>
+  },
+  {
+    path: "/ListPoy",
+    element: <Listpoy/>
+  },
+  {
+    path: "/Topup",
+    element: <Topup/>
+  },
+  {
+    path: "/Invite",
+    element: <Invite/>
   },
   
 
