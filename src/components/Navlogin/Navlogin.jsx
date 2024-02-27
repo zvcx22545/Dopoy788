@@ -1,6 +1,22 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../reducers/userSlice';
 
 function Navlogin() {
+    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const dispatch = useDispatch();
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setCredentials(prevState => ({ ...prevState, [name]: value }));
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(loginUser(credentials));
+    };
     return(
+        <form action="" onSubmit={handleSubmit}>
         <div className="mb-5 text-white ">
             <div className="navLogin flex items-center gap-[8%] justify-center bg-[#4400A5] py-10 max-lg:flex-col ">
     <div className="max-lg:text-center">
@@ -10,11 +26,11 @@ function Navlogin() {
     <div className="flex justify-center items-center mt-5 sm:justify-center max-lg:flex-col sm:items-start sm:gap-[10%]">
         <div className="grid gap-2 items-start">
             <label>ชื่อผู้ใช้</label>
-            <input type="text" placeholder="Username" className="bg-white text-black border rounded-[5px] p-1" />
+            <input type="text" placeholder="Username" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange}/>
         </div>
         <div className="grid gap-2 items-start max-md:my-5">
             <label>รหัสผ่าน</label>
-            <input type="password" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" />
+            <input type="password" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange} />
             <button className="text-right mt-2">ลืมรหัสผ่าน</button>
         </div>
     </div>
@@ -24,6 +40,7 @@ function Navlogin() {
 </div>
 
         </div>
+        </form>
     )
 }
 
