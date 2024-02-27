@@ -7,7 +7,8 @@ import Register from './components/Register/Register.jsx'
 import Play from './components/Play/play.jsx'
 import Blog from './components/Blog/Blog.jsx'
 import Listpoy from './components/ListPoy/ListPoy.jsx'
-
+import Topup from './components/Topup/Topup.jsx'
+import Invite from './components/Invite/Invite.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: "/ListPoy",
     element: <Listpoy/>
+  },
+  {
+    path: "/Topup",
+    element: <Topup/>
+  },
+  {
+    path: "/Invite",
+    element: <Invite/>
   },
   
 

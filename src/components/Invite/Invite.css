@@ -1,0 +1,54 @@
+table {
+    width: 100%;
+}
+th:nth-child(1),td:nth-child(1){
+    text-align: center;
+}
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4400A51F;
+    color: white;
+    position: sticky;
+    top: 0;
+    width: 100px;
+}
+
+thead {
+    display: table;
+    width: 100%;
+}
+
+tbody {
+    display: block;
+    overflow-y: auto;
+    max-height: 800px; /* ปรับความสูงตามต้องการ */
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+@media (max-width:767px){
+    th:nth-child(1),td:nth-child(1){
+        text-align: right;
+    }
+}
+@media (max-width:767px){
+    .col1{
+        width: auto;
+    }
+    .col2{
+        width: auto;
+    }
+    .col3{
+        width: auto;
+    }
+    .col4{
+        width: auto;
+    }
+}
