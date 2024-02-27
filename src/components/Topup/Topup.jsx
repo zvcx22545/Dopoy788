@@ -190,17 +190,17 @@ function Topup() {
             <div className="modalTable2 px-16 max-md:px-5">
                 <table className="text-center">
                     <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
-                        <th className="col3">เวลา</th>
-                        <th className="col3">ประเภท</th>
-                        <th className="col4">บัญชี</th>
-                        <th className="col1">จำนวนเงิน</th>
+                        <th className="col2">เวลา</th>
+                        <th className="col2">ประเภท</th>
+                        <th className="col2">บัญชี</th>
+                        <th className="co14">จำนวนเงิน</th>
                         <th>สถานะ</th>
                     </thead>
                     <tbody className="text-center">
                         
                         <tr className="max-md:shadow-md">
-                            <td data-label="เวลา" className="col3">
-                                <div className="flex flex-col justify-center max-md:justify-end">
+                            <td data-label="เวลา" className="col4">
+                                <div className="flex flex-col justify-center lg:ml-[-4rem] max-md:justify-end">
                                     <p>28/12/66</p>
                                     <p>22.35.00</p>
                                 </div>
@@ -209,7 +209,7 @@ function Topup() {
                                 <button className="bg-[#FF8329] border border-[#FF8329] hover:bg-white text-white hover:text-[#FF8329] p-1 rounded-lg">เติมเงิน</button>
                             </td>
                             <td className="col4 max-md:h-[50px]" data-label="บัญชี">
-                                <div className="flex items-center gap-2 max-md:justify-end">
+                                <div className="flex items-center gap-2 justify-center max-md:justify-end">
                                     <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-8 h-8 rounded-full" />
                                         <div className="grid text-left">
                                             <p>กสิกรไทย</p>
@@ -217,7 +217,7 @@ function Topup() {
                                         </div>
                                 </div>
                             </td>
-                            <td className="col1" data-label="จำนวนเงิน">10</td>
+                            <td className="col3" data-label="จำนวนเงิน">10</td>
                             <td className="max-md:h-[50px] max-md:ml-auto" data-label="สถานะ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#00871E" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-10 h-10 bg-[#00871E] rounded-full mx-auto max-md:ml-auto max-md:mx-0">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
@@ -231,47 +231,47 @@ function Topup() {
         )}
 {/* ถอนเงิน */}
         {showWithdraw && (
-            <div className="modalTable2 px-16 max-md:px-5">
-            <table className="text-center">
-                <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
-                    <th className="col3">เวลา</th>
-                    <th className="col3">ประเภท</th>
-                    <th className="col4">บัญชี</th>
-                    <th className="col1">จำนวนเงิน</th>
-                    <th>สถานะ</th>
-                </thead>
-                <tbody className="text-center">
-                    
-                    <tr className="max-md:shadow-md">
-                        <td data-label="เวลา" className="col3">
-                            <div className="flex justify-center max-md:justify-end">
-                                <p>28/12/66</p>
-                                <p>22.35.00</p>
-                            </div>
-                        </td>
-                        <td className="col3" data-label="ประเภท">
-                            <button className="bg-[#FF8329] border border-[#FF8329] hover:bg-white text-white hover:text-[#FF8329] p-1 rounded-lg">ถอนเงิน</button>
-                        </td>
-                        <td className="col4 max-md:h-[50px]" data-label="บัญชี">
-                            <div className="flex items-center gap-2 max-md:justify-end">
-                                <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-8 h-8 rounded-full" />
-                                    <div className="grid text-left">
-                                        <p>กสิกรไทย</p>
-                                        <p>0123456789</p>
-                                    </div>
-                            </div>
-                        </td>
-                        <td className="col1" data-label="จำนวนเงิน">10</td>
-                        <td className="max-md:h-[50px] max-md:ml-auto" data-label="สถานะ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#00871E" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-10 h-10 bg-[#00871E] rounded-full mx-auto max-md:ml-auto max-md:mx-0">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                            </svg>
-                        </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
+           <div className="modalTable2 px-16 max-md:px-5">
+           <table className="text-center">
+               <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
+                   <th className="col2">เวลา</th>
+                   <th className="col2">ประเภท</th>
+                   <th className="col2">บัญชี</th>
+                   <th className="co14">จำนวนเงิน</th>
+                   <th>สถานะ</th>
+               </thead>
+               <tbody className="text-center">
+                   
+                   <tr className="max-md:shadow-md">
+                       <td data-label="เวลา" className="col4">
+                           <div className="flex flex-col justify-center lg:ml-[-4rem] max-md:justify-end">
+                               <p>28/12/66</p>
+                               <p>22.35.00</p>
+                           </div>
+                       </td>
+                       <td className="col3" data-label="ประเภท">
+                           <button className="bg-[#FF8329] border border-[#FF8329] hover:bg-white text-white hover:text-[#FF8329] p-1 rounded-lg">ถอนเงิน</button>
+                       </td>
+                       <td className="col4 max-md:h-[50px]" data-label="บัญชี">
+                           <div className="flex items-center gap-2 justify-center max-md:justify-end">
+                               <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-8 h-8 rounded-full" />
+                                   <div className="grid text-left">
+                                       <p>กสิกรไทย</p>
+                                       <p>0123456789</p>
+                                   </div>
+                           </div>
+                       </td>
+                       <td className="col3" data-label="จำนวนเงิน">10</td>
+                       <td className="max-md:h-[50px] max-md:ml-auto" data-label="สถานะ">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="#00871E" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-10 h-10 bg-[#00871E] rounded-full mx-auto max-md:ml-auto max-md:mx-0">
+                               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                           </svg>
+                       </td>
+                   </tr>
+                   
+               </tbody>
+           </table>
+       </div>
         )}
 
       <Footer />
