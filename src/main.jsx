@@ -6,6 +6,7 @@ import './index.css'
 import Register from './components/Register/Register.jsx'
 import Play from './components/Play/play.jsx'
 import Blog from './components/Blog/Blog.jsx'
+import Listpoy from './components/ListPoy/ListPoy.jsx'
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/Blog",
     element: <Blog/>
+  },
+  {
+    path: "/ListPoy",
+    element: <Listpoy/>
   },
   
 

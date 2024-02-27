@@ -32,14 +32,12 @@ function Navbar() {
         </div>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <Link to="/Listpoy"><li><a>โฟยหวย</a></li></Link>
+        <li><a>เติมเงิน</a></li>
+        <li><a>แนะนำเพื่อน</a></li>
+        <li><a>เปลี่ยนรหัสผ่าน</a></li>
+        <li><a>ข้อมูลส่วนตัว</a></li>
+        <li><a>ออกจากระบบ</a></li>
       </ul>
     </div>
 </div>
