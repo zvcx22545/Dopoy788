@@ -1,0 +1,122 @@
+.modalTable2 {
+    overflow-x: auto;
+    max-width: 100%;
+    position: relative;
+  }
+table {
+    width: 100%;
+}
+th:nth-child(1),td:nth-child(1){
+    text-align: center;
+}
+.col1{
+    width: 100px;
+}
+.col2{
+    width: 150px;
+}
+.col3{
+    width: 200px;
+}
+.col4{
+    width: 350px;
+}
+@media (max-width:1024px){
+    .col1{
+        width: auto !important;
+    }
+    .col2{
+        width: auto;
+    }
+    .col3{
+        width: 128px;
+    }
+    .col4{
+        width: auto;
+    }
+}
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4400A51F;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+thead {
+    display: table;
+    width: 100%;
+}
+
+tbody {
+    display: block;
+    overflow-y: auto;
+    max-height: 150px;
+    height: 150px;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+@media (max-width: 767px) {
+    table {
+      border: 0;
+    }
+    tbody{
+        max-height: 220px;
+    }
+    th:nth-child(1),td:nth-child(1){
+        text-align: center;
+        width: auto;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border: 3px solid #ddd;
+      display: block;
+      margin-bottom: 2rem;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
