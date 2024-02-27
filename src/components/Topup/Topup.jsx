@@ -63,7 +63,7 @@ function Topup() {
                     <div className="grid items-center text-center border bg-[#E9E0F4] border-[#4400A5] rounded-lg p-5 shadow-md">
                         <p>ยอดเงินที่ถอนได้</p>
                         <hr className=" bg-[#4400A5] h-[3px] my-4" />
-                        <input type="number" className="px-5 my-3" name="withdraw" id="" value={0} />
+                        <input type="number" className="px-5 my-3" name="withdraw" id="" placeholder="0" />
                         <p className="text-left mb-2">หมายเหตุ : </p>
                         <button className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-full py-1 rounded-lg" >ถอนเงิน</button>
                     </div>
