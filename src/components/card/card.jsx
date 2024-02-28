@@ -1,8 +1,9 @@
+import React, { useState } from 'react';
 import './card.css';
 import { Link } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
 
-export default function ImgMediaCard() {
+export default function Card({ displayText }) {
   return (
     <div className="card ">
         <div className="grid grid-cols-4 ">
@@ -10,7 +11,7 @@ export default function ImgMediaCard() {
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> หวยฮานอยเที่ยง</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -29,13 +30,13 @@ export default function ImgMediaCard() {
                         <span style={{"--value":54}}></span>
                     </span>
             </div>
-            <Link to="./Play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/Play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> หวยฮานอยเที่ยง</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -60,7 +61,7 @@ export default function ImgMediaCard() {
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> หวยฮานอยเที่ยง</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -85,7 +86,7 @@ export default function ImgMediaCard() {
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> หวยฮานอยเที่ยง</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>

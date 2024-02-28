@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
@@ -23,6 +23,12 @@ function Play() {
     return accumulator + price;
   }, 0);
 
+  const [selectedTab, setSelectedTab] = useState("หวยไทย");
+
+  const handleTabChange = (tabName) => {
+    setSelectedTab(tabName);
+  };
+  
   const addCompletedNumbers = (newNumbers) => {
     if (isReverseChecked) {
       const reversedNumbers = reverseNumbers(newNumbers);
@@ -220,7 +226,7 @@ function Play() {
               className="w-15 h-15 rounded-full"
             />
             <p className="text-[#4400A5] text-3xl">
-              หวยไทย <br />
+            {selectedTab} <br />
               <p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
             </p>
           </aside>
@@ -249,8 +255,9 @@ function Play() {
               </svg>
               {/* Close Button */}
             </div>
-            <div className="modalTable ">
-              <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
+            <div className="modalTable">
+              <div className="h-[40px] w-full bg-[#4400A5] hidden max-md:block"></div>
+              <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5] max-md:hidden">
                 <h1 className="w-full">สามตัวล่าง</h1>
                 <h1 className="w-full">เรทจ่าย</h1>
                 <h1 className="w-full">ราคา</h1>
@@ -260,12 +267,12 @@ function Play() {
                 <tbody>
                   {completedNumbers.map((numberSet, index) => (
                     <tr key={`${numberSet}_${index}`}>
-                      <td>{numberSet}</td>
-                      <td>50</td>
-                      <td>
-                        <p className="border border-[#4400A5] px-1">{price}</p>
+                      <td data-label="สามตัวล่าง">{numberSet}</td>
+                      <td data-label="เรทจ่าย">50</td>
+                      <td data-label="ราคา" className="flex justify-between md:justify-center">
+                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">{price}</p>
                       </td>
-                      <td>
+                      <td data-label="ลบ">
                         <button
                           className="text-[#FF2929]"
                           onClick={() => handleDelete(index)}

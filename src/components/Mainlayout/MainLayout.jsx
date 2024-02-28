@@ -1,11 +1,12 @@
 import Navbar from '../Navbar/Navbar';
 import Navlogin from '../Navlogin/Navlogin'
-import Tab from '../Tab/Tab';
+// import Tab from '../Tab/Tab';
 import Footer from '../Footer/Footer';
-import Card from '../card/card';
+// import Card from '../card/card';
 import Rule from '../Rule/RuleBtn';
 import Resultrotte from '../Resultrotte/Resultroote';
 import Redeem from '../Redeem/Redeem';
+import ParentComponent from '../ParentComponent/ParentComponent';
 
 function MainLayout() {
   
@@ -13,8 +14,7 @@ function MainLayout() {
     <section id="main-layout">
       <Navbar/>
       <Navlogin/>
-      <Tab/>
-      <Card/>
+      <ParentComponent/>
       <Rule/>
       <Resultrotte/>
       <Redeem/>
