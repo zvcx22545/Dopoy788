@@ -3,6 +3,8 @@ import axios from "axios";
 
 const apiUrl = "https://65dde481dccfcd562f55bafc.mockapi.io/create/user/users";
 
+const createuserUrl = "https://dev-api.doopoy788.com/user/auth/register";
+
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(apiUrl);
   return response.data;
@@ -13,9 +15,17 @@ export const fetchUser = createAsyncThunk("users/fetchUser", async (userId) => {
   return response.data;
 });
 
-export const createUser = createAsyncThunk("users/createUser", async (user) => {
-  const response = await axios.post(apiUrl, user);
-  return response.data;
+export const createUser = createAsyncThunk("users/createUser", async (user, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(createuserUrl, user);
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.data) {
+      // If an error occurs, reject the promise with the error message
+      console.log(error.response.data)
+      return rejectWithValue(error.response.data);
+    } 
+  }
 });
 
 export const editUser = createAsyncThunk("users/editUser", async (user) => {

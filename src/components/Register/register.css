@@ -25,3 +25,55 @@ form input:not(:placeholder-shown) {
 Select{
     color: white;
 }
+
+.title,.comeback
+{
+    font-size: clamp(0.75rem, 0.5227rem + 0.6061vw, 1.25rem);
+}
+
+.countdowns
+{
+    font-size: clamp(0.625rem, 0.483rem + 0.3788vw, 0.9375rem);
+}
+
+@media (max-width:1024px)
+{
+   .icon
+   {
+    width: 100%;
+    margin: 0.5rem 1rem;
+   }
+   .title
+   {
+    margin-bottom: 0.5rem;
+   }
+}
+@media (max-width:600px)
+{
+   .icon
+   {
+    width: 100%;
+    margin: 0.5rem 1rem;
+   }
+   
+   .container-success
+   {
+    width: 60%;
+    padding: 0 1rem;
+   }
+
+   .title
+   {
+    margin-bottom: 0.5rem;
+   }
+
+   .icon-container
+   {
+    width: 60%;
+   }
+
+   .icon
+   {
+    width: 80%;
+   }
+}
