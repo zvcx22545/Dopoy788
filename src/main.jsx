@@ -11,6 +11,7 @@ import store from './components/store/store.jsx'
 import Listpoy from './components/ListPoy/ListPoy.jsx'
 import Topup from './components/Topup/Topup.jsx'
 import Invite from './components/Invite/Invite.jsx'
+import Repassword from './components/Repassword/Repassword.jsx'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     path: "/Invite",
     element: <Invite/>
   },
+  {
+    path: "/Repassword",
+    element: <Repassword/>
+  }
   
 
 ])
