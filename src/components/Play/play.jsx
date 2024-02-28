@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
@@ -42,17 +42,18 @@ function Play() {
   };
 
   const handleHuy19 = (buttonName, newNumberOfDigits) => {
-    // Check if the button is being toggled off
+    // Remove "วิ่งบน" and "วิ่งล่าง" from activeButtons if any Huy19 button is clicked
+    if (["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
+      setActiveButtons(activeButtons.filter(btn => btn !== "วิ่งบน" && btn !== "วิ่งล่าง"));
+        setNumberOfDigits(newNumberOfDigits);
+    }
+  
     if (activeHuy19 === buttonName) {
       setActiveHuy19(false);
-      setNumberOfDigits(2); // Set NumberOfDigits to 2 when toggling off the active state
+      setNumberOfDigits(2); // Default value when toggling off
     } else {
-      // Toggle the button's active state
       setActiveHuy19(buttonName);
-      if (buttonName === "19 ประตู" || buttonName === "รูดหน้า" || buttonName === "รูดหลัง") {
-        // If buttonName is "19 ประตู", call handleLotteryHuy19
-        setNumberOfDigits(newNumberOfDigits);
-      }
+      setNumberOfDigits(newNumberOfDigits);
     }
   };
   // Inside the component function Play
@@ -110,23 +111,43 @@ function Play() {
 
   const active = (buttonName, newNumberOfDigits) => {
     if (activeButtons.length === 1 && activeButtons[0] === buttonName) {
-      // Check if the clicked button is already active
+      // The button is already the only active button, do nothing
       return;
     }
-
+  
+    // If the button is already active, deactivate it
     if (activeButtons.includes(buttonName)) {
-      // If the button is already active
-      setActiveButtons(activeButtons.filter((btn) => btn !== buttonName)); // Remove active state
+      setActiveButtons(activeButtons.filter(btn => btn !== buttonName));
     } else {
+      // If the button is not one of the special Huy19 buttons, deactivate them
+      if (!["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
+        setActiveHuy19(false);
+      }
+  
+      // If the number of digits is changing, activate only the clicked button
       if (newNumberOfDigits !== numberOfDigits) {
-        setActiveButtons([buttonName]); // Set active state
+        setActiveButtons([buttonName]);
         setNumberOfDigits(newNumberOfDigits);
       } else {
-        setActiveButtons([...activeButtons, buttonName]); // Add active state
+        // Toggle the active state of the clicked button
+        setActiveButtons([...activeButtons, buttonName]);
       }
     }
+  
+    // If "วิ่งบน" or "วิ่งล่าง" is clicked, deactivate "2 ตัวบน" and "2 ตัวล่าง"
     if (buttonName === "วิ่งบน" || buttonName === "วิ่งล่าง") {
-      setIsReverseChecked(false); // Set reverse checkbox to unchecked
+      // If the clicked button is "วิ่งบน" or "วิ่งล่าง"
+      // Check if "สองตัวบน" or "สองตัวล่าง" is active, if yes, don't remove it
+      if (activeButtons.includes("สองตัวบน") || activeButtons.includes("สองตัวล่าง")) {
+        setActiveButtons([buttonName]); // Set only the clicked button as active
+      } else {
+        // Remove "สองตัวบน" and "สองตัวล่าง" before adding "วิ่งบน" or "วิ่งล่าง"
+        setActiveButtons(activeButtons.filter(btn => btn !== "สองตัวบน" && btn !== "สองตัวล่าง"));
+        setActiveButtons([buttonName]); // Set the clicked button as active
+      }
+      setNumberOfDigits(newNumberOfDigits); // Set the number of digits
+      setIsReverseChecked(false); // Uncheck reverse checkbox
+      setActiveHuy19(false); // Set reverse checkbox to unchecked
     }
   };
 
