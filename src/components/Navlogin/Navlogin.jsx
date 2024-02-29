@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../reducers/userSlice';
+import { loginUser, refreshToken } from '../reducers/userSlice';
 import Swal from 'sweetalert2';
 import {  useNavigate } from 'react-router-dom';
 function Navlogin() {
@@ -11,6 +11,38 @@ function Navlogin() {
       const { name, value } = e.target;
       setCredentials(prevState => ({ ...prevState, [name]: value }));
     };
+
+
+
+    useEffect(() => {
+        const checkTokenExpiration = () => {
+            const tokenExpiresAt = localStorage.getItem('tokenExpiresAt');
+            if (tokenExpiresAt) {
+              const expiresIn = new Date(tokenExpiresAt) - new Date();
+              if (expiresIn <= 0) {
+                // Token has expired
+                console.log("Token has expired, refreshing token...");
+                dispatch(refreshToken());
+              } else {
+                // Set a timeout to refresh the token every 24 hours
+                const refreshTimeout = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+          
+                setTimeout(() => {
+                  // Dispatch the refreshToken action here
+                  console.log("Refreshing token...");
+                  dispatch(refreshToken());
+                }, refreshTimeout);
+              }
+            }
+          };
+          
+    
+        checkTokenExpiration();
+        const interval = setInterval(checkTokenExpiration, 5 * 60 * 1000); // Check every 5 minutes
+    
+        return () => clearInterval(interval);
+      }, [dispatch]);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +75,8 @@ function Navlogin() {
             });
         }
     };
+
+    
   
    
     return(
