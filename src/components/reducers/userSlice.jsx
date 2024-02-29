@@ -4,6 +4,8 @@ import axios from "axios";
 const apiUrl = "https://65dde481dccfcd562f55bafc.mockapi.io/create/user/users";
 
 const createuserUrl = "https://dev-api.doopoy788.com/user/auth/register";
+const userLogin = "https://dev-api.doopoy788.com/user/auth/login";
+const logoutUrl = "https://dev-api.doopoy788.com/user/auth/logout";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(apiUrl);
@@ -33,19 +35,41 @@ export const editUser = createAsyncThunk("users/editUser", async (user) => {
   return response.data;
 });
 
-export const deleteUser = createAsyncThunk("users/deleteUser", async (userId) => {
-  await axios.delete(`${apiUrl}/${userId}`);
-  return userId;
+export const logoutUser = createAsyncThunk("users/logout", async (_, { rejectWithValue }) => {
+  const token = localStorage.getItem("userToken");
+  if (!token) {
+    localStorage.removeItem("userToken");
+    return rejectWithValue("No token found.");
+  }
+
+  try {
+    const response = await axios.delete(logoutUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    localStorage.removeItem("userToken");
+    return response.data;
+  } catch (error) {
+    localStorage.removeItem("userToken");
+    console.log(error.response.data);
+    return rejectWithValue(error.response.data);
+  }
 });
+
 
 export const loginUser = createAsyncThunk("users/loginUser", async (credentials, { rejectWithValue }) => {
   try {
-    const response = await axios.post(apiUrl, credentials);
-    // You might want to store the user's token in local storage here
-    // localStorage.setItem("userToken", response.data.token);
+    const response = await axios.post(userLogin, credentials);
+    // Store the user's token in local storage
+    localStorage.setItem("userToken", response.data.token);
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.response.data);
+    if (error.response && error.response.data) {
+      // If an error occurs, reject the promise with the error message
+      console.log(error.response.data)
+      return rejectWithValue(error.response.data);
+    } 
   }
 });
 
@@ -56,6 +80,7 @@ const userSlice = createSlice({
     currentUser: null,
     loading: false,
     error: null,
+    userToken: localStorage.getItem("userToken")|| null,
   },
   extraReducers: (builder) => {
     builder
@@ -81,11 +106,14 @@ const userSlice = createSlice({
             if (index !== -1) {
               state.users[index] = action.payload;
             }
-          } else if (action.type.includes("deleteUser")) {
-            state.users = state.users.filter((user) => user.id !== action.payload);
+          } else if (action.type.includes("logoutUser")) {
+            state.userToken = null;
+            state.currentUser = null;
           }
           else if (action.type.includes("loginUser")){
-            state.loading = false; state.currentUser = action.payload;
+            state.loading = false; 
+            state.currentUser = action.payload;
+            state.userToken = action.payload.token; // อัปเดต userToken ใน state เมื่อ login สำเร็จ
           }
         },
       )

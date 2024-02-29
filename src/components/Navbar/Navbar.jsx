@@ -1,6 +1,28 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../reducers/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+  const redirect = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser()).unwrap();
+      redirect("/Login");
+    } catch (error) {
+      // Only log the error if it's not the "No token found" error
+      if (error !== "No token found.") {
+        console.error('Logout Error:', error);
+      }
+      // Redirect to login page regardless of the error
+      redirect("/Login");
+    }
+  };
+  
+  
+  
   return (
     <div className="navbar bg-base-100 shadow-md">
       <div className="navbar-start">
@@ -36,7 +58,7 @@ function Navbar() {
             <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
             <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
             <li><a>ข้อมูลส่วนตัว</a></li>
-            <li><a>ออกจากระบบ</a></li>
+             <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
           </ul>
         </div>
     </div>

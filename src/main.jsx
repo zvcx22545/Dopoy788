@@ -12,10 +12,11 @@ import Listpoy from './components/ListPoy/ListPoy.jsx'
 import Topup from './components/Topup/Topup.jsx'
 import Invite from './components/Invite/Invite.jsx'
 import Repassword from './components/Repassword/Repassword.jsx'
+import MainLayout from './components/Mainlayout/MainLayout.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Login",
     element: <App/>
   },
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/Repassword",
     element: <Repassword/>
+  },
+  {
+    path: "/",
+    element: <MainLayout/>
   }
   
 

@@ -127,8 +127,7 @@ function Register() {
           />
         </div>
         <div className={isRegistrationSuccess ? "hidden" : "text-[#4400A5] mb-3"}>ลงทะเบียนข้อมูลสมาชิก</div>
-        <form 
-      className={isRegistrationSuccess ? "hidden" : "flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]"}
+        <form className={isRegistrationSuccess ? "hidden" : "flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]"}
       onSubmit={handleSave}
     >
           <div className="recomend">
@@ -294,7 +293,7 @@ function Register() {
         </form>
 
         {isRegistrationSuccess ? (
-  <AfterSuccess onTimeout={() => navigate('/')} />
+  <AfterSuccess onTimeout={() => navigate('/Login')} />
 ) : <></>}
       </div>
 
