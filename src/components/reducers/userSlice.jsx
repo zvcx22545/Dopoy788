@@ -36,7 +36,7 @@ export const editUser = createAsyncThunk("users/editUser", async (user) => {
   return response.data;
 });
 
-export const logoutUser = createAsyncThunk("users/logout", async (_, { rejectWithValue }) => {
+export const logoutUser = createAsyncThunk("users/logout", async (_, { rejectWithValue, dispatch }) => {
   const token = localStorage.getItem("userToken");
   if (!token) {
     localStorage.removeItem("userToken");
@@ -50,13 +50,19 @@ export const logoutUser = createAsyncThunk("users/logout", async (_, { rejectWit
       },
     });
     localStorage.removeItem("userToken");
+    dispatch(clearUserData());
     return response.data;
   } catch (error) {
     localStorage.removeItem("userToken");
+    dispatch(clearUserData());
     console.log(error.response.data);
     return rejectWithValue(error.response.data);
   }
 });
+
+
+// Additional action to clear user data from the state
+
 
 
 export const loginUser = createAsyncThunk("users/loginUser", async (credentials, { rejectWithValue }) => {
@@ -97,6 +103,10 @@ export const refreshToken = createAsyncThunk("users/refreshToken", async (_, { g
   }
 });
 
+const clearUserData = () => (dispatch) => {
+  dispatch(clearUsers());
+  dispatch(clearCurrentUser());
+};
 
 const userSlice = createSlice({
   name: "user",
@@ -107,6 +117,14 @@ const userSlice = createSlice({
     error: null,
     userToken: localStorage.getItem("userToken")|| null,
     tokenExpiresAt: null,
+  },
+  reducers: {
+    clearUsers: (state) => {
+      state.users = [];
+    },
+    clearCurrentUser: (state) => {
+      state.currentUser = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -153,5 +171,5 @@ const userSlice = createSlice({
       );
   },
 });
-
+export const { clearUsers, clearCurrentUser } = userSlice.actions;
 export default userSlice.reducer;
