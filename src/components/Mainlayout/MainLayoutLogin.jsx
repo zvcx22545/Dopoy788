@@ -15,6 +15,8 @@ function MainLayoutLogin() {
       <Navbar/>
       <Navlogin/>
       <ParentComponent/>
+      {/* <Tab/> */}
+      {/* <Card/> */}
       <Rule/>
       <Resultrotte/>
       <Redeem/>
