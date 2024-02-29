@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// Api store
 const apiUrl = "https://65dde481dccfcd562f55bafc.mockapi.io/create/user/users";
-
 const createuserUrl = "https://dev-api.doopoy788.com/user/auth/register";
 const userLogin = "https://dev-api.doopoy788.com/user/auth/login";
 const logoutUrl = "https://dev-api.doopoy788.com/user/auth/logout";
+const refreshtoken = "https://dev-api.doopoy788.com/user/auth/refresh";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(apiUrl);
@@ -73,6 +74,30 @@ export const loginUser = createAsyncThunk("users/loginUser", async (credentials,
   }
 });
 
+export const refreshToken = createAsyncThunk("users/refreshToken", async (_, { getState, rejectWithValue }) => {
+  const token = getState().user.userToken;
+  if (!token) {
+    return rejectWithValue("No token found.");
+  }
+
+  try {
+    const response = await axios.post(refreshtoken, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const newToken = response.data.token;
+    localStorage.setItem("userToken", newToken);
+    return { token: newToken };
+  } catch (error) {
+    if (error.response && error.response.data) {
+      console.log(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  }
+});
+
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -81,6 +106,7 @@ const userSlice = createSlice({
     loading: false,
     error: null,
     userToken: localStorage.getItem("userToken")|| null,
+    tokenExpiresAt: null,
   },
   extraReducers: (builder) => {
     builder
@@ -110,10 +136,11 @@ const userSlice = createSlice({
             state.userToken = null;
             state.currentUser = null;
           }
-          else if (action.type.includes("loginUser")){
+          else if (action.type.includes("loginUser") || action.type.includes("refreshToken")){
             state.loading = false; 
             state.currentUser = action.payload;
-            state.userToken = action.payload.token; // อัปเดต userToken ใน state เมื่อ login สำเร็จ
+            state.userToken = action.payload.token; // อัปเดต userToken ใน state เมื่อ login หรือ refresh token สำเร็จ
+            state.tokenExpiresAt = action.payload.token_expires_at;
           }
         },
       )
