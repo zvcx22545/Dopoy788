@@ -30,7 +30,7 @@ export default function Card({ displayText }) {
                         <span style={{"--value":54}}></span>
                     </span>
             </div>
-            <Link to="/Play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
