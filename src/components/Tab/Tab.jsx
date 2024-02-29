@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { setActiveTab } from '../redux/actions'; // นำเข้า action
+
 import './tab.css';
 
-function Tab({ onButtonChange }) {
-  const [activeTab, setActiveTab] = useState("หวยไทย");
-
+function Tab({ activeTab, setActiveTab }) {
   const handleButtonClick = (text) => {
-    setActiveTab(text);
-    onButtonChange(text); // เรียกใช้งาน callback function เพื่อส่งค่า text ไปยัง parent component
+    setActiveTab(text); // เรียกใช้ action เพื่อส่งค่า text ไปยัง Redux store
   };
 
   return (
@@ -23,4 +23,12 @@ function Tab({ onButtonChange }) {
   );
 }
 
-export default Tab;
+const mapStateToProps = (state) => ({
+  activeTab: state.activeTab
+});
+
+const mapDispatchToProps = {
+  setActiveTab
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tab);

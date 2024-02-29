@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './card.css';
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 import { FaRegClock } from "react-icons/fa";
 
 export default function Card({ displayText }) {
@@ -11,10 +11,11 @@ export default function Card({ displayText }) {
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                         <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
+
             <div className="divider divider-primary "></div>
 
             <div className="text-center lg:text-left mb-4">
