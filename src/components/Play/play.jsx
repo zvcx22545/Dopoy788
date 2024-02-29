@@ -9,6 +9,9 @@ import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +31,18 @@ function Play() {
   const handleTabChange = (tabName) => {
     setSelectedTab(tabName);
   };
-  
+
+  // check auth token from user
+  const navigate = useNavigate();
+  const userToken = useSelector((state) => state.user.userToken);
+  useEffect(() => {
+    // Check if the user is logged in
+    if (!userToken) {
+      navigate('/Login'); // Redirect to login page if not logged in
+    }
+  }, [userToken, navigate]);
+
+
   const addCompletedNumbers = (newNumbers) => {
     if (isReverseChecked) {
       const reversedNumbers = reverseNumbers(newNumbers);
@@ -214,9 +228,10 @@ function Play() {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-4xl pb-8">
+        <div className="divider divider-start text-4xl pb-8"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
-          ย้อนกลับ
+            ย้อนกลับ
+          </Link>
         </div>
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">

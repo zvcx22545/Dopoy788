@@ -1,5 +1,5 @@
-import Navbar from "../Navbar/Navbar"
-import Footer from '../Footer/Footer.jsx'
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer.jsx";
 import "./register.css";
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
@@ -7,28 +7,25 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import AfterSuccess from "./AfterSuccess.jsx";
-import {useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../reducers/userSlice.jsx";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Register() {
-
-
   const [userData, setUserData] = useState({
     username: "",
     password: "",
-    phonenumber: "",
-    bank_account: "",
+    phone_number: "",
+    bank_name: "",
     bank_account_number: "",
-    Referral_code: "",
+    referral_code: "",
   });
-  
-  const[message,setMessage] = useState("");
-  const [isError,setIsError] = useState(false);
+
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -38,46 +35,87 @@ function Register() {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const resultAction = await dispatch(createUser(userData));
-    if (createUser.fulfilled.match(resultAction)) {
-      setMessage("User saved successfully.");
-      setIsError(false);
-      navigate("/"); // Use navigate for redirection
-    } else {
-      if (resultAction.payload) {
-        setMessage(resultAction.payload.errorMessage);
-      } else {
-        setMessage("An error occurred.");
+  
+    // Validate phone number length before dispatching action
+    if (userData.phone_number && userData.phone_number.length !== 10) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Phone Number',
+        text: 'โปรดป้อนหมายเลขโทรศัพท์ 10 หลัก',
+      });
+      return; // Stop execution if phone number is invalid
+    }
+  
+    try {
+      const resultAction = await dispatch(createUser(userData));
+      if (createUser.fulfilled.match(resultAction)) {
+        setIsRegistrationSuccess(true);
+      } else if (createUser.rejected.match(resultAction)) {
+        // Handle the rejected case and display the error message
+        let errorMessage = 'เกิดข้อผิดพลาด'; // Default error message
+  
+        if (resultAction.payload) {
+          // Assuming error structure is { field: "error message" }
+          errorMessage = Object.values(resultAction.payload).map((value) => {
+            if (value === "username already exist") return "มีผู้ใช้ username นี้แล้ว <br>";
+            if (value === "password must be a least 8 character") return "รหัสผ่านควรมีอย่างน้อย 8 ตัว <br>";
+            if (value === "phone_number is required") return "กรุณากรอกเบอร์โทรศัพท์ <br>";
+            if (value === "username is required") return "กรุณากรอก Username<br>";
+            if (value === "password is required") return "กรุณากรอก password<br>";
+            if (value === "bank_name is required") return "กรุณาเลือกธนาคารของคุณ<br>";
+            if (value === "bank_account_number is required") return "กรุณากรอกเลขบัญชีธนาคาร<br>";
+            if (value === "string validation failed") return "กรุณากรอกเลขบัญชีธนาคารให้ถูกต้อง<br>";
+            return value; // Return original message for other errors
+          }).join(" "); // Join all error messages
+        } else if (resultAction.error && resultAction.error.message) {
+          errorMessage = resultAction.error.message;
+        }
+  
+        Swal.fire({
+          icon: 'error',
+          title: 'สมัครสมาชิกไม่สำเร็จ',
+          html: errorMessage,
+        });
       }
-      setIsError(true);
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'เกิดข้อผิดพลาดที่ไม่คาดคิด',
+      });
     }
   };
+
+    const handleKeyPress = (event) => {
+      // หยุดไม่ให้ป้อนข้อมูลหากไม่ใช่ตัวเลข และไม่ใช่ควบคุม (เช่น backspace, delete)
+      if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Delete') {
+        event.preventDefault();
+      }
+    };
 
   const handleChanges = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-  
-
   // const [Bank, setBank] = useState("");
 
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [phoneNumberError, setPhoneNumberError] = useState("");
-
   const handlePhoneNumberChange = (event) => {
-    const value = event.target.value;
-    if (!/^\d*$/.test(value)) {
-      return;
+    const phoneNumber = event.target.value;
+  
+    // Check if the input is valid: only digits and not longer than 10 digits
+    if (/^\d*$/.test(phoneNumber) && phoneNumber.length <= 10) {
+      // Update the phone number in userData state if valid
+      setUserData({ ...userData, phone_number: phoneNumber });
+    } else {
+      // Display error if the input is invalid
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Phone Number',
+        text: 'กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง',
+      });
     }
-
-    // Check if length is more than 10 digits
-    if (value.length > 10) {
-      return; // Do nothing if length is more than 10 digits
-    }
-
-    setPhoneNumber(value);
-    setPhoneNumberError("");
   };
-
+  
   return (
     <section id="register">
       <Navbar></Navbar>
@@ -88,10 +126,10 @@ function Register() {
             alt=""
           />
         </div>
-        <div className="text-[#4400A5] mb-3 ">ลงทะเบียนข้อมูลสมาชิก</div>
-        <form
-          className="flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]"
-        >
+        <div className={isRegistrationSuccess ? "hidden" : "text-[#4400A5] mb-3"}>ลงทะเบียนข้อมูลสมาชิก</div>
+        <form className={isRegistrationSuccess ? "hidden" : "flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]"}
+      onSubmit={handleSave}
+    >
           <div className="recomend">
             <label htmlFor="username">ชื่อผู้ใช้งาน</label>
             <input
@@ -104,7 +142,7 @@ function Register() {
               className="border-solid border border-[#4400A5] p-1 rounded"
               required
             />
-             {message && <div className={isError ? "text-red-500" : "text-green-500"}>{message}</div>}
+          
           </div>
 
           <div className="recomend">
@@ -121,52 +159,99 @@ function Register() {
             />
           </div>
 
-          <div className="recomend">
-            <label htmlFor="phone">เบอร์โทร</label>
-            <input
-              type="tel"
-              onChange={(e)=>
-              {
-                handleChanges(e);
-                handlePhoneNumberChange(e);
-              }}
-              value={phoneNumber}
-              maxLength="10"
-              placeholder="Phone"
-              name="phonenumber"
-              className="border-solid border border-[#4400A5] p-1 rounded"
-              required
-            />
-             {message && <div className={isError ? "text-red-500" : "text-green-500"}>{message}</div>}
-            {phoneNumberError && (
-              <div className="error-message">{phoneNumberError}</div>
-            )}
+          <div>
+            <div className="recomend">
+              <label htmlFor="phone">เบอร์โทร</label>
+              <input
+                type="tel"
+                onChange={ handleChanges}
+                onKeyPress={handleKeyPress}
+                onInput={handlePhoneNumberChange}
+                value={userData.phone_number}
+                maxLength="10"
+                placeholder="Phone"
+                name="phone_number"
+                className="border-solid border border-[#4400A5] p-1 rounded"
+                required
+              />
+  
+            </div>
           </div>
-            
+
           <div className="w-full mt-[.5rem]">
-          <label htmlFor="Bank account">บัญชีธนาคาร</label>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <Select
-                style={{backgroundColor: 'rgba(229, 220, 241, 0.66)',}}
-                className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={userData.bank_account}
-                label="กรุณาเลือกธนาคาร"
-                name="bank_account"
-                onChange={handleChanges}
-                 required>
-                  
-                <MenuItem value={"ธนาคารไทยพาณิชย์"}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231007_224813.png" alt="" />ธนาคารไทยพาณิชย์</div> </MenuItem>
-                <MenuItem value={"ธนาคารทหารไทยธนชาต"}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231007_225025.png" alt="" />ธนาคารทหารไทยธนชาต</div> </MenuItem>
-                <MenuItem value={"ธนาคารกสิกรไทย"}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231204_100616.png" alt="" />ธนาคารกสิกรไทย</div> </MenuItem>
-                <MenuItem value={"ธนาคารกรุงศรีอยุธยา"}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133001.png" alt="" />ธนาคารกรุงศรีอยุธยา</div> </MenuItem>
-                <MenuItem value={"ธนาคารออมสิน"}><div className="flex items-center gap-2"> <img className="h-[15px] w-[15px]" src="/public/image/20231208_133120.png" alt="" />ธนาคารออมสิน</div> </MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </div>
+            <label htmlFor="Bank account">บัญชีธนาคาร</label>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <Select
+                  style={{ backgroundColor: "rgba(229, 220, 241, 0.66)" }}
+                  className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={userData.bank_name}
+                  label="กรุณาเลือกธนาคาร"
+                  name="bank_name"
+                  onChange={handleChanges}
+                  required
+                >
+                  <MenuItem value={"SCB "}>
+                    <div className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        className="h-[15px] w-[15px]"
+                        src="/public/image/20231007_224813.png"
+                        alt=""
+                      />
+                      ธนาคารไทยพาณิชย์
+                    </div>{" "}
+                  </MenuItem>
+                  <MenuItem value={"TTB"}>
+                    <div className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        className="h-[15px] w-[15px]"
+                        src="/public/image/20231007_225025.png"
+                        alt=""
+                      />
+                      ธนาคารทหารไทยธนชาต
+                    </div>{" "}
+                  </MenuItem>
+                  <MenuItem value={"KBANK"}>
+                    <div className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        className="h-[15px] w-[15px]"
+                        src="/public/image/20231204_100616.png"
+                        alt=""
+                      />
+                      ธนาคารกสิกรไทย
+                    </div>{" "}
+                  </MenuItem>
+                  <MenuItem value={"BAY"}>
+                    <div className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        className="h-[15px] w-[15px]"
+                        src="/public/image/20231208_133001.png"
+                        alt=""
+                      />
+                      ธนาคารกรุงศรีอยุธยา
+                    </div>{" "}
+                  </MenuItem>
+                  <MenuItem value={"GSB"}>
+                    <div className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        className="h-[15px] w-[15px]"
+                        src="/public/image/20231208_133120.png"
+                        alt=""
+                      />
+                      ธนาคารออมสิน
+                    </div>{" "}
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
           <div className="recomend">
             <label htmlFor="username">เลขบัญชีธนาคาร</label>
             <input
@@ -176,35 +261,45 @@ function Register() {
               className="border-solid border border-[#4400A5] p-1 rounded"
               value={userData.bank_account_number}
               onChange={handleChanges}
+              onKeyDown={handleKeyPress}
               required
             />
-             {message && <div className={isError ? "text-red-500" : "text-green-500"}>{message}</div>}
+          
           </div>
 
-                  <div className="flex justify-between items-center mt-4">
-                  <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
-                  <input type="text" placeholder="Recommender ID" className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "
-                   value={userData.Referral_code} onChange={handleChanges} name="Referral_code"/>
-                    {message && <div className={isError ? "text-red-500" : "text-green-500"}>{message}</div>}
-                  <div className="bg-green-500 rounded-full h-5 w-5"></div>
-                  </div>
-                  
-                  <div className="mt-8 mx-auto">
-                      <button type="submit" className="btn text-white bg-[#4400A5]" onClick={handleSave}>สมัครสมาชิก</button>
-                  </div>
-                  
-                </form>
+          <div className="flex justify-between items-center mt-4">
+            <label htmlFor="recomend-person">รหัสผู้แนะนำถ้ามี</label>
+            <input
+              type="text"
+              placeholder="Recommender ID"
+              className="w-[50%] border-solid border border-[#4400A5] p-1 rounded "
+              value={userData.referral_code}
+              onChange={handleChanges}
+              name="referral_code"
+            />
+          
+            <div className="bg-green-500 rounded-full h-5 w-5"></div>
+          </div>
 
-                <AfterSuccess/>
-                
+          <div className="mt-8 mx-auto">
+            <button
+              type="submit"
+              className="btn text-white bg-[#4400A5]"
+              onClick={handleSave}
+            >
+              สมัครสมาชิก
+            </button>
+          </div>
+        </form>
 
-            </div>
+        {isRegistrationSuccess ? (
+  <AfterSuccess onTimeout={() => navigate('/Login')} />
+) : <></>}
+      </div>
 
-            <Footer/>
+      <Footer />
     </section>
   );
 }
-
-
 
 export default Register;

@@ -1,20 +1,50 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../reducers/userSlice';
-
+import Swal from 'sweetalert2';
+import {  useNavigate } from 'react-router-dom';
 function Navlogin() {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const dispatch = useDispatch();
-  
+    const navigate = useNavigate();
     const handleChange = (e) => {
       const { name, value } = e.target;
       setCredentials(prevState => ({ ...prevState, [name]: value }));
     };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      dispatch(loginUser(credentials));
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const loginAction = await dispatch(loginUser(credentials)).unwrap(); // Use unwrap() to handle the promise correctly
+            if (loginAction && loginAction.token) {
+                navigate('/'); // Use 'navigate' instead of 'redirect'
+            }
+        } catch (error) {
+            // Handle the rejected case and display the error message
+            let errorMessage = 'เกิดข้อผิดพลาด'; // Default error message
+    
+            if (error) {
+                // Assuming error structure is { field: "error message" }
+                errorMessage = Object.values(error).map((value) => {
+                    if (value === "username is required") return "กรุณากรอก Username<br>";
+                    if (value === "password is required") return "กรุณากรอก password<br>";
+                    return value; // Return original message for other errors
+                }).join(""); // Join all error messages
+            }
+    
+            if (errorMessage.includes("Invalid credentials")) {
+                errorMessage = "กรุณากรอก Username และ password ให้ถูกต้อง";
+            }
+    
+            Swal.fire({
+                icon: 'error',
+                title: 'เข้าสู่ระบบไม่สำเร็จ',
+                html: errorMessage,
+            });
+        }
     };
+  
+   
     return(
         <form action="" onSubmit={handleSubmit}>
         <div className="mb-5 text-white ">
@@ -26,16 +56,16 @@ function Navlogin() {
     <div className="flex justify-center items-center mt-5 sm:justify-center max-lg:flex-col sm:items-start sm:gap-[10%]">
         <div className="grid gap-2 items-start">
             <label>ชื่อผู้ใช้</label>
-            <input type="text" placeholder="Username" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange}/>
+            <input type="text" placeholder="Username" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange} value={credentials.username} name='username'/>
         </div>
         <div className="grid gap-2 items-start max-md:my-5">
             <label>รหัสผ่าน</label>
-            <input type="password" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange} />
+            <input type="password" placeholder="Password" className="bg-white text-black border rounded-[5px] p-1" onChange={handleChange} value={credentials.password} name='password'/>
             <button className="text-right mt-2">ลืมรหัสผ่าน</button>
         </div>
     </div>
     <div className="mt-3">
-        <button className="btn text-white bg-[#FF8329]">ยืนยัน</button>
+        <button className="btn text-white bg-[#FF8329]" onClick={handleSubmit}>ยืนยัน</button>
     </div>
 </div>
 

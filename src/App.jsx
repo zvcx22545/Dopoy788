@@ -1,7 +1,7 @@
-import MainLayout from "./components/Mainlayout/MainLayout"
+import MainLayoutLogin from "./components/Mainlayout/MainLayoutLogin"
 
 export default function App() {
   return (
-  <MainLayout/>
+  <MainLayoutLogin/>
   )
 }
