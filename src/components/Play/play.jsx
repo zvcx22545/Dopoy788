@@ -11,6 +11,7 @@ import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -227,9 +228,10 @@ function Play() {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-4xl pb-8">
+        <div className="divider divider-start text-4xl pb-8"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
-          ย้อนกลับ
+            ย้อนกลับ
+          </Link>
         </div>
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">
