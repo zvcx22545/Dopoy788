@@ -107,6 +107,7 @@ function Play() {
     }).then((result) => {
       if (result.isConfirmed) {
         setCompletedNumbers([]); // Clear the completedNumbers array
+        setShowModal(false);
         Swal.fire("ลบรายการแทงสำเร็จ", "", "success");
       }
     });
@@ -381,7 +382,9 @@ function Play() {
                 ใส่ราคา/ส่งโพย
               </button>
               <button
-                className="delete"
+                className={`delete ${ completedNumbers.length === 0 ? "disabled" : "" }`}
+                disabled={completedNumbers.length === 0}
+                style={{ opacity: completedNumbers.length === 0 ? 0.3 : 1 }}
                 onClick={() => DeleteAll(completedNumbers)}
               >
                 ลบทั้งหมด

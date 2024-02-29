@@ -23,7 +23,7 @@ function MainLayout() {
   return (
     <section id="main-layout">
       <Navbar/>
-      <Navlogin/>
+      {/* <Navlogin/> */}
       <ParentComponent/>
       {/* <Tab/>
       <Card/> */}

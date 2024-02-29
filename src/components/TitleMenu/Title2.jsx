@@ -341,15 +341,6 @@ function Title2({ addCompletedNumber }) {
         onClick={() => {
           // Check if the checkbox is checked
           if (isReverseChecked) {
-            // If checked, generate reversed numbers for this number and send them
-            // For single digits, reversing would typically not change the number,
-            // but you could implement logic here if needed for consistency or future adjustments
-            // As an example, if reversing logic needed:
-            // const reversedNumber = reverseNumberLogic(number); // Implement reverseNumberLogic as needed
-            // addCompletedNumber(reversedNumber);
-
-            // Since single digits don't change on reverse, we directly add the number
-            // This is a placeholder for actual reverse logic if ever needed
             addCompletedNumber(number);
           } else {
             // If not checked, just send the current number
