@@ -120,13 +120,13 @@ function Register() {
     <section id="register">
       <Navbar></Navbar>
       <div className="Container-Regis flex flex-col justify-center items-center">
-        <div className="logo">
+        <div className="logo mt-[2.5rem]">
           <img
-            src="https://media.discordapp.net/attachments/1147854094929776664/1207952174785495050/n2.png?ex=65e18421&is=65cf0f21&hm=0e04083e483540d4f53ba76fd32b8954c5abe96a76d36e4e019527e8d33efa3e&"
+            src="/public/Doopoylogo.png"
             alt=""
           />
         </div>
-        <div className={isRegistrationSuccess ? "hidden" : "text-[#4400A5] mb-3"}>ลงทะเบียนข้อมูลสมาชิก</div>
+        <div className={isRegistrationSuccess ? "hidden" : "text-[#4400A5] my-[3] font-[700] title-header"}>ลงทะเบียนข้อมูลสมาชิก</div>
         <form className={isRegistrationSuccess ? "hidden" : "flex flex-col w-[35%] mx-auto max-lg:w-[50%] max-sm:w-[80%]"}
       onSubmit={handleSave}
     >
@@ -281,7 +281,7 @@ function Register() {
             <div className="bg-green-500 rounded-full h-5 w-5"></div>
           </div>
 
-          <div className="mt-8 mx-auto">
+          <div className="mt-[2.5rem] mx-auto">
             <button
               type="submit"
               className="btn text-white bg-[#4400A5]"
@@ -296,8 +296,9 @@ function Register() {
   <AfterSuccess onTimeout={() => navigate('/Login')} />
 ) : <></>}
       </div>
-
+      <div className="footers">
       <Footer />
+      </div>
     </section>
   );
 }
