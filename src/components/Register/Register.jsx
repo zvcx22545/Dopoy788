@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import AfterSuccess from "./AfterSuccess.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../reducers/userSlice.jsx";
+import { createUser,loginUser } from "../reducers/userSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -22,6 +22,8 @@ function Register() {
     referral_code: "",
   });
 
+
+
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -32,6 +34,21 @@ function Register() {
       setUserData(currentUser);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (isRegistrationSuccess) {
+      // Dispatch login action after registration success
+      dispatch(loginUser({ username: userData.username, password: userData.password }))
+        .then(() => {
+          // Navigate to the login page after successful login
+        })
+        .catch((error) => {
+          console.error("Login Error:", error);
+          // Handle login error if necessary
+        });
+    }
+  }, [isRegistrationSuccess, dispatch, navigate, userData.password, userData.username]);
+
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -49,7 +66,8 @@ function Register() {
     try {
       const resultAction = await dispatch(createUser(userData));
       if (createUser.fulfilled.match(resultAction)) {
-        setIsRegistrationSuccess(true);
+        await setIsRegistrationSuccess(true);
+        await dispatch(loginUser({ username: userData.username, password: userData.password }));
       } else if (createUser.rejected.match(resultAction)) {
         // Handle the rejected case and display the error message
         let errorMessage = 'เกิดข้อผิดพลาด'; // Default error message
@@ -122,7 +140,7 @@ function Register() {
       <div className="Container-Regis flex flex-col justify-center items-center min-h-[85vh]">
         <div className="logo">
           <img
-            src="/public/Doopoylogo.png"
+            src="Doopoylogo.png"
             alt=""
           />
         </div>
@@ -198,7 +216,7 @@ function Register() {
                       {" "}
                       <img
                         className="h-[15px] w-[15px]"
-                        src="/public/image/20231007_224813.png"
+                        src="image/20231007_224813.png"
                         alt=""
                       />
                       ธนาคารไทยพาณิชย์
@@ -209,7 +227,7 @@ function Register() {
                       {" "}
                       <img
                         className="h-[15px] w-[15px]"
-                        src="/public/image/20231007_225025.png"
+                        src="image/20231007_225025.png"
                         alt=""
                       />
                       ธนาคารทหารไทยธนชาต
@@ -220,7 +238,7 @@ function Register() {
                       {" "}
                       <img
                         className="h-[15px] w-[15px]"
-                        src="/public/image/20231204_100616.png"
+                        src="image/20231204_100616.png"
                         alt=""
                       />
                       ธนาคารกสิกรไทย
@@ -231,7 +249,7 @@ function Register() {
                       {" "}
                       <img
                         className="h-[15px] w-[15px]"
-                        src="/public/image/20231208_133001.png"
+                        src="image/20231208_133001.png"
                         alt=""
                       />
                       ธนาคารกรุงศรีอยุธยา
@@ -242,7 +260,7 @@ function Register() {
                       {" "}
                       <img
                         className="h-[15px] w-[15px]"
-                        src="/public/image/20231208_133120.png"
+                        src="image/20231208_133120.png"
                         alt=""
                       />
                       ธนาคารออมสิน
@@ -294,8 +312,8 @@ function Register() {
         
 
         {isRegistrationSuccess ? (
-  <AfterSuccess onTimeout={() => navigate('/Login')} />
-) : <></>}
+        <AfterSuccess onTimeout={() => navigate('/')} />
+        ) : <></>}
 
       </div>
       <div className="footers">

@@ -11,7 +11,7 @@ import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
 // import { useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,7 @@ function Play() {
   const [isReverseChecked, setIsReverseChecked] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
-  const totalPrices = completedNumbers.reduce((accumulator, currentNumberSet) => {
+  const totalPrices = completedNumbers.reduce((accumulator) => {
     return accumulator + price;
   }, 0);
 
@@ -31,6 +31,26 @@ function Play() {
   const handleTabChange = (tabName) => {
     setSelectedTab(tabName);
   };
+
+  const [displayText, setDisplayText] = useState('');
+const [chosenImage, setChosenImage] = useState('');
+
+useEffect(() => {
+  const storedDisplayText = localStorage.getItem('displayText');
+  if (storedDisplayText) {
+    setDisplayText(storedDisplayText);
+    // Optionally, clear the stored value after retrieving it
+    localStorage.removeItem('displayText');
+  }
+
+  const storedChosenImage = localStorage.getItem('chosenImage');
+  if (storedChosenImage) {
+    setChosenImage(storedChosenImage);
+    // Optionally, clear the stored value after retrieving it
+    localStorage.removeItem('chosenImage');
+  }
+}, []);
+
 
   // check auth token from user
   // const navigate = useNavigate();
@@ -236,13 +256,14 @@ function Play() {
         </div>
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">
+
             <img
-              src="https://placehold.co/50x50"
+              src={chosenImage}
               alt="Vietnam flag"
-              className="w-15 h-15 rounded-full"
+              className="h-[50px]"
             />
             <p className="text-[#4400A5] text-3xl">
-            {selectedTab} <br />
+            {displayText} <br />
               <p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
             </p>
           </aside>
