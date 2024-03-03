@@ -48,6 +48,26 @@ Select{
     margin-bottom: 0.5rem;
    }
 }
+
+
+
+@media screen and (height: 720px) {
+    .footers,.logo
+   {
+    position: relative;
+    margin-top: 2.5rem;
+    
+   }
+  }
+@media screen and (height: 600px) {
+    .footers,.logo
+   {
+    position: relative;
+    margin-top: 2.5rem;
+    
+   }
+  }
+
 @media (max-width:600px)
 {
    .icon
@@ -76,4 +96,52 @@ Select{
    {
     width: 80%;
    }
+
+   .footers
+   {
+    position: relative;
+   }
+
+}
+
+@media (max-height:375px)
+{
+   .icon
+   {
+    width: 100%;
+    margin: 0.5rem 1rem;
+   }
+   
+   .container-success
+   {
+    width: 60%;
+    padding: 0 1rem;
+   }
+
+   .title
+   {
+    margin-bottom: 0.5rem;
+   }
+
+   .icon-container
+   {
+    width: 60%;
+   }
+
+   .icon
+   {
+    width: 80%;
+   }
+
+   .footers,.logo
+   {
+    position: relative;
+    margin-top: 2.5rem;
+   }
+
+}
+
+.title-header
+{
+    font-size: clamp(1.125rem, 0.9545rem + 0.4545vw, 1.5rem);
 }

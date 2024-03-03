@@ -23,7 +23,7 @@
     gap: 2rem;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .card{
         padding-left: 5rem;
         padding-right: 5rem;
@@ -48,4 +48,8 @@
       padding-right: 0.5rem;
       padding-top: 0rem;
     }
+  }
+  .card-body > h2
+  {
+    font-size: clamp(1.25rem, 1.1364rem + 0.303vw, 1.5rem);
   }
