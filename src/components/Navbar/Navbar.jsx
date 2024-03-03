@@ -9,8 +9,13 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await dispatch(logoutUser()).unwrap();
-      redirect("/Login");
+      const response = await dispatch(logoutUser()).unwrap();
+      if (response.success) {
+        // Redirect only if the response has a success status
+        redirect("/Login");
+      } else {
+        console.error('Logout failed:', response);
+      }
     } catch (error) {
       // Only log the error if it's not the "No token found" error
       if (error !== "No token found.") {
