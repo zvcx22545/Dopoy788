@@ -9,8 +9,8 @@ import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 function Play() {
@@ -33,14 +33,14 @@ function Play() {
   };
 
   // check auth token from user
-  const navigate = useNavigate();
-  const userToken = useSelector((state) => state.user.userToken);
-  useEffect(() => {
-    // Check if the user is logged in
-    if (!userToken) {
-      navigate('/Login'); // Redirect to login page if not logged in
-    }
-  }, [userToken, navigate]);
+  // const navigate = useNavigate();
+  // const userToken = useSelector((state) => state.user.userToken);
+  // useEffect(() => {
+  //   // Check if the user is logged in
+  //   if (!userToken) {
+  //     navigate('/Login'); // Redirect to login page if not logged in
+  //   }
+  // }, [userToken, navigate]);
 
 
   const addCompletedNumbers = (newNumbers) => {
