@@ -19,7 +19,7 @@ export default function Card({ displayText,imghuy }) {
       : "https://placehold.co/50x50";
 
     const bankname = {
-        BAAC:"https://upload.wikimedia.org/wikipedia/th/f/f1/Bank_for_Agriculture_and_Agricultural_Cooperatives_Logo.png",
+        BAAC:"https://s.isanook.com/mn/0/ud/175/877323/fack.jpg",
         GSB:"https://www.gsb.or.th/gsb-theme/images/Sharing_Default.jpg",
         GVM:"https://news.mthai.com/app/uploads/2019/01/dfsg.png"
     }
