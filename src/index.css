@@ -9,6 +9,7 @@ html{
 
 body{
   font-family: "Prompt" , sans-serif;
+  background-color: #fff;
 }
 
 #main-layout{
@@ -19,6 +20,6 @@ body{
 
 #footer{
   position: absolute;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   /* bottom: 0; */
 }
