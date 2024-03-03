@@ -17,7 +17,13 @@ export default function Card({ displayText,imghuy }) {
       : displayText === "หวยยี่กีวิเดียว"
       ? imghuy.Huayyiki
       : "https://placehold.co/50x50";
-  
+
+    const bankname = {
+        BAAC:"https://upload.wikimedia.org/wikipedia/th/f/f1/Bank_for_Agriculture_and_Agricultural_Cooperatives_Logo.png",
+        GSB:"https://www.gsb.or.th/gsb-theme/images/Sharing_Default.jpg",
+        GVM:"https://news.mthai.com/app/uploads/2019/01/dfsg.png"
+    }
+
     const [countdown, setCountdown] = useState(0);
     const [countdown2, setCountdown2] = useState(0);
     useEffect(() => {
@@ -78,7 +84,7 @@ export default function Card({ displayText,imghuy }) {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4">
+            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
                     {countdown}
@@ -88,9 +94,9 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                        <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+                <img src={displayText === "หวยไทย" ? bankname.BAAC : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -101,7 +107,7 @@ export default function Card({ displayText,imghuy }) {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4">
+            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
                     {countdown2}
@@ -111,10 +117,10 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GSB : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
 
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "หวย ออมสิน" : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -125,7 +131,7 @@ export default function Card({ displayText,imghuy }) {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4">
+            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
                     {countdown}
@@ -135,10 +141,10 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GVM : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
 
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "กองสลากรัฐบาล" : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -150,7 +156,7 @@ export default function Card({ displayText,imghuy }) {
             </div>
             
 
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4">
+            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
                     {countdown2}

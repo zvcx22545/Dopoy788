@@ -117,10 +117,10 @@ function Register() {
   };
   
   return (
-    <section id="register">
+    <section id="register" className="min-h-screen">
       <Navbar></Navbar>
-      <div className="Container-Regis flex flex-col justify-center items-center">
-        <div className="logo mt-[2.5rem]">
+      <div className="Container-Regis flex flex-col justify-center items-center min-h-[85vh]">
+        <div className="logo">
           <img
             src="/public/Doopoylogo.png"
             alt=""
@@ -291,14 +291,17 @@ function Register() {
             </button>
           </div>
         </form>
+        
 
         {isRegistrationSuccess ? (
   <AfterSuccess onTimeout={() => navigate('/Login')} />
 ) : <></>}
+
       </div>
       <div className="footers">
       <Footer />
       </div>
+      
     </section>
   );
 }
