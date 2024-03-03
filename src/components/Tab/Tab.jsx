@@ -11,7 +11,7 @@ function Tab({ onButtonChange }) {
 
   return (
     <div className='tabbtn'>
-      <div className="grid gap-2 grid-cols-6">
+      <div className="grid gap-2 grid-cols-5">
         <button className={`btn ${activeTab === "หวยไทย" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยไทย")}>หวยไทย</button>
         <button className={`btn ${activeTab === "หวยลาว" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยลาว")}>หวยลาว</button>
         <button className={`btn ${activeTab === "หวยฮานอย" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยฮานอย")}>หวยฮานอย</button>
