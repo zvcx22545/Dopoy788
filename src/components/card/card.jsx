@@ -113,7 +113,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-            <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
@@ -137,7 +137,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown}
                 </span>
             </div>
-                <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
@@ -162,7 +162,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-                <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div>
         </div>  
     </div>
