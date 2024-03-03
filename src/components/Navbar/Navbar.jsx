@@ -40,7 +40,7 @@ function Navbar() {
             <Link to="/Blog"><li><a>บทความ</a></li></Link>
           </ul>
         </div>
-        <Link to="/"><img src="/public/Doopoylogo.png" className="logo" /> </Link>
+        <Link to="/"><img src="Doopoylogo.png" className="logo" /> </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
