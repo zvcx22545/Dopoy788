@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
 import './card.css';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
 
-export default function Card({ displayText }) {
+export default function Card({ displayText,imghuy }) {
+
+    const imgSrc =
+    displayText === "หวยไทย" || displayText === "หวยหุ้นไทย"
+      ? imghuy.Huaythais
+      : displayText === "หวยลาว"
+      ? imghuy.HuayLao
+      : displayText === "หวยฮานอย"
+      ? imghuy.Huayhanoi
+      : displayText === "หวยยี่กีวิเดียว"
+      ? imghuy.Huayyiki
+      : "https://placehold.co/50x50";
+  
+
   return (
     <div className="card ">
         <div className="grid grid-cols-4 ">
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                        <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
+                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -34,7 +49,7 @@ export default function Card({ displayText }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                        <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
+                        <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -59,7 +74,8 @@ export default function Card({ displayText }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                        <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
+                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -84,7 +100,8 @@ export default function Card({ displayText }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                        <img src="https://placehold.co/50x50" alt="Vietnam flag" className="w-10 h-10 rounded-full" />
+                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -109,5 +126,16 @@ export default function Card({ displayText }) {
             </div>
         </div>  
     </div>
+    
   );
+
 }
+Card.propTypes = {
+    displayText: PropTypes.string.isRequired,
+    imghuy: PropTypes.shape({
+      Huaythais: PropTypes.string.isRequired,
+      HuayLao: PropTypes.string.isRequired,
+      Huayhanoi: PropTypes.string.isRequired,
+      Huayyiki: PropTypes.string.isRequired
+    }).isRequired
+  };
