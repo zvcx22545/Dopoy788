@@ -16,7 +16,6 @@ function Tab({ onButtonChange }) {
         <button className={`btn ${activeTab === "หวยลาว" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยลาว")}>หวยลาว</button>
         <button className={`btn ${activeTab === "หวยฮานอย" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยฮานอย")}>หวยฮานอย</button>
         <button className={`btn ${activeTab === "หวยหุ้นไทย" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยหุ้นไทย")}>หวยหุ้นไทย</button>
-        <button className={`btn ${activeTab === "หวยหุ้นไทย" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยหุ้นไทย")}>หวยหุ้นไทย</button>
         <button className={`btn ${activeTab === "หวยยี่กีวิเดียว" ? 'active' : ''}`} onClick={() => handleButtonClick("หวยยี่กีวิเดียว")}>หวยยี่กีวิเดียว</button>
       </div>
     </div>
