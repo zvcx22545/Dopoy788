@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
@@ -22,15 +22,10 @@ function Play() {
   const [isReverseChecked, setIsReverseChecked] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
+  const [Openhuay19, setOpenhuay19] = useState(false); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
   const totalPrices = completedNumbers.reduce((accumulator) => {
     return accumulator + price;
   }, 0);
-
-  const [selectedTab, setSelectedTab] = useState("หวยไทย");
-
-  const handleTabChange = (tabName) => {
-    setSelectedTab(tabName);
-  };
 
   const [displayText, setDisplayText] = useState('');
 const [chosenImage, setChosenImage] = useState('');
@@ -62,13 +57,15 @@ useEffect(() => {
   //   }
   // }, [userToken, navigate]);
 
-
-  const addCompletedNumbers = (newNumbers) => {
+  const addCompletedNumbers = (digit) => {
     if (isReverseChecked) {
-      const reversedNumbers = reverseNumbers(newNumbers);
+      const reversedNumbers = reverseNumbers([digit]);
       setCompletedNumbers([...completedNumbers, ...reversedNumbers]);
+    } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
+      const Huay19doors = handleHuay19doors(digit);
+      setCompletedNumbers([...completedNumbers, ...Huay19doors]);
     } else {
-      setCompletedNumbers([...completedNumbers, newNumbers]);
+      setCompletedNumbers([...completedNumbers, digit]);
     }
   };
 
@@ -91,11 +88,47 @@ useEffect(() => {
     if (activeHuy19 === buttonName) {
       setActiveHuy19(false);
       setNumberOfDigits(2); // Default value when toggling off
+      setOpenhuay19(false);
+
     } else {
       setActiveHuy19(buttonName);
       setNumberOfDigits(newNumberOfDigits);
     }
+    if (buttonName === "19 ประตู") {
+      setOpenhuay19(true);
+    }
   };
+  // const handleOpenHuay19 = () => {
+  //   setOpenhuay19(!Openhuay19); // Toggle the value
+  // };
+
+  const handleHuay19doors = (digit) => {
+    let newNumbers = [];
+
+    // Generate numbers from 0 to 99
+    for (let i = 0; i <= 99; i++) {
+        let numberStr = i.toString().padStart(2, '0');
+        // Check if the number contains the specified digit
+        if (numberStr.includes(digit.toString())) {
+            newNumbers.push(numberStr);
+        }
+    }
+
+    // Ensure the result set contains exactly 19 numbers by filtering if necessary
+    // This step might not be necessary if you always want to include all matches.
+    // However, based on your requirement, we keep it here as a placeholder.
+
+    return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
+};
+
+// Usage example
+
+
+
+
+
+
+
   // Inside the component function Play
 
   const handleIncrement = () => {
