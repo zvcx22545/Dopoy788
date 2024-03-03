@@ -70,7 +70,7 @@ export default function Card({ displayText,imghuy }) {
         <div className="grid grid-cols-4 ">
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%]" />
+                    <img src={imgSrc} alt="Vietnam flag" className="w-[20%] h-[45.63px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
@@ -94,7 +94,7 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                <img src={displayText === "หวยไทย" ? bankname.BAAC : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
+                <img src={displayText === "หวยไทย" ? bankname.BAAC : imgSrc} alt="Vietnam flag" className="w-[20%] h-[45.63px]" />
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -117,7 +117,7 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GSB : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GSB : imgSrc} alt="Vietnam flag" className="w-[20%] h-[45.63px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "หวย ออมสิน" : displayText}</h2>
@@ -141,7 +141,7 @@ export default function Card({ displayText,imghuy }) {
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GVM : imgSrc} alt="Vietnam flag" className="w-[20%] h-[37.25px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GVM : imgSrc} alt="Vietnam flag" className="w-[20%] h-[45.63px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "กองสลากรัฐบาล" : displayText}</h2>

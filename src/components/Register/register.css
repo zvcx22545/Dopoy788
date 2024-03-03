@@ -103,43 +103,7 @@ Select{
    }
 
 }
-@media (max-width:375px)
-{
-   .icon
-   {
-    width: 100%;
-    margin: 0.5rem 1rem;
-   }
-   
-   .container-success
-   {
-    width: 60%;
-    padding: 0 1rem;
-   }
 
-   .title
-   {
-    margin-bottom: 0.5rem;
-   }
-
-   .icon-container
-   {
-    width: 60%;
-   }
-
-   .icon
-   {
-    width: 80%;
-   }
-
-   .footers,.logo
-   {
-    position: relative;
-    margin-top: 2.5rem;
-    
-   }
-
-}
 @media (max-height:375px)
 {
    .icon
