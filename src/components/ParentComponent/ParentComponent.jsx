@@ -11,8 +11,8 @@ function ParentComponent() {
 
   return (
     <div>
-      <Tab onButtonChange={handleButtonChange} />
-      <Card displayText={displayText} />
+        <Tab onButtonChange={handleButtonChange} />
+        <Card displayText={displayText} />
     </div>
   );
 }

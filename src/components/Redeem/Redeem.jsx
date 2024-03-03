@@ -146,7 +146,7 @@ function Redeem(){
                 </div>
             </div>
 
-            <div className="grid w-full mt-5 shadow-md">
+            <div className="grid w-full mb-3 shadow-md">
                 <div className="grid justify-center items-center text-center rounded h-[60px] bg-[#4400A5]">
                     <p className='text-white px-5 py-2'>รางวัลที่ 5    100 รางวัลๆละ 20,000 บาท</p>
                 </div>

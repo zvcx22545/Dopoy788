@@ -76,4 +76,15 @@ Select{
    {
     width: 80%;
    }
+
+   .footers
+   {
+    margin: 5rem 0;
+    position: relative;
+   }
+}
+
+.title-header
+{
+    font-size: clamp(1.125rem, 0.9545rem + 0.4545vw, 1.5rem);
 }
