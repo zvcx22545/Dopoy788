@@ -58,7 +58,7 @@ function Navbar() {
               <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-base-100 rounded-box w-52">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
             <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
             <Link to="/Topup"><li><a>เติมเงิน / ถอนเงิน</a></li></Link>
             <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
