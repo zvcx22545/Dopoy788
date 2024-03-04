@@ -40,9 +40,9 @@ export default function Card({ displayText,imghuy }) {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             if (days > 0) {
-                setCountdown(`${days} วัน ${hours} : ${minutes} : ${seconds}`);
+                setCountdown(`${days} วัน ${hours}:${minutes}:${seconds}`);
             } else {
-                setCountdown(`${hours} : ${minutes} : ${seconds}`);
+                setCountdown(`${hours}:${minutes}:${seconds}`);
             }
             if (distance < 0) {
                 clearInterval(interval);
