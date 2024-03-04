@@ -105,12 +105,21 @@ function Register() {
     }
   };
 
-    const handleKeyPress = (event) => {
-      // หยุดไม่ให้ป้อนข้อมูลหากไม่ใช่ตัวเลข และไม่ใช่ควบคุม (เช่น backspace, delete)
-      if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Delete') {
+  const handleKeyPress = (event) => {
+    // หยุดไม่ให้ป้อนข้อมูลหากไม่ใช่ตัวเลข และไม่ใช่ควบคุม (เช่น backspace, delete)
+    if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Delete') {
         event.preventDefault();
-      }
-    };
+    }
+
+    // ตรวจสอบจำนวนเลขที่ซ้ำไม่เกิน 4 ตัว
+    const inputValue = event.target.value + event.key;
+    if (/([0-9])\1{4}/.test(inputValue)) {
+        event.preventDefault();
+    }
+};
+
+
+
 
   const handleChanges = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
