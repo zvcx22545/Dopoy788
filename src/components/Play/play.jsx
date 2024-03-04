@@ -27,7 +27,7 @@ function Play() {
     return accumulator + price;
   }, 0);
   const [Huayroodnar,SetHuayroodnar] =useState(false);
-  const [Huayroodback,SetHuayroodback] = useState(false);
+  const [HuayroodbackS,SetHuayroodback] = useState(false);
 
   const [displayText, setDisplayText] = useState('');
 const [chosenImage, setChosenImage] = useState('');
@@ -69,10 +69,10 @@ useEffect(() => {
     } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
       const Huayroodnars = Huaysroodnar(digit);
       setCompletedNumbers([...completedNumbers, ...Huayroodnars]);
-    } else if (Huayroodback && activeHuy19 === "รูดหลัง") {
-      const Huaysroodback = HuayroodBacks(digit);
-      setCompletedNumbers([...completedNumbers, ...Huaysroodback]);
-    } else {
+    } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
+      const allNumbers = HuayroodBacks(digit)
+      setCompletedNumbers([...completedNumbers, ...allNumbers]);
+  } else {
       setCompletedNumbers([...completedNumbers, digit]);
     }
   };
@@ -127,6 +127,22 @@ useEffect(() => {
     return multiples;
   }
 
+  function HuayroodBacks(digit) {
+    const multiples = [];
+    if (digit >= 0 && digit <= 9) {
+      for (let i = 0; i < 10; i++) {
+        const multiple = (digit === 0 ? '0' : digit.toString()) + i.toString().padStart(1, '0');
+        multiples.push(multiple);
+      }
+    }
+    return multiples;
+  }
+  
+  
+  console.log()
+  
+
+
 
   const handleHuay19doors = (digit) => {
     let newNumbers = [];
@@ -150,20 +166,10 @@ useEffect(() => {
 // Usage example
 
 // roodback
-function HuayroodBacks(i) {
-  if (i < 0 || i > 9) {
-    return []; // Return an empty array for invalid input
-  }
 
-  const numbers = [];
-  for (let j = 0; j < 100; j += 10) {
-    const num = j + i;
-    if (num <= 99) {
-      numbers.push(num.toString().padStart(2, "0"));
-    }
-  }
-  return numbers;
-}
+
+
+// Example usage:
 
 
 // Example usage:
