@@ -14,6 +14,7 @@ import Invite from './components/Invite/Invite.jsx'
 import Repassword from './components/Repassword/Repassword.jsx'
 import MainLayout from './components/Mainlayout/MainLayout.jsx'
 import Rules from './components/Rule/component/Rules.jsx'
+import Rate from './components/Rate/Rate.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/Rules",
     element: <Rules/>
+  },
+  {
+    path: "/Rate",
+    element: <Rate/>
   },
   
 

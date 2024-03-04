@@ -53,10 +53,8 @@ function Navbar() {
         <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link>
       </div>
       <div className="dropdown dropdown-end ml-5">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
+          <div tabIndex={0} role="button" className="btn w-40">
+            Peter Paker
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
             <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>

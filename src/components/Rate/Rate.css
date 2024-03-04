@@ -1,0 +1,33 @@
+
+.Rate table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+}
+/* .Rate th,td{ 
+    text-align: left;
+} */
+.Rate tr:hover{ 
+    background-color: #E5DCF1A8;
+}
+.Rate th{ 
+    width: 130px;
+}
+.Rate td:nth-child(1),th:nth-child(1){
+    text-align: left;
+}
+.Rate td:nth-child(2),th:nth-child(2){
+    text-align: center;
+}
+.Rate td:nth-child(3),th:nth-child(3){
+    text-align: right;
+}
+.Rate thead{
+    background-color: #4400A5;
+}
+.Rate tr:nth-child(even) {
+    background-color: #f2f2f2; /* สีพื้นหลังสำหรับแถวที่เป็นเลขคู่ */
+  }
+.Rate tr:nth-child(even):hover {
+    background-color: #E5DCF1A8; /* สีพื้นหลังสำหรับแถวที่เป็นเลขคู่ */
+  }
