@@ -328,7 +328,7 @@ function HuayroodBacks(i) {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-4xl pb-8"><Link to="/" className="flex justify-center items-center gap-1">
+        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
             ย้อนกลับ
           </Link>
