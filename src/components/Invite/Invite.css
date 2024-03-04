@@ -43,6 +43,12 @@ tr {
     display: table;
     table-layout: fixed;
 }
+
+.bg-white-text-purple {
+    background-color: #ffffff;
+    color: #4400A5; /* สีม่วง */
+}
+
 @media (max-width:767px){
     th:nth-child(1),td:nth-child(1){
         text-align: right;

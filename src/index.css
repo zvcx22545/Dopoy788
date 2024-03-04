@@ -38,6 +38,10 @@ body {
   background-color: #fff;
   color: black;
 }
+button {
+  /* สไตล์ปกติของปุ่ม */
+  transition: background-color .7s, color .7s; 
+}
 
 
 
