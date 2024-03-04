@@ -13,6 +13,7 @@ import Topup from './components/Topup/Topup.jsx'
 import Invite from './components/Invite/Invite.jsx'
 import Repassword from './components/Repassword/Repassword.jsx'
 import MainLayout from './components/Mainlayout/MainLayout.jsx'
+import Rules from './components/Rule/component/Rules.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout/>
-  }
+  },
+  {
+    path: "/Rules",
+    element: <Rules/>
+  },
   
 
 ])

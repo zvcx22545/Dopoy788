@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Rule(){
     return(
         <section>
@@ -11,10 +12,10 @@ function Rule(){
                     <button className="text-white bg-[#4400A5] rounded h-[60px] w-[40%] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate">
                         อัตราการจ่าย 
                     </button>
-                    <button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[40%] truncate px-2 ">
+                    <Link to="/Rules" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate px-2 ">
                         กติกาและกฎต่างๆ 
-                    </button>
-                    <button class="text-white bg-[#4400A5] border border-[#4400A5] rounded w-[40%] h-[60px]  hover:bg-white hover:text-[#4400A5] truncate">
+                    </button></Link>
+                   <button className="text-white bg-[#4400A5] border border-[#4400A5] rounded w-[40%] h-[60px]  hover:bg-white hover:text-[#4400A5] truncate">
                         โปรโมชั่นประจำเดือน
                     </button>
                 </div>
