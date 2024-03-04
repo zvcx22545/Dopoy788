@@ -26,6 +26,8 @@ function Play() {
   const totalPrices = completedNumbers.reduce((accumulator) => {
     return accumulator + price;
   }, 0);
+  const [Huayroodnar,SetHuayroodnar] =useState(false);
+  const [Huayroodback,SetHuayroodback] = useState(false);
 
   const [displayText, setDisplayText] = useState('');
 const [chosenImage, setChosenImage] = useState('');
@@ -64,6 +66,12 @@ useEffect(() => {
     } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
       const Huay19doors = handleHuay19doors(digit);
       setCompletedNumbers([...completedNumbers, ...Huay19doors]);
+    } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
+      const Huayroodnars = Huaysroodnar(digit);
+      setCompletedNumbers([...completedNumbers, ...Huayroodnars]);
+    } else if (Huayroodback && activeHuy19 === "รูดหลัง") {
+      const Huaysroodback = HuayroodBacks(digit);
+      setCompletedNumbers([...completedNumbers, ...Huaysroodback]);
     } else {
       setCompletedNumbers([...completedNumbers, digit]);
     }
@@ -97,10 +105,28 @@ useEffect(() => {
     if (buttonName === "19 ประตู") {
       setOpenhuay19(true);
     }
+    if (buttonName === "รูดหน้า") {
+      SetHuayroodnar(true);
+    }
+    if (buttonName === "รูดหลัง") {
+      SetHuayroodback(true);
+    }
   };
   // const handleOpenHuay19 = () => {
   //   setOpenhuay19(!Openhuay19); // Toggle the value
   // };
+
+  function Huaysroodnar(number) {
+    const multiples = [];
+    for (let i = 0; i < 10; i++) {
+      const multiple = number * 10 + i;
+      if (multiple <= 99) {
+        multiples.push(multiple.toString().padStart(2, '0'));
+      }
+    }
+    return multiples;
+  }
+
 
   const handleHuay19doors = (digit) => {
     let newNumbers = [];
@@ -123,10 +149,24 @@ useEffect(() => {
 
 // Usage example
 
+// roodback
+function HuayroodBacks(i) {
+  if (i < 0 || i > 9) {
+    return []; // Return an empty array for invalid input
+  }
+
+  const numbers = [];
+  for (let j = 0; j < 100; j += 10) {
+    const num = j + i;
+    if (num <= 99) {
+      numbers.push(num.toString().padStart(2, "0"));
+    }
+  }
+  return numbers;
+}
 
 
-
-
+// Example usage:
 
 
   // Inside the component function Play
@@ -210,6 +250,7 @@ useEffect(() => {
   
     // If "วิ่งบน" or "วิ่งล่าง" is clicked, deactivate "2 ตัวบน" and "2 ตัวล่าง"
     if (buttonName === "วิ่งบน" || buttonName === "วิ่งล่าง") {
+      setActiveButtons([buttonName]);
       // If the clicked button is "วิ่งบน" or "วิ่งล่าง"
       // Check if "สองตัวบน" or "สองตัวล่าง" is active, if yes, don't remove it
       if (activeButtons.includes("สองตัวบน") || activeButtons.includes("สองตัวล่าง")) {
@@ -222,6 +263,11 @@ useEffect(() => {
       setNumberOfDigits(newNumberOfDigits); // Set the number of digits
       setIsReverseChecked(false); // Uncheck reverse checkbox
       setActiveHuy19(false); // Set reverse checkbox to unchecked
+      SetHuayroodnar(false); // Set Huayroodnar to false when "วิ่งบน" or "วิ่งล่าง" is clicked
+    }
+    if (["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
+      setActiveButtons([buttonName]); // Set only the clicked button as active for "19 ประตู", "รูดหน้า", "รูดหลัง"
+      setNumberOfDigits(newNumberOfDigits); // Set the number of digits for "19 ประตู", "รูดหน้า", "รูดหลัง"
     }
   };
 
