@@ -59,7 +59,7 @@ function Aboardcard({ displayText, aboardHuay }) {
     return (
         <div className="bg-white  ">
         <div className="flex items-center justify-start mb-4 gap-2 ">
-        <img src={aboardHuay} alt="Vietnam flag" className=" h-[50px]" />
+        <img src={aboardHuay} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
             <div className="card-body p-2 ">
                 <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                 <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
