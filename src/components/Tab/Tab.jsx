@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './tab.css';
 import PropTypes from 'prop-types';
 
