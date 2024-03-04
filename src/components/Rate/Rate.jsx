@@ -6,7 +6,7 @@ import "./Rate.css";
 
 function Rate(){
     const head ="flex items-center text-[1rem] font-[500] px-3 pt-3"
-    const blockTable = "flex flex-col pb-2 shadow-lg rounded border border-[#4400A5]";
+    const blockTable = "flex flex-col pb-2 shadow-lg rounded-lg border border-[#4400A5]";
 
     return(
         <>
