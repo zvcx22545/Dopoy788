@@ -7,7 +7,8 @@ import "./ListPoy.css"
 function Listpoy(){
     const [showModal, setShowModal] = useState(false);
     const hov = "border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none";
-    
+    const [activeButton, setActiveButton] = useState("all");
+
     return(
         <>
     <section style={{ minHeight: "100vh", position:"relative"}}>
@@ -121,13 +122,14 @@ function Listpoy(){
                 </div>
             </div>
             <div className="grid grid-cols-4 my-14 gap-5 mr-auto max-lg:mx-auto max-md:grid-cols-2">
-                <button className={hov}>ทั้งหมด</button>
-                <button className={hov}>รอผลออก</button>
-                <button className={hov}>ผลออกแล้ว</button>
-                <button className={hov}>ยกเลิกแล้ว</button>
-            </div>
+                <button className={activeButton === "all" ? `${hov} bg-[#4400A5] text-white` : hov} onClick={() => setActiveButton("all")}>ทั้งหมด</button>
+                <button className={activeButton === "waiting" ? `${hov} bg-[#4400A5] text-white` : hov} onClick={() => setActiveButton("waiting")}>รอผลออก</button>
+                <button className={activeButton === "released" ? `${hov} bg-[#4400A5] text-white` : hov} onClick={() => setActiveButton("released")}>ผลออกแล้ว</button>
+                <button className={activeButton === "cancelled" ? `${hov} bg-[#4400A5] text-white` : hov} onClick={() => setActiveButton("cancelled")}>ยกเลิกแล้ว</button>
+          </div>
             <div className="grid grid-cols-2 gap-2 max-md:grid-cols-1">
 {/* ------------------------------------------------------------------------------ */}
+    {(activeButton === "all" || activeButton === "waiting") && (
                 <div className="border border-[#4400A5] rounded text-left p-5 max-md:mx-auto max-md:w-full max-md:grid max-md:justify-center max-lg:mx-auto max-lg:grid" onClick={() => setShowModal(true)}>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center">
@@ -166,8 +168,23 @@ function Listpoy(){
                         </div>
                     </div>
                 </div>
+    )}
+{/* ------------------------------------------------------------------------------ */}
+            
 {/* ------------------------------------------------------------------------------ */}
             </div>
+            {activeButton === "released" && (
+              <div className="border border-[#4400A5] mt-[2rem] rounded w-full grid text-center" >
+                {/* Content for released */}
+                <span className="bg-[#D8D8D8] w-full p-2">ไม่มีข้อมูล</span>
+              </div>
+            )}
+            {activeButton === "cancelled" && (
+              <div className="border border-[#4400A5] mt-[2rem] rounded w-full grid text-center" >
+                {/* Content for cancelled */}
+                <span className="bg-[#D8D8D8] w-full p-2">ไม่มีข้อมูล</span>
+              </div>
+            )}
         </div>
        
     </section>
