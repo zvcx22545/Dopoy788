@@ -10,7 +10,7 @@ function Rule(){
             </div>
                 <div className="flex flex-row justify-center gap-4 mt-5 px-5">
                     <button className="text-white bg-[#4400A5] rounded h-[60px] w-[40%] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate">
-                        อัตรการจ่าย 
+                        อัตราการจ่าย 
                     </button>
                     <Link to="/Rules" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate px-2 ">
                         กติกาและกฎต่างๆ 

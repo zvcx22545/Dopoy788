@@ -6,8 +6,10 @@ import "./ListPoy.css"
 
 function Listpoy(){
     const [showModal, setShowModal] = useState(false);
+    const hov = "border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none";
+    
     return(
-    <section>
+    <section >
         <Navbar />
         {/* Modal */}
         {showModal && (
@@ -97,7 +99,7 @@ function Listpoy(){
           ย้อนกลับ
         </div>
         </div>
-        <div className="grid justify-center text-center mb-[7rem]"  >
+        <div className="grid justify-center text-center pb-[2rem]"  >
             <h1 className="text-[#4400A5] text-[2rem] font-bold mb-14">โพยหวย</h1>
             <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-lg:mx-auto max-md:grid-cols-2">
                 <div className="border border-[#4400A5] h-[110px] w-[100%] rounded text-left p-5">
@@ -118,10 +120,10 @@ function Listpoy(){
                 </div>
             </div>
             <div className="grid grid-cols-4 my-14 gap-5 mr-auto max-lg:mx-auto max-md:grid-cols-2">
-                <button className="border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none">ทั้งหมด</button>
-                <button className="border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none">รอผลออก</button>
-                <button className="border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none">ผลออกแล้ว</button>
-                <button className="border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none">ยกเลิกแล้ว</button>
+                <button className={hov}>ทั้งหมด</button>
+                <button className={hov}>รอผลออก</button>
+                <button className={hov}>ผลออกแล้ว</button>
+                <button className={hov}>ยกเลิกแล้ว</button>
             </div>
             <div className="grid grid-cols-2 gap-2 max-md:grid-cols-1">
 {/* ------------------------------------------------------------------------------ */}
