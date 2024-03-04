@@ -29,9 +29,10 @@ function Repassword() {
     };
 
     return (
-        <section>
+        <>
+        <section style={{ minHeight: "100vh", position:"relative"}}>
             <Navbar />
-            <div className="flex justify-center items-center mt-[10%] mx-auto">
+            <div className="flex justify-center items-center mt-[5%] mx-auto w-full lg:mt-[10%]">
                 <div className="grid rounded-lg items-center border w-[600px] border-[#4400A5] p-5 max-md:w-[350px] max-md:mt-[15%]">
                     <p>เปลี่ยนรหัสผ่าน</p>
                     <hr className="mt-5" />
@@ -79,6 +80,8 @@ function Repassword() {
                 </div>
             </div>
         </section>
+        <Footer />
+        </>
     );
 }
 

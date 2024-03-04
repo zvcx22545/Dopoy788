@@ -16,20 +16,20 @@ function Redeem(){
                     <p className="custom-box">3</p>
                     <p className="custom-box">3</p>
                 </div>
-                <div className="flex gap-5 justify-center max-md:block">
-                    <div className="grid text-center shadow-md max-md:my-5">
+                <div className="flex gap-5 justify-center  max-md:block">
+                    <div className="grid text-center w-full shadow-md max-md:my-5">
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขหน้า 3 ตัว <br />2 รางวัลๆละ 4,000 บาท</p>
                         </div>
                         <p className='bg-white rounded-none border-none p-5'>058 410</p>
                     </div>
-                    <div className="grid text-center shadow-md max-md:my-5">
+                    <div className="grid text-center w-full shadow-md max-md:my-5">
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขท้าย 3 ตัว <br />2 รางวัลๆละ 4,000 บาท</p>
                         </div>
                         <p className='bg-white rounded-none border-none p-5'>058 410</p>
                     </div>
-                    <div className="grid text-center shadow-md ml-5 max-md:ml-0 max-md:my-5">
+                    <div className="grid text-center w-full shadow-md max-md:ml-0 max-md:my-5">
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขท้าย 2 ตัว<br />1 รางวัลๆละ 2,000 บาท</p>
                         </div>

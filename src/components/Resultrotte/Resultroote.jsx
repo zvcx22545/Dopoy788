@@ -30,12 +30,12 @@ function Resultrotte() {
             <div className="grid justify-center text-center mt-10 px-5">
                 <h1 className="text-[#4400A5] font-bold text-[2rem]">ผลสลากกินแบ่งรัฐบาล</h1>
                 <div className="flex gap-0 justify-center">
-                    <p>ตรวจหวย งวดประจำวันที่ : dd / mm / yyyy</p>
+                    {/* <p>ตรวจหวย งวดประจำวันที่ : dd / mm / yyyy</p> */}
                 </div>
                 <div className="grid grid-cols-3 gap-5 mt-2 justify-center items-center">
                     <FormControl fullWidth>
                         <Select
-                            className="border-solid border h-[31.6px] border-[#4400A5] bg-white p-1 rounded shadow-md text-black"
+                            className="border-solid border h-[32px] border-[#4400A5] bg-white p-2 rounded shadow-md text-black"
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={date}
@@ -54,10 +54,10 @@ function Resultrotte() {
                     </FormControl>
 
                     <div className="grid ">
-                        <label htmlFor="status"></label>
-                        <input className="rounded border border-[#FF8329] text-center shadow-md" type="number" onInput={(e) => (e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 6))} />
+                        {/* <label htmlFor="status"></label> */}
+                        <input className="rounded border border-[#FF8329] h-[32px] text-center shadow-md" type="number" onInput={(e) => (e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 6))} />
                     </div>
-                    <button className="rounded bg-[#FF8329] text-white p-2 border border-[#FF8329] hover:bg-white hover:text-[#FF8329] shadow-md">
+                    <button className="rounded bg-[#FF8329] text-white h-[32px]  border border-[#FF8329] hover:bg-white hover:text-[#FF8329] shadow-md">
                         ตรวจหวย
                     </button>
                 </div>

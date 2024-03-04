@@ -183,7 +183,7 @@ function Register() {
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
                 <Select
-                  style={{ backgroundColor: "rgba(229, 220, 241, 0.66)" }}
+                  style={{ backgroundColor: "white" }}
                   className="border-solid border h-[31.6px] border-[#4400A5] p-1 rounded"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"

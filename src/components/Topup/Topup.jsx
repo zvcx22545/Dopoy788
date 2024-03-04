@@ -187,8 +187,8 @@ function Topup() {
 
 {/* เติมเงิน */}
             {showTopup &&(
-            <div className="modalTable2 px-16 max-md:px-5">
-                <table className="text-center">
+            <div className="modalTable2 px-10 max-md:pt-5 max-md:pb-[3rem]">
+                <table className="TopupTable text-center">
                     <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
                         <th >เวลา</th>
                         <th >ประเภท</th>
@@ -231,8 +231,8 @@ function Topup() {
         )}
 {/* ถอนเงิน */}
         {showWithdraw && (
-           <div className="modalTable2 px-16 max-md:px-5">
-           <table className="text-center">
+           <div className="modalTable2 px-10 max-md:pt-5 max-md:pb-[3rem]">
+           <table className="TopupTable text-center">
                <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
                    <th >เวลา</th>
                    <th >ประเภท</th>

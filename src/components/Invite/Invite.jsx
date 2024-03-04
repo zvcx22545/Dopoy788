@@ -103,7 +103,7 @@ function Invite(){
                     </div>
 
                     <div className="DataTable">
-                        <table>
+                        <table className="TopupTable">
                             <thead>
                                 <th scope="col">ชื่อ</th>
                                 <th>จำนวนแทง(บาท)</th>

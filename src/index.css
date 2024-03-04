@@ -29,6 +29,17 @@ body{
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
   }
 
 }
+/* ไฟล์ CSS */
+body {
+  transition: background-color 0.5s ease;
+}
+
+body.dark-mode {
+  background-color: #ffffff; /* สีพื้นหลังที่เปลี่ยนในโหมด dunk */
+}
+
+

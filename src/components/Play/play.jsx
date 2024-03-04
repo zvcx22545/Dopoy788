@@ -272,8 +272,8 @@ function Play() {
               {/* Close Button */}
             </div>
             <div className="modalTable">
-              <div className="h-[40px] w-full bg-[#4400A5] hidden max-md:block"></div>
-              <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5] max-md:hidden">
+              {/* <div className="h-[40px] w-full bg-[#4400A5] hidden max-md:block"></div> */}
+              <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
                 <h1 className="w-full">สามตัวล่าง</h1>
                 <h1 className="w-full">เรทจ่าย</h1>
                 <h1 className="w-full">ราคา</h1>

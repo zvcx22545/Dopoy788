@@ -4,9 +4,10 @@ import CardBlog from "./CardBlog"
 
 function Blog(){
     return(
-        <section>
+        <>
+        <section style={{ minHeight: "100vh", position:"relative"}}>
             <Navbar />
-            <div className="flex justify-center py-5 px-14">
+            <div className="flex justify-center mt-[2rem] py-5 px-14">
                 <div className="grid grid-cols-3 gap-20 max-lg:grid-cols-2 max-md:grid-cols-1">
                     <CardBlog/>
                     <CardBlog/>
@@ -16,8 +17,10 @@ function Blog(){
                     <CardBlog/>
                 </div>
             </div>
-            <Footer/>
+            
         </section>
+        <Footer/>
+        </>
     )
 }
 export default Blog

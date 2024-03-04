@@ -9,10 +9,10 @@ function Rule(){
             </div>
                 <div className="flex flex-row justify-center gap-4 mt-5 px-5">
                     <button className="text-white bg-[#4400A5] rounded h-[60px] w-[40%] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate">
-                        อัตรการจ่าย 
+                        อัตราการจ่าย 
                     </button>
                     <button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[40%] truncate px-2 ">
-                        กริติกาและกฎต่างๆ 
+                        กติกาและกฎต่างๆ 
                     </button>
                     <button class="text-white bg-[#4400A5] border border-[#4400A5] rounded w-[40%] h-[60px]  hover:bg-white hover:text-[#4400A5] truncate">
                         โปรโมชั่นประจำเดือน
