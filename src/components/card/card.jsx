@@ -67,10 +67,10 @@ export default function Card({ displayText,imghuy }) {
     }, []);
   return (
     <div className="card ">
-        <div className="grid grid-cols-4 ">
-            <div className="bg-white  ">
+        <div className="grid grid-cols-3">
+            {/* <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={imgSrc} alt="Vietnam flag" className="w-[50px] h-[50px]" />
+                    <img src={imgSrc} alt="Vietnam flag" className=" h-[50px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
@@ -91,10 +91,10 @@ export default function Card({ displayText,imghuy }) {
                 </span>
             </div>
             <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
-            </div>
+            </div> */}
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                <img src={displayText === "หวยไทย" ? bankname.BAAC : imgSrc} alt="Vietnam flag" className="w-[50px] h-[50px]" />
+                <img src={displayText === "หวยไทย" ? bankname.BAAC : imgSrc} alt="Vietnam flag" className=" h-[50px]" />
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
@@ -113,11 +113,18 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/play" onClick={() => {
+            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText;
+            const chosenImage = displayText === "หวยไทย" ? bankname.BAAC : imgSrc;
+            localStorage.setItem('displayText', chosenText);
+            localStorage.setItem('chosenImage', chosenImage);
+            }}>
+              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            </Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GSB : imgSrc} alt="Vietnam flag" className="w-[50px] h-[50px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GSB : imgSrc} alt="Vietnam flag" className=" h-[50px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "หวย ออมสิน" : displayText}</h2>
@@ -137,11 +144,18 @@ export default function Card({ displayText,imghuy }) {
                     {countdown}
                 </span>
             </div>
-            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/play" onClick={() => {
+            const chosenText = displayText === "หวยไทย" ? "หวย ออมสิน" : displayText;
+            const chosenImage = displayText === "หวยไทย" ? bankname.GSB : imgSrc;
+            localStorage.setItem('displayText', chosenText);
+            localStorage.setItem('chosenImage', chosenImage);
+            }}>
+              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            </Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GVM : imgSrc} alt="Vietnam flag" className="w-[50px] h-[50px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GVM : imgSrc} alt="Vietnam flag" className=" h-[50px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "กองสลากรัฐบาล" : displayText}</h2>
@@ -162,7 +176,14 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/play" onClick={() => {
+            const chosenText = displayText === "หวยไทย" ? "กองสลากรัฐบาล" : displayText;
+            const chosenImage = displayText === "หวยไทย" ? bankname.GVM : imgSrc;
+            localStorage.setItem('displayText', chosenText);
+            localStorage.setItem('chosenImage', chosenImage);
+            }}>
+              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+            </Link>
             </div>
         </div>  
     </div>

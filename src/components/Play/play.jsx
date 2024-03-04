@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
@@ -11,7 +11,7 @@ import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
 // import { useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -22,15 +22,30 @@ function Play() {
   const [isReverseChecked, setIsReverseChecked] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
-  const totalPrices = completedNumbers.reduce((accumulator, currentNumberSet) => {
+  const [Openhuay19, setOpenhuay19] = useState(false); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
+  const totalPrices = completedNumbers.reduce((accumulator) => {
     return accumulator + price;
   }, 0);
 
-  const [selectedTab, setSelectedTab] = useState("หวยไทย");
+  const [displayText, setDisplayText] = useState('');
+const [chosenImage, setChosenImage] = useState('');
 
-  const handleTabChange = (tabName) => {
-    setSelectedTab(tabName);
-  };
+useEffect(() => {
+  const storedDisplayText = localStorage.getItem('displayText');
+  if (storedDisplayText) {
+    setDisplayText(storedDisplayText);
+    // Optionally, clear the stored value after retrieving it
+    localStorage.removeItem('displayText');
+  }
+
+  const storedChosenImage = localStorage.getItem('chosenImage');
+  if (storedChosenImage) {
+    setChosenImage(storedChosenImage);
+    // Optionally, clear the stored value after retrieving it
+    localStorage.removeItem('chosenImage');
+  }
+}, []);
+
 
   // check auth token from user
   // const navigate = useNavigate();
@@ -42,13 +57,15 @@ function Play() {
   //   }
   // }, [userToken, navigate]);
 
-
-  const addCompletedNumbers = (newNumbers) => {
+  const addCompletedNumbers = (digit) => {
     if (isReverseChecked) {
-      const reversedNumbers = reverseNumbers(newNumbers);
+      const reversedNumbers = reverseNumbers([digit]);
       setCompletedNumbers([...completedNumbers, ...reversedNumbers]);
+    } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
+      const Huay19doors = handleHuay19doors(digit);
+      setCompletedNumbers([...completedNumbers, ...Huay19doors]);
     } else {
-      setCompletedNumbers([...completedNumbers, newNumbers]);
+      setCompletedNumbers([...completedNumbers, digit]);
     }
   };
 
@@ -71,11 +88,47 @@ function Play() {
     if (activeHuy19 === buttonName) {
       setActiveHuy19(false);
       setNumberOfDigits(2); // Default value when toggling off
+      setOpenhuay19(false);
+
     } else {
       setActiveHuy19(buttonName);
       setNumberOfDigits(newNumberOfDigits);
     }
+    if (buttonName === "19 ประตู") {
+      setOpenhuay19(true);
+    }
   };
+  // const handleOpenHuay19 = () => {
+  //   setOpenhuay19(!Openhuay19); // Toggle the value
+  // };
+
+  const handleHuay19doors = (digit) => {
+    let newNumbers = [];
+
+    // Generate numbers from 0 to 99
+    for (let i = 0; i <= 99; i++) {
+        let numberStr = i.toString().padStart(2, '0');
+        // Check if the number contains the specified digit
+        if (numberStr.includes(digit.toString())) {
+            newNumbers.push(numberStr);
+        }
+    }
+
+    // Ensure the result set contains exactly 19 numbers by filtering if necessary
+    // This step might not be necessary if you always want to include all matches.
+    // However, based on your requirement, we keep it here as a placeholder.
+
+    return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
+};
+
+// Usage example
+
+
+
+
+
+
+
   // Inside the component function Play
 
   const handleIncrement = () => {
@@ -236,13 +289,14 @@ function Play() {
         </div>
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">
+
             <img
-              src="https://placehold.co/50x50"
+              src={chosenImage}
               alt="Vietnam flag"
-              className="w-15 h-15 rounded-full"
+              className="h-[50px]"
             />
             <p className="text-[#4400A5] text-3xl">
-            {selectedTab} <br />
+            {displayText} <br />
               <p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
             </p>
           </aside>
