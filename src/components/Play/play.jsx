@@ -307,16 +307,26 @@ function HuayroodBacks(i) {
   };
 
   useEffect(() => {
-    const countdownDate = new Date(Date.now() + 2 * 60 * 1000); // 2 minutes from now
+    const countdownDate = new Date(Date.now() + 8000 * 60 * 1000); // 2 minutes from now
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      setCountdown(`${hours}:${minutes}:${seconds}`);
+      let timeLeft;
+      if (distance > (1000 * 60 * 60 * 24)) { // If more than 24 hours left
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        timeLeft = `${days} วัน ${hours} : ${minutes} : ${seconds}`;
+      } else {
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        timeLeft = `${hours}:${minutes}:${seconds}`;
+      }
+      setCountdown(timeLeft);
       if (distance < 0) {
         clearInterval(interval);
         setCountdown("EXPIRED");
@@ -324,6 +334,8 @@ function HuayroodBacks(i) {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+
   return (
     <section>
       <Navbar />
@@ -350,7 +362,7 @@ function HuayroodBacks(i) {
             <div className="grid grid-flow-col gap-4">
               <div className="stat text-center">
                 <div className=" text-white text-xl min-w-48">
-                  20วัน {countdown}
+                 {countdown}
                 </div>
               </div>
             </div>

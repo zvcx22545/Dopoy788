@@ -27,18 +27,23 @@ export default function Card({ displayText,imghuy }) {
     const [countdown, setCountdown] = useState(0);
     const [countdown2, setCountdown2] = useState(0);
     useEffect(() => {
-        const countdownDate = new Date(Date.now() + 500 * 60 * 1000); // 2 minutes from now
+        const countdownDate = new Date(Date.now() + 5000 * 60 * 1000); // 2 minutes from now
         const countdownDate2 = new Date(Date.now() + 350 * 60 * 1000); // 2 minutes from now
 
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
                 (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            setCountdown(`${hours}:${minutes}:${seconds}`);
+            if (days > 0) {
+                setCountdown(`${days} วัน ${hours} : ${minutes} : ${seconds}`);
+            } else {
+                setCountdown(`${hours} : ${minutes} : ${seconds}`);
+            }
             if (distance < 0) {
                 clearInterval(interval);
                 setCountdown("EXPIRED");
@@ -48,12 +53,17 @@ export default function Card({ displayText,imghuy }) {
         const interval2 = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate2 - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
                 (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            setCountdown2(`${hours}:${minutes}:${seconds}`);
+            if (days > 0) {
+                setCountdown2(`${days} days`);
+            } else {
+                setCountdown2(`${hours}:${minutes}:${seconds}`);
+            }
             if (distance < 0) {
                 clearInterval(interval2);
                 setCountdown2("EXPIRED");
