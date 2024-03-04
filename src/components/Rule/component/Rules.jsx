@@ -8,7 +8,7 @@ export default function Rules() {
         <div className="container-rule">
             <div className="rules-card w-3/4 flex flex-col justify-center mx-auto shadow-gray-350 mt-[2rem] max-[600px]:w-full">
             <div className="rule-title mt-[3rem] ms-[20px]">กฎและกติกา</div>
-            <div className="divider">
+            <div className="dividers divider-start">
             </div>
             <div className="content-con ps-[20px] pe-[20px] mb-[3rem]">
             <div className="content">ยินดีต้อนรับสู่หวยออนไลน์เพื่อให้ท่านทราบถึงสิทธิประโยชน์ของสมาชิกกรุณาอ่านข้อตกลงอย่างละเอียดก่อนที่จะลงทะเบียนสมัครเป็นสมาชิกและใช้บริการ ดูโพย 788 เมื่อสมัครสมาชิกแล้วทางเว็บจะถือว่าสมาชิกได้อ่าน และยอมรับ นโยบายและการให้บริการของเว็บไซต์</div>
