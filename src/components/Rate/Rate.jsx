@@ -6,6 +6,8 @@ import "./Rate.css";
 
 function Rate(){
     const head ="flex items-center text-[1rem] font-[500] px-3 pt-3"
+    const blockTable = "flex flex-col pb-2 shadow-lg rounded border border-[#4400A5]";
+
     return(
         <>
         <section style={{ minHeight: "100vh", position:"relative"}}>
@@ -20,7 +22,7 @@ function Rate(){
             </div>
             <div className="grid grid-cols-4 gap-5 p-5 max-lg:grid-cols-2  max-md:grid-cols-1">
                 
-                <div className="flex flex-col shadow-lg rounded-lg border border-[#4400A5]">
+                <div className={blockTable}>
                     <p className={head}>หวยไทย</p>
                     <table className="Rate">
                         <thead>
@@ -78,7 +80,7 @@ function Rate(){
                     </table>
                 </div>
                 
-                <div className="flex flex-col shadow-lg rounded border border-[#4400A5]">
+                <div className={blockTable}>
                     <p className={head}>หวยฮานอย</p>
                     <table className="Rate">
                         <thead>
@@ -136,7 +138,7 @@ function Rate(){
                     </table>
                 </div>
                 
-                <div className="flex flex-col shadow-lg rounded border border-[#4400A5]">
+                <div className={blockTable}>
                     <p className={head}>หวยลาว</p>
                     <table className="Rate">
                         <thead>
@@ -194,7 +196,7 @@ function Rate(){
                     </table>
                 </div>
                 
-                <div className="flex flex-col shadow-lg rounded border border-[#4400A5]">
+                <div className={blockTable}>
                     <p className={head}>หวยหุ้นต่างประเทศ</p>
                     <table className="Rate">
                         <thead>
