@@ -223,7 +223,7 @@ export default function Card({ displayText,imghuy }) {
                 <Aboardcard displayText={"หุ้นอียิปต์ "} aboardHuay={aboardHuay.Eygypt}/>
             )}
             {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หวยมาเลย์ "} aboardHuay={aboardHuay.Malaysia}/>
+                <Aboardcard displayText={"หวยมาเลย์"} aboardHuay={aboardHuay.Malaysia}/>
             )}
             {displayText === "หวยหุ้นต่างประเทศ" && (
                 <Aboardcard displayText={"หุ้นญี่ปุ่น"} aboardHuay={aboardHuay.Japn}/>

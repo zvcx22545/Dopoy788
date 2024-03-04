@@ -4,20 +4,46 @@ import { FaRegClock } from "react-icons/fa";
 import PropTypes from 'prop-types';
 
 function Aboardcard({ displayText, aboardHuay }) {
+    const [countdown, setCountdown] = useState(0);
     const [countdown2, setCountdown2] = useState(0);
-
     useEffect(() => {
+        const countdownDate = new Date(Date.now() + 5000 * 60 * 1000); // 2 minutes from now
         const countdownDate2 = new Date(Date.now() + 350 * 60 * 1000); // 2 minutes from now
 
-        const interval2 = setInterval(() => {
+        const interval = setInterval(() => {
             const now = new Date().getTime();
-            const distance = countdownDate2 - now;
+            const distance = countdownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor(
                 (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            setCountdown2(`${hours}:${minutes}:${seconds}`);
+            if (days > 0) {
+                setCountdown(`${days} วัน ${hours}:${minutes}:${seconds}`);
+            } else {
+                setCountdown(`${hours}:${minutes}:${seconds}`);
+            }
+            if (distance < 0) {
+                clearInterval(interval);
+                setCountdown("EXPIRED");
+            }
+        }, 1000);
+
+        const interval2 = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate2 - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            if (days > 0) {
+                setCountdown2(`${days} days`);
+            } else {
+                setCountdown2(`${hours}:${minutes}:${seconds}`);
+            }
             if (distance < 0) {
                 clearInterval(interval2);
                 setCountdown2("EXPIRED");
@@ -25,6 +51,7 @@ function Aboardcard({ displayText, aboardHuay }) {
         }, 1000);
 
         return () => {
+            clearInterval(interval);
             clearInterval(interval2);
         };
     }, []);
@@ -47,9 +74,9 @@ function Aboardcard({ displayText, aboardHuay }) {
     
     <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
     <FaRegClock size={25} />
-        <span className="countdown text-white text-2xl text-center">
-            {countdown2}
-        </span>
+    <span className="countdown text-white text-2xl text-center">
+        {displayText === "หวยมาเลย์" ? `${countdown2}`:displayText === "หุ้นสิงคโปร์" ? `${countdown2}` : countdown}
+    </span>
     </div>
     <Link to="/play" onClick={() => {
     const chosenText = displayText;
