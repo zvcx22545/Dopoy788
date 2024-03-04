@@ -21,19 +21,19 @@ function Redeem(){
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขหน้า 3 ตัว <br />2 รางวัลๆละ 4,000 บาท</p>
                         </div>
-                        <p className='bg-white rounded-none border-none p-5'>058 410</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>058 410</p>
                     </div>
                     <div className="grid text-center w-full shadow-md max-md:my-5">
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขท้าย 3 ตัว <br />2 รางวัลๆละ 4,000 บาท</p>
                         </div>
-                        <p className='bg-white rounded-none border-none p-5'>058 410</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>058 410</p>
                     </div>
                     <div className="grid text-center w-full shadow-md max-md:ml-0 max-md:my-5">
                         <div className="grid justify-center items-center text-center rounded bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>เลขท้าย 2 ตัว<br />1 รางวัลๆละ 2,000 บาท</p>
                         </div>
-                        <p className='bg-white rounded-none border-none p-5'>45</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>45</p>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@ function Redeem(){
                     <p>รางวัลข้างเคียงรางวัลที่ 1</p>
                     <p>2 รางวัลๆละ 100,000 บาท</p>
                 </div>
-                <p className='bg-white rounded-none border-none p-5 text-center w-full text-[2.5rem] max-md:text-[100%]'>356756 356758</p>
+                <p className='bg-white text-black rounded-none border-none p-5 text-center w-full text-[2.5rem] max-md:text-[100%]'>356756 356758</p>
             </div>
 
             <div className="flex gap-10 justify-center max-md:block">
@@ -50,16 +50,16 @@ function Redeem(){
                         <div className="grid justify-center items-center text-center rounded h-[60px] bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>รางวัลที่ 2<br />5 รางวัลๆละ 200,000 บาท</p>
                         </div>
-                        <p className='bg-white rounded-none border-none p-5'>830864 173448</p>
-                        <p className='bg-white rounded-none border-none p-5'>095941 979994</p>
-                        <p className='bg-white rounded-none border-none p-5'>752506</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>830864 173448</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>095941 979994</p>
+                        <p className='bg-white text-black rounded-none border-none p-5'>752506</p>
                     </div>
                     <div className="grid text-center shadow-md max-md:my-5 w-full">
                         <div className="grid justify-center items-center text-center rounded h-[60px] bg-[#4400A5]">
                             <p className='text-white px-5 py-2'>รางวัลที่ 2<br />5 รางวัลๆละ 200,000 บาท</p>
                         </div>
                         <div className="flex justify-center items-center bg-white  rounded-none border-none p-5 mt-[-6rem] max-md:mt-0">
-                            <p>663106 081787 543436 087303 630453</p>
+                            <p className='text-black'>663106 081787 543436 087303 630453</p>
                         </div>
                     </div>
             </div>
@@ -69,7 +69,7 @@ function Redeem(){
                     <p className='text-white px-5 py-2'>รางวัลที่ 4    50 รางวัลๆละ 40,000 บาท</p>
                 </div>
                 <div className="table-contents">
-                    <table class="striped-table border-x-0">
+                    <table class="striped-table border-x-0 text-black">
                         <tbody>
                             <tr>
                                 <td>000000</td>
@@ -151,7 +151,7 @@ function Redeem(){
                     <p className='text-white px-5 py-2'>รางวัลที่ 5    100 รางวัลๆละ 20,000 บาท</p>
                 </div>
                 <div className="table-contents">
-                    <table class="striped-table border-x-0">
+                    <table class="striped-table border-x-0 text-black">
                         <tbody>
                             <tr>
                                 <td>000000</td>

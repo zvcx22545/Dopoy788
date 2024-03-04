@@ -1,3 +1,13 @@
+/* ซ่อนปุ่มเพิ่มและลดของ input[type="number"] */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* เพื่อให้ทำงานกับ Firefox */
+}
 table {
     width: 100%;
 }

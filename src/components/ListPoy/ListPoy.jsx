@@ -9,7 +9,8 @@ function Listpoy(){
     const hov = "border border-[#FF8329] font-bold text-[#4400A5] rounded w-[150px] h-[55px] hover:bg-[#4400A5] hover:text-white hover:border-none";
     
     return(
-    <section >
+        <>
+    <section style={{ minHeight: "100vh", position:"relative"}}>
         <Navbar />
         {/* Modal */}
         {showModal && (
@@ -168,8 +169,10 @@ function Listpoy(){
 {/* ------------------------------------------------------------------------------ */}
             </div>
         </div>
-       <Footer/>
+       
     </section>
+    <Footer/>
+    </>
     )
 }
 export default Listpoy
