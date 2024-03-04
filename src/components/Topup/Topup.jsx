@@ -249,7 +249,7 @@ function Topup() {
             {showTopup &&(
             <div className="modalTable2 px-10 max-md:pt-5 max-md:pb-[3rem]">
                 <table className="TopupTable text-center">
-                    <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
+                    <thead className="text-white text-center h-[40px] bg-[#4400A5]">
                         <th >เวลา</th>
                         <th >ประเภท</th>
                         <th >บัญชี</th>
@@ -293,7 +293,7 @@ function Topup() {
         {showWithdraw && (
            <div className="modalTable2 px-10 max-md:pt-5 max-md:pb-[3rem]">
            <table className="TopupTable text-center">
-               <thead className="text-white text-center h-[40px] bg-[#4400A51F]">
+               <thead className="text-white text-center h-[40px] bg-[#4400A5]">
                    <th >เวลา</th>
                    <th >ประเภท</th>
                    <th >บัญชี</th>
