@@ -58,7 +58,7 @@ function Register() {
       Swal.fire({
         icon: 'error',
         title: 'Invalid Phone Number',
-        text: 'โปรดป้อนหมายเลขโทรศัพท์ 10 หลัก',
+        text: 'กรุณาป้อนหมายเลขโทรศัพท์ให้ครบ 10 หลัก',
       });
       return; // Stop execution if phone number is invalid
     }
@@ -105,6 +105,20 @@ function Register() {
     }
   };
 
+  function validateUsername(event) {
+    const allowedCharacters = /^[A-Za-z0-9]+$/;
+    const inputValue = event.key;
+  
+    if (!allowedCharacters.test(inputValue)) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'กรุณากรอกเฉพาะตัวอักษรภาษาอังกฤษ และ ตัวเลขเท่านั้น.',
+      });
+    }
+  }
+
   const handleKeyPress = (event) => {
     // หยุดไม่ให้ป้อนข้อมูลหากไม่ใช่ตัวเลข และไม่ใช่ควบคุม (เช่น backspace, delete)
     if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Delete') {
@@ -115,6 +129,17 @@ function Register() {
     const inputValue = event.target.value + event.key;
     if (/([0-9])\1{4}/.test(inputValue)) {
         event.preventDefault();
+    }
+
+    // ตรวจสอบว่าหากยังไม่มีตัวเลขถูกป้อน และตัวแรกที่ป้อนเข้ามาไม่ใช่ 0 ให้ป้อน 0 ให้เอง
+    if (event.target.value === "" && event.key !== "0") {
+        // event.target.value = "0";
+        event.preventDefault();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+        });
     }
 };
 
@@ -165,7 +190,8 @@ function Register() {
               name="username"
               value={userData.username}
               onChange={handleChanges}
-              placeholder="Please enter username"
+              onKeyDown={validateUsername}
+              placeholder="ใส่เฉพาะภาษาอังกฤษ"
               className="border-solid border border-[#4400A5] p-1 rounded"
               required
             />
@@ -179,8 +205,9 @@ function Register() {
               id="password"
               value={userData.password}
               onChange={handleChanges}
+              onKeyDown={validateUsername}
               name="password"
-              placeholder="Password"
+              placeholder="รหัสผ่านเกิน8ตัว"
               className="border-solid border border-[#4400A5] p-1 rounded"
               required
             />
@@ -196,7 +223,7 @@ function Register() {
                 onInput={handlePhoneNumberChange}
                 value={userData.phone_number}
                 maxLength="10"
-                placeholder="Phone"
+                placeholder="กรอกเบอร์ติดต่อ 10 ตัว"
                 name="phone_number"
                 className="border-solid border border-[#4400A5] p-1 rounded"
                 required
@@ -282,13 +309,12 @@ function Register() {
           <div className="recomend">
             <label htmlFor="username">เลขบัญชีธนาคาร</label>
             <input
-              type=""
+              type="text"
               placeholder="Bank number"
               name="bank_account_number"
               className="border-solid border border-[#4400A5] p-1 rounded"
               value={userData.bank_account_number}
               onChange={handleChanges}
-              onKeyDown={handleKeyPress}
               required
             />
           
