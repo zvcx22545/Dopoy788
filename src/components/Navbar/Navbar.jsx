@@ -54,7 +54,7 @@ function Navbar() {
       </div>
       <div className="dropdown dropdown-end ml-5">
           <div tabIndex={0} role="button" className="btn w-40">
-            Peter Paker
+            เข้าสู่ระบบ
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
             <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>

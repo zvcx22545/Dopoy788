@@ -169,9 +169,10 @@ function Register() {
   };
   
   return (
-    <section id="register" className="min-h-screen">
-      <Navbar></Navbar>
-      <div className="Container-Regis flex flex-col justify-center items-center min-h-[85vh]">
+    <>
+    <section id="register" style={{ minHeight: "100vh", position:"relative"}}>
+      <Navbar/>
+      <div className="Container-Regis flex flex-col justify-center items-center py-[2rem] ">
         <div className="logo">
           <img
             src="Doopoylogo.png"
@@ -351,11 +352,11 @@ function Register() {
         ) : <></>}
 
       </div>
-      <div className="footers">
-      <Footer />
-      </div>
+      
       
     </section>
+    <Footer />
+    </>
   );
 }
 
