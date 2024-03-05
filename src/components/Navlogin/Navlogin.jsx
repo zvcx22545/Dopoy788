@@ -49,7 +49,7 @@ function Navlogin() {
         try {
             const loginAction = await dispatch(loginUser(credentials)).unwrap(); // Use unwrap() to handle the promise correctly
             if (loginAction && loginAction.token) {
-                navigate('/'); // Use 'navigate' instead of 'redirect'
+                navigate('/Home'); // Use 'navigate' instead of 'redirect'
             }
         } catch (error) {
             // Handle the rejected case and display the error message

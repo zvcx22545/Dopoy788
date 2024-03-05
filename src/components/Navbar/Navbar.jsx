@@ -12,7 +12,7 @@ function Navbar() {
       const response = await dispatch(logoutUser()).unwrap();
       if (response.success) {
         // Redirect only if the response has a success status
-        redirect("/Login");
+        redirect("/");
       } else {
         console.error('Logout failed:', response);
       }
@@ -22,7 +22,7 @@ function Navbar() {
         console.error('Logout Error:', error);
       }
       // Redirect to login page regardless of the error
-      redirect("/Login");
+      redirect("/");
     }
   };
   
@@ -36,15 +36,15 @@ function Navbar() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <Link to="/"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
+            <Link to="/Home"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
             <Link to="/Blog"><li><a>บทความ</a></li></Link>
           </ul>
         </div>
-        <Link to="/"><img src="Doopoylogo.png" className="logo" /> </Link>
+        <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <Link to="/"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
+          <Link to="/Home"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
           <Link to="/Blog"><li><a className="text-lg">บทความ</a></li></Link>
         </ul>
       </div>

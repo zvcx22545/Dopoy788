@@ -349,7 +349,7 @@ function Register() {
         
 
         {isRegistrationSuccess ? (
-        <AfterSuccess onTimeout={() => navigate('/')} />
+        <AfterSuccess onTimeout={() => navigate('/Home')} />
         ) : <></>}
 
       </div>

@@ -18,8 +18,8 @@ import Rate from './components/Rate/Rate.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/Login",
-    element: <App/>
+    path: "/Home",
+    element: <MainLayout/>
   },
   {
     path: "/register",
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <MainLayout/>
+    element: <App/>
   },
   {
     path: "/Rules",

@@ -21,7 +21,7 @@ function AfterSuccess({ onTimeout }) { // onTimeout is a callback for when the c
     </div>
     <div className="container-icon">
       <div className="icon-container w-[50%] h-[20%] mx-auto flex justify-center items-center bg-white">
-        <img src="/public/image/correct-icon.png" alt=""  className="w-[50%] mx-auto  animate-bounce animate-infinite animate-duration-700 animate-delay-100 m-5 icon"/>
+        <img src="image/correct-icon.png" alt=""  className="w-[50%] mx-auto  animate-bounce animate-infinite animate-duration-700 animate-delay-100 m-5 icon"/>
       </div>
     </div>
     <div className="text-white text-center mt-2 comeback">

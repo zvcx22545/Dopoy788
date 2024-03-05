@@ -18,7 +18,7 @@ function CardBlog(){
                             </svg>
                         </div>
                             <div className="">
-                                <img src="/public/tailer.png" className="rounded mx-auto mt-5 w-[50%] max-lg:w-[70%] max-md:w-[90%]" alt="" />
+                                <img src="tailer.png" className="rounded mx-auto mt-5 w-[50%] max-lg:w-[70%] max-md:w-[90%]" alt="" />
                             </div>
                             <div className="p-5 mt-5 grid gap-3">
                                 <h1 className="text-[#4400A5] text-[1.25rem] rounded font-[600] max-md:text-[1rem]">เปิดสถิติหวยออกประจำปี 2566</h1>
