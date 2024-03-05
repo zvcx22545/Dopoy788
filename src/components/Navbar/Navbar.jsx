@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../reducers/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -50,11 +49,11 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-end gap-2">
-        <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link>
+        {/* <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link> */}
       </div>
       <div className="dropdown dropdown-end ml-5">
           <div tabIndex={0} role="button" className="btn w-40">
-            เข้าสู่ระบบ
+            Peter Parker
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
             <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
@@ -64,6 +63,7 @@ function Navbar() {
             <li><a>ข้อมูลส่วนตัว</a></li>
              <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
           </ul>
+          
         </div>
     </div>
   )

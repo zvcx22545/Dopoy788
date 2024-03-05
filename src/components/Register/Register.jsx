@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser,loginUser } from "../reducers/userSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import NavbarLogin from "../Navbar/NavbarLogin.jsx";
 
 function Register() {
   const [userData, setUserData] = useState({
@@ -171,7 +172,7 @@ function Register() {
   return (
     <>
     <section id="register" style={{ minHeight: "100vh", position:"relative"}}>
-      <Navbar/>
+      <NavbarLogin/>
       <div className="Container-Regis flex flex-col justify-center items-center py-[2rem] ">
         <div className="logo">
           <img
