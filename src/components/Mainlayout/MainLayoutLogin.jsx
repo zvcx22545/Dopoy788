@@ -5,8 +5,8 @@ import Footer from '../Footer/Footer';
 import Rule from '../Rule/RuleBtn';
 import Resultrotte from '../Resultrotte/Resultroote';
 import Redeem from '../Redeem/Redeem';
-import ParentComponent from '../ParentComponent/ParentComponent';
 import NavbarLogin from '../Navbar/NavbarLogin';
+import ParentComponentLogin from '../ParentComponent/ParentComponentLogin';
 
 function MainLayoutLogin() {
   
@@ -14,7 +14,7 @@ function MainLayoutLogin() {
     <section id="main-layout">
       <NavbarLogin/>
       <Navlogin/>
-      <ParentComponent/>
+      <ParentComponentLogin/>
       {/* <Tab/> */}
       {/* <Card/> */}
       <Rule/>

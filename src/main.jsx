@@ -15,6 +15,7 @@ import Repassword from './components/Repassword/Repassword.jsx'
 import MainLayout from './components/Mainlayout/MainLayout.jsx'
 import Rules from './components/Rule/component/Rules.jsx'
 import Rate from './components/Rate/Rate.jsx'
+import PlayLogin from './components/Play/playLogiin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
   {
     path: "/Rate",
     element: <Rate/>
+  },
+
+  {
+    path: "/playlogin",
+    element: <PlayLogin/>
   },
   
 

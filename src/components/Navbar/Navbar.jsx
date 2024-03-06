@@ -9,22 +9,31 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await dispatch(logoutUser()).unwrap();
-      if (response.success) {
-        // Redirect only if the response has a success status
-        redirect("/");
-      } else {
-        console.error('Logout failed:', response);
-      }
+        const response = await dispatch(logoutUser()).unwrap();
+        if (response.success) {
+            // Redirect only if the response has a success status
+            redirect("/");
+            // Refresh the page after redirecting
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000); // 1000 milliseconds = 1 second
+        } else {
+            console.error('Logout failed:', response);
+        }
     } catch (error) {
-      // Only log the error if it's not the "No token found" error
-      if (error !== "No token found.") {
-        console.error('Logout Error:', error);
-      }
-      // Redirect to login page regardless of the error
-      redirect("/");
+        // Only log the error if it's not the "No token found" error
+        if (error !== "No token found.") {
+            console.error('Logout Error:', error);
+        }
+        // Redirect to login page regardless of the error
+        redirect("/");
+        // Refresh the page after redirecting
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000); // 1000 milliseconds = 1 second
     }
-  };
+};
+
   
   
   

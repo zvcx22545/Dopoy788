@@ -9,11 +9,12 @@ import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
+import NavbarLogin from "../Navbar/NavbarLogin";
 
-function Play() {
+function PlayLogin() {
   const [showModal, setShowModal] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [numberOfDigits, setNumberOfDigits] = useState(4);
@@ -50,14 +51,14 @@ useEffect(() => {
 
 
   // check auth token from user
-  const navigate = useNavigate();
-  const userToken = useSelector((state) => state.user.userToken);
-  useEffect(() => {
-    // Check if the user is logged in
-    if (!userToken) {
-      navigate('/'); // Redirect to login page if not logged in
-    }
-  }, [userToken, navigate]);
+//   const navigate = useNavigate();
+//   const userToken = useSelector((state) => state.user.userToken);
+//   useEffect(() => {
+//     // Check if the user is logged in
+//     if (!userToken) {
+//       navigate('/'); // Redirect to login page if not logged in
+//     }
+//   }, [userToken, navigate]);
 
   const addCompletedNumbers = (digit) => {
     if (isReverseChecked) {
@@ -334,9 +335,9 @@ useEffect(() => {
 
   return (
     <section>
-      <Navbar />
+      <NavbarLogin />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/Home" className="flex justify-center items-center gap-1">
+        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
             ย้อนกลับ
           </Link>
@@ -763,4 +764,4 @@ useEffect(() => {
   );
 }
 
-export default Play;
+export default PlayLogin;

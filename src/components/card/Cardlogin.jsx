@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
 import Aboardcard from "./aboardcard";
-export default function Card({ displayText,imghuy }) {
+export default function CardLogin({ displayText,imghuy }) {
 
     const imgSrc =
     displayText === "หวยไทย" || displayText === "หวยหุ้นไทย"
@@ -111,7 +111,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown}
                 </span>
             </div>
-            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
+            <Link to="/playlogin"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
             </div> */}
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
@@ -134,7 +134,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-            <Link to="/play" onClick={() => {
+            <Link to="/playlogin" onClick={() => {
             const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText;
             const chosenImage = displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc;
             localStorage.setItem('displayText', chosenText);
@@ -165,7 +165,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown}
                 </span>
             </div>
-            <Link to="/play" onClick={() => {
+            <Link to="/playlogin" onClick={() => {
             const chosenText = displayText === "หวยไทย" ? "หวย ออมสิน" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นจีน": displayText;
             const chosenImage = displayText === "หวยไทย" ? bankname.GSB : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.china: imgSrc;
             localStorage.setItem('displayText', chosenText);
@@ -200,7 +200,7 @@ export default function Card({ displayText,imghuy }) {
                     {countdown2}
                 </span>
             </div>
-            <Link to="/play" onClick={() => {
+            <Link to="/playlogin" onClick={() => {
             const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
             const chosenImage = displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA : imgSrc;
             localStorage.setItem('displayText', chosenText);
@@ -235,7 +235,7 @@ export default function Card({ displayText,imghuy }) {
   );
 
 }
-Card.propTypes = {
+CardLogin.propTypes = {
     displayText: PropTypes.string.isRequired,
     imghuy: PropTypes.shape({
       Huaythais: PropTypes.string.isRequired,

@@ -30,7 +30,7 @@ function CardBlog(){
 
             <div className="w-[100%] bg-white flex flex-col p-5">
                     <div className="mb-3">
-                        <img src="https://cdn.discordapp.com/attachments/1189238292202397811/1211318759982112848/tailer.png" className="rounded mx-auto" alt="" />
+                        <img src="tailer.png" className="rounded mx-auto" alt="" />
                     </div>
                     <div className="mb-5 grid gap-3">
                         <h1 className="text-[#4400A5] text-[1.25rem] font-[600] max-md:text-[1rem]">เปิดสถิติหวยออกประจำปี 2566</h1>
