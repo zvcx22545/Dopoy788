@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Tab from '../Tab/Tab';
-import Card from '../card/card';
 import CardLogin from '../card/Cardlogin';
 
 function ParentComponentLogin() {

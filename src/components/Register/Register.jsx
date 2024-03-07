@@ -1,4 +1,3 @@
-import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer.jsx";
 import "./register.css";
 import { useState, useEffect } from "react";
@@ -192,8 +191,7 @@ function Register() {
               name="username"
               value={userData.username}
               onChange={handleChanges}
-              onKeyDown={validateUsername}
-              placeholder="ใส่เฉพาะภาษาอังกฤษ"
+              placeholder="กรุณากรอกUsername"
               className="border-solid border border-[#4400A5] p-1 rounded"
               required
             />

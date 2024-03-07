@@ -1,11 +1,36 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../reducers/userSlice';
+import { useDispatch,useSelector } from 'react-redux';
+import { logoutUser,fetchUser} from '../reducers/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useEffect,useState } from 'react';
+
 
 function Navbar() {
   const redirect = useNavigate();
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.user.currentUser);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  },[dispatch])
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Close modal if screen width is greater than 768px
+      if (window.innerWidth > 768) {
+        setIsModalOpen(false);
+      }
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -60,9 +85,10 @@ function Navbar() {
       <div className="navbar-end gap-2">
         {/* <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link> */}
       </div>
+      {window.innerWidth >= 768 && (
       <div className="dropdown dropdown-end ml-5">
           <div tabIndex={0} role="button" className="btn w-40">
-            Peter Parker
+           {currentUser ? currentUser.username:"Guest"}
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
             <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
@@ -74,6 +100,37 @@ function Navbar() {
           </ul>
           
         </div>
+      )}
+        {isModalOpen && (
+        <div className="Navbar-con fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-100">
+          <div className="nav-content p-4 rounded-lg shadow-md w-52">
+            <div tabIndex={0} role="button" className="btn w-full mb-4">
+              {currentUser ? currentUser.username : "Guest"}
+            </div>
+            <ul className="menu menu-sm">
+              <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
+              <Link to="/Topup"><li><a>เติมเงิน / ถอนเงิน</a></li></Link>
+              <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
+              <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
+              <li><a>ข้อมูลส่วนตัว</a></li>
+              <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
+            </ul>
+            <button className="absolute top-2 right-2" onClick={() => setIsModalOpen(false)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Button to open modal */}
+      {window.innerWidth <= 768 && ( // Render only if screen width is less than or equal to 768px
+        <button onClick={() => setIsModalOpen(true)} className="dropdown dropdown-end ml-5">
+          <div tabIndex={0} role="button" className="btn w-40">
+            Peter Parker
+          </div>
+        </button>
+      )}
     </div>
   )
 }

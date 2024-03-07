@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
 import { IoIosBackspace } from "react-icons/io";

@@ -7,15 +7,34 @@ const createuserUrl = "https://dev-api.doopoy788.com/user/auth/register";
 const userLogin = "https://dev-api.doopoy788.com/user/auth/login";
 const logoutUrl = "https://dev-api.doopoy788.com/user/auth/logout";
 const refreshtoken = "https://dev-api.doopoy788.com/user/auth/refresh";
+const fetchuserUrl = "https://dev-api.doopoy788.com/user/auth/user";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(apiUrl);
   return response.data;
 });
 
-export const fetchUser = createAsyncThunk("users/fetchUser", async (userId) => {
-  const response = await axios.get(`${apiUrl}/${userId}`);
-  return response.data;
+export const fetchUser = createAsyncThunk("users/fetchUser", async (_, {getState,rejectWithValue}) => {
+  const token = getState().user.userToken;
+  if(!token)
+  {
+    return rejectWithValue('Token not found!')
+  }
+  try{
+    const response = await axios.get(fetchuserUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  }catch(error)
+  {
+    if (error.response && error.response.data) {
+      console.log(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  }
 });
 
 export const createUser = createAsyncThunk("users/createUser", async (user, { rejectWithValue }) => {
