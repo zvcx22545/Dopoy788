@@ -1,15 +1,40 @@
 import { useState, useEffect } from "react";
 import './yeekeecard.css';
-import PropTypes from 'prop-types';
-
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { FaRegClock } from "react-icons/fa";
 import Navbar from "../Navbar/Navbar";
 
 export default function Roundyeekee() {
-    const [countdownTimes, setCountdownTimes] = useState([]);
+    const [activeCards, setActiveCards] = useState([]);
+    const [expiredCards, setExpiredCards] = useState([]);
     const [displayText, setDisplayText] = useState('');
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        const thaiMonths = [
+            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
+            'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
+            'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+          ];
+      
+          // Get the current date
+          const now = new Date();
+      
+          // Convert to Thai Buddhist year by adding 543 years to the Gregorian year
+          const thaiYear = now.getFullYear() + 543;
+      
+          // Get the month in Thai
+          const monthThai = thaiMonths[now.getMonth()];
+      
+          // Format the date as day month(year in Thai)
+          const formattedDate = `${now.getDate()} ${monthThai} ${thaiYear}`;
+      
+          // Update state
+          setCurrentDate(formattedDate);
+        }, []);
+        
+    
 
     useEffect(() => {
         const storedDisplayText = localStorage.getItem('displayText');
@@ -22,29 +47,74 @@ export default function Roundyeekee() {
     useEffect(() => {
         const interval = setInterval(() => {
             const now = new Date();
-            const newCountdownTimes = [...Array(90)].map((_, index) => {
+            const newActiveCards = [];
+            const newExpiredCards = [];
+            
+            [...Array(90)].forEach((_, index) => {
                 const cardTime = new Date();
                 cardTime.setHours(4, 30 + index * 15, 0); // Starting time changed to 4:30 AM
                 
                 const differenceInSeconds = (cardTime - now) / 1000;
+                const card = {
+                    index: index,
+                    countdown: '',
+                };
                 if (differenceInSeconds < 0) {
-                    return "EXPIRED";
+                    card.countdown = "EXPIRED";
+                    newExpiredCards.push(card);
                 } else {
                     const hours = Math.floor(differenceInSeconds / 3600).toString().padStart(2, '0');
                     const minutes = Math.floor((differenceInSeconds % 3600) / 60).toString().padStart(2, '0');
                     const seconds = Math.floor(differenceInSeconds % 60).toString().padStart(2, '0');
-                    return `${hours}:${minutes}:${seconds}`;
+                    card.countdown = `${hours}:${minutes}:${seconds}`;
+                    newActiveCards.push(card);
                 }
             });
-            setCountdownTimes(newCountdownTimes);
+
+            setActiveCards(newActiveCards);
+            setExpiredCards(newExpiredCards);
         }, 1000);
     
         return () => clearInterval(interval);
     }, []);
-    
 
     const handleCollapse = () => {
         setIsCollapsed(!isCollapsed);
+    };
+
+    const renderCard = (card) => {
+        const cardStartTime = new Date();
+        cardStartTime.setHours(4);
+        cardStartTime.setMinutes(30 + card.index * 15); // Increment by 15 minutes for each card
+
+        return (
+            <div key={card.index} className="card bg-white mt-[1rem]">
+                <div className="flex items-center justify-start mb-4 gap-2 w-full">
+                    <div className="round-con flex items-center bg-[#4400A5] justify-center text-center top-0 h-12 w-12 drop-shadow-md border boder-solid rounded-full">
+                        <div className="round text-[16px] text-white">{card.index + 1}</div>
+                    </div>
+                    <div className="card-body p-2">
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
+                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ {currentDate}</p>
+                    </div>
+                </div>
+                <div className="divider divider-primary"></div>
+                <div className="text-center lg:text-left mb-4">
+                    <h1 className="text-xl">ปิดรับ : {cardStartTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</h1>
+                </div>
+                <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
+                    <FaRegClock size={25} />
+                    <span className="countdown text-white text-2xl text-center">
+                        {card.countdown}
+                    </span>
+                </div>
+                <Link to="/yeekee/playyeekee">
+                    <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">
+                        {card.countdown === "EXPIRED" ? "ปิดรับ" : "ใส่เลขแทง"}
+                    </button>
+                </Link>
+            </div>
+        );
     };
 
     return (
@@ -58,52 +128,18 @@ export default function Roundyeekee() {
                     </div>
                     <div className={`collapse-content ${isCollapsed ? 'animate-fade-down animate-once animate-duration-700 animate-delay-[200ms] animate-ease-out' : 'animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-out'}`}>
                         <div className="grid grid-cols-5 gap-2">
-                            {[...Array(90)].map((_, index) => {
-                                const cardStartTime = new Date();
-                                cardStartTime.setHours(4);
-                                cardStartTime.setMinutes(30 + index * 15); // Increment by 15 minutes for each card
-                                return (
-                                    <div key={index} className="card bg-white mt-[1rem] ">
-                                        <div className="flex items-center justify-start mb-4 gap-2 w-full">
-                                            <div className="round-con flex items-center bg-[#4400A5] justify-center text-center top-0 h-12 w-12 drop-shadow-md border boder-solid rounded-full ">
-                                                <div className="round text-[16px] text-white">{index + 1}</div>
-                                            </div>
-                                            <div className="card-body p-2 ">
-                                                <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
-                                                <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
-                                            </div>
-                                        </div>
-                                        <div className="divider divider-primary "></div>
-
-                                        <div className="text-center lg:text-left mb-4">
-                                            <h1 className="text-xl">ปิดรับ : {cardStartTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</h1>
-                                        </div>
-
-                                        <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
-                                            <FaRegClock size={25} />
-                                            <span className="countdown text-white text-2xl text-center">
-                                                {countdownTimes[index]}
-                                            </span>
-                                        </div>
-                                        <Link to="/yeekee/playyeekee">
-                                            <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">
-                                                {countdownTimes[index] === "EXPIRED" ? "ปิดรับ" : "ใส่เลขแทง"}
-                                            </button>
-                                        </Link>
-                                    </div>
-                                );
-                            })}
+                            {activeCards.map(renderCard)}
                         </div>
                     </div>
                 </div>
                 <div className="collapse collapse-arrow border border-base-300 w-[90%] my-[2rem] m-auto">
-                    <input type="checkbox" className="peer flex m-auto" id="collapse-input" />
+                    <input type="checkbox" className="peer flex m-auto" id="collapse-input-2" />
                     <div className="collapse-title text-xl font-medium text-center text-white bg-[#4400A5]" onClick={handleCollapse}>
                         ปิดรับ
                     </div>
                     <div className={`collapse-content ${isCollapsed ? 'animate-fade-down animate-once animate-duration-700 animate-delay-[200ms] animate-ease-out' : 'animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-out'}`}>
                         <div className="grid grid-cols-5 gap-2">
-                            
+                            {expiredCards.map(renderCard)}
                         </div>
                     </div>
                 </div>
