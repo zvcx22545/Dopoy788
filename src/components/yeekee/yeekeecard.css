@@ -17,9 +17,8 @@
 }
 
 
-.card .grid-cols-6 {
+.card-con .grid-cols-5 {
     display: grid;
-    gap: 6rem;
   }
   
   @media (max-width: 1024px) {
@@ -28,7 +27,7 @@
         padding-right: 5rem;
         padding-top: 1rem;
     }
-    .card .grid-cols-6 {
+    .card-con .grid-cols-5 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       padding-left: 0rem;
       padding-right: 0rem;
@@ -43,7 +42,7 @@
         padding-right: 1rem;
         padding-top: 1rem;
     }
-    .card .grid-cols-6 {
+    .card-con .grid-cols-5 {
       grid-template-columns: repeat(1, minmax(0, 1fr));
       padding-left: 0.5rem;
       padding-right: 0.5rem;
