@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Tab from '../Tab/Tab';
 import Card from '../card/card';
+import Cardyeekee from '../card/Cardyiki';
 
 function ParentComponent() {
   const [displayText, setDisplayText] = useState("หวยไทย");
@@ -20,7 +21,8 @@ function ParentComponent() {
   return (
     <div>
         <Tab onButtonChange={handleButtonChange} />
-        <Card displayText={displayText} imghuy={imghuy} />
+        {displayText != 'หวยยี่กีวิเดียว'&& <Card displayText={displayText} imghuy={imghuy} />}
+        {displayText === 'หวยยี่กีวิเดียว' && <Cardyeekee displayText={displayText} imghuy={imghuy} />}
     </div>
   );
 }

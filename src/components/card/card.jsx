@@ -14,8 +14,6 @@ export default function Card({ displayText,imghuy }) {
       ? imghuy.HuayLao
       : displayText === "หวยฮานอย"
       ? imghuy.Huayhanoi
-      : displayText === "หวยยี่กีวิเดียว"
-      ? imghuy.Huayyiki
       : "https://placehold.co/50x50";
 
     const bankname = {

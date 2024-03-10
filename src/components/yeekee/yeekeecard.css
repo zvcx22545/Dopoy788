@@ -1,0 +1,57 @@
+.card{
+    padding-left:  10rem;
+    padding-right: 10rem;
+    padding-top: 2.5rem;
+}
+.bg-white{
+    padding: 15px 15px 15px 15px;
+    border: 3px solid #4400A5;
+    border-radius: 10px;
+}
+
+.bg-white .divider{
+    color: #4400A5;
+    margin-top: 0.5px;
+    margin-bottom: 0.5rem;
+    height: 0.8rem;
+}
+
+
+.card .grid-cols-6 {
+    display: grid;
+    gap: 6rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .card{
+        padding-left: 5rem;
+        padding-right: 5rem;
+        padding-top: 1rem;
+    }
+    .card .grid-cols-6 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-left: 0rem;
+      padding-right: 0rem;
+      padding-top: 0rem;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card{
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+    .card .grid-cols-6 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0rem;
+      font-size: clamp(1rem, 0.7727rem + 0.6061vw, 1.5rem);
+    }
+  }
+  .card-body > h2
+  {
+    font-size: clamp(0.875rem, 0.5909rem + 0.7576vw, 1.5rem);
+    }

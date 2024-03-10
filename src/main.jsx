@@ -16,6 +16,8 @@ import MainLayout from './components/Mainlayout/MainLayout.jsx'
 import Rules from './components/Rule/component/Rules.jsx'
 import Rate from './components/Rate/Rate.jsx'
 import PlayLogin from './components/Play/playLogiin.jsx'
+import Roundyeekee from './components/yeekee/Roundyeekee.jsx'
+import Playyeekee from './components/Play/Playyeekee.jsx'
 
 const router = createBrowserRouter([
   {
@@ -66,6 +68,15 @@ const router = createBrowserRouter([
   {
     path: "/playlogin",
     element: <PlayLogin/>
+  },
+  {
+    path: "/yeekee",
+    element: <Roundyeekee/>
+  },
+  
+  {
+    path: "/yeekee/playyeekee",
+    element: <Playyeekee/>
   },
   
 

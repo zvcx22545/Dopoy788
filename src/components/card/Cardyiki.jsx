@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom'
 import { FaRegClock } from "react-icons/fa";
-export default function Cardyeekee() {
+export default function Cardyeekee({ displayText, imghuy }) {
 
 
 
@@ -79,35 +79,12 @@ export default function Cardyeekee() {
   return (
     <div className="card ">
         <div className="grid grid-cols-3">
-            {/* <div className="bg-white  ">
-                <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
-
-                    <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText}</h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
-                    </div>
-                 </div>
-            <div className="divider divider-primary "></div>
-
-            <div className="text-center lg:text-left mb-4">
-                <h1 className="text-xl">ปิดรับ : 14 / 12/ 2023</h1>
-                <h1 className="text-xl">เวลา : 14.30 น.</h1>
-            </div>
-            
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
-            <FaRegClock size={25} />
-                <span className="countdown text-white text-2xl text-center">
-                    {countdown}
-                </span>
-            </div>
-            <Link to="/play"><button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button></Link>
-            </div> */}
+         
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                <img src="" alt="Vietnam flag" className=" h-[50px] w-[70px]" />
+                <img src={imghuy.Huayyiki} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"></h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -124,21 +101,20 @@ export default function Cardyeekee() {
                     {countdown2}
                 </span>
             </div>
-            {/* <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText;
-            const chosenImage = displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc;
-            localStorage.setItem('displayText', chosenText);
-            localStorage.setItem('chosenImage', chosenImage);
-            }}>
-              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
-            </Link> */}
+            <Link to="/yeekee" onClick={() => {
+        const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี" : displayText;
+        const chosenImage = displayText === "หวยไทย" ? imghuy.Huaythais : displayText === "หวยหุ้นต่างประเทศ" ? imghuy.HuayLao : imghuy.Huayyiki;
+        localStorage.setItem('displayText', chosenText);
+        localStorage.setItem('chosenImage', chosenImage);
+      }}>
+        <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+      </Link>
             </div>
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src="" alt="Vietnam flag" className=" h-[50px] w-[70px]" />
-
+                <img src={imghuy.Huayyiki} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> </h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -149,73 +125,52 @@ export default function Cardyeekee() {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
-            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
-            <FaRegClock size={25} />
-                <span className="countdown text-white text-2xl text-center">
-                    {countdown}
-                </span>
-            </div>
-            {/* <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ออมสิน" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นจีน": displayText;
-            const chosenImage = displayText === "หวยไทย" ? bankname.GSB : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.china: imgSrc;
-            localStorage.setItem('displayText', chosenText);
-            localStorage.setItem('chosenImage', chosenImage);
-            }}>
-              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
-            </Link> */}
-            </div>
-            <div className="bg-white  ">
-                <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src="" alt="Vietnam flag" className=" h-[50px] w-[70px]" />
-
-                    <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">
-                       </h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
-                    </div>
-                 </div>
-            <div className="divider divider-primary "></div>
-
-            <div className="text-center lg:text-left mb-4">
-                <h1 className="text-xl">ปิดรับ : 14 / 12/ 2023</h1>
-                <h1 className="text-xl">เวลา : 14.30 น.</h1>
-            </div>
-            
-
             <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
                     {countdown2}
                 </span>
             </div>
-            {/* <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
-            const chosenImage = displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA : imgSrc;
-            localStorage.setItem('displayText', chosenText);
-            localStorage.setItem('chosenImage', chosenImage);
-            }}>
-              <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
-            </Link> */}
+            <Link to="/yeekee" onClick={() => {
+        const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี" : displayText;
+        const chosenImage = displayText === "หวยไทย" ? imghuy.Huaythais : displayText === "หวยหุ้นต่างประเทศ" ? imghuy.HuayLao : imghuy.Huayyiki;
+        localStorage.setItem('displayText', chosenText);
+        localStorage.setItem('chosenImage', chosenImage);
+      }}>
+        <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+      </Link>
+            </div>
+            <div className="bg-white  ">
+                <div className="flex items-center justify-start mb-4 gap-2 ">
+                <img src={imghuy.Huayyiki} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
+                    <div className="card-body p-2 ">
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
+                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
+                    </div>
+                 </div>
+            <div className="divider divider-primary "></div>
+
+            <div className="text-center lg:text-left mb-4">
+                <h1 className="text-xl">ปิดรับ : 14 / 12/ 2023</h1>
+                <h1 className="text-xl">เวลา : 14.30 น.</h1>
+            </div>
+            
+            <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
+            <FaRegClock size={25} />
+                <span className="countdown text-white text-2xl text-center">
+                    {countdown2}
+                </span>
+            </div>
+            <Link to="/yeekee" onClick={() => {
+        const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี" : displayText;
+        const chosenImage = displayText === "หวยไทย" ? imghuy.Huaythais : displayText === "หวยหุ้นต่างประเทศ" ? imghuy.HuayLao : imghuy.Huayyiki;
+        localStorage.setItem('displayText', chosenText);
+        localStorage.setItem('chosenImage', chosenImage);
+      }}>
+        <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
+      </Link>
             </div>
 
-            {/* {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หุ้นอังกฤษ"} aboardHuay={aboardHuay.ENG}/>
-            )}
-            {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หุ้นสิงคโปร์"} aboardHuay={aboardHuay.Singapore}/>
-            )}
-            {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หุ้นไต้หวัน"} aboardHuay={aboardHuay.Taiwan}/>
-            )}
-            {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หุ้นอียิปต์"} aboardHuay={aboardHuay.Eygypt}/>
-            )}
-            {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หวยมาเลย์"} aboardHuay={aboardHuay.Malaysia}/>
-            )}
-            {displayText === "หวยหุ้นต่างประเทศ" && (
-                <Aboardcard displayText={"หุ้นญี่ปุ่น"} aboardHuay={aboardHuay.Japn}/>
-            )} */}
 
         </div>  
     </div>
