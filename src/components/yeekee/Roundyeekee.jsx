@@ -58,7 +58,7 @@ export default function Roundyeekee() {
                     countdown: '',
                 };
                 if (differenceInSeconds < 0) {
-                    card.countdown = "EXPIRED";
+                    card.countdown = "ปิดรับแทง";
                     newExpiredCards.push(card);
                 } else {
                     const hours = Math.floor(differenceInSeconds / 3600).toString().padStart(2, '0');
@@ -68,13 +68,14 @@ export default function Roundyeekee() {
                     newActiveCards.push(card);
                 }
             });
-
+    
             setActiveCards(newActiveCards);
             setExpiredCards(newExpiredCards);
         }, 1000);
     
         return () => clearInterval(interval);
     }, []);
+    
 
     const handleCollapse = () => {
         setIsCollapsed(!isCollapsed);
@@ -84,12 +85,34 @@ export default function Roundyeekee() {
         const cardStartTime = new Date();
         cardStartTime.setHours(4);
         cardStartTime.setMinutes(30 + card.index * 15); // Increment by 15 minutes for each card
+    
+        // Define the background color based on the countdown
+        let cardClass = "";
+        let numcard = "";
+        let countdowncard = "";
+        let countdowncon = "";
+        if (card.countdown === "ปิดรับแทง") {
+            cardClass = "bg-[#4400A5]";
+        } else {
+            const countdownParts = card.countdown.split(":");
+            const remainingMinutes = parseInt(countdownParts[0]) * 60 + parseInt(countdownParts[1]);
+            if (remainingMinutes <= 15) {
+                cardClass = "bg-[#4400A5] card-active";
+                numcard = "drop-shadow-md bg-[#fff] rounded-full text-[#4400A5]"
+                countdowncard = "text-white"
+                countdowncon = "bg-black"
+
+            } else {
+                cardClass = "bg-white";
+                numcard = "text-white drop-shadow-md";
+            }
+        }
 
         return (
-            <div key={card.index} className="card bg-white mt-[1rem]">
+            <div key={card.index} className={`card ${cardClass} mt-[1rem]`}>
                 <div className="flex items-center justify-start mb-4 gap-2 w-full">
-                    <div className="round-con flex items-center bg-[#4400A5] justify-center text-center top-0 h-12 w-12 drop-shadow-md border boder-solid rounded-full">
-                        <div className="round text-[16px] text-white">{card.index + 1}</div>
+                    <div className={`round-con flex items-center bg-[#4400A5] justify-center text-center top-0 h-12 w-12 drop-shadow-md border boder-solid rounded-full ${numcard}`}>
+                        <div className="round text-[16px] ">{card.index + 1}</div>
                     </div>
                     <div className="card-body p-2">
                         <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
@@ -97,10 +120,10 @@ export default function Roundyeekee() {
                     </div>
                 </div>
                 <div className="divider divider-primary"></div>
-                <div className="text-center lg:text-left mb-4">
+                <div className={`text-center lg:text-left mb-4 ${countdowncard}`}>
                     <h1 className="text-xl">ปิดรับ : {cardStartTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</h1>
                 </div>
-                <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
+                <div className={`bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2 ${countdowncon}`}>
                     <FaRegClock size={25} />
                     <span className="countdown text-white text-2xl text-center">
                         {card.countdown}
@@ -108,7 +131,7 @@ export default function Roundyeekee() {
                 </div>
                 <Link to="/yeekee/playyeekee">
                     <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">
-                        {card.countdown === "EXPIRED" ? "ปิดรับ" : "ใส่เลขแทง"}
+                        {card.countdown === "ปิดรับแทง" ? "ปิดรับ" : "ใส่เลขแทง"}
                     </button>
                 </Link>
             </div>

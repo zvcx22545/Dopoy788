@@ -15,6 +15,24 @@
     margin-bottom: 0.5rem;
     height: 0.8rem;
 }
+.card-active{
+    padding: 15px 15px 15px 15px;
+    border: 3px solid #4400A5;
+    border-radius: 10px;
+}
+
+.card-active .divider{
+    background-color: #ffffff;
+    margin-top: 0.5px;
+    margin-bottom: 0.5rem;
+    height: 0.8rem;
+}
+.card-active .divider.divider-primary::before{
+    color: #ffffff;
+    margin-top: 0.5px;
+    margin-bottom: 0.5rem;
+    height: 0.8rem;
+}
 
 
 .card-con .grid-cols-5 {
