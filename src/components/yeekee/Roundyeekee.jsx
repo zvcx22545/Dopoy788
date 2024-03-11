@@ -29,9 +29,7 @@ export default function Roundyeekee() {
       
           // Format the date as day month(year in Thai)
           const formattedDate = `${now.getDate()} ${monthThai} ${thaiYear}`;
-      
-          // Update state
-          setCurrentDate(formattedDate);
+                setCurrentDate(formattedDate);
         }, []);
         
     

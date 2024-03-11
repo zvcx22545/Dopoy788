@@ -45,7 +45,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits }) {
                     {numbers.slice(0, numberOfDigits).map((number, index) => (
                         <div
                             key={index}
-                            className="shownumber card display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
+                            className="shownumber display-number flex h-[75px] w-[79px] items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
                             {number}
                         </div>
                     ))}
