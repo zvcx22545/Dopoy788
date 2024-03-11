@@ -64,18 +64,8 @@ function Navbar() {
   
   return (
     <div className="navbar  shadow-md">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-          </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <Link to="/Home"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
-            <Link to="/Blog"><li><a>บทความ</a></li></Link>
-          </ul>
-        </div>
-        <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
-      </div>
+      <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
+      
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <Link to="/Home"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
@@ -101,8 +91,9 @@ function Navbar() {
           
         </div>
       )}
+      
         {isModalOpen && (
-        <div className="Navbar-con fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-100">
+        <div className="fixed inset-0 border-none rounded-none z-50 flex items-center justify-center bg-[#fff] bg-opacity-100 ">
           <div className="nav-content p-4 rounded-lg shadow-md w-52">
             <div tabIndex={0} role="button" className="btn w-full mb-4">
               {currentUser ? currentUser.username : "Guest"}
@@ -116,7 +107,7 @@ function Navbar() {
               <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
             </ul>
             <button className="absolute top-2 right-2" onClick={() => setIsModalOpen(false)}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -131,6 +122,18 @@ function Navbar() {
           </div>
         </button>
       )}
+      <div className="ml-2">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          </div>
+          <ul tabIndex={0} className="menu menu-sm bg-white right-0 text-black dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
+            <Link to="/Home"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
+            <Link to="/Blog"><li><a>บทความ</a></li></Link>
+          </ul>
+        </div>
+        
+      </div>
     </div>
   )
 }

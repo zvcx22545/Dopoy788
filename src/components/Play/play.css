@@ -221,6 +221,7 @@ th, td {
 @media (max-width: 1024px) {
   .list-responsive {
       display: flex;
+      background-color: #ff8229e8;
   }
 }
 
