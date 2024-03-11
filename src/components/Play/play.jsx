@@ -9,8 +9,8 @@ import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
 
 function Play() {
@@ -50,14 +50,14 @@ useEffect(() => {
 
 
   // check auth token from user
-  const navigate = useNavigate();
-  const userToken = useSelector((state) => state.user.userToken);
-  useEffect(() => {
-    // Check if the user is logged in
-    if (!userToken) {
-      navigate('/'); // Redirect to login page if not logged in
-    }
-  }, [userToken, navigate]);
+  // const navigate = useNavigate();
+  // const userToken = useSelector((state) => state.user.userToken);
+  // useEffect(() => {
+  //   // Check if the user is logged in
+  //   if (!userToken) {
+  //     navigate('/Login'); // Redirect to login page if not logged in
+  //   }
+  // }, [userToken, navigate]);
 
   const addCompletedNumbers = (digit) => {
     if (isReverseChecked) {
@@ -164,6 +164,16 @@ useEffect(() => {
 };
 
 // Usage example
+
+// roodback
+
+
+
+// Example usage:
+
+
+// Example usage:
+
 
   // Inside the component function Play
 
@@ -336,13 +346,13 @@ useEffect(() => {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        {/* <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/Home" className="flex justify-center items-center gap-1">
+        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
             ย้อนกลับ
           </Link>
-        </div> */}
-        <div className="footer py-4">
-          <aside className="items-center grid-flow-col gap-4 ps-[0.75rem]">
+        </div>
+        <div className="footer px-10 py-4">
+          <aside className="items-center grid-flow-col gap-4">
 
             <img
               src={chosenImage}
@@ -423,7 +433,6 @@ useEffect(() => {
                 <div className="w-[50%] flex justify-end items-center gap-5">
                 <button className="w-[35px] h-[35px] bg-[#FF2929] rounded" onClick={() => handleDecrement()}></button>
                 <input
-                  readOnly
                   type="number"
                   value={completedNumbers.length === 0 ? 0 : price}
                   onChange={(e) => setQuantity(e.target.value)}
@@ -719,9 +728,9 @@ useEffect(() => {
         {/* <div className="col-span-2 ...">
           <NumpadLotto addCompletedNumbers={addCompletedNumbers} />
         </div> */}
-        <div className="list-responsive mt-auto">
-          <div className="container-bet flex flex-1 gap-2 item-center justify-center">
-            <h1 className="betting">รายการแทง</h1>
+        <div className="list-responsive mt-auto rounded-md">
+          <div className="container-bet flex gap-2 item-center justify-center">
+            <h1 className="betting mt-[0.2rem]">รายการแทง</h1>
             <div className="rounded-full bg-[#4400A5] text-white px-[12px] py-[3px] mr-auto">
               {completedNumbers.length}
             </div>
