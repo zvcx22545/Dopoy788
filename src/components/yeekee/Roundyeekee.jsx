@@ -7,7 +7,7 @@ import Navbar from "../Navbar/Navbar";
 export default function Roundyeekee() {
     const [activeCards, setActiveCards] = useState([]);
     const [expiredCards, setExpiredCards] = useState([]);
-    const [displayText, setDisplayText] = useState('');
+    const [displayText, setDisplayText] = useState('หวยยี่กี่วิเดียว');
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [currentDate, setCurrentDate] = useState('');
 
@@ -91,32 +91,41 @@ export default function Roundyeekee() {
         let numcard = "";
         let countdowncard = "";
         let countdowncon = "";
+        let TextTitle = "";
+        let TextsubTitle = "";
+        let Animate = "";
         if (card.countdown === "ปิดรับแทง") {
-            cardClass = "bg-[#4400A5]";
+            cardClass = "bg-white";
+            numcard = "text-white drop-shadow-md";
         } else {
             const countdownParts = card.countdown.split(":");
-            const remainingMinutes = parseInt(countdownParts[0]) * 60 + parseInt(countdownParts[1]);
-            if (remainingMinutes <= 15) {
+            let remainingMinutes = parseInt(countdownParts[0]) * 60 + parseInt(countdownParts[1]);
+            if (remainingMinutes < 15) {
                 cardClass = "bg-[#4400A5] card-active";
                 numcard = "drop-shadow-md bg-[#fff] rounded-full text-[#4400A5]"
                 countdowncard = "text-white"
                 countdowncon = "bg-black"
+                TextTitle = "text-white";
+                TextsubTitle = "text-white";
+                Animate = "animate-bounce animate-infinite animate-duration-[800ms] animate-delay-100 animate-ease-linear";
 
             } else {
                 cardClass = "bg-white";
                 numcard = "text-white drop-shadow-md";
+                TextTitle = "text-[#4400A5]";
+                TextsubTitle = "text-[#7B7B7B]";
             }
         }
 
         return (
-            <div key={card.index} className={`card ${cardClass} mt-[1rem]`}>
+            <div key={card.index} className={`card ${cardClass} mt-[1rem] ${Animate}`}>
                 <div className="flex items-center justify-start mb-4 gap-2 w-full">
                     <div className={`round-con flex items-center bg-[#4400A5] justify-center text-center top-0 h-12 w-12 drop-shadow-md border boder-solid rounded-full ${numcard}`}>
                         <div className="round text-[16px] ">{card.index + 1}</div>
                     </div>
                     <div className="card-body p-2">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText}</h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ {currentDate}</p>
+                        <h2 className={`text-2xl font-bold ${TextTitle}`}>{displayText}</h2>
+                        <p className={`text-sm  ${TextsubTitle}`}>งวดวันที่ {currentDate}</p>
                     </div>
                 </div>
                 <div className="divider divider-primary"></div>
