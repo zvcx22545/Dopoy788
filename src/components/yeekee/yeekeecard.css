@@ -27,8 +27,8 @@
     margin-bottom: 0.5rem;
     height: 0.8rem;
 }
-.card-active .divider.divider-primary::before{
-    color: #ffffff;
+.card-active .divider.divider-primary::before,
+.card-active .divider.divider-primary::after{
     margin-top: 0.5px;
     margin-bottom: 0.5rem;
     height: 0.8rem;
@@ -71,4 +71,15 @@
   .card-body > h2
   {
     font-size: clamp(0.875rem, 0.5909rem + 0.7576vw, 1.5rem);
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-2%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
     }

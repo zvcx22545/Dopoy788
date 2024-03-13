@@ -63,18 +63,17 @@ function Navbar() {
   
   
   return (
-    <div className="navbar  shadow-md">
+    <div className="navbar max-md:justify-between shadow-md">
       <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
       
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex lg:mx-auto">
         <ul className="menu menu-horizontal px-1">
           <Link to="/Home"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
           <Link to="/Blog"><li><a className="text-lg">บทความ</a></li></Link>
         </ul>
       </div>
-      <div className="navbar-end gap-2">
-        {/* <Link to="/register"><button className="btn text-white bg-[#FF8329]">สมัครสมาชิก</button></Link> */}
-      </div>
+
+
       {window.innerWidth >= 768 && (
       <div className="dropdown dropdown-end ml-5">
           <div tabIndex={0} role="button" className="btn w-40">
@@ -94,7 +93,7 @@ function Navbar() {
       
         {isModalOpen && (
         <div className="fixed inset-0 border-none rounded-none z-50 flex items-center justify-center bg-[#fff] bg-opacity-100 ">
-          <div className="nav-content p-4 rounded-lg shadow-md w-52">
+          <div className="nav-content p-4 rounded-lg shadow-md right-0 w-52">
             <div tabIndex={0} role="button" className="btn w-full mb-4">
               {currentUser ? currentUser.username : "Guest"}
             </div>
@@ -114,15 +113,17 @@ function Navbar() {
           </div>
         </div>
       )}
+
       {/* Button to open modal */}
       {window.innerWidth <= 768 && ( // Render only if screen width is less than or equal to 768px
         <button onClick={() => setIsModalOpen(true)} className="dropdown dropdown-end ml-5">
           <div tabIndex={0} role="button" className="btn w-40">
-            Peter Parker
+            {currentUser ? currentUser.username : "Guest"}
           </div>
         </button>
       )}
-      <div className="ml-2">
+
+      <div className="md:hidden">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
