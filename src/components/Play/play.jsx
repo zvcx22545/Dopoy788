@@ -50,14 +50,14 @@ useEffect(() => {
 
 
   // check auth token from user
-  // const navigate = useNavigate();
-  // const userToken = useSelector((state) => state.user.userToken);
-  // useEffect(() => {
-  //   // Check if the user is logged in
-  //   if (!userToken) {
-  //     navigate('/Login'); // Redirect to login page if not logged in
-  //   }
-  // }, [userToken, navigate]);
+  const navigate = useNavigate();
+  const userToken = useSelector((state) => state.user.userToken);
+  useEffect(() => {
+    // Check if the user is logged in
+    if (!userToken) {
+      navigate('/'); // Redirect to login page if not logged in
+    }
+  }, [userToken, navigate]);
 
   const addCompletedNumbers = (digit) => {
     if (isReverseChecked) {
@@ -156,26 +156,9 @@ useEffect(() => {
         }
     }
 
-    // Ensure the result set contains exactly 19 numbers by filtering if necessary
-    // This step might not be necessary if you always want to include all matches.
-    // However, based on your requirement, we keep it here as a placeholder.
 
     return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
 };
-
-// Usage example
-
-// roodback
-
-
-
-// Example usage:
-
-
-// Example usage:
-
-
-  // Inside the component function Play
 
   const handleIncrement = () => {
     // เพิ่มค่า price ที่ละ 1

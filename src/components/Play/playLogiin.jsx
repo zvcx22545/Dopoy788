@@ -336,11 +336,11 @@ useEffect(() => {
     <section>
       <NavbarLogin />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
+        {/* <div className="divider divider-start text-2xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
             ย้อนกลับ
           </Link>
-        </div>
+        </div> */}
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">
 
