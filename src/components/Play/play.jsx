@@ -9,44 +9,51 @@ import NumpadLotto from "./NumpadLotto";
 import Title2 from "../TitleMenu/Title2";
 import Title3 from "../TitleMenu/Title3";
 import Swal from "sweetalert2";
-// import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-import { Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [numberOfDigits, setNumberOfDigits] = useState(4);
-  const [completedNumbers, setCompletedNumbers] = useState([]);
+  const [completedNumbers, setCompletedNumbers] = useState({
+    "สี่ตัวบน": [],
+    "สี่ตัวโต๊ด": [],
+    "สามตัวบน": [],
+    "สามตัวโต๊ด": []
+  });
   const [activeHuy19, setActiveHuy19] = useState(false);
   const [isReverseChecked, setIsReverseChecked] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
   const [Openhuay19, setOpenhuay19] = useState(false); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
-  const totalPrices = completedNumbers.reduce((accumulator) => {
-    return accumulator + price;
+  const totalPrices = Object.values(completedNumbers).reduce((accumulator, numbersArray) => {
+    return accumulator + numbersArray.reduce((subAccumulator, number) => subAccumulator + number, 0);
   }, 0);
-  const [Huayroodnar,SetHuayroodnar] =useState(false);
-  const [HuayroodbackS,SetHuayroodback] = useState(false);
+  
+  const [Huayroodnar, SetHuayroodnar] = useState(false);
+  const [HuayroodbackS, SetHuayroodback] = useState(false);
 
   const [displayText, setDisplayText] = useState('');
-const [chosenImage, setChosenImage] = useState('');
+  const [chosenImage, setChosenImage] = useState('');
 
-useEffect(() => {
-  const storedDisplayText = localStorage.getItem('displayText');
-  if (storedDisplayText) {
-    setDisplayText(storedDisplayText);
-    // Optionally, clear the stored value after retrieving it
-    localStorage.removeItem('displayText');
-  }
 
-  const storedChosenImage = localStorage.getItem('chosenImage');
-  if (storedChosenImage) {
-    setChosenImage(storedChosenImage);
-    // Optionally, clear the stored value after retrieving it
-    localStorage.removeItem('chosenImage');
-  }
-}, []);
+  useEffect(() => {
+    const storedDisplayText = localStorage.getItem('displayText');
+    if (storedDisplayText) {
+      setDisplayText(storedDisplayText);
+      // Optionally, clear the stored value after retrieving it
+      localStorage.removeItem('displayText');
+    }
+
+    const storedChosenImage = localStorage.getItem('chosenImage');
+    if (storedChosenImage) {
+      setChosenImage(storedChosenImage);
+      // Optionally, clear the stored value after retrieving it
+      localStorage.removeItem('chosenImage');
+    }
+  }, []);
 
 
   // check auth token from user
@@ -58,24 +65,63 @@ useEffect(() => {
       navigate('/'); // Redirect to login page if not logged in
     }
   }, [userToken, navigate]);
+  useEffect(() => {
+    console.log(completedNumbers);
+  }, [completedNumbers]);
+  
+  const addCompletedNumbers = (digit, activeButtons) => {
+    const newNumbers = { ...completedNumbers }; // Copy the completedNumbers object
 
-  const addCompletedNumbers = (digit) => {
-    if (isReverseChecked) {
-      const reversedNumbers = reverseNumbers([digit]);
-      setCompletedNumbers([...completedNumbers, ...reversedNumbers]);
-    } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
-      const Huay19doors = handleHuay19doors(digit);
-      setCompletedNumbers([...completedNumbers, ...Huay19doors]);
-    } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
-      const Huayroodnars = Huaysroodnar(digit);
-      setCompletedNumbers([...completedNumbers, ...Huayroodnars]);
-    } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
-      const allNumbers = HuayroodBacks(digit)
-      setCompletedNumbers([...completedNumbers, ...allNumbers]);
-  } else {
-      setCompletedNumbers([...completedNumbers, digit]);
-    }
-  };
+    activeButtons.forEach(activeButton => { // Loop over each activeButton
+        const numbersForActiveButton = newNumbers[activeButton] || []; // Get the array of completed numbers for the active button
+        console.log(activeButton, numbersForActiveButton);
+
+        if (activeButton === "สี่ตัวบน" && isReverseChecked) {
+            console.log(activeButton);
+            // Generate all unique permutations of the digit
+            const permutations = reverseNumbers(digit);
+            
+            // Push these permutations into the numbersForActiveButton array
+            numbersForActiveButton.push(...permutations);
+            
+            // Debug: Log the updated numbersForActiveButton
+            console.log(`${activeButton} after adding permutations:`, numbersForActiveButton);
+        }
+        if (activeButton === "สี่ตัวบน") {
+            console.log(digit);
+            // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
+            numbersForActiveButton.push(digit); // Assuming digit is a single value or object
+
+            // Debug: Log the updated numbersForActiveButton
+            console.log(`${activeButton} after adding digit:`, numbersForActiveButton);
+        } else if (activeButton === "สี่ตัวโต๊ด") {
+            // Your existing condition for "สี่ตัวโต๊ด"
+            numbersForActiveButton.push(digit);
+      
+        } else if (Openhuay19 && activeButton === "19 ประตู") {
+            // Your existing condition for handling 19 ประตู
+            const Huay19doors = handleHuay19doors(digit);
+            numbersForActiveButton.push(...Huay19doors);
+      
+        } else if (Huayroodnar && activeButton === "รูดหน้า") {
+            // Your existing condition for handling รูดหน้า
+            const Huayroodnars = Huaysroodnar(digit);
+            numbersForActiveButton.push(...Huayroodnars);
+      
+        } else if (HuayroodbackS && activeButton === "รูดหลัง") {
+            // Your existing condition for handling รูดหลัง
+            const allNumbers = HuayroodBacks(digit);
+            numbersForActiveButton.push(...allNumbers);
+        }
+
+        newNumbers[activeButton] = numbersForActiveButton; // Update the completed numbers for the active button
+    });
+
+    setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
+};
+
+  
+  
 
   const addCompletedNumber = (number) => {
     setCompletedNumbers((prevNumbers) => [...prevNumbers, number]);
@@ -90,9 +136,9 @@ useEffect(() => {
     // Remove "วิ่งบน" and "วิ่งล่าง" from activeButtons if any Huy19 button is clicked
     if (["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
       setActiveButtons(activeButtons.filter(btn => btn !== "วิ่งบน" && btn !== "วิ่งล่าง"));
-        setNumberOfDigits(newNumberOfDigits);
+      setNumberOfDigits(newNumberOfDigits);
     }
-  
+
     if (activeHuy19 === buttonName) {
       setActiveHuy19(false);
       setNumberOfDigits(2); // Default value when toggling off
@@ -137,10 +183,10 @@ useEffect(() => {
     }
     return multiples;
   }
-  
-  
+
+
   console.log()
-  
+
 
 
 
@@ -149,22 +195,22 @@ useEffect(() => {
 
     // Generate numbers from 0 to 99
     for (let i = 0; i <= 99; i++) {
-        let numberStr = i.toString().padStart(2, '0');
-        // Check if the number contains the specified digit
-        if (numberStr.includes(digit.toString())) {
-            newNumbers.push(numberStr);
-        }
+      let numberStr = i.toString().padStart(2, '0');
+      // Check if the number contains the specified digit
+      if (numberStr.includes(digit.toString())) {
+        newNumbers.push(numberStr);
+      }
     }
 
 
     return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
-};
+  };
 
   const handleIncrement = () => {
     // เพิ่มค่า price ที่ละ 1
     setPrice(prevPrice => prevPrice + 1);
   };
-  
+
   const handleDecrement = () => {
     // ลดค่า price ที่ละ 1 หากค่า price ไม่น้อยกว่า 1
     if (price > 1) {
@@ -188,24 +234,36 @@ useEffect(() => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        setCompletedNumbers([]); // Clear the completedNumbers array
-        setShowModal(false);
+        // Reset the completedNumbers object to its initial state
+        setCompletedNumbers({
+          "สี่ตัวบน": [],
+          "สี่ตัวโต๊ด": [],
+          "สามตัวบน": [],
+          "สามตัวโต๊ด": []
+        });
+        setShowModal(false); // Assuming you want to close a modal on confirm
         Swal.fire("ลบรายการแทงสำเร็จ", "", "success");
       }
     });
   };
+  
 
   // Delete list in รายการแทง
 
   const handleDelete = (index) => {
-    // Create a copy of the completedNumbers array
-    const updatedNumbers = [...completedNumbers];
-    // Remove the item at the specified index
-    updatedNumbers.splice(index, 1);
-    // Update the state with the new array
-    setCompletedNumbers(updatedNumbers);
+    const newCompletedNumbers = { ...completedNumbers };
+    for (const key in newCompletedNumbers) {
+      if (Object.prototype.hasOwnProperty.call(newCompletedNumbers, key)) {
+        newCompletedNumbers[key] = newCompletedNumbers[key].filter((_, i) => i !== index);
+      }
+    }
+    setCompletedNumbers(newCompletedNumbers);
   };
-
+  const totalItems = Object.keys(completedNumbers).reduce((count, key) => {
+    return count + completedNumbers[key].length;
+  }, 0);
+  
+  
   //   add active class for tab
 
   const [activeButton, setActiveButton] = useState("เลือกกดเอง");
@@ -217,7 +275,7 @@ useEffect(() => {
       // The button is already the only active button, do nothing
       return;
     }
-  
+
     // If the button is already active, deactivate it
     if (activeButtons.includes(buttonName)) {
       setActiveButtons(activeButtons.filter(btn => btn !== buttonName));
@@ -226,7 +284,7 @@ useEffect(() => {
       if (!["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
         setActiveHuy19(false);
       }
-  
+
       // If the number of digits is changing, activate only the clicked button
       if (newNumberOfDigits !== numberOfDigits) {
         setActiveButtons([buttonName]);
@@ -236,7 +294,7 @@ useEffect(() => {
         setActiveButtons([...activeButtons, buttonName]);
       }
     }
-  
+
     // If "วิ่งบน" or "วิ่งล่าง" is clicked, deactivate "2 ตัวบน" and "2 ตัวล่าง"
     if (buttonName === "วิ่งบน" || buttonName === "วิ่งล่าง") {
       setActiveButtons([buttonName]);
@@ -329,11 +387,12 @@ useEffect(() => {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/" className="flex justify-center items-center gap-1">
+        {/* <div className="divider divider-start text-3xl pb-8 text-[#4400A5]">
+        <Link to="/" className="flex justify-center items-center gap-1">
           <IoIosBackspace />
             ย้อนกลับ
           </Link>
-        </div>
+        </div> */}
         <div className="footer px-10 py-4">
           <aside className="items-center grid-flow-col gap-4">
 
@@ -343,7 +402,7 @@ useEffect(() => {
               className="h-[50px]"
             />
             <p className="text-[#4400A5] text-3xl">
-            {displayText} <br />
+              {displayText} <br />
               <p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
             </p>
           </aside>
@@ -351,7 +410,7 @@ useEffect(() => {
             <div className="grid grid-flow-col gap-4">
               <div className="stat text-center">
                 <div className=" text-white text-xl min-w-48">
-                 {countdown}
+                  {countdown}
                 </div>
               </div>
             </div>
@@ -368,7 +427,7 @@ useEffect(() => {
                 <p className="bg-[#4400A5] p-1 text-white rounded">บันทึกโพย</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 duration-300 ease-in-out transition delay-150 hover:rotate-180" onClick={() => setShowModal(false)}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
               {/* Close Button */}
             </div>
@@ -414,14 +473,14 @@ useEffect(() => {
               <div className="flex justify-between items-center gap-5">
                 <p>จำนวนเงิน</p>
                 <div className="w-[50%] flex justify-end items-center gap-5">
-                <button className="w-[35px] h-[35px] bg-[#FF2929] rounded" onClick={() => handleDecrement()}></button>
-                <input
-                  type="number"
-                  value={completedNumbers.length === 0 ? 0 : price}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
-                />
-                <button className="w-[35px] h-[35px] bg-[#00871E] rounded" onClick={() => handleIncrement()}></button>
+                  <button className="w-[35px] h-[35px] bg-[#FF2929] rounded" onClick={() => handleDecrement()}></button>
+                  <input
+                    type="number"
+                    value={completedNumbers.length === 0 ? 0 : price}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
+                  />
+                  <button className="w-[35px] h-[35px] bg-[#00871E] rounded" onClick={() => handleIncrement()}></button>
 
                 </div>
               </div>
@@ -444,7 +503,7 @@ useEffect(() => {
           </div>
         </div>
       )}
-      <div className="grid  grid-flow-col gap-4 p-5">
+      <div className="grid  grid-flow-col gap-4 ps-5 pe-5 pb-5 pt-2">
         <div className="row-span-3 w-full px-3 max-lg:hidden">
           <div className="flex justify-center items-center font-bold text-white text-[1.25rem] h-[60px] w-full bg-[#FF8329] rounded-lg mb-6">
             <h1>ดึงโพย</h1>
@@ -453,36 +512,51 @@ useEffect(() => {
             <div className="container-bet flex justify-between item-center relative">
               <h1 className="betting absolute left-3"> รายการแทง</h1>
               <div className="rounded-full bg-[#4400A5] text-white px-[12px] py-[3px] right-3 absolute">
-                {completedNumbers.length} รายการ
+              <div>{totalItems} รายการ</div>
+
               </div>
             </div>
             <hr className="my-10" />
             <div className="list-menuorder py-2">
-              {completedNumbers.map((numberSet, index) => (
-                <div
-                  key={index}
-                  className="flex gap-3 items-center justify-between px-5"
-                >
-                  <h1>{numberSet}</h1>
-                  <button
-                    className="text-[#FF2929] text-[18px]"
-                    onClick={() => handleDelete(index)}
-                  >
-                    <BiTrashAlt />
-                  </button>
-                </div>
-              ))}
-            </div>
+  {/* Check for "สี่ตัวบน" */}
+  {completedNumbers["สี่ตัวบน"].length > 0 && (
+    <div className="title-betting">สี่ตัวบน</div>
+  )}
+  {completedNumbers["สี่ตัวบน"].map((numberSet, index) => (
+    <div key={index} className="flex gap-3 items-center justify-between px-5">
+      <h1>{numberSet}</h1>
+      {/* Delete Button */}
+      <button className="text-[#FF2929] text-[18px]" onClick={() => handleDelete(index)}>
+        <BiTrashAlt />
+      </button>
+    </div>
+  ))}
+
+  {/* Check for "สี่ตัวโต๊ด" */}
+  {completedNumbers["สี่ตัวโต๊ด"].length > 0 && (
+    <div className="title-betting">สี่ตัวโต๊ด</div>
+  )}
+  {completedNumbers["สี่ตัวโต๊ด"].map((numberSet, index) => (
+    <div key={index} className="flex gap-3 items-center justify-between px-5">
+      <h1>{numberSet}</h1>
+      {/* Delete Button */}
+      <button className="text-[#FF2929] text-[18px]" onClick={() => handleDelete(index)}>
+        <BiTrashAlt />
+      </button>
+    </div>
+  ))}
+</div>
+
 
             <div className="menu-btn grid gap-2">
               <button
-                className={`custom ${ completedNumbers.length === 0 ? "disabled" : "" }`} onClick={() => {if (completedNumbers.length > 0) { setShowModal(true); }}}
+                className={`custom ${completedNumbers.length === 0 ? "disabled" : ""}`} onClick={() => { if (completedNumbers.length > 0) { setShowModal(true); } }}
                 disabled={completedNumbers.length === 0}
                 style={{ opacity: completedNumbers.length === 0 ? 0.3 : 1 }} >
                 ใส่ราคา/ส่งโพย
               </button>
               <button
-                className={`delete ${ completedNumbers.length === 0 ? "disabled" : "" }`}
+                className={`delete ${completedNumbers.length === 0 ? "disabled" : ""}`}
                 disabled={completedNumbers.length === 0}
                 style={{ opacity: completedNumbers.length === 0 ? 0.3 : 1 }}
                 onClick={() => DeleteAll(completedNumbers)}
@@ -497,26 +571,23 @@ useEffect(() => {
           <div className="playbtn">
             <div className="grid gap-4  grid-cols-3">
               <button
-                className={`btn ${
-                  activeButton === "เลือกกดเอง" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกกดเอง")}
               >
                 <BiGridAlt /> เลือกกดเอง
               </button>
 
               <button
-                className={`btn ${
-                  activeButton === "เลือกแผงเลข" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแผงเลข" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแผงเลข")}
               >
                 <BiGridAlt /> เลือกแผงเลข
               </button>
               <button
-                className={`btn ${
-                  activeButton === "เลือกแบบเลขวิน" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแบบเลขวิน" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแบบเลขวิน")}
               >
                 <BiGridAlt /> เลือกแบบเลขวิน
@@ -525,13 +596,11 @@ useEffect(() => {
           </div>
 
           <div
-            className={`container-putnumber ${
-              activeButton === "เลือกกดเอง" ? "" : "hidden"
-            } ${
-              activeButton === "เลือกกดเอง"
+            className={`container-putnumber ${activeButton === "เลือกกดเอง" ? "" : "hidden"
+              } ${activeButton === "เลือกกดเอง"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
             {activeButton === "เลือกกดเอง" && (
               <section>
@@ -543,9 +612,8 @@ useEffect(() => {
                 <div className="custom-container">
                   <div className="grid gap-4 grid-cols-3">
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สี่ตัวบน", 4)}
                     >
                       <BiGridAlt /> สี่ตัวบน{" "}
@@ -553,9 +621,8 @@ useEffect(() => {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
+                        }`}
                       onClick={() => active("สี่ตัวโต๊ด", 4)}
                     >
                       <BiGridAlt /> สี่ตัวโต๊ด{" "}
@@ -563,9 +630,8 @@ useEffect(() => {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวบน", 3)}
                     >
                       <BiGridAlt /> สามตัวบน{" "}
@@ -573,9 +639,8 @@ useEffect(() => {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวโต๊ด", 3)}
                     >
                       <BiGridAlt /> สามตัวโต๊ด{" "}
@@ -583,9 +648,8 @@ useEffect(() => {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวล่าง", 3)}
                     >
                       <BiGridAlt /> สามตัวล่าง{" "}
@@ -593,36 +657,32 @@ useEffect(() => {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สองตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สองตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สองตัวบน", 2)}
                     >
                       <BiGridAlt /> สองตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สองตัวล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สองตัวล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("สองตัวล่าง", 2)}
                     >
                       <BiGridAlt /> สองตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("วิ่งบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("วิ่งบน") ? "active" : ""
+                        }`}
                       onClick={() => active("วิ่งบน", 1)}
                     >
                       <BiGridAlt /> วิ่งบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("วิ่งล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("วิ่งล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("วิ่งล่าง", 1)}
                     >
                       <BiGridAlt /> วิ่งล่าง{" "}
@@ -640,13 +700,12 @@ useEffect(() => {
                     </div>
 
                     <div
-                      className={`left-content flex flex-col justify-center items-center ${
-                        activeButtons.includes("วิ่งบน") ||
-                         activeButtons.includes("วิ่งล่าง") ||
-                           activeHuy19
-                          ? "hidden"
-                          : ""
-                      }`}
+                      className={`left-content flex flex-col justify-center items-center ${activeButtons.includes("วิ่งบน") ||
+                        activeButtons.includes("วิ่งล่าง") ||
+                        activeHuy19
+                        ? "hidden"
+                        : ""
+                        }`}
                     >
                       <label className="inline-flex items-center cursor-pointer">
                         <input
@@ -662,21 +721,21 @@ useEffect(() => {
                         </div>
                       </label>
                     </div>
-                   
+
                   </div>
                   <div className={`btn-con flex justify-center items-center gap-[8px]
-                  ${
-                    activeButtons.includes("สองตัวล่าง") || activeButtons.includes("สองตัวบน") ? "":"hidden"
-                  }`}>
+                  ${activeButtons.includes("สองตัวล่าง") || activeButtons.includes("สองตัวบน") ? "" : "hidden"
+                    }`}>
 
-                      <button className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""}`} onClick={() => handleHuy19("19 ประตู",1)}>19 ประตู</button>
-                      <button className={`btn ${activeHuy19 === "รูดหน้า" ? "active" : ""}`} onClick={() => handleHuy19("รูดหน้า",1)}>รูดหน้า</button>
-                      <button className={`btn ${activeHuy19 === "รูดหลัง" ? "active" : ""}`} onClick={() => handleHuy19("รูดหลัง",1)}>รูดหลัง</button>
-                    </div>
+                    <button className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""}`} onClick={() => handleHuy19("19 ประตู", 1)}>19 ประตู</button>
+                    <button className={`btn ${activeHuy19 === "รูดหน้า" ? "active" : ""}`} onClick={() => handleHuy19("รูดหน้า", 1)}>รูดหน้า</button>
+                    <button className={`btn ${activeHuy19 === "รูดหลัง" ? "active" : ""}`} onClick={() => handleHuy19("รูดหลัง", 1)}>รูดหลัง</button>
+                  </div>
                   <div className="">
                     <NumpadLotto
                       addCompletedNumbers={addCompletedNumbers}
                       numberOfDigits={numberOfDigits}
+                      activeButtons={activeButtons} // Pass all active buttons from Play component
                     />
                   </div>
                 </div>
@@ -684,33 +743,25 @@ useEffect(() => {
             )}
           </div>
           <div
-            className={`container-putnumber ${
-              activeButton !== "เลือกแผงเลข" ? "hidden" : ""
-            } ${
-              activeButton === "เลือกแผงเลข"
+            className={`container-putnumber ${activeButton !== "เลือกแผงเลข" ? "hidden" : ""
+              } ${activeButton === "เลือกแผงเลข"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
             <Title2 addCompletedNumber={addCompletedNumber} />
           </div>
 
           <div
-            className={`container-putnumber ${
-              activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
-            } ${
-              activeButton === "เลือกแบบเลขวิน"
+            className={`container-putnumber ${activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
+              } ${activeButton === "เลือกแบบเลขวิน"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
             <Title3 />
           </div>
         </div>
-
-        {/* <div className="col-span-2 ...">
-          <NumpadLotto addCompletedNumbers={addCompletedNumbers} />
-        </div> */}
         <div className="list-responsive mt-auto rounded-md">
           <div className="container-bet flex gap-2 item-center justify-center">
             <h1 className="betting mt-[0.2rem]">รายการแทง</h1>
@@ -719,9 +770,8 @@ useEffect(() => {
             </div>
           </div>
           <button
-            className={`list-btn ${
-              completedNumbers.length === 0 ? "disabled" : ""
-            }`}
+            className={`list-btn ${completedNumbers.length === 0 ? "disabled" : ""
+              }`}
             onClick={() => {
               if (completedNumbers.length > 0) {
                 setShowModal(true);

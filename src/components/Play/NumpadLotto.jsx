@@ -2,38 +2,38 @@ import PropTypes from "prop-types";
 import "./numpad.css";
 import { useState,useEffect } from "react";
 
-function NumpadLotto({ addCompletedNumbers, numberOfDigits }) {
+function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons }) {
     const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
-
+  
     useEffect(() => {
-        setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
+      setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
     }, [numberOfDigits]);
-
+  
     useEffect(() => {
-        if (numbers.every(num => num !== "")) {
-            addCompletedNumbers(numbers.join(""));
-            setNumbers(Array(numberOfDigits).fill("")); // Reset the numbers array
-        }
-    }, [numbers, addCompletedNumbers, numberOfDigits]);
-
+      if (numbers.every(num => num !== "")) {
+        addCompletedNumbers(numbers.join(""), activeButtons); // Pass activeButtons to addCompletedNumbers
+        setNumbers(Array(numberOfDigits).fill("")); // Reset the numbers array
+      }
+    }, [numbers, addCompletedNumbers, numberOfDigits, activeButtons]);
+  
     const handleAddNumber = (number) => {
-        const index = numbers.findIndex(num => num === ""); 
-        if (index !== -1) {
-            const updatedNumbers = [...numbers];
-            updatedNumbers[index] = number;
-            setNumbers(updatedNumbers);
-        }
+      const index = numbers.findIndex(num => num === "");
+      if (index !== -1) {
+        const updatedNumbers = [...numbers];
+        updatedNumbers[index] = number;
+        setNumbers(updatedNumbers);
+      }
     };
-
+  
     const handleDeleteNumber = () => {
-        const index = numbers.slice().reverse().findIndex(num => num !== "");
-        if (index !== -1) {
-            const updatedNumbers = [...numbers];
-            updatedNumbers[numbers.length - 1 - index] = "";
-            setNumbers(updatedNumbers);
-        }
+      const index = numbers.slice().reverse().findIndex(num => num !== "");
+      if (index !== -1) {
+        const updatedNumbers = [...numbers];
+        updatedNumbers[numbers.length - 1 - index] = "";
+        setNumbers(updatedNumbers);
+      }
     };
-    
+  
     return (
         <div>
             <div className="numpad-con ">
@@ -99,8 +99,8 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits }) {
     );
 }
 NumpadLotto.propTypes = {
-    addCompletedNumbers: PropTypes.func.isRequired, // Require addCompletedNumbers to be a function
-    numberOfDigits: PropTypes.number.isRequired, // Require numberOfDigits to be a number
+    addCompletedNumbers: PropTypes.func.isRequired,
+    numberOfDigits: PropTypes.number.isRequired,
+    activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired, // Adjusted prop type
   };
-
 export default NumpadLotto;
