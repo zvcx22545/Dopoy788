@@ -48,10 +48,10 @@ function Topup() {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-4xl pb-8">
+        {/* <div className="divider divider-start text-4xl pb-8">
           <IoIosBackspace />
           ย้อนกลับ
-        </div>
+        </div> */}
       </div>
 
       
@@ -98,7 +98,7 @@ function Topup() {
         // h-[267px]
     <div className="w-full">
         <div className="w-full"> 
-          <div className="text-center text-[#4400A5] text-[2rem] font-bold mb-5">
+          <div className="text-center text-[#FF8329] text-[2rem] font-bold mb-5">
             <p>เติมเงิน</p>
           </div>
           <div className="text-center bg-[#FF292924] rounded-xl p-10 m-2">
@@ -226,20 +226,20 @@ function Topup() {
       <div className="grid grid-cols-2 justify-between gap-5 p-10 max-md:p-4">
         <div className="flex gap-3">
           <button
-            className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-[150px] py-1 rounded-lg "
+            className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-[150px] py-[7px] rounded-lg "
             onClick={handleTopupClick}
           >
             เติมเงิน
           </button>
           <button
-            className="bg-[#FF8329] text-white border border-[#FF8329] hover:bg-white hover:text-[#FF8329] flex justify-center items-center w-[150px] py-1 rounded-lg "
+            className="bg-[#FF8329] text-white border border-[#FF8329] hover:bg-white hover:text-[#FF8329] flex justify-center items-center w-[150px] py-[7px] rounded-lg "
             onClick={handleWithdrawClick}
           >
             ถอนเงิน
           </button>
         </div>
         {showTopup &&(
-        <button className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-[150px] py-1 rounded-lg ml-auto ">
+        <button className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-[150px] py-[7px] rounded-lg ml-auto ">
           อัปโหลดสลิป
         </button>
         )}

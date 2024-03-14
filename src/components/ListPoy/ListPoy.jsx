@@ -96,29 +96,29 @@ function Listpoy(){
                     </div>
                 )}
       <div className="flex flex-col p-5">
-        <div className="divider divider-start text-4xl pb-8">
+        {/* <div className="divider divider-start text-4xl pb-8">
           <IoIosBackspace />
           ย้อนกลับ
-        </div>
+        </div> */}
         </div>
         <div className="grid justify-center text-center pb-[2rem]"  >
             <h1 className="text-[#4400A5] text-[2rem] font-bold mb-14">โพยหวย</h1>
             <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-lg:mx-auto max-md:grid-cols-2">
-                <div className="border border-[#4400A5] h-[110px] w-[100%] rounded text-left p-5">
-                    <p>ยกแทงวันนี้</p>
-                    <h1>฿ 10</h1>
+                <div className="border bg-[#FF8329] text-white h-[110px] w-[100%] rounded text-left p-5">
+                    <p className="text-2xl font-bold">ยกแทงวันนี้</p>
+                    <h1 className="text-2xl font-bold">฿ 10</h1>
                 </div>
-                <div className="border border-[#4400A5] h-[110px] w-[100%] rounded text-left p-5">
-                    <p>โพยวันนี้</p>
-                    <h1>1</h1>
+                <div className="border bg-[#FF8329]  text-white h-[110px] w-[100%] rounded text-left p-5">
+                    <p className="text-2xl font-bold">โพยวันนี้</p>
+                    <h1 className="text-2xl font-bold">1</h1>
                 </div>
-                <div className="border border-[#4400A5] h-[110px] w-[100%] rounded text-left p-5">
-                    <p>ออกแล้ว</p>
-                    <h1>0</h1>
+                <div className="border bg-[#4400A5]  text-white h-[110px] w-[100%] rounded text-left p-5">
+                    <p className="text-2xl font-bold">ออกแล้ว</p>
+                    <h1 className="text-2xl font-bold">0</h1>
                 </div>
-                <div className="border border-[#4400A5] h-[110px] w-[100%] rounded text-left p-5">
-                    <p>รอผลออก</p>
-                    <h1>1</h1>
+                <div className="border bg-[#4400A5]  text-white h-[110px] w-[100%] rounded text-left p-5">
+                    <p className="text-2xl font-bold">รอผลออก</p>
+                    <h1 className="text-2xl font-bold">1</h1>
                 </div>
             </div>
             <div className="grid grid-cols-4 my-14 gap-5 mr-auto max-lg:mx-auto max-md:grid-cols-2">

@@ -228,8 +228,8 @@ th, td {
 .btn.active
 {
   color: #FFF;
-    background-color: var(--Primary-color);
-    border-color: var(--Primary-color)
+    background-color: var(--Primary-color) !important;
+    border-color: var(--Primary-color) !important;
 }
 
 /* custom sweetalert */
@@ -277,4 +277,19 @@ th, td {
   {
     padding-left:0.5rem ;
   }
+}
+
+.backnumber
+{
+  border: 2px solid #FF8329 !important;
+  background-color: #FF8329 !important;
+  color: white !important;
+
+}
+.backnumber:hover
+{
+  border: 2px solid #4400A5 !important;
+  background-color: #4400A5 !important;
+  color: white !important;
+
 }

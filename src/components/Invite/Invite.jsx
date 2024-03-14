@@ -26,18 +26,18 @@ function Invite(){
         <section>
             <Navbar/>
             <div className="flex flex-col p-5">
-                <div className="divider divider-start text-4xl pb-8">
+                {/* <div className="divider divider-start text-4xl pb-8">
                 <IoIosBackspace />
                 ย้อนกลับ
-                </div>
+                </div> */}
             </div>
-            <div className="flex justify-center items-center gap-10 p-6  max-md:justify-between">
+            <div className="flex justify-center items-center gap-10 p-6  max-md:flex-col">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#4400A5" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 bg-[#4400A5] rounded p-1 text-white shadow-lg hover:text-[#FF8329] max-md:hidden">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59" />
                 </svg>  
                 <p className="bg-[#4400A51F] rounded-lg w-[65%] max-md:w-auto max-md:px-5 h-[40px] flex justify-start items-center px-10 shadow-lg">{inviteLink}</p>
                 <button
-                    className={`bg-[#4400A5] flex text-white border border-[#4400A5] shadow-lg hover:bg-white hover:text-[#4400A5] px-2 py-[7px] rounded-lg justify-center items-center gap-2 ${copied ? 'bg-white-text-purple' : ''}`}
+                    className={`bg-[#4400A5] flex max-md:w-[65%] text-white border border-[#4400A5] shadow-lg hover:bg-white hover:text-[#4400A5] px-2 py-[7px] rounded-lg justify-center items-center gap-2 ${copied ? 'bg-white-text-purple' : ''}`}
                     onClick={copyText}
                 >
                     {/* เปลี่ยนไอคอนเป็นไอคอนใหม่ */}

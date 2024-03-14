@@ -4,6 +4,9 @@ import { logoutUser, fetchUser } from '../reducers/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import { motion } from "framer-motion";
+import "./Navbar.css"
+
 
 function Navbar() {
   const redirect = useNavigate();
@@ -60,43 +63,34 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar max-md:justify-between shadow-md">
+    <div className="navbar justify-between shadow-md">
       <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
 
-      <div className="navbar-center hidden lg:flex lg:mx-auto">
-        <ul className="menu menu-horizontal px-1">
-          <Link to="/Home"><li><a className="text-lg">เช็คฉลากกินแบ่ง</a></li></Link>
-          <Link to="/Blog"><li><a className="text-lg">บทความ</a></li></Link>
-        </ul>
-      </div>
+      
       <div className="container-respon gap-3">
-      <button onClick={() => setIsModalOpen(true)} className="dropdown dropdown-end ml-5 md:hidden">
-      <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 ">
-            <div className="div">{currentUser ? currentUser.username : "Guest"}</div>
-            <div className="credit-con flex items-center gap-2">
-              <div className="credit gap-2">50 </div>
+      <button  className="dropdown dropdown-end ml-5 md:hidden ]">
+        <Link to="/Topup">
+      <div tabIndex={0} role="button" className="btn first-letter:!important w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn ">
+            {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
+            <div className="credit-con flex items-center gap-2 text-white">
+              <div className="credit gap-2 ">50.00</div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
           </div>
+          </Link>
         </button>
         <div className="md:hidden">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={() => setIsModalOpen(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </div>
-          <ul tabIndex={0} className="menu menu-sm bg-white right-0 text-black dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
-            <Link to="/Home"><li><a>เช็คฉลากกินแบ่ง</a></li></Link>
-            <Link to="/Blog"><li><a>บทความ</a></li></Link>
-          </ul>
-        </div>
       </div>
       </div>
 
       <div className="dropdown dropdown-end ml-5 hidden md:block">
           <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 ">
-            <div className="div">{currentUser ? currentUser.username : "Guest"}</div>
+            {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
             <div className="credit-con flex items-center gap-2">
-              <div className="credit gap-2">50 </div>
+              <div className="credit gap-2 text-[20px] font-semibold">50.00 </div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
           </div>
@@ -106,6 +100,12 @@ function Navbar() {
             <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
             <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
             <li><a>ข้อมูลส่วนตัว</a></li>
+            {/* <div className="navbar-center hidden lg:flex lg:mx-auto"> */}
+        {/* <ul className="menu menu-horizontal px-1"> */}
+          {/* <Link to="/Home"><li><a className="">เช็คฉลากกินแบ่ง</a></li></Link> */}
+          <Link to="/Blog"><li><a className="">บทความ</a></li></Link>
+        
+      {/* </div> */}
             <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
           </ul>
         </div>
@@ -118,10 +118,10 @@ function Navbar() {
       {isModalOpen && (
         <div className="fixed inset-0 border-none rounded-none z-50 flex items-center justify-center bg-[#fff] bg-opacity-100 ">
           <div className="nav-content p-4 rounded-lg shadow-md right-0 w-52">
-          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 ">
-            <div className="div">{currentUser ? currentUser.username : "Guest"}</div>
-            <div className="credit-con flex items-center gap-2">
-              <div className="credit gap-2">50 </div>
+          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn">
+            {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
+            <div className="credit-con flex items-center gap-2 text-white">
+              <div className="credit gap-2">50.00 </div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
           </div>
@@ -131,6 +131,8 @@ function Navbar() {
               <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
               <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
               <li><a>ข้อมูลส่วนตัว</a></li>
+              <Link to="/Blog"><li><a className="">บทความ</a></li></Link>
+
               <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
             </ul>
             <button className="absolute top-2 right-2" onClick={() => setIsModalOpen(false)}>
@@ -142,9 +144,6 @@ function Navbar() {
         </div>
       )}
 
-
-
-     
     </div>
   )
 }
