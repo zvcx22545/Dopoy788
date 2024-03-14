@@ -464,6 +464,29 @@ function Play() {
     setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
   };
 
+  const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        const thaiMonths = [
+            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
+            'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
+            'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+          ];
+      
+          // Get the current date
+          const now = new Date();
+      
+          // Convert to Thai Buddhist year by adding 543 years to the Gregorian year
+          const thaiYear = now.getFullYear() + 543;
+      
+          // Get the month in Thai
+          const monthThai = thaiMonths[now.getMonth()];
+      
+          // Format the date as day month(year in Thai)
+          const formattedDate = `${now.getDate()} ${monthThai} ${thaiYear}`;
+                setCurrentDate(formattedDate);
+        }, []);
+
   useEffect(() => {
     const countdownDate = new Date(Date.now() + 8000 * 60 * 1000); // 2 minutes from now
     const interval = setInterval(() => {
@@ -511,7 +534,7 @@ function Play() {
             <img src={chosenImage} alt="Vietnam flag" className="h-[50px]" />
             <p className="text-[#4400A5] text-3xl">
               {displayText} <br />
-              <p className="text-[#000] text-xl">งวดวันที่ 14 ธันวาคม 2023</p>
+              <p className="text-[#000] text-xl">งวดวันที่ {currentDate}</p>
             </p>
           </aside>
           <nav className="md:place-self-center md:justify-self-end bg-primary rounded-full drop-shadow-lg">

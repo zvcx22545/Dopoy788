@@ -107,7 +107,7 @@ export default function Roundyeekee() {
                 countdowncon = "bg-black"
                 TextTitle = "text-white";
                 TextsubTitle = "text-white";
-                Animate = "animate-bounce animate-infinite animate-duration-[800ms] animate-delay-100 animate-ease-linear";
+                // Animate = "animate-bounce animate-infinite animate-duration-[800ms] animate-delay-100 animate-ease-linear";
 
             } else {
                 cardClass = "bg-white";
