@@ -257,3 +257,24 @@ th, td {
 {
   font-size: clamp(1.25rem, 1.1364rem + 0.303vw, 1.5rem);
 }
+.title-betting
+{
+  font-weight: 600;
+  text-align: left;
+  padding: 0.2rem;
+  padding-left: 1rem;
+  font-size: clamp(1rem, 1.0568rem + -0.1515vw, 0.875rem);
+  color: white;
+  background-color: #4400A5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+@media (max-width:600px)
+{
+  .headTable
+  {
+    padding-left:0.5rem ;
+  }
+}
