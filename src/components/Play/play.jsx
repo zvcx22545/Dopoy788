@@ -222,8 +222,6 @@ function Play() {
     setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
   };
 
-
-
   const handlePriceChange = (newPrice) => {
     setPrice(newPrice);
     setQuantity(newPrice);
