@@ -303,19 +303,21 @@ function Play() {
     }
     return multiples;
   }
-
   function HuayroodBacks(digit) {
-    const multiples = [];
-    if (digit >= 0 && digit <= 9) {
-      for (let i = 0; i < 10; i++) {
-        const multiple =
-          (digit === 0 ? "0" : digit.toString()) +
-          i.toString().padStart(1, "0");
-        multiples.push(multiple);
-      }
+    if (digit < 0 || digit > 9) {
+      console.error("Please enter a digit between 0 and 9.");
+      return [];
     }
-    return multiples;
+  
+    let numbers = [];
+    const parint = parseInt(digit)
+  for (let i = 0; i < 10; i++) { // Ensure loop starts from 0
+    let number = (i * 10) + parint; // Multiply loop index by 10, then add the input digit
+    numbers.push(number.toString().padStart(2, '0')); // Convert to string, ensuring two digits
   }
+    return numbers;
+  }
+
 
   console.log();
 
