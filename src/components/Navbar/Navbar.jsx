@@ -87,7 +87,7 @@ function Navbar() {
       </div>
 
       <div className="dropdown dropdown-end ml-5 hidden md:block">
-          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 ">
+          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn">
             {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
             <div className="credit-con flex items-center gap-2">
               <div className="credit gap-2 text-[20px] font-semibold">50.00 </div>

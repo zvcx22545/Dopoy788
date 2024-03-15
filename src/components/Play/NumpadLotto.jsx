@@ -88,8 +88,8 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons }) {
                             </div>
                         </button>
                         <button className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970] " type="button" disabled="">
-                            <div className="flex items-center justify-center">
-                                <span></span>
+                            <div className="flex items-center justify-center text-[#4400A5]">
+                                <span>EN</span>
                             </div>
                         </button>
                     </div>

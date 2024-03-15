@@ -81,7 +81,15 @@ function Play() {
   }, [completedNumbers]);
 
   const addCompletedNumbers = (digit, activeButtons) => {
-    const newNumbers = { ...completedNumbers }; // Copy the completedNumbers object
+    if (!activeButtons) {
+      console.error("activeButtons is undefined or null");
+      return;
+    }
+    const newNumbers = { ...completedNumbers };
+    if (activeButton === 0) {
+      // ถ้า activeButton เท่ากับ 0 ให้เพิ่ม digit ลงใน Obj สี่ตัวบน[]
+      newNumbers['สี่ตัวบน'].push(digit);
+    } // Copy the completedNumbers object
 
     activeButtons.forEach((activeButton) => {
       // Loop over each activeButton
@@ -214,9 +222,7 @@ function Play() {
     setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
   };
 
-  const addCompletedNumber = (number) => {
-    setCompletedNumbers((prevNumbers) => [...prevNumbers, number]);
-  };
+
 
   const handlePriceChange = (newPrice) => {
     setPrice(newPrice);
@@ -253,9 +259,41 @@ function Play() {
       setIsReverseChecked(false);
     }
   };
+
+  const addNumberFromButtonClicked = (digit, activeButton) => {
+    if (activeButton === undefined || activeButton === null) {
+      console.error("activeButton is undefined or null");
+      return;
+    }
+  
+    const newNumbers = { ...completedNumbers };
+    if (activeButton === 0) {
+      newNumbers["สี่ตัวบน"].push(digit);
+    }
+    else if (activeButton === 1) {
+      newNumbers["สามตัวโต๊ด"].push(digit);
+    }
+    else if (activeButton === 2) {
+      newNumbers["สามตัวล่าง"].push(digit);
+    }
+    else if (activeButton === 3) {
+      newNumbers["สองตัวบน"].push(digit);
+    }
+    else if (activeButton === 4) {
+      newNumbers["สองตัวล่าง"].push(digit);
+    }
+    else if (activeButton === 5) {
+      newNumbers["วิ่งบน"].push(digit);
+    }
+    else if (activeButton === 6) {
+      newNumbers["วิ่งล่าง"].push(digit);
+    }
+    setCompletedNumbers(newNumbers);
+
+  
   // const handleOpenHuay19 = () => {
   //   setOpenhuay19(!Openhuay19); // Toggle the value
-  // };
+  };
 
   function Huaysroodnar(number) {
     const multiples = [];
@@ -1420,7 +1458,7 @@ function Play() {
                 : ""
             }`}
           >
-            <Title2 addCompletedNumber={addCompletedNumber} />
+               <Title2 addCompletedNumber={addNumberFromButtonClicked} />
           </div>
 
           <div
