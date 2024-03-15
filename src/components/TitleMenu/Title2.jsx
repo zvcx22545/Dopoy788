@@ -18,12 +18,24 @@ function getPageRangeC2(currentPage, numbersPerPage) {
     .padStart(3, "0")}`;
 }
 
-function Title2({ addCompletedNumber }) {
+const TitleButton = ({ isActive, onClick, label, badge }) => (
+  <button
+    className={`btn ${isActive ? "active" : ""}`}
+    onClick={onClick}
+  >
+    <BiGridAlt />
+    {label}
+    <div className="badge badge-primary">{badge}</div>
+  </button>
+);
+
+const Title2 = ({ addCompletedNumber }) => {
   const [activeButton, setActiveButton] = useState(0);
-  const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  let [numbersPerPage, setNumbersPerPage] = useState(1000); // จำนวนเลขต่อหน้า
-  const [isReverseChecked, setIsReverseChecked] = useState(false); // State for checkbox
+  const [numbersPerPage, setNumbersPerPage] = useState(1000);
+  const [isReverseChecked, setIsReverseChecked] = useState(false);
+  const [selectedNumbers, setSelectedNumbers] = useState([]);
+
   const reverseNumbers = (number) => {
     const strNumber = number.toString();
     const permutations = [];
@@ -126,16 +138,14 @@ function Title2({ addCompletedNumber }) {
       </div>
       <div className="grid grid-cols-3 gap-4  max-md:grid-cols-1">
         {[0, 1, 2, 3, 4, 5, 6].map((buttonIndex) => (
-          <button
+          <TitleButton
             key={buttonIndex}
-            className={`btn ${activeButton === buttonIndex ? "active" : ""}`}
+            isActive={activeButton === buttonIndex}
             onClick={() => {
               setActiveButton(buttonIndex);
               setCurrentPage(1);
             }}
-          >
-            <BiGridAlt />
-            {(() => {
+            label={(() => {
               switch (buttonIndex) {
                 case 0:
                   return "สี่ตัวบน";
@@ -155,8 +165,8 @@ function Title2({ addCompletedNumber }) {
                   return "";
               }
             })()}
-            <div className="badge badge-primary">1,000</div>
-          </button>
+            badge="1,000"
+          />
         ))}
       </div>
       <div className="gap-4 w-full flex justify-between">
@@ -264,37 +274,38 @@ function Title2({ addCompletedNumber }) {
         </div>
       )}
 
-{[0, 1, 2].includes(activeButton) && (
+      {[0, 1, 2].includes(activeButton) && (
   <div className="grid grid-cols-1 gap-4 mt-10">
     <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
       {currentNumbers.map((number) => (
         <button
-          key={number}
-          className="btn w-[60px] mx-auto"
-          onClick={() => {
-            // Check if the checkbox is checked
-            if (isReverseChecked) {
-              // If checked, generate reversed numbers for this number and send them
-              const reversedNumbers = reverseNumbers(
-                activeButton === 0
-                  ? number.toString().padStart(4, "0")
-                  : number.toString().padStart(3, "0")
-              );
-              reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber));
-            } else {
-              // If not checked, just send the current number
-              addCompletedNumber(
-                activeButton === 0
-                  ? number.toString().padStart(4, "0")
-                  : number.toString().padStart(3, "0")
-              );
-            }
-          }}
-        >
-          {activeButton === 0
-            ? number.toString().padStart(4, "0")
-            : number.toString().padStart(3, "0")}
-        </button>
+  key={number}
+  className="btn w-[60px] mx-auto"
+  onClick={() => {
+    // Check if the checkbox is checked
+    if (isReverseChecked) {
+      // If checked, generate reversed numbers for this number and send them
+      const reversedNumbers = reverseNumbers(
+        activeButton === 0
+          ? number.toString().padStart(4, "0")
+          : number.toString().padStart(3, "0")
+      );
+      reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber, activeButton));
+    } else {
+      // If not checked, just send the current number
+      addCompletedNumber(
+        activeButton === 0
+          ? number.toString().padStart(4, "0")
+          : number.toString().padStart(3, "0"),
+        activeButton
+      );
+    }
+  }}
+>
+  {activeButton === 0
+    ? number.toString().padStart(4, "0")
+    : number.toString().padStart(3, "0")}
+</button>
       ))}
     </div>
   </div>
@@ -315,13 +326,14 @@ function Title2({ addCompletedNumber }) {
                       ? number.toString().padStart(2, "0")
                       : number.toString().padStart(2, "0")
                   );
-                  reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber));
+                  reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber,activeButton));
                 } else {
                   // If not checked, just send the current number
                   addCompletedNumber(
                     activeButton === 0
                       ? number.toString().padStart(2, "0")
                       : number.toString().padStart(2, "0")
+                      ,activeButton
                   );
                 }
               }}
@@ -341,10 +353,10 @@ function Title2({ addCompletedNumber }) {
         onClick={() => {
           // Check if the checkbox is checked
           if (isReverseChecked) {
-            addCompletedNumber(number);
+            addCompletedNumber(number,activeButton);
           } else {
             // If not checked, just send the current number
-            addCompletedNumber(number);
+            addCompletedNumber(number,activeButton);
           }
         }}
       >
@@ -357,7 +369,14 @@ function Title2({ addCompletedNumber }) {
   );
 }
 
+TitleButton.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  badge: PropTypes.string.isRequired,
+};
+
 Title2.propTypes = {
-  addCompletedNumber: PropTypes.func.isRequired, // Require addCompletedNumbers to be a function
+  addCompletedNumber: PropTypes.func.isRequired,
 };
 export default Title2;

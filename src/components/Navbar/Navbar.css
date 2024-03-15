@@ -16,8 +16,9 @@
 .bg-btn
 {
     background-color: #ff8329 !important;
-    color: white;
+    color: white !important;
     font-weight: 600;
     font-size: 20px;
     border: none !important;;
 }
+
