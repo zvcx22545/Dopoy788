@@ -1,39 +1,49 @@
 import PropTypes from "prop-types";
 import "./numpad.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons }) {
+function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnButtonClick }) {
     const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
-  
+    const [enButtonClicked, setEnButtonClicked] = useState(false);
+
+
     useEffect(() => {
-      setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
+        setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
     }, [numberOfDigits]);
-  
+
     useEffect(() => {
-      if (numbers.every(num => num !== "")) {
-        addCompletedNumbers(numbers.join(""), activeButtons); // Pass activeButtons to addCompletedNumbers
-        setNumbers(Array(numberOfDigits).fill("")); // Reset the numbers array
-      }
-    }, [numbers, addCompletedNumbers, numberOfDigits, activeButtons]);
-  
+        if (numbers.every(num => num !== "") && enButtonClicked) { // Check if numbers are complete and EN button is clicked
+            addCompletedNumbers(numbers.join(""), activeButtons, enButtonClicked); // Pass activeButtons and enButtonClicked to addCompletedNumbers
+            setNumbers(Array(numberOfDigits).fill("")); // Reset the numbers array
+            setEnButtonClicked(false); // Reset enButtonClicked to false after sending data
+        }
+    }, [numbers, addCompletedNumbers, numberOfDigits, activeButtons, enButtonClicked]);
+    
+
     const handleAddNumber = (number) => {
-      const index = numbers.findIndex(num => num === "");
-      if (index !== -1) {
-        const updatedNumbers = [...numbers];
-        updatedNumbers[index] = number;
-        setNumbers(updatedNumbers);
-      }
+        const index = numbers.findIndex(num => num === "");
+        if (index !== -1) {
+            const updatedNumbers = [...numbers];
+            updatedNumbers[index] = number;
+            setNumbers(updatedNumbers);
+        }
     };
-  
+
     const handleDeleteNumber = () => {
-      const index = numbers.slice().reverse().findIndex(num => num !== "");
-      if (index !== -1) {
-        const updatedNumbers = [...numbers];
-        updatedNumbers[numbers.length - 1 - index] = "";
-        setNumbers(updatedNumbers);
-      }
+        const index = numbers.slice().reverse().findIndex(num => num !== "");
+        if (index !== -1) {
+            const updatedNumbers = [...numbers];
+            updatedNumbers[numbers.length - 1 - index] = "";
+            setNumbers(updatedNumbers);
+        }
     };
-  
+
+    const handleEnButtonClick = () => {
+        setEnButtonClicked(true);
+        console.log(enButtonClicked);
+        onEnButtonClick(true); // Call the onEnButtonClick function and pass true as an argument
+    };
+
     return (
         <div>
             <div className="numpad-con ">
@@ -41,15 +51,15 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons }) {
                     <div className="tab-left-con"></div>
                 </div>
                 <div className="container-number flex flex-col justify-center items-center mx-auto">
-                <div className="flex items-center justify-center gap-2 py-4">
-                    {numbers.slice(0, numberOfDigits).map((number, index) => (
-                        <div
-                            key={index}
-                            className="shownumber display-number flex h-[75px] w-[79px] rounded-lg items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
-                            {number}
-                        </div>
-                    ))}
-                </div>
+                    <div className="flex items-center justify-center gap-2 py-4">
+                        {numbers.slice(0, numberOfDigits).map((number, index) => (
+                            <div
+                                key={index}
+                                className="shownumber display-number flex h-[75px] w-[79px] rounded-lg items-center justify-center p-2 text-3xl font-medium shadow-none border-solid border-[2px] border-[#4400A5]">
+                                {number}
+                            </div>
+                        ))}
+                    </div>
                     <div className="mx-auto grid max-w-[22rem] w-full grid-cols-3 gap-2 pb-4">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                             <button key={num} className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#4400A5]" type="button" onClick={() => handleAddNumber(num)}>
@@ -87,20 +97,28 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons }) {
                                 <span>0</span>
                             </div>
                         </button>
-                        <button className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970] " type="button" disabled="">
+                        <button
+                            className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970]"
+                            type="button"
+                            onClick={handleEnButtonClick}
+                            // disabled={enButtonClicked}
+                        >
                             <div className="flex items-center justify-center text-[#4400A5]">
                                 <span>EN</span>
                             </div>
                         </button>
+
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
 NumpadLotto.propTypes = {
     addCompletedNumbers: PropTypes.func.isRequired,
     numberOfDigits: PropTypes.number.isRequired,
-    activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired, // Adjusted prop type
-  };
+    activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onEnButtonClick: PropTypes.func.isRequired, // Define onEnButtonClick prop type
+};
 export default NumpadLotto;
