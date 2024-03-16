@@ -30,3 +30,24 @@
         padding-left: 22px;
     }
 }
+
+.img-banner
+{
+    max-width: 500px;
+    width: 100%;
+    height: 300px;
+}
+
+@media (max-width:1024px)
+{
+    
+.container.grid.grid-cols-3
+{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.img-banner
+{
+    display: flex;
+    margin: 0 auto;
+}
+}
