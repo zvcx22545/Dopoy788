@@ -9,20 +9,21 @@ function Rule(){
             <div className="img-con">
                 <img className="img-banner" src="https://i.pinimg.com/originals/1f/3c/d8/1f3cd8a353017c3d0100fd0e40b1ae80.jpg" alt="" />
             </div>
-            <div className="List-con">
+            <div className="List-con my-auto">
             <div className="flex justify-center mt-5">
-                <button className="text-white bg-[#FF8329] rounded h-[60px] w-[60%] border border-[#FF8329] hover:bg-white hover:text-[#FF8329]">
+                <button className="text-white bg-[#FF8329] rounded p-2 border border-[#FF8329] hover:bg-white hover:text-[#FF8329]">
                     ดูโพย788 ดีกว่าเว็บอื่นอย่างไร 
                 </button>
             </div>
-                <div className="flex flex-row justify-center gap-4 mt-5 px-5">
-                    <Link to="/Rate" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded h-[60px] w-full border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate">
+                <div className="flex justify-center gap-4 mt-5 px-5 ">
+                   
+                    <Link to="/Rules" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate max-md:w-[100%]">
+                        กติกาและกฎต่างๆ 
+                    </button></Link> 
+                    <Link to="/Rate" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 w-[100%] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate max-md:w-[100%]">
                         อัตราการจ่าย 
                     </button></Link>
-                    <Link to="/Rules" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate px-2 ">
-                        กติกาและกฎต่างๆ 
-                    </button></Link>
-                    <Link to="" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded h-[60px] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate px-2 ">
+                    <Link to="" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate max-md:w-[100%] ">
                     โปรโมชั่นประจำเดือน 
                     </button></Link>
                 </div>

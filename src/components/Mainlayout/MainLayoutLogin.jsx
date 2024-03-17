@@ -18,7 +18,7 @@ function MainLayoutLogin() {
       {/* <Tab/> */}
       {/* <Card/> */}
       <Rule/>
-      <Resultrotte/>
+      {/* <Resultrotte/> */}
       <Redeem/>
       <br/>
       <Footer/>
