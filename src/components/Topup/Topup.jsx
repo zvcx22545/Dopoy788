@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import Swal from 'sweetalert2';
 import { IoIosBackspace } from "react-icons/io";
 import "./Topup.css";
 
@@ -9,8 +10,13 @@ function Topup() {
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState('');
   const [inviteLink1, setInviteLink1] = useState('0123456789');
   const [inviteLink2, setInviteLink2] = useState('9876543210');
+
+  const handleChange = (event) => {
+    setWithdrawAmount(event.target.value);
+  };
 
   const copyText1 = () => {
     navigator.clipboard.writeText(inviteLink1);
@@ -42,6 +48,25 @@ function Topup() {
     setShowTopup(true);
     setShowWithdraw(false);
   }, []);
+
+  const handleWithdraw = () => {
+    Swal.fire({
+      title: 'คุณต้องการที่จะทำรายการนี้หรือไม่?',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      icon: 'warning',
+      reverseButtons:true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'ทำรายการสำเร็จ',
+          text: 'โปรดรอ 24-48 ชม. ในการตรวจสอบข้อมูล',
+          icon: 'success',
+        });
+      }
+    });
+  };
 
   return (
     <section>
@@ -80,9 +105,23 @@ function Topup() {
                     <div className="grid items-center text-center border bg-[#E9E0F4] border-[#4400A5] rounded-lg p-5 shadow-md">
                         <p>ยอดเงินที่ถอนได้</p>
                         <hr className=" bg-[#4400A5] h-[3px] my-4" />
-                        <input type="number" className="px-5 my-3" name="withdraw" id="" placeholder="0" />
+                        <input 
+                          type="number" 
+                          className="px-5 my-3" 
+                          name="withdraw" 
+                          id="" 
+                          value={withdrawAmount}
+                          onChange={handleChange}
+                          placeholder="0" 
+                        />
                         <p className="text-left mb-2">หมายเหตุ : </p>
-                        <button className="bg-[#4400A5] text-white border border-[#4400A5] hover:bg-white hover:text-[#4400A5] flex justify-center items-center w-full py-1 rounded-lg" >ถอนเงิน</button>
+                        <button 
+                          className={`flex justify-center items-center w-full py-1 rounded-lg ${withdrawAmount ? 'buttonEnabled' : 'buttonDisabled'} ${withdrawAmount && 'buttonHover'}`} 
+                          onClick={handleWithdraw}
+                          disabled={!withdrawAmount} 
+                        >
+                          ถอนเงิน
+                        </button>
                     </div>
 
                 </div>

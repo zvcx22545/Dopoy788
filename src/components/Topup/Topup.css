@@ -21,6 +21,25 @@
 .col4{
     width: 350px;
 }
+
+.buttonEnabled {
+    background-color: #4400A5; /* สีทึบ */
+    color: white;
+    border: 1px solid #4400A5;
+  }
+  
+  .buttonDisabled {
+    background-color: #A79AC4; /* สีจาง */
+    color: #DDD;
+    border: 1px solid #A79AC4;
+  }
+  
+  .buttonHover:enabled {
+    background-color: white;
+    color: #4400A5;
+    cursor: pointer;
+  }
+  
 @media (max-width:1024px){
     .col1{
         width: auto !important;
