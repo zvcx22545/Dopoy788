@@ -275,37 +275,37 @@ const Title2 = ({ addCompletedNumber }) => {
       )}
 
       {[0, 1, 2].includes(activeButton) && (
-  <div className="grid grid-cols-1 gap-4 mt-10">
-    <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
-      {currentNumbers.map((number) => (
-        <button
-  key={number}
-  className="btn w-[60px] mx-auto"
-  onClick={() => {
-    // Check if the checkbox is checked
-    if (isReverseChecked) {
-      // If checked, generate reversed numbers for this number and send them
-      const reversedNumbers = reverseNumbers(
-        activeButton === 0
+        <div className="grid grid-cols-1 gap-4 mt-10">
+          <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
+            {currentNumbers.map((number) => (
+              <button
+                  key={number}
+                  className="btn w-[60px] mx-auto"
+                  onClick={() => {
+              // Check if the checkbox is checked
+              if (isReverseChecked) {
+                // If checked, generate reversed numbers for this number and send them
+                const reversedNumbers = reverseNumbers(
+                  activeButton === 0
+                    ? number.toString().padStart(4, "0")
+                    : number.toString().padStart(3, "0")
+                );
+                reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber, activeButton));
+              } else {
+                // If not checked, just send the current number
+                addCompletedNumber(
+                  activeButton === 0
+                    ? number.toString().padStart(4, "0")
+                    : number.toString().padStart(3, "0"),
+                  activeButton
+                );
+              }
+            }}
+          >
+        {activeButton === 0
           ? number.toString().padStart(4, "0")
-          : number.toString().padStart(3, "0")
-      );
-      reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber, activeButton));
-    } else {
-      // If not checked, just send the current number
-      addCompletedNumber(
-        activeButton === 0
-          ? number.toString().padStart(4, "0")
-          : number.toString().padStart(3, "0"),
-        activeButton
-      );
-    }
-  }}
->
-  {activeButton === 0
-    ? number.toString().padStart(4, "0")
-    : number.toString().padStart(3, "0")}
-</button>
+          : number.toString().padStart(3, "0")}
+      </button>
       ))}
     </div>
   </div>
