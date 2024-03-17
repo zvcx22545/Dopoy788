@@ -77,76 +77,31 @@ function Play() {
     }
   }, [userToken, navigate]);
   useEffect(() => {
-    console.log(completedNumbers);
+    // console.log(completedNumbers);
   }, [completedNumbers]);
 
-  const addCompletedNumbers = (digit, activeButtons) => {
+  const addCompletedNumbers = (digit, activeButtons, Enter) => {
     if (!activeButtons) {
       console.error("activeButtons is undefined or null");
       return;
     }
     const newNumbers = { ...completedNumbers };
-    if (activeButton === 0) {
-      // ถ้า activeButton เท่ากับ 0 ให้เพิ่ม digit ลงใน Obj สี่ตัวบน[]
-      newNumbers['สี่ตัวบน'].push(digit);
-    } // Copy the completedNumbers object
+    if (Enter === true) {
+      if (activeButton === 0) {
+        // ถ้า activeButton เท่ากับ 0 ให้เพิ่ม digit ลงใน Obj สี่ตัวบน[]
+        newNumbers['สี่ตัวบน'].push(digit);
+      } // Copy the completedNumbers object
 
-    activeButtons.forEach((activeButton) => {
-      // Loop over each activeButton
-      const numbersForActiveButton = newNumbers[activeButton] || []; // Get the array of completed numbers for the active button
-      console.log(activeButton, numbersForActiveButton);
+      activeButtons.forEach((activeButton) => {
+        // Loop over each activeButton
+        const numbersForActiveButton = newNumbers[activeButton] || []; // Get the array of completed numbers for the active button
+        console.log(activeButton, numbersForActiveButton);
 
-      if (activeButton === "สี่ตัวบน" && isReverseChecked) {
-        console.log(activeButton);
-        // Generate all unique permutations of the digit
-        const permutations = reverseNumbers(digit);
-
-        // Push these permutations into the numbersForActiveButton array
-        numbersForActiveButton.push(...permutations);
-
-        // Debug: Log the updated numbersForActiveButton
-        console.log(
-          `${activeButton} after adding permutations:`,
-          numbersForActiveButton
-        );
-      } else if (activeButton === "สี่ตัวบน") {
-        console.log(digit);
-        // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
-        numbersForActiveButton.push(digit); // Assuming digit is a single value or object
-        // Debug: Log the updated numbersForActiveButton
-        console.log(
-          `${activeButton} after adding digit:`,
-          numbersForActiveButton
-        );
-      }
-      if (activeButton === "สี่ตัวโต๊ด" && isReverseChecked) {
-        console.log(activeButton);
-        const permutations = reverseNumbers(digit);
-        numbersForActiveButton.push(...permutations);
-      } else if (activeButton === "สี่ตัวโต๊ด") {
-        // Your existing condition for "สี่ตัวโต๊ด"
-        numbersForActiveButton.push(digit);
-      }
-      if (activeButton === "สามตัวบน" && isReverseChecked) {
-        console.log(activeButton);
-        // Generate all unique permutations of the digit
-        const permutations = reverseNumbers(digit);
-
-        // Push these permutations into the numbersForActiveButton array
-        numbersForActiveButton.push(...permutations);
-
-        // Debug: Log the updated numbersForActiveButton
-        console.log(
-          `${activeButton} after adding permutations:`,
-          numbersForActiveButton
-        );
-      } else if (activeButton === "สามตัวบน") {
-        // Your existing condition for "สี่ตัวโต๊ด"
-        numbersForActiveButton.push(digit);
-      } else if (activeButton === "สามตัวล่าง") {
-        // Your existing condition for "สามตัวล่าง"
-        if (isReverseChecked) {
+        if (activeButton === "สี่ตัวบน" && isReverseChecked) {
+          console.log(activeButton);
+          // Generate all unique permutations of the digit
           const permutations = reverseNumbers(digit);
+
           // Push these permutations into the numbersForActiveButton array
           numbersForActiveButton.push(...permutations);
 
@@ -155,72 +110,126 @@ function Play() {
             `${activeButton} after adding permutations:`,
             numbersForActiveButton
           );
-        } else {
-          numbersForActiveButton.push(digit);
+        } else if (activeButton === "สี่ตัวบน") {
+          console.log(digit);
+          // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
+          numbersForActiveButton.push(digit); // Assuming digit is a single value or object
+          // Debug: Log the updated numbersForActiveButton
+          console.log(
+            `${activeButton} after adding digit:`,
+            numbersForActiveButton
+          );
         }
-      } else if (activeButton === "สามตัวโต๊ด") {
-        // Your existing condition for "สามตัวโต๊ด"
-        if (isReverseChecked) {
+        if (activeButton === "สี่ตัวโต๊ด" && isReverseChecked) {
+          console.log(activeButton);
           const permutations = reverseNumbers(digit);
           numbersForActiveButton.push(...permutations);
-        } else {
+        } else if (activeButton === "สี่ตัวโต๊ด") {
+          // Your existing condition for "สี่ตัวโต๊ด"
           numbersForActiveButton.push(digit);
         }
-      } else if (activeButton === "สองตัวบน") {
-        // Your existing condition for "สองตัวล่าง"
-        if (isReverseChecked) {
+        if (activeButton === "สามตัวบน" && isReverseChecked) {
+          console.log(activeButton);
+          // Generate all unique permutations of the digit
           const permutations = reverseNumbers(digit);
-          numbersForActiveButton.push(...permutations);
-        } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
-          // Your existing condition for handling 19 ประตู
-          console.log(activeHuy19);
-          const Huay19doors = handleHuay19doors(digit);
-          numbersForActiveButton.push(...Huay19doors);
-        } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
-          // Your existing condition for handling รูดหน้า
-          const Huayroodnars = Huaysroodnar(digit);
-          numbersForActiveButton.push(...Huayroodnars);
-        } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
-          // Your existing condition for handling รูดหลัง
-          const allNumbers = HuayroodBacks(digit);
-          numbersForActiveButton.push(...allNumbers);
-        } else {
-          numbersForActiveButton.push(digit);
-        }
-      } else if (activeButton === "สองตัวล่าง") {
-        // Your existing condition for "สองตัวล่าง"
-        if (isReverseChecked) {
-          const permutations = reverseNumbers(digit);
-          numbersForActiveButton.push(...permutations);
-        } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
-          // Your existing condition for handling 19 ประตู
-          isReverseChecked === false;
-          const Huay19doors = handleHuay19doors(digit);
-          numbersForActiveButton.push(...Huay19doors);
-        } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
-          // Your existing condition for handling รูดหน้า
-          const Huayroodnars = Huaysroodnar(digit);
-          numbersForActiveButton.push(...Huayroodnars);
-        } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
-          // Your existing condition for handling รูดหลัง
-          const allNumbers = HuayroodBacks(digit);
-          numbersForActiveButton.push(...allNumbers);
-        } else {
-          numbersForActiveButton.push(digit);
-        }
-      } else if (activeButton === "วิ่งบน") {
-        // Your existing condition for "สองตัวล่าง"
-        numbersForActiveButton.push(digit);
-      } else if (activeButton === "วิ่งล่าง") {
-        // Your existing condition for "สองตัวล่าง"
-        numbersForActiveButton.push(digit);
-      }
 
-      newNumbers[activeButton] = numbersForActiveButton; // Update the completed numbers for the active button
-    });
+          // Push these permutations into the numbersForActiveButton array
+          numbersForActiveButton.push(...permutations);
 
-    setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
+          // Debug: Log the updated numbersForActiveButton
+          console.log(
+            `${activeButton} after adding permutations:`,
+            numbersForActiveButton
+          );
+        } else if (activeButton === "สามตัวบน") {
+          // Your existing condition for "สี่ตัวโต๊ด"
+          numbersForActiveButton.push(digit);
+        } else if (activeButton === "สามตัวล่าง") {
+          // Your existing condition for "สามตัวล่าง"
+          if (isReverseChecked) {
+            const permutations = reverseNumbers(digit);
+            // Push these permutations into the numbersForActiveButton array
+            numbersForActiveButton.push(...permutations);
+
+            // Debug: Log the updated numbersForActiveButton
+            console.log(
+              `${activeButton} after adding permutations:`,
+              numbersForActiveButton
+            );
+          } else {
+            numbersForActiveButton.push(digit);
+          }
+        } else if (activeButton === "สามตัวโต๊ด") {
+          // Your existing condition for "สามตัวโต๊ด"
+          if (isReverseChecked) {
+            const permutations = reverseNumbers(digit);
+            numbersForActiveButton.push(...permutations);
+          } else {
+            numbersForActiveButton.push(digit);
+          }
+        } else if (activeButton === "สองตัวบน") {
+          // Your existing condition for "สองตัวล่าง"
+          if (isReverseChecked) {
+            const permutations = reverseNumbers(digit);
+            numbersForActiveButton.push(...permutations);
+          } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
+            // Your existing condition for handling 19 ประตู
+            console.log(activeHuy19);
+            const Huay19doors = handleHuay19doors(digit);
+            numbersForActiveButton.push(...Huay19doors);
+          } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
+            // Your existing condition for handling รูดหน้า
+            const Huayroodnars = Huaysroodnar(digit);
+            numbersForActiveButton.push(...Huayroodnars);
+          } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
+            // Your existing condition for handling รูดหลัง
+            const allNumbers = HuayroodBacks(digit);
+            numbersForActiveButton.push(...allNumbers);
+          } else {
+            numbersForActiveButton.push(digit);
+          }
+        } else if (activeButton === "สองตัวล่าง") {
+          // Your existing condition for "สองตัวล่าง"
+          if (isReverseChecked) {
+            const permutations = reverseNumbers(digit);
+            numbersForActiveButton.push(...permutations);
+          } else if (Openhuay19 && activeHuy19 === "19 ประตู") {
+            // Your existing condition for handling 19 ประตู
+            isReverseChecked === false;
+            const Huay19doors = handleHuay19doors(digit);
+            numbersForActiveButton.push(...Huay19doors);
+          } else if (Huayroodnar && activeHuy19 === "รูดหน้า") {
+            // Your existing condition for handling รูดหน้า
+            const Huayroodnars = Huaysroodnar(digit);
+            numbersForActiveButton.push(...Huayroodnars);
+          } else if (HuayroodbackS && activeHuy19 === "รูดหลัง") {
+            // Your existing condition for handling รูดหลัง
+            const allNumbers = HuayroodBacks(digit);
+            numbersForActiveButton.push(...allNumbers);
+          } else {
+            numbersForActiveButton.push(digit);
+          }
+        } else if (activeButton === "วิ่งบน") {
+          // Your existing condition for "สองตัวล่าง"
+          numbersForActiveButton.push(digit);
+        } else if (activeButton === "วิ่งล่าง") {
+          // Your existing condition for "สองตัวล่าง"
+          numbersForActiveButton.push(digit);
+        }
+
+        newNumbers[activeButton] = numbersForActiveButton; // Update the completed numbers for the active button
+      });
+
+      setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
+    }
+    else {
+      console.log("กรุณากดปุ่ม EN")
+    }
   };
+
+  const handleEnButtonClick = (value) => {
+    console.log("EN button clicked:", value);
+};
 
   const handlePriceChange = (newPrice) => {
     setPrice(newPrice);
@@ -263,7 +272,7 @@ function Play() {
       console.error("activeButton is undefined or null");
       return;
     }
-  
+
     const newNumbers = { ...completedNumbers };
     if (activeButton === 0) {
       newNumbers["สี่ตัวบน"].push(digit);
@@ -288,9 +297,9 @@ function Play() {
     }
     setCompletedNumbers(newNumbers);
 
-  
-  // const handleOpenHuay19 = () => {
-  //   setOpenhuay19(!Openhuay19); // Toggle the value
+
+    // const handleOpenHuay19 = () => {
+    //   setOpenhuay19(!Openhuay19); // Toggle the value
   };
 
   function Huaysroodnar(number) {
@@ -308,13 +317,13 @@ function Play() {
       console.error("Please enter a digit between 0 and 9.");
       return [];
     }
-  
+
     let numbers = [];
     const parint = parseInt(digit)
-  for (let i = 0; i < 10; i++) { // Ensure loop starts from 0
-    let number = (i * 10) + parint; // Multiply loop index by 10, then add the input digit
-    numbers.push(number.toString().padStart(2, '0')); // Convert to string, ensuring two digits
-  }
+    for (let i = 0; i < 10; i++) { // Ensure loop starts from 0
+      let number = (i * 10) + parint; // Multiply loop index by 10, then add the input digit
+      numbers.push(number.toString().padStart(2, '0')); // Convert to string, ensuring two digits
+    }
     return numbers;
   }
 
@@ -464,7 +473,7 @@ function Play() {
       setActiveHuy19(false); // Set reverse checkbox to unchecked
       SetHuayroodnar(false); // Set Huayroodnar to false when "วิ่งบน" or "วิ่งล่าง" is clicked
     }
-    
+
   };
 
   const handleCheckboxChange = () => {
@@ -504,26 +513,26 @@ function Play() {
 
   const [currentDate, setCurrentDate] = useState('');
 
-    useEffect(() => {
-        const thaiMonths = [
-            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
-            'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
-            'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
-          ];
-      
-          // Get the current date
-          const now = new Date();
-      
-          // Convert to Thai Buddhist year by adding 543 years to the Gregorian year
-          const thaiYear = now.getFullYear() + 543;
-      
-          // Get the month in Thai
-          const monthThai = thaiMonths[now.getMonth()];
-      
-          // Format the date as day month(year in Thai)
-          const formattedDate = `${now.getDate()} ${monthThai} ${thaiYear}`;
-                setCurrentDate(formattedDate);
-        }, []);
+  useEffect(() => {
+    const thaiMonths = [
+      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
+      'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
+      'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+    ];
+
+    // Get the current date
+    const now = new Date();
+
+    // Convert to Thai Buddhist year by adding 543 years to the Gregorian year
+    const thaiYear = now.getFullYear() + 543;
+
+    // Get the month in Thai
+    const monthThai = thaiMonths[now.getMonth()];
+
+    // Format the date as day month(year in Thai)
+    const formattedDate = `${now.getDate()} ${monthThai} ${thaiYear}`;
+    setCurrentDate(formattedDate);
+  }, []);
 
   useEffect(() => {
     const countdownDate = new Date(Date.now() + 8000 * 60 * 1000); // 2 minutes from now
@@ -1206,26 +1215,23 @@ function Play() {
           <div className="playbtn">
             <div className="grid gap-4  grid-cols-3">
               <button
-                className={`btn ${
-                  activeButton === "เลือกกดเอง" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกกดเอง")}
               >
-                <BiGridAlt /> เลือกกดเอง                                                        
+                <BiGridAlt /> เลือกกดเอง
               </button>
 
               <button
-                className={`btn ${
-                  activeButton === "เลือกแผงเลข" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแผงเลข" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแผงเลข")}
               >
                 <BiGridAlt /> เลือกแผงเลข
               </button>
               <button
-                className={`btn ${
-                  activeButton === "เลือกแบบเลขวิน" ? "active" : ""
-                }`}
+                className={`btn ${activeButton === "เลือกแบบเลขวิน" ? "active" : ""
+                  }`}
                 onClick={() => handleButtonClick("เลือกแบบเลขวิน")}
               >
                 <BiGridAlt /> เลือกแบบเลขวิน
@@ -1234,13 +1240,11 @@ function Play() {
           </div>
 
           <div
-            className={`container-putnumber ${
-              activeButton === "เลือกกดเอง" ? "" : "hidden"
-            } ${
-              activeButton === "เลือกกดเอง"
+            className={`container-putnumber ${activeButton === "เลือกกดเอง" ? "" : "hidden"
+              } ${activeButton === "เลือกกดเอง"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
             {activeButton === "เลือกกดเอง" && (
               <section>
@@ -1252,9 +1256,8 @@ function Play() {
                 <div className="custom-container">
                   <div className="grid gap-4 grid-cols-3">
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สี่ตัวบน", 4)}
                     >
                       <BiGridAlt /> สี่ตัวบน{" "}
@@ -1262,9 +1265,8 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
+                        }`}
                       onClick={() => active("สี่ตัวโต๊ด", 4)}
                     >
                       <BiGridAlt /> สี่ตัวโต๊ด{" "}
@@ -1272,9 +1274,8 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวบน", 3)}
                     >
                       <BiGridAlt /> สามตัวบน{" "}
@@ -1282,9 +1283,8 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวโต๊ด", 3)}
                     >
                       <BiGridAlt /> สามตัวโต๊ด{" "}
@@ -1292,9 +1292,8 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สามตัวล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สามตัวล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("สามตัวล่าง", 3)}
                     >
                       <BiGridAlt /> สามตัวล่าง{" "}
@@ -1302,36 +1301,32 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สองตัวบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สองตัวบน") ? "active" : ""
+                        }`}
                       onClick={() => active("สองตัวบน", 2)}
                     >
                       <BiGridAlt /> สองตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("สองตัวล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("สองตัวล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("สองตัวล่าง", 2)}
                     >
                       <BiGridAlt /> สองตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("วิ่งบน") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("วิ่งบน") ? "active" : ""
+                        }`}
                       onClick={() => active("วิ่งบน", 1)}
                     >
                       <BiGridAlt /> วิ่งบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${
-                        activeButtons.includes("วิ่งล่าง") ? "active" : ""
-                      }`}
+                      className={`btn ${activeButtons.includes("วิ่งล่าง") ? "active" : ""
+                        }`}
                       onClick={() => active("วิ่งล่าง", 1)}
                     >
                       <BiGridAlt /> วิ่งล่าง{" "}
@@ -1376,13 +1371,12 @@ function Play() {
                     className={`btn-con flex justify-center items-center gap-[8px]`}
                   >
                     <div
-                      className={`left-content flex flex-col justify-center items-center ${
-                        activeButtons.includes("วิ่งบน") ||
-                        activeButtons.includes("วิ่งล่าง") ||
-                        activeHuy19
+                      className={`left-content flex flex-col justify-center items-center ${activeButtons.includes("วิ่งบน") ||
+                          activeButtons.includes("วิ่งล่าง") ||
+                          activeHuy19
                           ? "hidden"
                           : ""
-                      }`}
+                        }`}
                     >
                       <label className="inline-flex items-center cursor-pointer">
                         <input
@@ -1394,9 +1388,8 @@ function Play() {
                         />
                         {/* <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div> */}
                         <button
-                          className={`btn backnumber ${
-                            isReverseChecked ? "active" : ""
-                          }`}
+                          className={`btn backnumber ${isReverseChecked ? "active" : ""
+                            }`}
                           onClick={handleCheckboxChange}
                         >
                           กลับเลข
@@ -1405,33 +1398,29 @@ function Play() {
                     </div>
                     <div
                       className={`btn-con flex justify-center items-center gap-[8px]
-                  ${
-                    activeButtons.includes("สองตัวล่าง") ||
-                    activeButtons.includes("สองตัวบน")
-                      ? ""
-                      : "hidden"
-                  }`}
+                  ${activeButtons.includes("สองตัวล่าง") ||
+                          activeButtons.includes("สองตัวบน")
+                          ? ""
+                          : "hidden"
+                        }`}
                     >
                       <button
-                        className={`btn ${
-                          activeHuy19 === "19 ประตู" ? "active" : ""
-                        }`}
+                        className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""
+                          }`}
                         onClick={() => handleHuy19("19 ประตู", 1)}
                       >
                         19 ประตู
                       </button>
                       <button
-                        className={`btn ${
-                          activeHuy19 === "รูดหน้า" ? "active" : ""
-                        }`}
+                        className={`btn ${activeHuy19 === "รูดหน้า" ? "active" : ""
+                          }`}
                         onClick={() => handleHuy19("รูดหน้า", 1)}
                       >
                         รูดหน้า
                       </button>
                       <button
-                        className={`btn ${
-                          activeHuy19 === "รูดหลัง" ? "active" : ""
-                        }`}
+                        className={`btn ${activeHuy19 === "รูดหลัง" ? "active" : ""
+                          }`}
                         onClick={() => handleHuy19("รูดหลัง", 1)}
                       >
                         รูดหลัง
@@ -1442,7 +1431,8 @@ function Play() {
                     <NumpadLotto
                       addCompletedNumbers={addCompletedNumbers}
                       numberOfDigits={numberOfDigits}
-                      activeButtons={activeButtons} // Pass all active buttons from Play component
+                      activeButtons={activeButtons}
+                      onEnButtonClick={handleEnButtonClick} // Pass handleEnButtonClick function as prop
                     />
                   </div>
                 </div>
@@ -1450,25 +1440,21 @@ function Play() {
             )}
           </div>
           <div
-            className={`container-putnumber ${
-              activeButton !== "เลือกแผงเลข" ? "hidden" : ""
-            } ${
-              activeButton === "เลือกแผงเลข"
+            className={`container-putnumber ${activeButton !== "เลือกแผงเลข" ? "hidden" : ""
+              } ${activeButton === "เลือกแผงเลข"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
-               <Title2 addCompletedNumber={addNumberFromButtonClicked} />
+            <Title2 addCompletedNumber={addNumberFromButtonClicked} />
           </div>
 
           <div
-            className={`container-putnumber ${
-              activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
-            } ${
-              activeButton === "เลือกแบบเลขวิน"
+            className={`container-putnumber ${activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
+              } ${activeButton === "เลือกแบบเลขวิน"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-            }`}
+              }`}
           >
             <Title3 />
           </div>
