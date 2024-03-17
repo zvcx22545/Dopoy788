@@ -118,12 +118,12 @@ function Topup() {
         <div className="flex justify-between items-center border border-[#4400A5] rounded-lg p-5 shadow-md">
           <div className="flex items-center gap-2">
             <img
-              src="https://placehold.co/50x50"
+              src="https://e7.pngegg.com/pngimages/429/360/png-clipart-round-orange-and-purple-logo-thailand-siam-commercial-bank-refinancing-kasikornbank-thailand-logo-purple-logo-thumbnail.png"
               alt="Vietnam flag"
-              className="w-18 h-18 rounded-full"
+              className="w-[50px] h-[50px] rounded-full"
             />
             <div className="grid">
-              <p>กสิกรไทย</p>
+              <p>ไทยพาณิชย์</p>
               <p className="text-[1.5rem] font-bold">{inviteLink1}</p>
             </div>
           </div>
@@ -171,9 +171,9 @@ function Topup() {
         <div className="flex justify-between items-center border border-[#4400A5] rounded-lg p-5 shadow-md">
           <div className="flex items-center gap-2">
             <img
-              src="https://placehold.co/50x50"
+              src="https://i.pinimg.com/originals/cb/7c/ca/cb7cca77e49eece5ce042aa9f25ad27c.png"
               alt="Vietnam flag"
-              className="w-18 h-18 rounded-full"
+              className="w-[50px] h-[50px] rounded-full"
             />
             <div className="grid">
               <p>กสิกรไทย</p>
