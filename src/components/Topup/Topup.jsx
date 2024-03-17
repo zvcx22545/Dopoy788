@@ -43,7 +43,6 @@ function Topup() {
     setShowWithdraw(false);
   }, []);
 
-
   return (
     <section>
       <Navbar />
@@ -53,8 +52,6 @@ function Topup() {
           ย้อนกลับ
         </div> */}
       </div>
-
-      
 
       {showWithdraw && (
         <div className="w-full">

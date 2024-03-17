@@ -117,15 +117,15 @@ function Navbar() {
 
       {isModalOpen && (
         <div className="fixed inset-0 border-none rounded-none z-50 flex items-center justify-center bg-[#fff] bg-opacity-100 ">
-          <div className="nav-content p-4 rounded-lg shadow-md right-0 w-52">
-          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn">
+          <div className="nav-content p-4 rounded-lg shadow-md right-0 w-80">
+          <div tabIndex={0} role="button" className="btn w-full p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn">
             {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
             <div className="credit-con flex items-center gap-2 text-white">
               <div className="credit gap-2">50.00 </div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
           </div>
-            <ul className="menu menu-sm">
+            <ul className="menu menu-lg">
               <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
               <Link to="/Topup"><li><a>เติมเงิน / ถอนเงิน</a></li></Link>
               <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
@@ -133,7 +133,7 @@ function Navbar() {
               <li><a>ข้อมูลส่วนตัว</a></li>
               <Link to="/Blog"><li><a className="">บทความ</a></li></Link>
 
-              <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
+              <li><a onClick={handleLogout} className='border-[#FF8329] border font-[600] text-[#FF8329]'>ออกจากระบบ</a></li>
             </ul>
             <button className="absolute top-2 right-2" onClick={() => setIsModalOpen(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
