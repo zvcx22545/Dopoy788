@@ -1459,6 +1459,7 @@ function Play() {
             <Title3 />
           </div>
         </div>
+
         <div className="list-responsive mt-auto rounded-md">
           <div className="container-bet flex gap-2 item-center justify-center">
             <h1 className="betting mt-[0.2rem]">รายการแทง</h1>
