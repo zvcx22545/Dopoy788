@@ -6,7 +6,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
     const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
     const [enButtonClicked, setEnButtonClicked] = useState(false);
 
-
+   
     useEffect(() => {
         setNumbers(Array(numberOfDigits).fill("")); // Reset when numberOfDigits changes
     }, [numberOfDigits]);
@@ -29,6 +29,39 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
         }
     };
 
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            const digit = parseInt(event.key, 10);
+            if (!isNaN(digit)) {
+                handleAddNumber(digit);
+            }
+            else if (event.key === "Enter") {
+                setEnButtonClicked(true);
+                }
+        };
+
+        document.addEventListener("keypress", handleKeyPress);
+
+        return () => {
+            document.removeEventListener("keypress", handleKeyPress);
+        };
+    }, [handleAddNumber]);
+    
+    const DelefromKeyboard = (event) => {
+        if (event.key === "Backspace") {
+            handleDeleteNumber();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("keydown", DelefromKeyboard);
+
+        return () => {
+            document.removeEventListener("keydown", DelefromKeyboard);
+        };
+    }, [numbers]);
+    
+    
     const handleDeleteNumber = () => {
         const index = numbers.slice().reverse().findIndex(num => num !== "");
         if (index !== -1) {
@@ -43,6 +76,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
         console.log(enButtonClicked);
         onEnButtonClick(true); // Call the onEnButtonClick function and pass true as an argument
     };
+
 
     return (
         <div>
@@ -70,8 +104,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
 
                         <button
                             className="numpad min-h-[43px] py-1.5 text-xl outline-none text-white bg-[#FF832970]"
-                            type="button" onClick={() => handleDeleteNumber(0)}
-                        >
+                            type="button" onClick={() => handleDeleteNumber(0)}                         >
                             <div className="delete-numberflex flex items-center justify-center text-[#4400A5]">
                                 <svg
                                     data-v-61516463=""
