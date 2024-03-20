@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import "./numpad.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react"; // Import useCallback
 
 function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnButtonClick }) {
     const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
@@ -20,14 +20,15 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
     }, [numbers, addCompletedNumbers, numberOfDigits, activeButtons, enButtonClicked]);
     
 
-    const handleAddNumber = (number) => {
+    const handleAddNumber = useCallback((number) => {
         const index = numbers.findIndex(num => num === "");
         if (index !== -1) {
             const updatedNumbers = [...numbers];
             updatedNumbers[index] = number;
             setNumbers(updatedNumbers);
         }
-    };
+    }, [numbers]);
+
 
     useEffect(() => {
         const handleKeyPress = (event) => {
