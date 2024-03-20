@@ -138,7 +138,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
                             // disabled={enButtonClicked}
                         >
                             <div className="flex items-center justify-center text-[#4400A5]">
-                                <span>Enter</span>
+                                <span>ตกลง</span>
                             </div>
                         </button>
 

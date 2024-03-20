@@ -66,7 +66,10 @@ function Navbar() {
     <div className="navbar justify-between shadow-md">
       <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
 
-      
+        {/* <div className="navbar-center hidden lg:flex lg:mx-auto"> */}
+        {/* <ul className="menu menu-horizontal px-1"> */}
+          {/* <Link to="/Home"><li><a className="">เช็คฉลากกินแบ่ง</a></li></Link> */}
+      {/* </div> */}
       <div className="container-respon gap-3">
       <button  className="dropdown dropdown-end ml-5 md:hidden ]">
         <Link to="/Topup">
@@ -100,12 +103,8 @@ function Navbar() {
             <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
             <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
             <li><a>ข้อมูลส่วนตัว</a></li>
-            {/* <div className="navbar-center hidden lg:flex lg:mx-auto"> */}
-        {/* <ul className="menu menu-horizontal px-1"> */}
-          {/* <Link to="/Home"><li><a className="">เช็คฉลากกินแบ่ง</a></li></Link> */}
+            
           <Link to="/Blog"><li><a className="">บทความ</a></li></Link>
-        
-      {/* </div> */}
             <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
           </ul>
         </div>

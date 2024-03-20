@@ -11,11 +11,11 @@ function Rule(){
             </div>
             <div className="List-con my-auto">
             <div className="flex justify-center mt-5">
-                <button className="text-white bg-[#FF8329] rounded p-2 border border-[#FF8329] hover:bg-white hover:text-[#FF8329]">
+                <button className="text-white bg-[#FF8329]  rounded p-2 border border-[#FF8329] hover:bg-white hover:text-[#FF8329] title-rules">
                     ดูโพย788 ดีกว่าเว็บอื่นอย่างไร 
                 </button>
             </div>
-                <div className="flex justify-center gap-4 mt-5 px-5 ">
+                <div className="flex justify-center gap-4 mt-5 rule-con">
                    
                     <Link to="/Rules" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate max-md:w-[100%]">
                         กติกาและกฎต่างๆ 
@@ -23,7 +23,7 @@ function Rule(){
                     <Link to="/Rate" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 w-[100%] border border-[#4400A5] hover:bg-white hover:text-[#4400A5] truncate max-md:w-[100%]">
                         อัตราการจ่าย 
                     </button></Link>
-                    <Link to="" className="inline-block w-[40%]"><button className="text-white bg-[#4400A5] rounded p-2 border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate max-md:w-[100%] ">
+                    <Link to="" className="inline-block w-[50%]"><button className="text-white bg-[#4400A5] rounded p-2 border border-[#4400A5] hover:bg-white hover:text-[#4400A5] w-[100%] truncate max-md:w-[100%] ">
                     โปรโมชั่นประจำเดือน 
                     </button></Link>
                 </div>

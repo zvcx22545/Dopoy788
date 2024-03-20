@@ -113,9 +113,13 @@ export default function Card({ displayText,imghuy }) {
             </div> */}
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                <img src={displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px] w-[70px]" />
+
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">
+                        {displayText === "หวยไทย" ? "กองสลากรัฐบาล"
+                         : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์"
+                         : displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -126,6 +130,7 @@ export default function Card({ displayText,imghuy }) {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
+
             <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
@@ -133,14 +138,16 @@ export default function Card({ displayText,imghuy }) {
                 </span>
             </div>
             <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText;
-            const chosenImage = displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc;
+            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
+            const chosenImage = displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA : imgSrc;
             localStorage.setItem('displayText', chosenText);
             localStorage.setItem('chosenImage', chosenImage);
             }}>
               <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
             </Link>
             </div>
+
+            
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                     <img src={displayText === "หวยไทย" ? bankname.GSB : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.china: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
@@ -172,15 +179,12 @@ export default function Card({ displayText,imghuy }) {
               <button className="bg-[#FF8329] text-white text-2xl w-full py-2 rounded-lg">ใส่เลขแทง</button>
             </Link>
             </div>
+            
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px] w-[70px]" />
-
+                <img src={displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">
-                        {displayText === "หวยไทย" ? "กองสลากรัฐบาล"
-                         : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์"
-                         : displayText}</h2>
+                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText}</h2>
                         <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
@@ -191,7 +195,6 @@ export default function Card({ displayText,imghuy }) {
                 <h1 className="text-xl">เวลา : 14.30 น.</h1>
             </div>
             
-
             <div className="bg-[#4400A5] rounded-lg text-white flex items-center justify-center p-3 mb-4 gap-2">
             <FaRegClock size={25} />
                 <span className="countdown text-white text-2xl text-center">
@@ -199,8 +202,8 @@ export default function Card({ displayText,imghuy }) {
                 </span>
             </div>
             <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
-            const chosenImage = displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA : imgSrc;
+            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText;
+            const chosenImage = displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc;
             localStorage.setItem('displayText', chosenText);
             localStorage.setItem('chosenImage', chosenImage);
             }}>

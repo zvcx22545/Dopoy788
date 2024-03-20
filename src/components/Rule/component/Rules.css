@@ -51,3 +51,28 @@
     margin: 0 auto;
 }
 }
+
+@media (max-width:1200px)
+{
+    .container
+    {
+        padding: 0px !important;
+    }
+    .rule-con
+    {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .rule-con a
+    {
+        width: 70%;
+    }
+
+    .title-rules
+    {
+        width: 100%;
+        margin: 0 2rem;
+    }
+
+}
