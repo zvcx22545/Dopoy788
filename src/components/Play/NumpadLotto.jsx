@@ -46,7 +46,7 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
 
     return (
         <div>
-            <div className="numpad-con ">
+            <div className="numpad-con max-md:mb-[3rem]">
                 <div className="tab-con">
                     <div className="tab-left-con"></div>
                 </div>

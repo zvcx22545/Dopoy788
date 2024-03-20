@@ -152,7 +152,7 @@ function Title3() {
             
 
             {activeButton >= 0 && activeButton <= 4 && (
-                <section>
+                <section className="max-md:mb-[5rem]">
                     <div className="flex justify-center mb-10">
                         <input type="number" className="w-[380px] text-center border border-[#4400A5] rounded" onChange={(e) => handleInputNumberChange(e, [4, 3, 3, 2, 2][activeButton])} max={Array.from({length: [9999, 999, 999, 99, 99][activeButton]}, (_, i) => i + 1).reverse()[0]} min="0" maxLength={activeButton >= 0 && activeButton <= 2 ? 4 : 2}/>
                     </div>

@@ -136,7 +136,7 @@ const Title2 = ({ addCompletedNumber }) => {
       <div className="gap-4 w-40">
         <div className="divider divider-end text-xl">เลือกประเภทการแทง</div>
       </div>
-      <div className="grid grid-cols-3 gap-4  max-md:grid-cols-1">
+      <div className="grid grid-cols-3 gap-4  max-md:grid-cols-1 max-md:mb-[3rem]">
         {[0, 1, 2, 3, 4, 5, 6].map((buttonIndex) => (
           <TitleButton
             key={buttonIndex}
@@ -200,7 +200,7 @@ const Title2 = ({ addCompletedNumber }) => {
       </div>
 
       {activeButton === 0 && (
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 ">
           <div className="grid grid-cols-10 gap-y-4 gap-x-5 max-md:grid-cols-5 ">
             {pageNumbers.map((number) => (
               <button
@@ -225,7 +225,7 @@ const Title2 = ({ addCompletedNumber }) => {
       )}
 
       {activeButton === 1 && (
-        <div className="grid grid-cols-1 gap-4 ">
+        <div className="grid grid-cols-1 gap-4">
           <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
             {pageNumbers.map((number) => (
               <button

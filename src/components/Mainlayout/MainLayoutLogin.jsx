@@ -7,6 +7,8 @@ import Resultrotte from '../Resultrotte/Resultroote';
 import Redeem from '../Redeem/Redeem';
 import NavbarLogin from '../Navbar/NavbarLogin';
 import ParentComponentLogin from '../ParentComponent/ParentComponentLogin';
+import ParentComponent from '../ParentComponent/ParentComponent';
+
 
 function MainLayoutLogin() {
   
@@ -14,7 +16,8 @@ function MainLayoutLogin() {
     <section id="main-layout">
       <NavbarLogin/>
       <Navlogin/>
-      <ParentComponentLogin/>
+      {/* <ParentComponentLogin/> */}
+      <ParentComponent/>
       {/* <Tab/> */}
       {/* <Card/> */}
       <Rule/>
