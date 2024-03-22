@@ -23,7 +23,7 @@ function Invite(){
     };
 
     return(
-        <section>
+        <section className='relative'>
             <Navbar/>
             <div className="flex flex-col p-5">
                 {/* <div className="divider divider-start text-4xl pb-8">
@@ -80,7 +80,7 @@ function Invite(){
                 <div className="grid gap-5 w-[60%] max-md:w-full">
 
                     <div className="grid items-center text-center border bg-[#E9E0F4] border-[#4400A5] rounded-lg p-5 shadow-md">
-                        <p>จำนวนเงินที่เพื่อนเราแทงทั้งหมด</p>
+                        <p>รายได้ที่เราแนะนำเพื่อนทั้งหมด</p>
                         <hr className=" bg-[#4400A5] h-[3px] my-4" />
                         <input type="number" className="px-5 my-3" name="withdraw" id="" placeholder="0" />
                         <p className="text-left mb-2">หมายเหตุ : </p>
@@ -88,18 +88,18 @@ function Invite(){
                     </div>
 
                     <div className="grid items-center border border-[#4400A5] rounded-lg p-5 shadow-md">
-                        <p>จำนวนเงินที่เพื่อนเราแทงทั้งหมด</p>
+                        <p>จำนวนที่เพื่อนเราแทงทั้งหมด</p>
                         <hr className=" bg-[#4400A5] h-[1.5px] my-4" />
                         <p className="text-[1.5rem] font-bold text-[#4400A5]">฿ 0</p>
                         <p>รายได้สมาชิกของเพื่อนเราทั้งหมด (฿0)</p>
                     </div>
                 
-                    <div className="grid items-center border border-[#4400A5] rounded-lg p-5 shadow-md">
+                    {/* <div className="grid items-center border border-[#4400A5] rounded-lg p-5 shadow-md">
                         <p>รายได้ที่เราแนะนำเพื่อนทั้งหมด</p>
                         <hr className=" bg-[#4400A5] h-[1.5px] my-4" />
                         <p className="text-[1.5rem] font-bold text-[#4400A5]">฿ 0</p>
                         <p>รายได้สมาชิกของเพื่อนเราทั้งหมด (฿0)</p>
-                    </div>
+                    </div> */}
 
                 </div>    
                 
@@ -168,8 +168,9 @@ function Invite(){
 
            
             
-
+                    <div className="footer">
             <Footer/>
+            </div>
         </section>
     )
 }

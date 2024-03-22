@@ -68,7 +68,7 @@ function Navbar() {
 
         <div className="navbar-center hidden lg:flex lg:mx-auto">
          <div className="menu menu-horizontal px-1">
-          <Link to="/Home"><li><a className="text-base">เช็คฉลากกินแบ่ง</a></li></Link>
+          <Link to="/Home"><li><a className="text-base">หน้าหลัก</a></li></Link>
           <Link to="/Listpoy"><li><a className='text-base'>โพยหวย</a></li></Link>
             <Link to="/Topup"><li><a className='text-base'>เติมเงิน / ถอนเงิน</a></li></Link>
             <Link to="/Invite"><li><a className='text-base'>แนะนำเพื่อน</a></li></Link>

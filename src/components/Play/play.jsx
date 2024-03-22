@@ -33,18 +33,63 @@ function Play() {
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
   const [Openhuay19, setOpenhuay19] = useState(false);
+
   const totalPrices = Object.values(completedNumbers).reduce(
     (accumulator, numbersArray) => {
       // For each numbersArray, add the total price for that set
       const totalPriceForSet = numbersArray.reduce(
-        (subAccumulator) => subAccumulator + price,
+        (subAccumulator, numberSet) => subAccumulator + numberSet.price, // Make sure to access the 'price' property
         0
       );
       return accumulator + totalPriceForSet; // Accumulate total prices for all sets
     },
     0
   );
+  
 
+  // This function will be used to handle individual price changes for each numberSet
+  const HandlePriceChange = (e, index, category) => {
+    const newPrice = parseInt(e.target.value);
+    // Ensure that we have a copy of the completedNumbers state to avoid direct mutation
+    const updatedCompletedNumbers = { ...completedNumbers };
+    // Ensure that we are updating a copy of the specific category array
+    const updatedNumberSet = [...updatedCompletedNumbers[category]];
+    // Update the price at the specific index
+    updatedNumberSet[index] = {
+      ...updatedNumberSet[index],
+      price: isNaN(newPrice) ? 0 : newPrice,
+    };
+    // Update the state with the new prices
+    setCompletedNumbers({
+      ...updatedCompletedNumbers,
+      [category]: updatedNumberSet,
+    });
+  };
+
+  // define to set value
+  const handlePriceChanges = (e) => {
+    const newPrice = parseInt(e.target.value); // Parse the input value to an integer
+    if (!isNaN(newPrice)) {
+      // Update the price for all items in completedNumbers
+      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+        // Map over the numbersArray to update the price for each object
+        const updatedNumbers = numbersArray.map(numberSet => ({
+          ...numberSet,
+          price: newPrice, // Update price
+        }));
+        // Return the accumulated object with updated arrays
+        return {
+          ...acc,
+          [key]: updatedNumbers,
+        };
+      }, {});
+  
+      setCompletedNumbers(updatedCompletedNumbers); // Set the updated completedNumbers
+      setPrice(newPrice); // Also update the global price state
+    } else {
+      setPrice(0); // If the input is not a number, set the global price to 0
+    }
+  };
   const [Huayroodnar, SetHuayroodnar] = useState(false);
   const [HuayroodbackS, SetHuayroodback] = useState(false);
 
@@ -89,7 +134,7 @@ function Play() {
     if (Enter === true) {
       if (activeButton === 0) {
         // ถ้า activeButton เท่ากับ 0 ให้เพิ่ม digit ลงใน Obj สี่ตัวบน[]
-        newNumbers['สี่ตัวบน'].push(digit);
+        newNumbers["สี่ตัวบน"].push(digit);
       } // Copy the completedNumbers object
 
       activeButtons.forEach((activeButton) => {
@@ -113,7 +158,7 @@ function Play() {
         } else if (activeButton === "สี่ตัวบน") {
           console.log(digit);
           // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
-          numbersForActiveButton.push(digit); // Assuming digit is a single value or object
+          numbersForActiveButton.push({ number: digit, price: 10 }); // Assuming digit is a single value or object
           // Debug: Log the updated numbersForActiveButton
           console.log(
             `${activeButton} after adding digit:`,
@@ -221,19 +266,38 @@ function Play() {
       });
 
       setCompletedNumbers(newNumbers); // Update the state with the new completed numbers
-    }
-    else {
-      console.log("กรุณากดปุ่ม EN")
+    } else {
+      console.log("กรุณากดปุ่ม EN");
     }
   };
 
   const handleEnButtonClick = (value) => {
     console.log("EN button clicked:", value);
-};
+  };
 
   const handlePriceChange = (newPrice) => {
-    setPrice(newPrice);
-    setQuantity(newPrice);
+    const parsedPrice = parseInt(newPrice, 10); // Ensure newPrice is an integer
+  
+    // Check if the parsed price is a valid number
+    if (!isNaN(parsedPrice)) {
+      // Update the price for all items in completedNumbers
+      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+        const updatedNumbers = numbersArray.map(numberSet => ({
+          ...numberSet,
+          price: parsedPrice, // Set to the new price
+        }));
+        return { ...acc, [key]: updatedNumbers };
+      }, {});
+  
+      setCompletedNumbers(updatedCompletedNumbers); // Update the state with the new prices
+      setPrice(parsedPrice); // Update the global price state if needed
+      // Assuming you want to update quantity as well; however, it's unclear how quantity is related to price.
+      // If quantity should simply match the price, this is correct.
+      // If not, you might need to adjust this logic to suit your application's requirements.
+      setQuantity(parsedPrice);
+    } else {
+      console.log("Invalid price entered");
+    }
   };
 
   const handleHuy19 = (buttonName, newNumberOfDigits) => {
@@ -276,27 +340,20 @@ function Play() {
     const newNumbers = { ...completedNumbers };
     if (activeButton === 0) {
       newNumbers["สี่ตัวบน"].push(digit);
-    }
-    else if (activeButton === 1) {
+    } else if (activeButton === 1) {
       newNumbers["สามตัวโต๊ด"].push(digit);
-    }
-    else if (activeButton === 2) {
+    } else if (activeButton === 2) {
       newNumbers["สามตัวล่าง"].push(digit);
-    }
-    else if (activeButton === 3) {
+    } else if (activeButton === 3) {
       newNumbers["สองตัวบน"].push(digit);
-    }
-    else if (activeButton === 4) {
+    } else if (activeButton === 4) {
       newNumbers["สองตัวล่าง"].push(digit);
-    }
-    else if (activeButton === 5) {
+    } else if (activeButton === 5) {
       newNumbers["วิ่งบน"].push(digit);
-    }
-    else if (activeButton === 6) {
+    } else if (activeButton === 6) {
       newNumbers["วิ่งล่าง"].push(digit);
     }
     setCompletedNumbers(newNumbers);
-
 
     // const handleOpenHuay19 = () => {
     //   setOpenhuay19(!Openhuay19); // Toggle the value
@@ -319,14 +376,14 @@ function Play() {
     }
 
     let numbers = [];
-    const parint = parseInt(digit)
-    for (let i = 0; i < 10; i++) { // Ensure loop starts from 0
-      let number = (i * 10) + parint; // Multiply loop index by 10, then add the input digit
-      numbers.push(number.toString().padStart(2, '0')); // Convert to string, ensuring two digits
+    const parint = parseInt(digit);
+    for (let i = 0; i < 10; i++) {
+      // Ensure loop starts from 0
+      let number = i * 10 + parint; // Multiply loop index by 10, then add the input digit
+      numbers.push(number.toString().padStart(2, "0")); // Convert to string, ensuring two digits
     }
     return numbers;
   }
-
 
   console.log();
 
@@ -346,16 +403,36 @@ function Play() {
   };
 
   const handleIncrement = () => {
-    // เพิ่มค่า price ที่ละ 1
-    setPrice((prevPrice) => prevPrice + 1);
+    // Update the price for all items in completedNumbers and increment by 1
+    const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+      const updatedNumbers = numbersArray.map(numberSet => ({
+        ...numberSet,
+        price: numberSet.price + 1, // Increment price
+      }));
+      return { ...acc, [key]: updatedNumbers };
+    }, {});
+  
+    setCompletedNumbers(updatedCompletedNumbers); // Update the state
+    setPrice(prevPrice => prevPrice + 1); // Also update the global price state
   };
+  
 
   const handleDecrement = () => {
-    // ลดค่า price ที่ละ 1 หากค่า price ไม่น้อยกว่า 1
+    // Only decrement if price is greater than 1
     if (price > 1) {
-      setPrice((prevPrice) => prevPrice - 1);
+      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+        const updatedNumbers = numbersArray.map(numberSet => ({
+          ...numberSet,
+          price: Math.max(1, numberSet.price - 1), // Decrement price, but not below 1
+        }));
+        return { ...acc, [key]: updatedNumbers };
+      }, {});
+  
+      setCompletedNumbers(updatedCompletedNumbers); // Update the state
+      setPrice(prevPrice => prevPrice - 1); // Also update the global price state
     }
   };
+  
   //Delete All the value in betting
 
   const DeleteAll = () => {
@@ -473,7 +550,6 @@ function Play() {
       setActiveHuy19(false); // Set reverse checkbox to unchecked
       SetHuayroodnar(false); // Set Huayroodnar to false when "วิ่งบน" or "วิ่งล่าง" is clicked
     }
-
   };
 
   const handleCheckboxChange = () => {
@@ -484,7 +560,9 @@ function Play() {
     const strNumber = number.toString();
     const permutations = [];
     generatePermutations(strNumber, "", permutations);
-    return permutations;
+    return permutations.map((num) => {
+      return { number: num, price: 10 }; // Update the price as needed
+    });
   };
 
   const generatePermutations = (strNumber, currentPerm, permutations) => {
@@ -511,13 +589,22 @@ function Play() {
     setActiveButton(buttonName); // ให้ activeButton เป็นปุ่มที่ถูกคลิ
   };
 
-  const [currentDate, setCurrentDate] = useState('');
+  const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
     const thaiMonths = [
-      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
-      'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
-      'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม",
     ];
 
     // Get the current date
@@ -632,19 +719,21 @@ function Play() {
                   </div>
                 )}
                 <tbody>
-                  {completedNumbers["สี่ตัวบน"].map((numberSet, index) => (
+                  {completedNumbers["สี่ตัวบน"].map((item, index) => (
                     <tr key={index}>
-                      <td data-label="สี่ตัวบน">{numberSet}</td>
+                      <td data-label="สี่ตัวบน">{item.number}</td>
                       <td data-label="เรทจ่าย">50</td>
-                      <td
-                        data-label="ราคา"
-                        className="flex justify-between md:justify-center"
-                      >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                      <td data-label="ราคา">
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={item.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สี่ตัวบน")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
+                        {/* Make sure BiTrashAlt is imported if you're using it */}
                         <button
                           className="text-[#FF2929]"
                           onClick={() => handleDelete(index, "สี่ตัวบน")}
@@ -655,6 +744,7 @@ function Play() {
                     </tr>
                   ))}
                 </tbody>
+
                 {completedNumbers["สี่ตัวโต๊ด"].length > 0 && (
                   <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
                     <h1 className="w-full">สี่ตัวโต๊ด</h1>
@@ -961,17 +1051,21 @@ function Play() {
                   <button
                     className="w-[35px] h-[35px] bg-[#FF2929] rounded text-white text-[25px]"
                     onClick={() => handleDecrement()}
-                  >-</button>
+                  >
+                    -
+                  </button>
                   <input
                     type="number"
                     value={totalItems === 0 ? 0 : price}
-                    onChange={(e) => setQuantity(e.target.value)}
+                    onChange={handlePriceChanges}
                     className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
                   />
                   <button
                     className="w-[35px] h-[35px] bg-[#00871E] rounded text-white text-[25px]"
                     onClick={() => handleIncrement()}
-                  >+</button>
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="grid grid-cols-2 justify-between gap-3">
@@ -1016,7 +1110,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1215,23 +1309,26 @@ function Play() {
           <div className="playbtn">
             <div className="grid gap-4  grid-cols-3">
               <button
-                className={`btn ${activeButton === "เลือกกดเอง" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกกดเอง" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกกดเอง")}
               >
                 <BiGridAlt /> เลือกกดเอง
               </button>
 
               <button
-                className={`btn ${activeButton === "เลือกแผงเลข" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกแผงเลข" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกแผงเลข")}
               >
                 <BiGridAlt /> เลือกแผงเลข
               </button>
               <button
-                className={`btn ${activeButton === "เลือกแบบเลขวิน" ? "active" : ""
-                  }`}
+                className={`btn ${
+                  activeButton === "เลือกแบบเลขวิน" ? "active" : ""
+                }`}
                 onClick={() => handleButtonClick("เลือกแบบเลขวิน")}
               >
                 <BiGridAlt /> เลือกแบบเลขวิน
@@ -1240,11 +1337,13 @@ function Play() {
           </div>
 
           <div
-            className={`container-putnumber ${activeButton === "เลือกกดเอง" ? "" : "hidden"
-              } ${activeButton === "เลือกกดเอง"
+            className={`container-putnumber ${
+              activeButton === "เลือกกดเอง" ? "" : "hidden"
+            } ${
+              activeButton === "เลือกกดเอง"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-              }`}
+            }`}
           >
             {activeButton === "เลือกกดเอง" && (
               <section>
@@ -1256,8 +1355,9 @@ function Play() {
                 <div className="custom-container">
                   <div className="grid gap-4 grid-cols-3">
                     <button
-                      className={`btn ${activeButtons.includes("สี่ตัวบน") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                      }`}
                       onClick={() => active("สี่ตัวบน", 4)}
                     >
                       <BiGridAlt /> สี่ตัวบน{" "}
@@ -1265,8 +1365,9 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
+                      }`}
                       onClick={() => active("สี่ตัวโต๊ด", 4)}
                     >
                       <BiGridAlt /> สี่ตัวโต๊ด{" "}
@@ -1274,8 +1375,9 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${activeButtons.includes("สามตัวบน") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สามตัวบน") ? "active" : ""
+                      }`}
                       onClick={() => active("สามตัวบน", 3)}
                     >
                       <BiGridAlt /> สามตัวบน{" "}
@@ -1283,8 +1385,9 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
+                      }`}
                       onClick={() => active("สามตัวโต๊ด", 3)}
                     >
                       <BiGridAlt /> สามตัวโต๊ด{" "}
@@ -1292,8 +1395,9 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${activeButtons.includes("สามตัวล่าง") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สามตัวล่าง") ? "active" : ""
+                      }`}
                       onClick={() => active("สามตัวล่าง", 3)}
                     >
                       <BiGridAlt /> สามตัวล่าง{" "}
@@ -1301,32 +1405,36 @@ function Play() {
                     </button>
 
                     <button
-                      className={`btn ${activeButtons.includes("สองตัวบน") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สองตัวบน") ? "active" : ""
+                      }`}
                       onClick={() => active("สองตัวบน", 2)}
                     >
                       <BiGridAlt /> สองตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${activeButtons.includes("สองตัวล่าง") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("สองตัวล่าง") ? "active" : ""
+                      }`}
                       onClick={() => active("สองตัวล่าง", 2)}
                     >
                       <BiGridAlt /> สองตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${activeButtons.includes("วิ่งบน") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("วิ่งบน") ? "active" : ""
+                      }`}
                       onClick={() => active("วิ่งบน", 1)}
                     >
                       <BiGridAlt /> วิ่งบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
-                      className={`btn ${activeButtons.includes("วิ่งล่าง") ? "active" : ""
-                        }`}
+                      className={`btn ${
+                        activeButtons.includes("วิ่งล่าง") ? "active" : ""
+                      }`}
                       onClick={() => active("วิ่งล่าง", 1)}
                     >
                       <BiGridAlt /> วิ่งล่าง{" "}
@@ -1371,12 +1479,13 @@ function Play() {
                     className={`btn-con flex justify-center items-center gap-[8px]`}
                   >
                     <div
-                      className={`left-content flex flex-col justify-center items-center ${activeButtons.includes("วิ่งบน") ||
-                          activeButtons.includes("วิ่งล่าง") ||
-                          activeHuy19
+                      className={`left-content flex flex-col justify-center items-center ${
+                        activeButtons.includes("วิ่งบน") ||
+                        activeButtons.includes("วิ่งล่าง") ||
+                        activeHuy19
                           ? "hidden"
                           : ""
-                        }`}
+                      }`}
                     >
                       <label className="inline-flex items-center cursor-pointer">
                         <input
@@ -1388,8 +1497,9 @@ function Play() {
                         />
                         {/* <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all delay-100 dark:border-gray-600 peer-checked:bg-[#4400A5]"></div> */}
                         <button
-                          className={`btn backnumber ${isReverseChecked ? "active" : ""
-                            }`}
+                          className={`btn backnumber ${
+                            isReverseChecked ? "active" : ""
+                          }`}
                           onClick={handleCheckboxChange}
                         >
                           กลับเลข
@@ -1398,29 +1508,33 @@ function Play() {
                     </div>
                     <div
                       className={`btn-con flex justify-center items-center gap-[8px]
-                  ${activeButtons.includes("สองตัวล่าง") ||
-                          activeButtons.includes("สองตัวบน")
-                          ? ""
-                          : "hidden"
-                        }`}
+                  ${
+                    activeButtons.includes("สองตัวล่าง") ||
+                    activeButtons.includes("สองตัวบน")
+                      ? ""
+                      : "hidden"
+                  }`}
                     >
                       <button
-                        className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""
-                          }`}
+                        className={`btn ${
+                          activeHuy19 === "19 ประตู" ? "active" : ""
+                        }`}
                         onClick={() => handleHuy19("19 ประตู", 1)}
                       >
                         19 ประตู
                       </button>
                       <button
-                        className={`btn ${activeHuy19 === "รูดหน้า" ? "active" : ""
-                          }`}
+                        className={`btn ${
+                          activeHuy19 === "รูดหน้า" ? "active" : ""
+                        }`}
                         onClick={() => handleHuy19("รูดหน้า", 1)}
                       >
                         รูดหน้า
                       </button>
                       <button
-                        className={`btn ${activeHuy19 === "รูดหลัง" ? "active" : ""
-                          }`}
+                        className={`btn ${
+                          activeHuy19 === "รูดหลัง" ? "active" : ""
+                        }`}
                         onClick={() => handleHuy19("รูดหลัง", 1)}
                       >
                         รูดหลัง
@@ -1440,21 +1554,25 @@ function Play() {
             )}
           </div>
           <div
-            className={`container-putnumber ${activeButton !== "เลือกแผงเลข" ? "hidden" : ""
-              } ${activeButton === "เลือกแผงเลข"
+            className={`container-putnumber ${
+              activeButton !== "เลือกแผงเลข" ? "hidden" : ""
+            } ${
+              activeButton === "เลือกแผงเลข"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-              }`}
+            }`}
           >
             <Title2 addCompletedNumber={addNumberFromButtonClicked} />
           </div>
 
           <div
-            className={`container-putnumber ${activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
-              } ${activeButton === "เลือกแบบเลขวิน"
+            className={`container-putnumber ${
+              activeButton !== "เลือกแบบเลขวิน" ? "hidden" : ""
+            } ${
+              activeButton === "เลือกแบบเลขวิน"
                 ? "animate-fade-down animate-once animate-duration-300 animate-delay-100 animate-ease-linear"
                 : ""
-              }`}
+            }`}
           >
             <Title3 />
           </div>

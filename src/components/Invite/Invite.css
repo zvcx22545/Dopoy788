@@ -68,3 +68,12 @@ tr {
         width: auto;
     }
 }
+
+@media (min-width:768px)
+{
+    .footer
+{
+    position: absolute;
+    bottom: -25.5%;
+}
+}
