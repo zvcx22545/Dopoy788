@@ -1005,7 +1005,7 @@ function Play() {
                 <div>{totalItems} รายการ</div>
               </div>
             </div>
-            <hr className="my-10" />
+            <hr className="mt-10" />
             <div className="list-menuorder py-2">
               {/* Check for "สี่ตัวบน" */}
               {completedNumbers["สี่ตัวบน"].length > 0 && (

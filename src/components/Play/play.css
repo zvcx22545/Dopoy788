@@ -170,6 +170,7 @@
 
 .modalTable {
   height: 35vh;
+  padding-top: 0;
   overflow-y: auto;
   border-bottom: 35px #4400A5 solid;
 }
