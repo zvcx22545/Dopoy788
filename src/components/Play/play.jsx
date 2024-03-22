@@ -33,6 +33,9 @@ function Play() {
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(10); // เพิ่มตัวแปร price และตั้งค่าเริ่มต้นเป็น 10
   const [Openhuay19, setOpenhuay19] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+
 
   const totalPrices = Object.values(completedNumbers).reduce(
     (accumulator, numbersArray) => {
@@ -68,26 +71,42 @@ function Play() {
 
   // define to set value
   const handlePriceChanges = (e) => {
-  const newPrice = parseInt(e.target.value, 10); // Convert input value to integer
-
-  // Check if the new price is a number
-  if (!isNaN(newPrice)) {
-    // Update the price for all items in completedNumbers
-    const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
-      const updatedNumbers = numbersArray.map(numberSet => ({
-        ...numberSet,
-        price: newPrice, // Update each item's price to the new price
-      }));
-      return { ...acc, [key]: updatedNumbers };
-    }, {});
-
-    setCompletedNumbers(updatedCompletedNumbers); // Set the updated state
-    setPrice(newPrice); // Also update the global price state to reflect this new value
-  } else {
-    // Optional: handle the case where the input is cleared or an invalid number is entered
-    console.log("Invalid price entered");
-  }
-};
+    const newValue = e.target.value;
+    setInputValue(newValue); // Update inputValue with the new input directly
+  
+    if (newValue.trim() === "") { // Check if the input value is an empty string
+      // Set price to 1 for all items in completedNumbers if the input is cleared
+      const resetCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+        const resetNumbers = numbersArray.map(numberSet => ({
+          ...numberSet,
+          price: 1, // Reset price to 1
+        }));
+        return { ...acc, [key]: resetNumbers };
+      }, {});
+  
+      setCompletedNumbers(resetCompletedNumbers); // Update the state with reset prices
+      setPrice(1); // Reset the global price state to 1
+    } else {
+      const newPrice = parseInt(newValue, 10);
+  
+      // Only update the global and completedNumbers prices if the newPrice is a valid number
+      if (!isNaN(newPrice)) {
+        const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+          const updatedNumbers = numbersArray.map(numberSet => ({
+            ...numberSet,
+            price: newPrice, // Update each item's price to the newPrice
+          }));
+          return { ...acc, [key]: updatedNumbers };
+        }, {});
+  
+        setCompletedNumbers(updatedCompletedNumbers); // Update the state with the new prices
+        setPrice(newPrice); // Update the global price state to reflect this new value
+      }
+    }
+  };
+  
+  
+  
 
   const [Huayroodnar, SetHuayroodnar] = useState(false);
   const [HuayroodbackS, SetHuayroodback] = useState(false);
@@ -157,7 +176,7 @@ function Play() {
         } else if (activeButton === "สี่ตัวบน") {
           console.log(digit);
           // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
-          numbersForActiveButton.push({ number: digit, price: 10 }); // Assuming digit is a single value or object
+          numbersForActiveButton.push({ number: digit, price: 1 }); // Assuming digit is a single value or object
           // Debug: Log the updated numbersForActiveButton
           console.log(
             `${activeButton} after adding digit:`,
@@ -170,7 +189,7 @@ function Play() {
           numbersForActiveButton.push(...permutations);
         } else if (activeButton === "สี่ตัวโต๊ด") {
           // Your existing condition for "สี่ตัวโต๊ด"
-          numbersForActiveButton.push(digit);
+          numbersForActiveButton.push({ number: digit, price: 1 });
         }
         if (activeButton === "สามตัวบน" && isReverseChecked) {
           console.log(activeButton);
@@ -187,7 +206,7 @@ function Play() {
           );
         } else if (activeButton === "สามตัวบน") {
           // Your existing condition for "สี่ตัวโต๊ด"
-          numbersForActiveButton.push(digit);
+          numbersForActiveButton.push({ number: digit, price: 1 });
         } else if (activeButton === "สามตัวล่าง") {
           // Your existing condition for "สามตัวล่าง"
           if (isReverseChecked) {
@@ -209,7 +228,7 @@ function Play() {
             const permutations = reverseNumbers(digit);
             numbersForActiveButton.push(...permutations);
           } else {
-            numbersForActiveButton.push(digit);
+            numbersForActiveButton.push({ number: digit, price: 1 });
           }
         } else if (activeButton === "สองตัวบน") {
           // Your existing condition for "สองตัวล่าง"
@@ -230,7 +249,7 @@ function Play() {
             const allNumbers = HuayroodBacks(digit);
             numbersForActiveButton.push(...allNumbers);
           } else {
-            numbersForActiveButton.push(digit);
+            numbersForActiveButton.push({ number: digit, price: 1 });
           }
         } else if (activeButton === "สองตัวล่าง") {
           // Your existing condition for "สองตัวล่าง"
@@ -251,14 +270,14 @@ function Play() {
             const allNumbers = HuayroodBacks(digit);
             numbersForActiveButton.push(...allNumbers);
           } else {
-            numbersForActiveButton.push(digit);
+            numbersForActiveButton.push({ number: digit, price: 1 });
           }
         } else if (activeButton === "วิ่งบน") {
           // Your existing condition for "สองตัวล่าง"
           numbersForActiveButton.push(digit);
         } else if (activeButton === "วิ่งล่าง") {
           // Your existing condition for "สองตัวล่าง"
-          numbersForActiveButton.push(digit);
+          numbersForActiveButton.push({ number: digit, price: 1 });
         }
 
         newNumbers[activeButton] = numbersForActiveButton; // Update the completed numbers for the active button
@@ -277,27 +296,27 @@ function Play() {
   const handlePriceChange = (newPrice) => {
     const parsedPrice = parseInt(newPrice, 10); // Ensure newPrice is an integer
   
-    // Check if the parsed price is a valid number
     if (!isNaN(parsedPrice)) {
-      // Update the price for all items in completedNumbers
-      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
-        const updatedNumbers = numbersArray.map(numberSet => ({
-          ...numberSet,
-          price: parsedPrice, // Set to the new price
-        }));
-        return { ...acc, [key]: updatedNumbers };
-      }, {});
-  
-      setCompletedNumbers(updatedCompletedNumbers); // Update the state with the new prices
-      setPrice(parsedPrice); // Update the global price state if needed
-      // Assuming you want to update quantity as well; however, it's unclear how quantity is related to price.
-      // If quantity should simply match the price, this is correct.
-      // If not, you might need to adjust this logic to suit your application's requirements.
-      setQuantity(parsedPrice);
+        // Update the price for all items in completedNumbers
+        const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+            const updatedNumbers = numbersArray.map(numberSet => ({
+                ...numberSet,
+                price: parsedPrice, // Set to the new price
+            }));
+            return { ...acc, [key]: updatedNumbers };
+        }, {});
+
+        setCompletedNumbers(updatedCompletedNumbers); // Update the state with the new prices
+        setPrice(parsedPrice); // Update the global price state if needed
+        setInputValue(parsedPrice.toString()); // Update inputValue to reflect the new price as a string
+        // Updating quantity as well, assuming it should match the price
+        setQuantity(parsedPrice);
     } else {
-      console.log("Invalid price entered");
+        console.log("Invalid price entered");
+        setInputValue(""); // Clear inputValue if the new price is invalid
     }
-  };
+};
+
 
   const handleHuy19 = (buttonName, newNumberOfDigits) => {
     // Remove "วิ่งบน" and "วิ่งล่าง" from activeButtons if any Huy19 button is clicked
@@ -338,19 +357,19 @@ function Play() {
 
     const newNumbers = { ...completedNumbers };
     if (activeButton === 0) {
-      newNumbers["สี่ตัวบน"].push({ number: digit, price: 10 });
+      newNumbers["สี่ตัวบน"].push({ number: digit, price: 1 });
     } else if (activeButton === 1) {
-      newNumbers["สามตัวโต๊ด"].push(digit);
+      newNumbers["สามตัวโต๊ด"].push({ number: digit, price: 1 });
     } else if (activeButton === 2) {
-      newNumbers["สามตัวล่าง"].push(digit);
+      newNumbers["สามตัวล่าง"].push({ number: digit, price: 1 });
     } else if (activeButton === 3) {
-      newNumbers["สองตัวบน"].push(digit);
+      newNumbers["สองตัวบน"].push({ number: digit, price: 1 });
     } else if (activeButton === 4) {
-      newNumbers["สองตัวล่าง"].push(digit);
+      newNumbers["สองตัวล่าง"].push({ number: digit, price: 1 });
     } else if (activeButton === 5) {
-      newNumbers["วิ่งบน"].push(digit);
+      newNumbers["วิ่งบน"].push({ number: digit, price: 1 });
     } else if (activeButton === 6) {
-      newNumbers["วิ่งล่าง"].push(digit);
+      newNumbers["วิ่งล่าง"].push({ number: digit, price: 1 });
     }
     setCompletedNumbers(newNumbers);
 
@@ -366,7 +385,7 @@ function Play() {
         multiples.push(multiple.toString().padStart(2, "0"));
       }
     }
-    return multiples;
+    return multiples.map(num => ({ number: num, price: 1 }));
   }
   function HuayroodBacks(digit) {
     if (digit < 0 || digit > 9) {
@@ -381,10 +400,9 @@ function Play() {
       let number = i * 10 + parint; // Multiply loop index by 10, then add the input digit
       numbers.push(number.toString().padStart(2, "0")); // Convert to string, ensuring two digits
     }
-    return numbers;
+    return numbers.map(num => ({ number: num, price: 1 }));
   }
 
-  console.log();
 
   const handleHuay19doors = (digit) => {
     let newNumbers = [];
@@ -398,39 +416,37 @@ function Play() {
       }
     }
 
-    return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
-  };
+    return newNumbers.slice(0, 19).map(num => ({ number: num, price: 1 }));
+};
 
-  const handleIncrement = () => {
-    // Update the price for all items in completedNumbers and increment by 1
-    const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
-      const updatedNumbers = numbersArray.map(numberSet => ({
-        ...numberSet,
-        price: numberSet.price + 1, // Increment price
-      }));
-      return { ...acc, [key]: updatedNumbers };
-    }, {});
-  
-    setCompletedNumbers(updatedCompletedNumbers); // Update the state
-    setPrice(prevPrice => prevPrice + 1); // Also update the global price state
-  };
-  
+const handleIncrement = () => {
+  const updatedPrice = price + 1;
+  updatePricesInCompletedNumbers(updatedPrice);
+  setPrice(updatedPrice);
+  setInputValue(updatedPrice.toString()); // Update the input field to show the new price
+};
 
-  const handleDecrement = () => {
-    // Only decrement if price is greater than 1
-    if (price > 1) {
-      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
-        const updatedNumbers = numbersArray.map(numberSet => ({
-          ...numberSet,
-          price: Math.max(1, numberSet.price - 1), // Decrement price, but not below 1
-        }));
-        return { ...acc, [key]: updatedNumbers };
-      }, {});
-  
-      setCompletedNumbers(updatedCompletedNumbers); // Update the state
-      setPrice(prevPrice => prevPrice - 1); // Also update the global price state
-    }
-  };
+const handleDecrement = () => {
+  if (price > 1) {
+    const updatedPrice = price - 1;
+    updatePricesInCompletedNumbers(updatedPrice);
+    setPrice(updatedPrice);
+    setInputValue(updatedPrice.toString()); // Update the input field to show the new price
+  }
+};
+
+// Utility function to update all prices in completedNumbers
+const updatePricesInCompletedNumbers = (newPrice) => {
+  const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+    const updatedNumbers = numbersArray.map(numberSet => ({
+      ...numberSet,
+      price: newPrice,
+    }));
+    return { ...acc, [key]: updatedNumbers };
+  }, {});
+
+  setCompletedNumbers(updatedCompletedNumbers);
+};
   
   //Delete All the value in betting
 
@@ -746,7 +762,7 @@ function Play() {
 
                 {completedNumbers["สี่ตัวโต๊ด"].length > 0 && (
                   <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
-                    <h1 className="w-full">สี่ตัวโต๊ด</h1>
+                  <h1 className="w-full">สี่ตัวโต๊ด</h1>
                     <h1 className="w-full">เรทจ่าย</h1>
                     <h1 className="w-full">ราคา</h1>
                     <h1 className="w-full">ลบ</h1>
@@ -755,16 +771,19 @@ function Play() {
 
                 <tbody>
                   {completedNumbers["สี่ตัวโต๊ด"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สี่ตัวโต๊ด">{numberSet}</td>
+                   <tr key={index}>
+                      <td data-label="สี่ตัวโต๊ด">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สี่ตัวโต๊ด")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -788,16 +807,19 @@ function Play() {
                 )}
                 <tbody>
                   {completedNumbers["สามตัวบน"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สามตัวบน">{numberSet}</td>
+                    <tr key={index}>
+                      <td data-label="สามตัวบน">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สามตัวบน")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -821,16 +843,19 @@ function Play() {
                 )}
                 <tbody>
                   {completedNumbers["สามตัวโต๊ด"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สามตัวโต๊ด">{numberSet}</td>
+                    <tr key={index}>
+                      <td data-label="สามตัวโต๊ด">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สามตัวโต๊ด")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -853,16 +878,19 @@ function Play() {
                 )}
                 <tbody>
                   {completedNumbers["สามตัวล่าง"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สามตัวล่าง">{numberSet}</td>
+                    <tr key={index}>
+                      <td data-label="สามตัวล่าง">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สามตัวล่าง")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -886,16 +914,19 @@ function Play() {
 
                 <tbody>
                   {completedNumbers["สองตัวบน"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สองตัวบน">{numberSet}</td>
+                    <tr key={index}>
+                      <td data-label="สองตัวบน">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สองตัวบน")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -920,15 +951,18 @@ function Play() {
                 <tbody>
                   {completedNumbers["สองตัวล่าง"].map((numberSet, index) => (
                     <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สองตัวล่าง">{numberSet}</td>
+                      <td data-label="สองตัวล่าง">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "สองตัวล่าง")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -952,16 +986,19 @@ function Play() {
 
                 <tbody>
                   {completedNumbers["วิ่งบน"].map((numberSet, index) => (
-                    <tr key={`${numberSet}_${index}`}>
-                      <td data-label="วิ่งบน">{numberSet}</td>
+                    <tr key={index}>
+                      <td data-label="วิ่งบน">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "วิ่งบน")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -985,15 +1022,18 @@ function Play() {
                 <tbody>
                   {completedNumbers["วิ่งล่าง"].map((numberSet, index) => (
                     <tr key={`${numberSet}_${index}`}>
-                      <td data-label="วิ่งล่าง">{numberSet}</td>
+                      <td data-label="วิ่งล่าง">{numberSet.number}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td
                         data-label="ราคา"
-                        className="flex justify-between md:justify-center"
                       >
-                        <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">
-                          {price}
-                        </p>
+                        <input
+                          className="border border-[#4400A5] p-0 text-center w-[50px]"
+                          value={numberSet.price}
+                          onChange={(e) =>
+                            HandlePriceChange(e, index, "วิ่งล่าง")
+                          }
+                        />
                       </td>
                       <td data-label="ลบ">
                         <button
@@ -1055,9 +1095,10 @@ function Play() {
                   </button>
                   <input
                     type="number"
-                    value={totalItems === 0 ? 0 : price}
+                    value={inputValue}
                     onChange={handlePriceChanges}
                     className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
+                    placeholder="กรุณาใส่ราคา"
                   />
                   <button
                     className="w-[35px] h-[35px] bg-[#00871E] rounded text-white text-[25px]"
@@ -1129,7 +1170,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1149,7 +1190,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1168,7 +1209,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1188,7 +1229,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1208,7 +1249,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1227,7 +1268,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1247,7 +1288,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"
@@ -1267,7 +1308,7 @@ function Play() {
                   key={index}
                   className="flex gap-3 items-center justify-between px-5"
                 >
-                  <h1>{numberSet}</h1>
+                  <h1>{numberSet.number}</h1>
                   {/* Delete Button */}
                   <button
                     className="text-[#FF2929] text-[18px]"

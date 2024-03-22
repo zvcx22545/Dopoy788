@@ -40,7 +40,9 @@ const Title2 = ({ addCompletedNumber }) => {
     const strNumber = number.toString();
     const permutations = [];
     generatePermutations(strNumber, "", permutations);
-    return permutations;
+    return permutations.map((num) => {
+      return { number: num, price: 10 }; // Update the price as needed
+    });
   };
   
   const generatePermutations = (strNumber, currentPerm, permutations) => {
