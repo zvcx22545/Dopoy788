@@ -168,7 +168,7 @@ function Invite(){
 
            
             
-                    <div className="footer">
+                    <div className="footers">
             <Footer/>
             </div>
         </section>

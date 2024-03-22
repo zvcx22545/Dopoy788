@@ -68,28 +68,27 @@ function Play() {
 
   // define to set value
   const handlePriceChanges = (e) => {
-    const newPrice = parseInt(e.target.value); // Parse the input value to an integer
-    if (!isNaN(newPrice)) {
-      // Update the price for all items in completedNumbers
-      const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
-        // Map over the numbersArray to update the price for each object
-        const updatedNumbers = numbersArray.map(numberSet => ({
-          ...numberSet,
-          price: newPrice, // Update price
-        }));
-        // Return the accumulated object with updated arrays
-        return {
-          ...acc,
-          [key]: updatedNumbers,
-        };
-      }, {});
-  
-      setCompletedNumbers(updatedCompletedNumbers); // Set the updated completedNumbers
-      setPrice(newPrice); // Also update the global price state
-    } else {
-      setPrice(0); // If the input is not a number, set the global price to 0
-    }
-  };
+  const newPrice = parseInt(e.target.value, 10); // Convert input value to integer
+
+  // Check if the new price is a number
+  if (!isNaN(newPrice)) {
+    // Update the price for all items in completedNumbers
+    const updatedCompletedNumbers = Object.entries(completedNumbers).reduce((acc, [key, numbersArray]) => {
+      const updatedNumbers = numbersArray.map(numberSet => ({
+        ...numberSet,
+        price: newPrice, // Update each item's price to the new price
+      }));
+      return { ...acc, [key]: updatedNumbers };
+    }, {});
+
+    setCompletedNumbers(updatedCompletedNumbers); // Set the updated state
+    setPrice(newPrice); // Also update the global price state to reflect this new value
+  } else {
+    // Optional: handle the case where the input is cleared or an invalid number is entered
+    console.log("Invalid price entered");
+  }
+};
+
   const [Huayroodnar, SetHuayroodnar] = useState(false);
   const [HuayroodbackS, SetHuayroodback] = useState(false);
 
@@ -339,7 +338,7 @@ function Play() {
 
     const newNumbers = { ...completedNumbers };
     if (activeButton === 0) {
-      newNumbers["สี่ตัวบน"].push(digit);
+      newNumbers["สี่ตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 1) {
       newNumbers["สามตัวโต๊ด"].push(digit);
     } else if (activeButton === 2) {
