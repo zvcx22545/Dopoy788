@@ -959,9 +959,9 @@ function Play() {
                 <p>จำนวนเงิน</p>
                 <div className="w-[50%] flex justify-end items-center gap-5">
                   <button
-                    className="w-[35px] h-[35px] bg-[#FF2929] rounded"
+                    className="w-[35px] h-[35px] bg-[#FF2929] rounded text-white text-[25px]"
                     onClick={() => handleDecrement()}
-                  ></button>
+                  >-</button>
                   <input
                     type="number"
                     value={totalItems === 0 ? 0 : price}
@@ -969,9 +969,9 @@ function Play() {
                     className="w-[45%] border border-[#4400A5] rounded px-1 text-center bg-white h-[35px]"
                   />
                   <button
-                    className="w-[35px] h-[35px] bg-[#00871E] rounded"
+                    className="w-[35px] h-[35px] bg-[#00871E] rounded text-white text-[25px]"
                     onClick={() => handleIncrement()}
-                  ></button>
+                  >+</button>
                 </div>
               </div>
               <div className="grid grid-cols-2 justify-between gap-3">

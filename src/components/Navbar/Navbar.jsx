@@ -66,12 +66,21 @@ function Navbar() {
     <div className="navbar justify-between shadow-md">
       <Link to="/Home"><img src="Doopoylogo.png" className="logo" /> </Link>
 
-        {/* <div className="navbar-center hidden lg:flex lg:mx-auto"> */}
-        {/* <ul className="menu menu-horizontal px-1"> */}
-          {/* <Link to="/Home"><li><a className="">เช็คฉลากกินแบ่ง</a></li></Link> */}
-      {/* </div> */}
+        <div className="navbar-center hidden lg:flex lg:mx-auto">
+         <div className="menu menu-horizontal px-1">
+          <Link to="/Home"><li><a className="text-base">เช็คฉลากกินแบ่ง</a></li></Link>
+          <Link to="/Listpoy"><li><a className='text-base'>โพยหวย</a></li></Link>
+            <Link to="/Topup"><li><a className='text-base'>เติมเงิน / ถอนเงิน</a></li></Link>
+            <Link to="/Invite"><li><a className='text-base'>แนะนำเพื่อน</a></li></Link>
+            <Link to="/Repassword"><li><a className='text-base'>เปลี่ยนรหัสผ่าน</a></li></Link>
+            <li><a className='text-base'>ข้อมูลส่วนตัว</a></li>
+            
+          <Link to="/Blog"><li><a className="text-base">บทความ</a></li></Link>
+          </div>
+          
+      </div>
       <div className="container-respon gap-3">
-      <button  className="dropdown dropdown-end ml-5 md:hidden ]">
+      <button className="dropdown dropdown-end ml-5 md:hidden">
         <Link to="/Topup">
       <div tabIndex={0} role="button" className="btn first-letter:!important w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn ">
             {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
@@ -79,8 +88,10 @@ function Navbar() {
               <div className="credit gap-2 ">50.00</div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
+            
           </div>
           </Link>
+          
         </button>
         <div className="md:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={() => setIsModalOpen(true)}>
@@ -89,25 +100,31 @@ function Navbar() {
       </div>
       </div>
 
-      <div className="dropdown dropdown-end ml-5 hidden md:block">
-          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-col flex-nowrap items-center gap-0 bg-btn">
+      <div className="dropdown dropdown-end ml-5 hidden md:block ">
+        <div className='flex gap-3 max-[1024px]:flex-row max-[1230px]:flex-col'>
+      <Link to="/Topup" >
+          <div tabIndex={0} role="button" className="btn w-40 p-6 flex flex-nowrap items-center gap-0 bg-btn ">
             {/* <div className="div">{currentUser ? currentUser.username : "Guest"}</div> */}
-            <div className="credit-con flex items-center gap-2">
+           <div className="credit-con flex items-center gap-2">
               <div className="credit gap-2 text-[20px] font-semibold">50.00 </div>
               <div className="credit-icon"><CreditCardOutlinedIcon /></div>
             </div>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
-            <Link to="/Listpoy"><li><a>โพยหวย</a></li></Link>
-            <Link to="/Topup"><li><a>เติมเงิน / ถอนเงิน</a></li></Link>
-            <Link to="/Invite"><li><a>แนะนำเพื่อน</a></li></Link>
-            <Link to="/Repassword"><li><a>เปลี่ยนรหัสผ่าน</a></li></Link>
-            <li><a>ข้อมูลส่วนตัว</a></li>
-            
-          <Link to="/Blog"><li><a className="">บทความ</a></li></Link>
-            <li><a onClick={handleLogout}>ออกจากระบบ</a></li>
-          </ul>
+          </Link>
+          <div className='btn max-lg:hidden' onClick={handleLogout}>ออกจากระบบ</div>
+          <div className="lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={() => setIsModalOpen(true)}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          </div>
+      </div>
+          {/* <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 text-white shadow bg-[#333] rounded-box w-52">
+           
+
+          </ul> */}
+          
+          </div>
         </div>
+  
               {/* Button to open modal */}
  {/* // Render only if screen width is less than or equal to 768px */}
 
