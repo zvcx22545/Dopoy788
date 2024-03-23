@@ -105,7 +105,8 @@ function Play() {
     }
   };
   
-  
+  // Check Open modal 
+
   
 
   const [Huayroodnar, SetHuayroodnar] = useState(false);
@@ -1587,6 +1588,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       numberOfDigits={numberOfDigits}
                       activeButtons={activeButtons}
                       onEnButtonClick={handleEnButtonClick} // Pass handleEnButtonClick function as prop
+                      modalOpen={showModal}
                     />
                   </div>
                 </div>

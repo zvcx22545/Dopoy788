@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./numpad.css";
 import { useState, useEffect, useCallback } from "react"; // Import useCallback
 
-function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnButtonClick }) {
+function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnButtonClick, modalOpen }) {
     const [numbers, setNumbers] = useState(Array(numberOfDigits).fill(""));
     const [enButtonClicked, setEnButtonClicked] = useState(false);
 
@@ -32,21 +32,22 @@ function NumpadLotto({ addCompletedNumbers, numberOfDigits, activeButtons, onEnB
 
     useEffect(() => {
         const handleKeyPress = (event) => {
+          if (!modalOpen) { // Check if modal is not open
             const digit = parseInt(event.key, 10);
             if (!isNaN(digit)) {
-                handleAddNumber(digit);
+              handleAddNumber(digit);
+            } else if (event.key === "Enter") {
+              setEnButtonClicked(true);
             }
-            else if (event.key === "Enter") {
-                setEnButtonClicked(true);
-                }
+          }
         };
-
+    
         document.addEventListener("keypress", handleKeyPress);
-
+    
         return () => {
-            document.removeEventListener("keypress", handleKeyPress);
+          document.removeEventListener("keypress", handleKeyPress);
         };
-    }, [handleAddNumber]);
+      }, [handleAddNumber, modalOpen]);
     
     const DelefromKeyboard = (event) => {
         if (event.key === "Backspace") {
@@ -154,5 +155,6 @@ NumpadLotto.propTypes = {
     numberOfDigits: PropTypes.number.isRequired,
     activeButtons: PropTypes.arrayOf(PropTypes.string).isRequired,
     onEnButtonClick: PropTypes.func.isRequired, // Define onEnButtonClick prop type
+    modalOpen: PropTypes.bool.isRequireds,
 };
 export default NumpadLotto;
