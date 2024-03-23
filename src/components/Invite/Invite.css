@@ -71,9 +71,9 @@ tr {
 
 @media (min-width:768px)
 {
-    .footers
-{
-    position: absolute;
-    bottom: -25.5%;
-}
+   .footers #footer{
+        position: absolute;
+        left: 0;
+        bottom:0;
+      }
 }

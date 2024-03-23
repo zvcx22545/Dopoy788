@@ -23,7 +23,7 @@ function Invite(){
     };
 
     return(
-        <section className='relative'>
+        <section className='relative h-screen'>
             <Navbar/>
             <div className="flex flex-col p-5">
                 {/* <div className="divider divider-start text-4xl pb-8">
@@ -168,7 +168,7 @@ function Invite(){
 
            
             
-                    <div className="footers">
+            <div className="footers">
             <Footer/>
             </div>
         </section>

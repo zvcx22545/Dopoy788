@@ -176,7 +176,7 @@ function Play() {
         } else if (activeButton === "สี่ตัวบน") {
           console.log(digit);
           // If the active button is 'สี่ตัวบน', add the digit to the 'สี่ตัวบน' array
-          numbersForActiveButton.push({ number: digit, price: 1 }); // Assuming digit is a single value or object
+          numbersForActiveButton.push({ number: digit, price: 10 }); // Assuming digit is a single value or object
           // Debug: Log the updated numbersForActiveButton
           console.log(
             `${activeButton} after adding digit:`,
@@ -189,7 +189,7 @@ function Play() {
           numbersForActiveButton.push(...permutations);
         } else if (activeButton === "สี่ตัวโต๊ด") {
           // Your existing condition for "สี่ตัวโต๊ด"
-          numbersForActiveButton.push({ number: digit, price: 1 });
+          numbersForActiveButton.push({ number: digit, price: 10 });
         }
         if (activeButton === "สามตัวบน" && isReverseChecked) {
           console.log(activeButton);
@@ -206,7 +206,7 @@ function Play() {
           );
         } else if (activeButton === "สามตัวบน") {
           // Your existing condition for "สี่ตัวโต๊ด"
-          numbersForActiveButton.push({ number: digit, price: 1 });
+          numbersForActiveButton.push({ number: digit, price: 10 });
         } else if (activeButton === "สามตัวล่าง") {
           // Your existing condition for "สามตัวล่าง"
           if (isReverseChecked) {
@@ -220,7 +220,7 @@ function Play() {
               numbersForActiveButton
             );
           } else {
-            numbersForActiveButton.push(digit);
+            numbersForActiveButton.push({ number: digit, price: 10 });
           }
         } else if (activeButton === "สามตัวโต๊ด") {
           // Your existing condition for "สามตัวโต๊ด"
@@ -228,7 +228,7 @@ function Play() {
             const permutations = reverseNumbers(digit);
             numbersForActiveButton.push(...permutations);
           } else {
-            numbersForActiveButton.push({ number: digit, price: 1 });
+            numbersForActiveButton.push({ number: digit, price: 10 });
           }
         } else if (activeButton === "สองตัวบน") {
           // Your existing condition for "สองตัวล่าง"
@@ -249,7 +249,7 @@ function Play() {
             const allNumbers = HuayroodBacks(digit);
             numbersForActiveButton.push(...allNumbers);
           } else {
-            numbersForActiveButton.push({ number: digit, price: 1 });
+            numbersForActiveButton.push({ number: digit, price: 10 });
           }
         } else if (activeButton === "สองตัวล่าง") {
           // Your existing condition for "สองตัวล่าง"
@@ -270,14 +270,14 @@ function Play() {
             const allNumbers = HuayroodBacks(digit);
             numbersForActiveButton.push(...allNumbers);
           } else {
-            numbersForActiveButton.push({ number: digit, price: 1 });
+            numbersForActiveButton.push({ number: digit, price: 10 });
           }
         } else if (activeButton === "วิ่งบน") {
           // Your existing condition for "สองตัวล่าง"
           numbersForActiveButton.push(digit);
         } else if (activeButton === "วิ่งล่าง") {
           // Your existing condition for "สองตัวล่าง"
-          numbersForActiveButton.push({ number: digit, price: 1 });
+          numbersForActiveButton.push({ number: digit, price: 10 });
         }
 
         newNumbers[activeButton] = numbersForActiveButton; // Update the completed numbers for the active button
@@ -357,19 +357,19 @@ function Play() {
 
     const newNumbers = { ...completedNumbers };
     if (activeButton === 0) {
-      newNumbers["สี่ตัวบน"].push({ number: digit, price: 1 });
+      newNumbers["สี่ตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 1) {
-      newNumbers["สามตัวโต๊ด"].push({ number: digit, price: 1 });
+      newNumbers["สามตัวโต๊ด"].push({ number: digit, price: 10 });
     } else if (activeButton === 2) {
-      newNumbers["สามตัวล่าง"].push({ number: digit, price: 1 });
+      newNumbers["สามตัวล่าง"].push({ number: digit, price: 10 });
     } else if (activeButton === 3) {
-      newNumbers["สองตัวบน"].push({ number: digit, price: 1 });
+      newNumbers["สองตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 4) {
-      newNumbers["สองตัวล่าง"].push({ number: digit, price: 1 });
+      newNumbers["สองตัวล่าง"].push({ number: digit, price: 10 });
     } else if (activeButton === 5) {
-      newNumbers["วิ่งบน"].push({ number: digit, price: 1 });
+      newNumbers["วิ่งบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 6) {
-      newNumbers["วิ่งล่าง"].push({ number: digit, price: 1 });
+      newNumbers["วิ่งล่าง"].push({ number: digit, price: 10 });
     }
     setCompletedNumbers(newNumbers);
 
