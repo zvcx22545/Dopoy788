@@ -275,7 +275,7 @@ function Play() {
           }
         } else if (activeButton === "วิ่งบน") {
           // Your existing condition for "สองตัวล่าง"
-          numbersForActiveButton.push(digit);
+          numbersForActiveButton.push({number: digit, price: 10});
         } else if (activeButton === "วิ่งล่าง") {
           // Your existing condition for "สองตัวล่าง"
           numbersForActiveButton.push({ number: digit, price: 10 });
@@ -386,7 +386,7 @@ function Play() {
         multiples.push(multiple.toString().padStart(2, "0"));
       }
     }
-    return multiples.map(num => ({ number: num, price: 1 }));
+    return multiples.map(num => ({ number: num, price: 10 }));
   }
   function HuayroodBacks(digit) {
     if (digit < 0 || digit > 9) {
@@ -401,7 +401,7 @@ function Play() {
       let number = i * 10 + parint; // Multiply loop index by 10, then add the input digit
       numbers.push(number.toString().padStart(2, "0")); // Convert to string, ensuring two digits
     }
-    return numbers.map(num => ({ number: num, price: 1 }));
+    return numbers.map(num => ({ number: num, price: 10 }));
   }
 
 
@@ -417,7 +417,7 @@ function Play() {
       }
     }
 
-    return newNumbers.slice(0, 19).map(num => ({ number: num, price: 1 }));
+    return newNumbers.slice(0, 19).map(num => ({ number: num, price: 10 }));
 };
 
 const handleIncrement = () => {

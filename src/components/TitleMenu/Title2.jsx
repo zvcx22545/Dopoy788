@@ -292,7 +292,7 @@ const Title2 = ({ addCompletedNumber }) => {
                     ? number.toString().padStart(4, "0")
                     : number.toString().padStart(3, "0")
                 );
-                reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber, activeButton));
+                reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber.number, activeButton));
               } else {
                 // If not checked, just send the current number
                 addCompletedNumber(
@@ -328,7 +328,7 @@ const Title2 = ({ addCompletedNumber }) => {
                       ? number.toString().padStart(2, "0")
                       : number.toString().padStart(2, "0")
                   );
-                  reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber,activeButton));
+                  reversedNumbers.forEach((reversedNumber) => addCompletedNumber(reversedNumber.number,activeButton));
                 } else {
                   // If not checked, just send the current number
                   addCompletedNumber(
