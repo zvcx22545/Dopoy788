@@ -3,6 +3,15 @@ import Footer from "../Footer/Footer";
 import { IoIosBackspace } from "react-icons/io";
 import React, { useState } from "react";
 import "./ListPoy.css"
+import { Link } from "react-router-dom";
+
+
+// icon
+const Lefticon = (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+<path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+);
+
 
 function Listpoy(){
     const [showModal, setShowModal] = useState(false);
@@ -95,11 +104,13 @@ function Listpoy(){
                         </div>
                     </div>
                 )}
-      <div className="flex flex-col p-5">
-        {/* <div className="divider divider-start text-4xl pb-8">
-          <IoIosBackspace />
-          ย้อนกลับ
-        </div> */}
+      <div className="flex flex-col p-5 items-center">
+      <div className="divider divider-start pb-8 text-[#4400A5] md:hidden">
+        <Link to="/Home" className="flex justify-center items-center gap-1">
+          <div className="text-2x">{Lefticon}</div>
+          <div className="text-xl"> ย้อนกลับ</div>   
+          </Link>
+        </div>
         </div>
         <div className="grid justify-center text-center pb-[2rem]"  >
             <h1 className="text-[#4400A5] text-[2rem] font-bold mb-14">โพยหวย</h1>

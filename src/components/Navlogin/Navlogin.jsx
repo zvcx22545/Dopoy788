@@ -82,7 +82,7 @@ function Navlogin() {
     return(
         <form action="" onSubmit={handleSubmit}>
         <div className="mb-5 text-white ">
-            <div className="navLogin flex items-center gap-[8%] justify-center bg-[#4400A5] py-10 max-lg:flex-col ">
+            <div className="navLogin flex items-center gap-[4%] justify-center bg-[#4400A5] py-10 max-lg:flex-col ">
     <div className="max-lg:text-center">
         <p>เข้าสู่ระบบกับ</p>
         <h1 className="max-lg:ml-0 ml-5 text-[2rem] font-bold">ดูโพย 788</h1>
@@ -99,7 +99,7 @@ function Navlogin() {
         </div>
     </div>
     <div className="mt-3">
-        <button className="btn text-white bg-[#FF8329]" onClick={handleSubmit}>ยืนยัน</button>
+        <button className="btn w-[150px] text-white bg-[#FF8329]" onClick={handleSubmit}>ยืนยัน</button>
     </div>
 </div>
 

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./play.css";
 import Footer from "../Footer/Footer";
-import { IoIosBackspace } from "react-icons/io";
 import { BiGridAlt } from "react-icons/bi";
 import { BiTrashAlt } from "react-icons/bi";
 import NumpadLotto from "./NumpadLotto";
@@ -12,6 +11,13 @@ import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+
+// icon
+const Lefticon = (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+<path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+);
 
 function Play() {
   const [showModal, setShowModal] = useState(false);
@@ -48,7 +54,7 @@ function Play() {
     },
     0
   );
-  
+
 
   // This function will be used to handle individual price changes for each numberSet
   const HandlePriceChange = (e, index, category) => {
@@ -673,21 +679,21 @@ const updatePricesInCompletedNumbers = (newPrice) => {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        {/* <div className="divider divider-start text-3xl pb-8 text-[#4400A5]">
-        <Link to="/" className="flex justify-center items-center gap-1">
-          <IoIosBackspace />
-            ย้อนกลับ
+        <div className="divider divider-start pb-8 text-[#4400A5] md:hidden">
+        <Link to="/Home" className="flex justify-center items-center gap-1">
+          <div className="text-2x">{Lefticon}</div>
+          <div className="text-xl"> ย้อนกลับ</div>   
           </Link>
-        </div> */}
-        <div className="footer px-10 py-4">
+        </div>
+        <div className="footer px-8 py-4">
           <aside className="items-center grid-flow-col gap-4">
             <img src={chosenImage} alt="Vietnam flag" className="h-[50px]" />
-            <p className="text-[#4400A5] text-3xl">
+            <p className="text-[#4400A5] w-full text-3xl font-bold">
               {displayText} <br />
-              <p className="text-[#000] text-xl">งวดวันที่ {currentDate}</p>
+              <p className="text-[#000] text-xl font-[400] mt-2">งวดวันที่ {currentDate}</p>
             </p>
           </aside>
-          <nav className="md:place-self-center md:justify-self-end bg-primary rounded-full drop-shadow-lg">
+          <nav className="md:place-self-center max-[500px]:mx-auto md:justify-self-end bg-primary rounded-full drop-shadow-lg">
             <div className="grid grid-flow-col gap-4">
               <div className="stat text-center">
                 <div className=" text-white text-xl min-w-48">{countdown}</div>

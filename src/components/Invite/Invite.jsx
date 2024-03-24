@@ -4,6 +4,13 @@ import Footer from "../Footer/Footer";
 import { IoIosBackspace } from "react-icons/io";
 import { FiCopy } from "react-icons/fi";
 import "./Invite.css"
+import { Link } from 'react-router-dom';
+
+// icon
+const Lefticon = (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+<path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+);
 
 function Invite(){
     const [copied, setCopied] = useState(false);
@@ -26,10 +33,12 @@ function Invite(){
         <section className='relative h-screen'>
             <Navbar/>
             <div className="flex flex-col p-5">
-                {/* <div className="divider divider-start text-4xl pb-8">
-                <IoIosBackspace />
-                ย้อนกลับ
-                </div> */}
+            <div className="divider divider-start pb-8 text-[#4400A5] md:hidden">
+        <Link to="/Home" className="flex justify-center items-center gap-1">
+          <div className="text-2x">{Lefticon}</div>
+          <div className="text-xl"> ย้อนกลับ</div>   
+          </Link>
+        </div>
             </div>
             <div className="flex justify-center items-center gap-10 p-6  max-md:flex-col">
               <svg xmlns="http://www.w3.org/2000/svg" fill="#4400A5" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 bg-[#4400A5] rounded p-1 text-white shadow-lg hover:text-[#FF8329] max-md:hidden">

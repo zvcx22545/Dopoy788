@@ -68,10 +68,7 @@
       font-size: clamp(1rem, 0.7727rem + 0.6061vw, 1.5rem);
     }
   }
-  .card-body > h2
-  {
-    font-size: clamp(0.875rem, 0.5909rem + 0.7576vw, 1.5rem);
-    }
+
 
     @keyframes bounce {
       0%, 100% {

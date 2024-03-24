@@ -116,11 +116,11 @@ export default function Card({ displayText,imghuy }) {
                     <img src={displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px] w-[70px]" />
 
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">
+                        <h2 className="text-3xl font-bold text-[#4400A5]">
                         {displayText === "หวยไทย" ? "กองสลากรัฐบาล"
                          : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์"
                          : displayText}</h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
+                        <p className="text-lg text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
             <div className="divider divider-primary "></div>
@@ -153,8 +153,8 @@ export default function Card({ displayText,imghuy }) {
                     <img src={displayText === "หวยไทย" ? bankname.GSB : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.china: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
 
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "หวย ออมสิน" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นจีน": displayText}</h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
+                        <h2 className="text-3xl font-bold text-[#4400A5]"> {displayText === "หวยไทย" ? "หวย ออมสิน" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นจีน": displayText}</h2>
+                        <p className="text-lg text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
             <div className="divider divider-primary "></div>
@@ -184,8 +184,8 @@ export default function Card({ displayText,imghuy }) {
                 <div className="flex items-center justify-start mb-4 gap-2 ">
                 <img src={displayText === "หวยไทย" ? bankname.BAAC : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.korea: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
                     <div className="card-body p-2 ">
-                        <h2 className="text-2xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText}</h2>
-                        <p className="text-sm text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
+                        <h2 className="text-3xl font-bold text-[#4400A5]">{displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นเกาหลี": displayText}</h2>
+                        <p className="text-lg text-[#7B7B7B]">งวดวันที่ 14 ธันวาคม 2023</p>
                     </div>
                  </div>
             <div className="divider divider-primary "></div>
