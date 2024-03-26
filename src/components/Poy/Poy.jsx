@@ -45,23 +45,23 @@ function Poy(){
                     </div>
                     <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
                         <div className="menu-poy">
-                            <button>สี่ตัวบน</button>
+                            <button>4 ตัวบน</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สามตัวโต๊ด</button>
+                            <button>3 ตัวโต๊ด</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สองตัวล่าง</button>
+                            <button>2 ตัวล่าง</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สี่ตัวโต๊ด</button>
+                            <button>4 ตัวโต๊ด</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สามตัวล่าง</button>
+                            <button>3 ตัวล่าง</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
@@ -69,11 +69,11 @@ function Poy(){
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สามตัวบน</button>
+                            <button>3 ตัวบน</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">
-                            <button>สองตัวบน</button>
+                            <button>2 ตัวบน</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">

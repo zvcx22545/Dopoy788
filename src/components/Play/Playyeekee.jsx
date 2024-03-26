@@ -212,7 +212,7 @@ useEffect(() => {
 
   const [activeButton, setActiveButton] = useState("เลือกกดเอง");
 
-  const [activeButtons, setActiveButtons] = useState(["สี่ตัวบน"]);
+  const [activeButtons, setActiveButtons] = useState(["4 ตัวบน"]);
 
   const active = (buttonName, newNumberOfDigits) => {
     if (activeButtons.length === 1 && activeButtons[0] === buttonName) {
@@ -243,12 +243,12 @@ useEffect(() => {
     if (buttonName === "วิ่งบน" || buttonName === "วิ่งล่าง") {
       setActiveButtons([buttonName]);
       // If the clicked button is "วิ่งบน" or "วิ่งล่าง"
-      // Check if "สองตัวบน" or "สองตัวล่าง" is active, if yes, don't remove it
-      if (activeButtons.includes("สองตัวบน") || activeButtons.includes("สองตัวล่าง")) {
+      // Check if "2 ตัวบน" or "2 ตัวล่าง" is active, if yes, don't remove it
+      if (activeButtons.includes("2 ตัวบน") || activeButtons.includes("2 ตัวล่าง")) {
         setActiveButtons([buttonName]); // Set only the clicked button as active
       } else {
-        // Remove "สองตัวบน" and "สองตัวล่าง" before adding "วิ่งบน" or "วิ่งล่าง"
-        setActiveButtons(activeButtons.filter(btn => btn !== "สองตัวบน" && btn !== "สองตัวล่าง"));
+        // Remove "2 ตัวบน" and "2 ตัวล่าง" before adding "วิ่งบน" or "วิ่งล่าง"
+        setActiveButtons(activeButtons.filter(btn => btn !== "2 ตัวบน" && btn !== "2 ตัวล่าง"));
         setActiveButtons([buttonName]); // Set the clicked button as active
       }
       setNumberOfDigits(newNumberOfDigits); // Set the number of digits
@@ -379,7 +379,7 @@ useEffect(() => {
             <div className="modalTable">
               {/* <div className="h-[40px] w-full bg-[#4400A5] hidden max-md:block"></div> */}
               <div className="headTable flex justify-between items-center text-white text-center h-[40px] bg-[#4400A5]">
-                <h1 className="w-full">สามตัวล่าง</h1>
+                <h1 className="w-full">3 ตัวล่าง</h1>
                 <h1 className="w-full">เรทจ่าย</h1>
                 <h1 className="w-full">ราคา</h1>
                 <h1 className="w-full">ลบ</h1>
@@ -388,7 +388,7 @@ useEffect(() => {
                 <tbody>
                   {completedNumbers.map((numberSet, index) => (
                     <tr key={`${numberSet}_${index}`}>
-                      <td data-label="สามตัวล่าง">{numberSet}</td>
+                      <td data-label="3 ตัวล่าง">{numberSet}</td>
                       <td data-label="เรทจ่าย">50</td>
                       <td data-label="ราคา" className="flex justify-between md:justify-center">
                         <p className="border border-[#4400A5] px-1 w-[50px] flex justify-center items-center">{price}</p>
@@ -549,70 +549,70 @@ useEffect(() => {
                   <div className="grid gap-4 grid-cols-3">
                     <button
                       className={`btn ${
-                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                        activeButtons.includes("4 ตัวบน") ? "active" : ""
                       }`}
-                      onClick={() => active("สี่ตัวบน", 4)}
+                      onClick={() => active("4 ตัวบน", 4)}
                     >
-                      <BiGridAlt /> สี่ตัวบน{" "}
+                      <BiGridAlt /> 4 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
                     <button
                       className={`btn ${
-                        activeButtons.includes("สี่ตัวโต๊ด") ? "active" : ""
+                        activeButtons.includes("4 ตัวโต๊ด") ? "active" : ""
                       }`}
-                      onClick={() => active("สี่ตัวโต๊ด", 4)}
+                      onClick={() => active("4 ตัวโต๊ด", 4)}
                     >
-                      <BiGridAlt /> สี่ตัวโต๊ด{" "}
+                      <BiGridAlt /> 4 ตัวโต๊ด{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
                     <button
                       className={`btn ${
-                        activeButtons.includes("สามตัวบน") ? "active" : ""
+                        activeButtons.includes("3 ตัวบน") ? "active" : ""
                       }`}
-                      onClick={() => active("สามตัวบน", 3)}
+                      onClick={() => active("3 ตัวบน", 3)}
                     >
-                      <BiGridAlt /> สามตัวบน{" "}
+                      <BiGridAlt /> 3 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
                     <button
                       className={`btn ${
-                        activeButtons.includes("สามตัวโต๊ด") ? "active" : ""
+                        activeButtons.includes("3 ตัวโต๊ด") ? "active" : ""
                       }`}
-                      onClick={() => active("สามตัวโต๊ด", 3)}
+                      onClick={() => active("3 ตัวโต๊ด", 3)}
                     >
-                      <BiGridAlt /> สามตัวโต๊ด{" "}
+                      <BiGridAlt /> 3 ตัวโต๊ด{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
                     <button
                       className={`btn ${
-                        activeButtons.includes("สามตัวล่าง") ? "active" : ""
+                        activeButtons.includes("3 ตัวล่าง") ? "active" : ""
                       }`}
-                      onClick={() => active("สามตัวล่าง", 3)}
+                      onClick={() => active("3 ตัวล่าง", 3)}
                     >
-                      <BiGridAlt /> สามตัวล่าง{" "}
+                      <BiGridAlt /> 3 ตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
                     <button
                       className={`btn ${
-                        activeButtons.includes("สองตัวบน") ? "active" : ""
+                        activeButtons.includes("2 ตัวบน") ? "active" : ""
                       }`}
-                      onClick={() => active("สองตัวบน", 2)}
+                      onClick={() => active("2 ตัวบน", 2)}
                     >
-                      <BiGridAlt /> สองตัวบน{" "}
+                      <BiGridAlt /> 2 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
                       className={`btn ${
-                        activeButtons.includes("สองตัวล่าง") ? "active" : ""
+                        activeButtons.includes("2 ตัวล่าง") ? "active" : ""
                       }`}
-                      onClick={() => active("สองตัวล่าง", 2)}
+                      onClick={() => active("2 ตัวล่าง", 2)}
                     >
-                      <BiGridAlt /> สองตัวล่าง{" "}
+                      <BiGridAlt /> 2 ตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
@@ -671,7 +671,7 @@ useEffect(() => {
                   </div>
                   <div className={`btn-con flex justify-center items-center gap-[8px]
                   ${
-                    activeButtons.includes("สองตัวล่าง") || activeButtons.includes("สองตัวบน") ? "":"hidden"
+                    activeButtons.includes("2 ตัวล่าง") || activeButtons.includes("2 ตัวบน") ? "":"hidden"
                   }`}>
 
                       <button className={`btn ${activeHuy19 === "19 ประตู" ? "active" : ""}`} onClick={() => handleHuy19("19 ประตู",1)}>19 ประตู</button>
