@@ -113,7 +113,7 @@ export default function Card({ displayText,imghuy }) {
             </div> */}
             <div className="bg-white  ">
                 <div className="flex items-center justify-start mb-4 gap-2 ">
-                    <img src={displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px] w-[70px]" />
+                    <img src={displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA: imgSrc} alt="Vietnam flag" className=" h-[50px] w-[70px]" />
 
                     <div className="card-body p-2 ">
                         <h2 className="text-3xl font-bold text-[#4400A5]">
@@ -138,7 +138,7 @@ export default function Card({ displayText,imghuy }) {
                 </span>
             </div>
             <Link to="/play" onClick={() => {
-            const chosenText = displayText === "หวยไทย" ? "หวย ธกส" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
+            const chosenText = displayText === "หวยไทย" ? "กองสลากรัฐบาล" : displayText === "หวยหุ้นต่างประเทศ" ? "หุ้นดาวโจนส์" : displayText;
             const chosenImage = displayText === "หวยไทย" ? bankname.GVM : displayText === "หวยหุ้นต่างประเทศ" ? aboardHuay.USA : imgSrc;
             localStorage.setItem('displayText', chosenText);
             localStorage.setItem('chosenImage', chosenImage);
