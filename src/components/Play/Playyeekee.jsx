@@ -87,7 +87,6 @@ useEffect(() => {
   };
 
   const handleHuy19 = (buttonName, newNumberOfDigits) => {
-    // Remove "วิ่งบน" and "วิ่งล่าง" from activeButtons if any Huy19 button is clicked
     if (["19 ประตู", "รูดหน้า", "รูดหลัง"].includes(buttonName)) {
       setActiveButtons(activeButtons.filter(btn => btn !== "วิ่งบน" && btn !== "วิ่งล่าง"));
         setNumberOfDigits(newNumberOfDigits);
@@ -95,7 +94,7 @@ useEffect(() => {
   
     if (activeHuy19 === buttonName) {
       setActiveHuy19(false);
-      setNumberOfDigits(2); // Default value when toggling off
+      setNumberOfDigits(2);
       setOpenhuay19(false);
 
     } else {
@@ -156,15 +155,10 @@ useEffect(() => {
         }
     }
 
-    // Ensure the result set contains exactly 19 numbers by filtering if necessary
-    // This step might not be necessary if you always want to include all matches.
-    // However, based on your requirement, we keep it here as a placeholder.
-
     return newNumbers.slice(0, 19); // Adjust this line if you have a different logic for selecting 19 numbers
 };
 
-// Usage example
-
+  // Usage example
   // Inside the component function Play
 
   const handleIncrement = () => {
@@ -178,6 +172,7 @@ useEffect(() => {
       setPrice(prevPrice => prevPrice - 1);
     }
   };
+
   //Delete All the value in betting
 
   const DeleteAll = () => {
@@ -336,11 +331,13 @@ useEffect(() => {
     <section>
       <Navbar />
       <div className="flex flex-col p-5">
-        {/* <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/Home" className="flex justify-center items-center gap-1">
-          <IoIosBackspace />
-            ย้อนกลับ
-          </Link>
-        </div> */}
+
+          {/* <div className="divider divider-start text-3xl pb-8 text-[#4400A5]"><Link to="/Home" className="flex justify-center items-center gap-1">
+            <IoIosBackspace />
+              ย้อนกลับ
+            </Link>
+          </div> */}
+
         <div className="footer py-4">
           <aside className="items-center grid-flow-col gap-4 ps-[0.75rem]">
 
