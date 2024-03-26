@@ -45,7 +45,7 @@ function Poy(){
                     </div>
                     <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
                         <div className="menu-poy">
-                            <button>สี่ตัวบน</button>
+                            <button>4 ตัวบน</button>
                             <p className="bonus">1,000.00</p>
                         </div>
                         <div className="menu-poy">

@@ -129,7 +129,7 @@ function Title3() {
                         {(() => {
                             switch (buttonIndex) {
                                 case 0:
-                                    return "สี่ตัวบน";
+                                    return "4 ตัวบน";
                                 case 1:
                                     return "สามตัวบน";
                                 case 2:
@@ -166,7 +166,7 @@ function Title3() {
                                 {(() => {
                                     switch (activeButton) {
                                         case 0:
-                                            return "สี่ตัวบน";
+                                            return "4 ตัวบน";
                                         case 1:
                                             return "สามตัวบน";
                                         case 2:

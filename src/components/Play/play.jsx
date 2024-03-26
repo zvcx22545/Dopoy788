@@ -1150,7 +1150,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
             <div className="list-menuorder py-2">
               {/* Check for "สี่ตัวบน" */}
               {completedNumbers["สี่ตัวบน"].length > 0 && (
-                <div className="title-betting">สี่ตัวบน</div>
+                <div className="title-betting">4 ตัวบน</div>
               )}
               {completedNumbers["สี่ตัวบน"].map((numberSet, index) => (
                 <div
@@ -1170,7 +1170,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
 
               {/* Check for "สี่ตัวโต๊ด" */}
               {completedNumbers["สี่ตัวโต๊ด"].length > 0 && (
-                <div className="title-betting">สี่ตัวโต๊ด</div>
+                <div className="title-betting">4 ตัวโต๊ด</div>
               )}
               {completedNumbers["สี่ตัวโต๊ด"].map((numberSet, index) => (
                 <div
@@ -1190,7 +1190,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
 
               {/* Check for "สามตัวบน" */}
               {completedNumbers["สามตัวบน"].length > 0 && (
-                <div className="title-betting">สามตัวบน</div>
+                <div className="title-betting">3 ตัวบน</div>
               )}
               {completedNumbers["สามตัวบน"].map((numberSet, index) => (
                 <div
@@ -1209,7 +1209,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
               ))}
               {/* Check for "สามตัวโต๊ด" */}
               {completedNumbers["สามตัวโต๊ด"].length > 0 && (
-                <div className="title-betting">สามตัวโต๊ด</div>
+                <div className="title-betting">3 ตัวโต๊ด</div>
               )}
               {completedNumbers["สามตัวโต๊ด"].map((numberSet, index) => (
                 <div
@@ -1229,7 +1229,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
 
               {/* Check for "สามตัวล่าง" */}
               {completedNumbers["สามตัวล่าง"].length > 0 && (
-                <div className="title-betting">สามตัวล่าง</div>
+                <div className="title-betting">3 ตัวล่าง</div>
               )}
               {completedNumbers["สามตัวล่าง"].map((numberSet, index) => (
                 <div
@@ -1249,7 +1249,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
 
               {/* Check for "สองตัวบน" */}
               {completedNumbers["สองตัวบน"].length > 0 && (
-                <div className="title-betting">สองตัวบน</div>
+                <div className="title-betting">2 ตัวบน</div>
               )}
               {completedNumbers["สองตัวบน"].map((numberSet, index) => (
                 <div
@@ -1268,7 +1268,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
               ))}
               {/* Check for "สองตัวล่าง" */}
               {completedNumbers["สองตัวล่าง"].length > 0 && (
-                <div className="title-betting">สองตัวล่าง</div>
+                <div className="title-betting">2 ตัวล่าง</div>
               )}
               {completedNumbers["สองตัวล่าง"].map((numberSet, index) => (
                 <div
@@ -1407,7 +1407,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สี่ตัวบน", 4)}
                     >
-                      <BiGridAlt /> สี่ตัวบน{" "}
+                      <BiGridAlt />4 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
@@ -1417,7 +1417,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สี่ตัวโต๊ด", 4)}
                     >
-                      <BiGridAlt /> สี่ตัวโต๊ด{" "}
+                      <BiGridAlt />4 ตัวโต๊ด{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
@@ -1427,7 +1427,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สามตัวบน", 3)}
                     >
-                      <BiGridAlt /> สามตัวบน{" "}
+                      <BiGridAlt />3 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
@@ -1437,7 +1437,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สามตัวโต๊ด", 3)}
                     >
-                      <BiGridAlt /> สามตัวโต๊ด{" "}
+                      <BiGridAlt /> 3 ตัวโต๊ด{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
@@ -1447,7 +1447,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สามตัวล่าง", 3)}
                     >
-                      <BiGridAlt /> สามตัวล่าง{" "}
+                      <BiGridAlt /> 3 ตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 
@@ -1457,7 +1457,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สองตัวบน", 2)}
                     >
-                      <BiGridAlt /> สองตัวบน{" "}
+                      <BiGridAlt /> 2 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button
@@ -1466,7 +1466,7 @@ const updatePricesInCompletedNumbers = (newPrice) => {
                       }`}
                       onClick={() => active("สองตัวล่าง", 2)}
                     >
-                      <BiGridAlt /> สองตัวล่าง{" "}
+                      <BiGridAlt /> 2 ตัวล่าง{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
                     <button

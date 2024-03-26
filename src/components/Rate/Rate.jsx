@@ -53,7 +53,7 @@ function Rate() {
               </thead>
               <tbody>
                 <tr>
-                  <td>สี่ตัวบน</td>
+                  <td>4 ตัวบน</td>
                   <td>บาทละ</td>
                   <td>10,000</td>
                 </tr>
@@ -111,7 +111,7 @@ function Rate() {
               </thead>
               <tbody>
                 <tr>
-                  <td>สี่ตัวบน</td>
+                  <td>4 ตัวบน</td>
                   <td>บาทละ</td>
                   <td>10,000</td>
                 </tr>
@@ -169,7 +169,7 @@ function Rate() {
               </thead>
               <tbody>
                 <tr>
-                  <td>สี่ตัวบน</td>
+                  <td>4 ตัวบน</td>
                   <td>บาทละ</td>
                   <td>10,000</td>
                 </tr>

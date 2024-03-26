@@ -217,7 +217,7 @@ useEffect(() => {
 
   const [activeButton, setActiveButton] = useState("เลือกกดเอง");
 
-  const [activeButtons, setActiveButtons] = useState(["สี่ตัวบน"]);
+  const [activeButtons, setActiveButtons] = useState(["4 ตัวบน"]);
 
   const active = (buttonName, newNumberOfDigits) => {
     if (activeButtons.length === 1 && activeButtons[0] === buttonName) {
@@ -552,11 +552,11 @@ useEffect(() => {
                   <div className="grid gap-4 grid-cols-3">
                     <button
                       className={`btn ${
-                        activeButtons.includes("สี่ตัวบน") ? "active" : ""
+                        activeButtons.includes("4 ตัวบน") ? "active" : ""
                       }`}
-                      onClick={() => active("สี่ตัวบน", 4)}
+                      onClick={() => active("4 ตัวบน", 4)}
                     >
-                      <BiGridAlt /> สี่ตัวบน{" "}
+                      <BiGridAlt /> 4 ตัวบน{" "}
                       <div className="badge badge-primary">1,000</div>
                     </button>
 

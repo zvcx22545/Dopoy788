@@ -150,7 +150,7 @@ const Title2 = ({ addCompletedNumber }) => {
             label={(() => {
               switch (buttonIndex) {
                 case 0:
-                  return "สี่ตัวบน";
+                  return "4 ตัวบน";
                 case 1:
                   return "สามตัวโต๊ด";
                 case 2:
