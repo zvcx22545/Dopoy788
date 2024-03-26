@@ -17,37 +17,37 @@ import { useNavigate } from 'react-router-dom'; // Assuming you are using React 
 
 function MainLayoutLogin() {
   
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const token = useSelector((state) => state.user.userToken);
-  const tokenExpiresAt = useSelector((state) => state.user.tokenExpiresAt);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const token = useSelector((state) => state.user.userToken);
+  // const tokenExpiresAt = useSelector((state) => state.user.tokenExpiresAt);
 
 
-  useEffect(() => {
-    // Consider converting tokenExpiresAt to a Date and checking if it's past
-    const currentTime = new Date().getTime();
-    const shouldLogout = token || tokenExpiresAt && currentTime > new Date(tokenExpiresAt).getTime();
+  // useEffect(() => {
+  //   // Consider converting tokenExpiresAt to a Date and checking if it's past
+  //   const currentTime = new Date().getTime();
+  //   const shouldLogout = token || tokenExpiresAt && currentTime > new Date(tokenExpiresAt).getTime();
 
-    async function handleLogout() {
-      if (shouldLogout) {
-        try {
-          const response = await dispatch(logoutUser()).unwrap();
-          if (response.success) {
-            navigate("/");
-          } else {
-            console.error('Logout failed:', response);
-          }
-        } catch (error) {
-          if (error.message !== "No token found.") {
-            console.error('Logout Error:', error);
-          }
-          navigate("/");
-        }
-      }
-    }
+  //   async function handleLogout() {
+  //     if (shouldLogout) {
+  //       try {
+  //         const response = await dispatch(logoutUser()).unwrap();
+  //         if (response.success) {
+  //           navigate("/");
+  //         } else {
+  //           console.error('Logout failed:', response);
+  //         }
+  //       } catch (error) {
+  //         if (error.message !== "No token found.") {
+  //           console.error('Logout Error:', error);
+  //         }
+  //         navigate("/");
+  //       }
+  //     }
+  //   }
 
-    handleLogout();
-  }, [dispatch, navigate, token, tokenExpiresAt]); // Include token and tokenExpiresAt in dependencies
+  //   handleLogout();
+  // }, [dispatch, navigate, token, tokenExpiresAt]); // Include token and tokenExpiresAt in dependencies
   
   return (
     <section id="main-layout">
