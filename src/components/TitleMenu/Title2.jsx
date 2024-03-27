@@ -92,7 +92,7 @@ const Title2 = ({ addCompletedNumber }) => {
         setNumbersPerPage(100);
         break;
       case 3:
-        setSelectedNumbers(Array.from({ length: 99 + 1 }, (_, i) => i));
+        setSelectedNumbers(Array.from({ length: 1000 }, (_, i) => i));
         setNumbersPerPage(100);
         break;
       case 4:
@@ -100,10 +100,14 @@ const Title2 = ({ addCompletedNumber }) => {
         setNumbersPerPage(100);
         break;
       case 5:
-        setSelectedNumbers(Array.from({ length: 9 + 1 }, (_, i) => i));
+        setSelectedNumbers(Array.from({ length: 99 + 1 }, (_, i) => i));
         setNumbersPerPage(100);
         break;
       case 6:
+        setSelectedNumbers(Array.from({ length: 9 + 1 }, (_, i) => i));
+        setNumbersPerPage(100);
+        break;
+      case 7:
         setSelectedNumbers(Array.from({ length: 9 + 1 }, (_, i) => i));
         setNumbersPerPage(100);
         break;
@@ -139,7 +143,7 @@ const Title2 = ({ addCompletedNumber }) => {
         <div className="divider divider-end text-xl">เลือกประเภทการแทง</div>
       </div>
       <div className="grid grid-cols-3 gap-4  max-md:grid-cols-1 max-md:mb-[3rem]">
-        {[0, 1, 2, 3, 4, 5, 6].map((buttonIndex) => (
+        {[0, 1, 2, 3, 4, 5, 6,7].map((buttonIndex) => (
           <TitleButton
             key={buttonIndex}
             isActive={activeButton === buttonIndex}
@@ -152,16 +156,18 @@ const Title2 = ({ addCompletedNumber }) => {
                 case 0:
                   return "4 ตัวบน";
                 case 1:
-                  return "3 ตัวโต๊ด";
+                  return "3 ตัวบน";
                 case 2:
-                  return "3 ตัวล่าง";
+                  return "3 ตัวโต๊ด";
                 case 3:
-                  return "2 ตัวบน";
+                  return "3 ตัวล่าง";
                 case 4:
-                  return "2 ตัวล่าง";
+                  return "2 ตัวบน";
                 case 5:
-                  return "วิ่งบน";
+                  return "2 ตัวล่าง";
                 case 6:
+                  return "วิ่งบน";
+                case 7:
                   return "วิ่งล่าง";
                 default:
                   return "";
@@ -178,7 +184,7 @@ const Title2 = ({ addCompletedNumber }) => {
 
         <div
           className={`left-content flex flex-col justify-center items-center ${
-            [5, 6].includes(activeButton) ||
+            [6,7].includes(activeButton) ||
             activeButton === 5 || // เปลี่ยนจาก activeButton.includes("วิ่งบน") เป็น activeButton === 5
             activeButton === 6 // เปลี่ยนจาก activeButton.includes("วิ่งล่าง") เป็น activeButton === 6
               ? "hidden"
@@ -275,8 +281,32 @@ const Title2 = ({ addCompletedNumber }) => {
           </div>
         </div>
       )}
+      {activeButton === 3 && (
+        <div className="grid grid-cols-1 gap-4  ">
+          <div className="grid grid-cols-10 gap-4 max-md:grid-cols-5">
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                className={`btn w-[60px] mx-auto ${
+                  currentPage === number ? "active" : ""
+                }`}
+                onClick={() => handleClick(number)}
+              >
+                {number === 1
+                  ? "000"
+                  : ((number - 1) * 100).toString().padStart(3, "0")}
+              </button>
+            ))}
+          </div>
+          <div className="w-full bg-[#4400A5] p-3 rounded mt-4 text-white">
+            <h1 className="flex justify-center">
+              {getPageRangeC2(currentPage, numbersPerPage)}
+            </h1>
+          </div>
+        </div>
+      )}
 
-      {[0, 1, 2].includes(activeButton) && (
+      {[0, 1, 2, 3].includes(activeButton) && (
         <div className="grid grid-cols-1 gap-4 mt-10">
           <div className="grid grid-cols-10 gap-y-4 max-md:grid-cols-5">
             {currentNumbers.map((number) => (
@@ -313,7 +343,7 @@ const Title2 = ({ addCompletedNumber }) => {
   </div>
 )}
 
-      {[3, 4].includes(activeButton) && (
+      {[4, 5].includes(activeButton) && (
         <div className="grid grid-cols-10 gap-4 p-5 max-md:grid-cols-5">
           {currentNumbers.map((number) => (
             <button
@@ -346,7 +376,7 @@ const Title2 = ({ addCompletedNumber }) => {
         </div>
       )}
 
-{[5, 6].includes(activeButton) && (
+{[6, 7].includes(activeButton) && (
   <div className="grid grid-cols-10 gap-y-4  max-md:grid-cols-5">
     {currentNumbers.map((number) => (
       <button

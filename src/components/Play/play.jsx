@@ -366,16 +366,19 @@ function Play() {
     if (activeButton === 0) {
       newNumbers["สี่ตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 1) {
-      newNumbers["สามตัวโต๊ด"].push({ number: digit, price: 10 });
+      newNumbers["สามตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 2) {
-      newNumbers["สามตัวล่าง"].push({ number: digit, price: 10 });
+      newNumbers["สามตัวโต๊ด"].push({ number: digit, price: 10 });
     } else if (activeButton === 3) {
-      newNumbers["สองตัวบน"].push({ number: digit, price: 10 });
+      newNumbers["สามตัวล่าง"].push({ number: digit, price: 10 });
     } else if (activeButton === 4) {
-      newNumbers["สองตัวล่าง"].push({ number: digit, price: 10 });
+      newNumbers["สองตัวบน"].push({ number: digit, price: 10 });
     } else if (activeButton === 5) {
-      newNumbers["วิ่งบน"].push({ number: digit, price: 10 });
+      newNumbers["สองตัวล่าง"].push({ number: digit, price: 10 });
     } else if (activeButton === 6) {
+      newNumbers["วิ่งบน"].push({ number: digit, price: 10 });
+    }
+     else if (activeButton === 7) {
       newNumbers["วิ่งล่าง"].push({ number: digit, price: 10 });
     }
     setCompletedNumbers(newNumbers);
